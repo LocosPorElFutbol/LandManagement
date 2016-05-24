@@ -179,9 +179,6 @@ namespace LandManagement
             this.operacion.tbenventa.env_observaciones = txbObservaciones.Text;
         }
 
-        /// <summary>
-        /// Recordar que se esta clavando el 2 de propietario y el 1 de autorizante, MEJORAR!
-        /// </summary>
         private void CargoPropietariosALaOperacion()
         {
             tbclienteoperacion clienteOperacion;
@@ -193,16 +190,13 @@ namespace LandManagement
                 {
                     clienteOperacion = new tbclienteoperacion();
                     clienteOperacion.cli_id = (int)row.Cells["cli_id"].Value;
-                    clienteOperacion.stc_id = 2;
+                    clienteOperacion.stc_id = (int)TipoOperador.PROPIETARI;
 
                     this.operacion.tbclienteoperacion.Add(clienteOperacion);
                 }
             }
         }
 
-        /// <summary>
-        /// Recordar que se esta clavando el 2 de propietario y el 1 de autorizante, MEJORAR!
-        /// </summary>
         private void CargoAutorizantesALaOperacion()
         {
             tbclienteoperacion clienteOperacion;
@@ -214,7 +208,7 @@ namespace LandManagement
                 {
                     clienteOperacion = new tbclienteoperacion();
                     clienteOperacion.cli_id = (int)row.Cells["cli_id"].Value;
-                    clienteOperacion.stc_id = 1;
+                    clienteOperacion.stc_id = (int)TipoOperador.AUTORIZANT;
 
                     this.operacion.tbclienteoperacion.Add(clienteOperacion);
                 }
@@ -572,13 +566,15 @@ namespace LandManagement
 
         private IEnumerable<int> GetIdsPropietarios()
         {
-            var idsPropietarios = GetClientesOperacion().Where(x => x.stc_id == 2).Select(x => x.cli_id);
+            var idsPropietarios = GetClientesOperacion()
+                .Where(x => x.stc_id == (int)TipoOperador.PROPIETARI).Select(x => x.cli_id);
             return idsPropietarios;
         }
 
         private IEnumerable<int> GetIdsAutorizantes()
         {
-            var idsAutorizantes = GetClientesOperacion().Where(x => x.stc_id == 1).Select(x => x.cli_id);
+            var idsAutorizantes = GetClientesOperacion()
+                .Where(x => x.stc_id == (int)TipoOperador.AUTORIZANT).Select(x => x.cli_id);
             return idsAutorizantes;
         }
 

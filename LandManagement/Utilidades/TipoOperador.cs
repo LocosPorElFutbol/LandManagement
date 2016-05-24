@@ -7,7 +7,7 @@ namespace LandManagement.Utilidades
 {
     public enum TipoOperador
     {
-        AUTORIZANT = 0,
+        AUTORIZANT = 1,
         PROPIETARI = 2,
         RESERVENTA = 3,
         COMPRVENTA = 4

@@ -161,9 +161,6 @@ namespace LandManagement
             _operacion.tbreservaventa.rev_observaciones = txbObservaciones.Text;
         }
 
-        /// <summary>
-        /// Recordar que se esta clavando el 3 de reservante, MEJORAR!
-        /// </summary>
         public void CargoReservanteALaOperacion(tboperaciones _operacion)
         {
             tbclienteoperacion clienteOperacion;
@@ -172,15 +169,12 @@ namespace LandManagement
             {
                 clienteOperacion = new tbclienteoperacion();
                 clienteOperacion.cli_id = ((tbcliente)cmbCliente.SelectedItem).cli_id;
-                clienteOperacion.stc_id = 3;
+                clienteOperacion.stc_id = (int)TipoOperador.RESERVENTA;
 
                 _operacion.tbclienteoperacion.Add(clienteOperacion);
             }
         }
 
-        /// <summary>
-        /// Recordar que se esta clavando el 2 de propietario, MEJORAR!
-        /// </summary>
         private void CargoPropietariosALaOperacion(tboperaciones _operacion)
         {
             tbclienteoperacion clienteOperacion;
@@ -197,7 +191,7 @@ namespace LandManagement
                 {
                     clienteOperacion = new tbclienteoperacion();
                     clienteOperacion.cli_id = obj.cli_id;
-                    clienteOperacion.stc_id = 2;
+                    clienteOperacion.stc_id = (int)TipoOperador.PROPIETARI;
 
                     //this.operacion.tbclienteoperacion.Add(clienteOperacion);
                     _operacion.tbclienteoperacion.Add(clienteOperacion);
@@ -385,7 +379,8 @@ namespace LandManagement
         private int GetIdReservante(tboperaciones _operacion)
         {
             var idReservante = GetClientesOperacion(_operacion)
-                .Where(x => x.stc_id == 3).Select(x => x.cli_id).FirstOrDefault();
+                .Where(x => x.stc_id == (int)TipoOperador.RESERVENTA)
+                .Select(x => x.cli_id).FirstOrDefault();
             return idReservante;
         }
 

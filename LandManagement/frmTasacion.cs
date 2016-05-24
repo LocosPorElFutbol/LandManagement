@@ -148,9 +148,6 @@ namespace LandManagement
             this.operacion.tbtasacion.tas_observaciones = txbObservaciones.Text;
         }
 
-        /// <summary>
-        /// Recordar que se esta clavando el 2 de propietario y el 1 de autorizante, MEJORAR!
-        /// </summary>
         private void CargoPropietariosALaOperacion()
         {
             tbclienteoperacion clienteOperacion;
@@ -166,7 +163,7 @@ namespace LandManagement
                 {
                     clienteOperacion = new tbclienteoperacion();
                     clienteOperacion.cli_id = obj.cli_id;
-                    clienteOperacion.stc_id = 2;
+                    clienteOperacion.stc_id = (int)TipoOperador.PROPIETARI;
 
                     this.operacion.tbclienteoperacion.Add(clienteOperacion);
                 }
