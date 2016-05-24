@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7A09C0AB-C80B-4BD8-AF1E-594197C80364}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LandManagement</RootNamespace>
+    <AssemblyName>LandManagement</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Imagenes\Cliente\LogoLandManagement.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net40-client\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmAlquilada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAlquilada.Designer.cs">
+      <DependentUpon>frmAlquilada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmClienteABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClienteABM.designer.cs">
+      <DependentUpon>frmClienteABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmClienteFamiliar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClienteFamiliar.Designer.cs">
+      <DependentUpon>frmClienteFamiliar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmClienteListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClienteListado.Designer.cs">
+      <DependentUpon>frmClienteListado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmClientePropiedad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClientePropiedad.Designer.cs">
+      <DependentUpon>frmClientePropiedad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEnAlquiler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEnAlquiler.designer.cs">
+      <DependentUpon>frmEnAlquiler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEncuesta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEncuesta.Designer.cs">
+      <DependentUpon>frmEncuesta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEnVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEnVenta.designer.cs">
+      <DependentUpon>frmEnVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenuListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenuListado.Designer.cs">
+      <DependentUpon>frmMenuListado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenuABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenuABM.Designer.cs">
+      <DependentUpon>frmMenuABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOperacionListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOperacionListado.Designer.cs">
+      <DependentUpon>frmOperacionListado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPadre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPadre.Designer.cs">
+      <DependentUpon>frmPadre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPermisos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPermisos.Designer.cs">
+      <DependentUpon>frmPermisos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPropiedadABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPropiedadABM.Designer.cs">
+      <DependentUpon>frmPropiedadABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPropiedadListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPropiedadListado.Designer.cs">
+      <DependentUpon>frmPropiedadListado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReservaAlquiler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReservaAlquiler.designer.cs">
+      <DependentUpon>frmReservaAlquiler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReservaVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReservaVenta.designer.cs">
+      <DependentUpon>frmReservaVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmServicios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmServicios.Designer.cs">
+      <DependentUpon>frmServicios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmServiciosABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmServiciosABM.Designer.cs">
+      <DependentUpon>frmServiciosABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTasacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTasacion.designer.cs">
+      <DependentUpon>frmTasacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTipoCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTipoCliente.Designer.cs">
+      <DependentUpon>frmTipoCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTipoClienteABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTipoClienteABM.Designer.cs">
+      <DependentUpon>frmTipoClienteABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTipoFamiliar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTipoFamiliar.Designer.cs">
+      <DependentUpon>frmTipoFamiliar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTipoFamiliarABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTipoFamiliarABM.Designer.cs">
+      <DependentUpon>frmTipoFamiliarABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTipoPropiedad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTipoPropiedad.Designer.cs">
+      <DependentUpon>frmTipoPropiedad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTipoPropiedadABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTipoPropiedadABM.Designer.cs">
+      <DependentUpon>frmTipoPropiedadABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsuarioListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsuarioListado.Designer.cs">
+      <DependentUpon>frmUsuarioListado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsuarioABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsuarioABM.Designer.cs">
+      <DependentUpon>frmUsuarioABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVenta.designer.cs">
+      <DependentUpon>frmVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recursos\ResourceImages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceImages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utilidades\BuscarEnDataGridView.cs" />
+    <Compile Include="Utilidades\ComboBoxItem.cs" />
+    <Compile Include="Utilidades\DisplayNameHelper.cs" />
+    <Compile Include="Utilidades\Emails.cs" />
+    <Compile Include="Utilidades\Formularios.cs" />
+    <Compile Include="Utilidades\ListasDeElementos.cs" />
+    <Compile Include="Utilidades\ValidarControles.cs" />
+    <Compile Include="Utilidades\VariablesDeSesion.cs" />
+    <EmbeddedResource Include="frmAlquilada.resx">
+      <DependentUpon>frmAlquilada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClienteABM.resx">
+      <DependentUpon>frmClienteABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClienteFamiliar.resx">
+      <DependentUpon>frmClienteFamiliar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClienteListado.resx">
+      <DependentUpon>frmClienteListado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClientePropiedad.resx">
+      <DependentUpon>frmClientePropiedad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEnAlquiler.resx">
+      <DependentUpon>frmEnAlquiler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEncuesta.resx">
+      <DependentUpon>frmEncuesta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEnVenta.resx">
+      <DependentUpon>frmEnVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenuListado.resx">
+      <DependentUpon>frmMenuListado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenuABM.resx">
+      <DependentUpon>frmMenuABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOperacionListado.resx">
+      <DependentUpon>frmOperacionListado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPadre.resx">
+      <DependentUpon>frmPadre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPermisos.resx">
+      <DependentUpon>frmPermisos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPropiedadABM.resx">
+      <DependentUpon>frmPropiedadABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPropiedadListado.resx">
+      <DependentUpon>frmPropiedadListado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReservaAlquiler.resx">
+      <DependentUpon>frmReservaAlquiler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReservaVenta.resx">
+      <DependentUpon>frmReservaVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmServicios.resx">
+      <DependentUpon>frmServicios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmServiciosABM.resx">
+      <DependentUpon>frmServiciosABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTasacion.resx">
+      <DependentUpon>frmTasacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTipoCliente.resx">
+      <DependentUpon>frmTipoCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTipoClienteABM.resx">
+      <DependentUpon>frmTipoClienteABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTipoFamiliar.resx">
+      <DependentUpon>frmTipoFamiliar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTipoFamiliarABM.resx">
+      <DependentUpon>frmTipoFamiliarABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTipoPropiedad.resx">
+      <DependentUpon>frmTipoPropiedad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTipoPropiedadABM.resx">
+      <DependentUpon>frmTipoPropiedadABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsuarioListado.resx">
+      <DependentUpon>frmUsuarioListado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsuarioABM.resx">
+      <DependentUpon>frmUsuarioABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVenta.resx">
+      <DependentUpon>frmVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Recursos\ResourceImages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceImages.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LandManagement.Business\LandManagement.Business.csproj">
+      <Project>{EA84A8CB-45A3-413F-B040-6FC30B2D2ECC}</Project>
+      <Name>LandManagement.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LandManagement.Entities\LandManagement.Entities.csproj">
+      <Project>{D4A76D75-CD3C-467B-8F5D-ABA1137FC41D}</Project>
+      <Name>LandManagement.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Imagenes\Cliente\Tool.ico" />
+    <None Include="Imagenes\Cliente\Clientes.ico" />
+    <Content Include="Imagenes\Cliente\Llave.ico" />
+    <Content Include="Imagenes\Cliente\Logo.jpg" />
+    <Content Include="Imagenes\Cliente\LogoLandManagement.ico" />
+    <None Include="Recursos\Resources\Llave.bmp" />
+    <None Include="Recursos\Resources\Logo.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,1679 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="landmanagementbdModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="tbalquilada">
+          <Key>
+            <PropertyRef Name="alq_id" />
+          </Key>
+          <Property Name="alq_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="alq_fecha_inicio" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="alq_fecha_fin" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="alq_fecha_desocupacion" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="alq_precio_primer_anio" Type="double" />
+          <Property Name="alq_precio_segundo_anio" Type="double" />
+          <Property Name="alq_precio_tercer_anio" Type="double" />
+          <Property Name="alq_precio_cuarto_anio" Type="double" />
+          <Property Name="alq_precio_quinto_anio" Type="double" />
+          <Property Name="alq_servicios_cargo_locador" Type="bool" Nullable="false" />
+          <Property Name="alq_pago_administracion" Type="bool" />
+          <Property Name="alq_factura_iva" Type="bool" />
+          <Property Name="alq_pago_deposito" Type="bool" />
+          <Property Name="alq_banco" Type="varchar" MaxLength="50" />
+          <Property Name="alq_numero_cuenta" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbcliente">
+          <Key>
+            <PropertyRef Name="cli_id" />
+          </Key>
+          <Property Name="cli_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cli_id_padre" Type="int" />
+          <Property Name="tif_id" Type="int" Nullable="false" />
+          <Property Name="cli_fecha" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="cli_nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="cli_apellido" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="cli_telefono_celular" Type="varchar" MaxLength="50" />
+          <Property Name="cli_telefono_particular" Type="varchar" MaxLength="50" />
+          <Property Name="cli_telefono_laboral" Type="varchar" MaxLength="50" />
+          <Property Name="cli_email" Type="varchar" MaxLength="100" />
+          <Property Name="cli_sexo" Type="varchar" MaxLength="50" />
+          <Property Name="cli_fecha_nacimiento" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="cli_nacionalidad" Type="varchar" MaxLength="50" />
+          <Property Name="cli_estado_civil" Type="varchar" MaxLength="50" />
+          <Property Name="cli_tipo_documento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cli_numero_documento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cli_cuit_cuil" Type="varchar" MaxLength="50" />
+          <Property Name="cli_como_llego" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="tbclienteoperacion">
+          <Key>
+            <PropertyRef Name="cli_id" />
+            <PropertyRef Name="ope_id" />
+            <PropertyRef Name="stc_id" />
+          </Key>
+          <Property Name="cli_id" Type="int" Nullable="false" />
+          <Property Name="ope_id" Type="int" Nullable="false" />
+          <Property Name="stc_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbclientepropiedad">
+          <Key>
+            <PropertyRef Name="cli_id" />
+            <PropertyRef Name="pro_id" />
+          </Key>
+          <Property Name="cli_id" Type="int" Nullable="false" />
+          <Property Name="pro_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbdomicilio">
+          <Key>
+            <PropertyRef Name="dom_id" />
+          </Key>
+          <Property Name="dom_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cli_id" Type="int" Nullable="false" />
+          <Property Name="tip_id" Type="int" Nullable="false" />
+          <Property Name="dom_calle" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="dom_numero" Type="int" Nullable="false" />
+          <Property Name="dom_piso" Type="int" />
+          <Property Name="dom_departamento" Type="varchar" MaxLength="50" />
+          <Property Name="dom_codigo_postal" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dom_localidad" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="dom_actual" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbenalquiler">
+          <Key>
+            <PropertyRef Name="ena_id" />
+          </Key>
+          <Property Name="ena_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ena_precio_primer_anio" Type="double" />
+          <Property Name="ena_precio_segundo_anio" Type="double" />
+          <Property Name="ena_precio_tercer_anio" Type="double" />
+          <Property Name="ena_precio_cuarto_anio" Type="double" />
+          <Property Name="ena_precio_quinto_anio" Type="double" />
+          <Property Name="ena_expensas" Type="double" />
+          <Property Name="ena_abl" Type="double" />
+          <Property Name="ena_aguas" Type="double" />
+          <Property Name="ena_luz" Type="double" />
+          <Property Name="ena_gas" Type="double" />
+          <Property Name="ena_telefono" Type="double" />
+          <Property Name="ena_observaciones" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="tbencuesta">
+          <Key>
+            <PropertyRef Name="enc_id" />
+          </Key>
+          <Property Name="enc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="enc_observaciones" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbenventa">
+          <Key>
+            <PropertyRef Name="env_id" />
+          </Key>
+          <Property Name="env_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="env_fecha_vencimiento" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="env_precio" Type="double" Nullable="false" />
+          <Property Name="env_cartel" Type="varchar" MaxLength="100" />
+          <Property Name="env_observaciones" Type="varchar" MaxLength="300" />
+          <Property Name="env_titulo_propiedad" Type="bool" Nullable="false" />
+          <Property Name="env_planos" Type="bool" Nullable="false" />
+          <Property Name="env_reglamento" Type="bool" Nullable="false" />
+          <Property Name="env_matricula" Type="bool" Nullable="false" />
+          <Property Name="env_abl" Type="bool" Nullable="false" />
+          <Property Name="env_agua" Type="bool" Nullable="false" />
+          <Property Name="env_luz" Type="bool" Nullable="false" />
+          <Property Name="env_gas" Type="bool" Nullable="false" />
+          <Property Name="env_telefono" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbmenu">
+          <Key>
+            <PropertyRef Name="men_id" />
+          </Key>
+          <Property Name="men_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="men_id_padre" Type="int" />
+          <Property Name="men_nombre" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="men_nombre_formulario" Type="varchar" MaxLength="100" />
+          <Property Name="men_estado" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tboperaciones">
+          <Key>
+            <PropertyRef Name="ope_id" />
+          </Key>
+          <Property Name="ope_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usu_id" Type="int" Nullable="false" />
+          <Property Name="pro_id" Type="int" Nullable="false" />
+          <Property Name="tas_id" Type="int" />
+          <Property Name="env_id" Type="int" />
+          <Property Name="rev_id" Type="int" />
+          <Property Name="ven_id" Type="int" />
+          <Property Name="ena_id" Type="int" />
+          <Property Name="rea_id" Type="int" />
+          <Property Name="alq_id" Type="int" />
+          <Property Name="enc_id" Type="int" />
+          <Property Name="ope_fecha" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tbpropiedad">
+          <Key>
+            <PropertyRef Name="pro_id" />
+          </Key>
+          <Property Name="pro_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tip_id" Type="int" Nullable="false" />
+          <Property Name="pro_calle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pro_numero" Type="int" Nullable="false" />
+          <Property Name="pro_piso" Type="int" />
+          <Property Name="pro_departamento" Type="varchar" MaxLength="50" />
+          <Property Name="pro_codigo_postal" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pro_localidad" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="pro_caracteristica" Type="varchar" MaxLength="350" />
+        </EntityType>
+        <EntityType Name="tbreservaalquiler">
+          <Key>
+            <PropertyRef Name="rea_id" />
+          </Key>
+          <Property Name="rea_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rea_oferta" Type="double" Nullable="false" />
+          <Property Name="rea_garantia" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbreservaventa">
+          <Key>
+            <PropertyRef Name="rev_id" />
+          </Key>
+          <Property Name="rev_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rev_oferta" Type="double" Nullable="false" />
+          <Property Name="rev_observaciones" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="tbservicios">
+          <Key>
+            <PropertyRef Name="ser_id" />
+          </Key>
+          <Property Name="ser_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ser_descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbserviciospropiedad">
+          <Key>
+            <PropertyRef Name="ser_id" />
+            <PropertyRef Name="pro_id" />
+          </Key>
+          <Property Name="ser_id" Type="int" Nullable="false" />
+          <Property Name="pro_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbsystipocliente">
+          <Key>
+            <PropertyRef Name="stc_id" />
+          </Key>
+          <Property Name="stc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stc_codigo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="stc_descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbtasacion">
+          <Key>
+            <PropertyRef Name="tas_id" />
+          </Key>
+          <Property Name="tas_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tas_tasacion" Type="double" Nullable="false" />
+          <Property Name="tas_observaciones" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="tas_apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tas_nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbtipofamiliar">
+          <Key>
+            <PropertyRef Name="tif_id" />
+          </Key>
+          <Property Name="tif_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tif_descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbtipopropiedad">
+          <Key>
+            <PropertyRef Name="tip_id" />
+          </Key>
+          <Property Name="tip_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tip_descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbusuario">
+          <Key>
+            <PropertyRef Name="usu_id" />
+          </Key>
+          <Property Name="usu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usu_nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="usu_apellido" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="usu_email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="usu_email_password" Type="varchar" MaxLength="100" />
+          <Property Name="usu_nombre_login" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="usu_password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="usu_estado" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbusuariomenu">
+          <Key>
+            <PropertyRef Name="usu_id" />
+            <PropertyRef Name="men_id" />
+          </Key>
+          <Property Name="usu_id" Type="int" Nullable="false" />
+          <Property Name="men_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbventa">
+          <Key>
+            <PropertyRef Name="ven_id" />
+          </Key>
+          <Property Name="ven_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ven_fecha_boleto" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="ven_fecha_escritura" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="ven_precio" Type="double" Nullable="false" />
+          <Property Name="ven_escribano" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ven_presupuesto" Type="double" Nullable="false" />
+          <Property Name="ven_escribania" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ven_cobrado" Type="double" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_tbCliente_tbCliente1">
+          <End Role="tbcliente" Type="Self.tbcliente" Multiplicity="0..1" />
+          <End Role="tbcliente1" Type="Self.tbcliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbcliente">
+              <PropertyRef Name="cli_id" />
+            </Principal>
+            <Dependent Role="tbcliente1">
+              <PropertyRef Name="cli_id_padre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbCliente_tbTipoFamiliar1">
+          <End Role="tbtipofamiliar" Type="Self.tbtipofamiliar" Multiplicity="1" />
+          <End Role="tbcliente" Type="Self.tbcliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbtipofamiliar">
+              <PropertyRef Name="tif_id" />
+            </Principal>
+            <Dependent Role="tbcliente">
+              <PropertyRef Name="tif_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbClienteOperacion_tbCliente1">
+          <End Role="tbcliente" Type="Self.tbcliente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbclienteoperacion" Type="Self.tbclienteoperacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbcliente">
+              <PropertyRef Name="cli_id" />
+            </Principal>
+            <Dependent Role="tbclienteoperacion">
+              <PropertyRef Name="cli_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbClienteOperacion_tbOperaciones1">
+          <End Role="tboperaciones" Type="Self.tboperaciones" Multiplicity="1" />
+          <End Role="tbclienteoperacion" Type="Self.tbclienteoperacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tboperaciones">
+              <PropertyRef Name="ope_id" />
+            </Principal>
+            <Dependent Role="tbclienteoperacion">
+              <PropertyRef Name="ope_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbClienteOperacion_tbSysTipoCliente1">
+          <End Role="tbsystipocliente" Type="Self.tbsystipocliente" Multiplicity="1" />
+          <End Role="tbclienteoperacion" Type="Self.tbclienteoperacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbsystipocliente">
+              <PropertyRef Name="stc_id" />
+            </Principal>
+            <Dependent Role="tbclienteoperacion">
+              <PropertyRef Name="stc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbClientePropiedad_tbCliente1">
+          <End Role="tbcliente" Type="Self.tbcliente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbclientepropiedad" Type="Self.tbclientepropiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbcliente">
+              <PropertyRef Name="cli_id" />
+            </Principal>
+            <Dependent Role="tbclientepropiedad">
+              <PropertyRef Name="cli_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbClientePropiedad_tbPropiedad1">
+          <End Role="tbpropiedad" Type="Self.tbpropiedad" Multiplicity="1" />
+          <End Role="tbclientepropiedad" Type="Self.tbclientepropiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbpropiedad">
+              <PropertyRef Name="pro_id" />
+            </Principal>
+            <Dependent Role="tbclientepropiedad">
+              <PropertyRef Name="pro_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbDomicilio_tbCliente1">
+          <End Role="tbcliente" Type="Self.tbcliente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbdomicilio" Type="Self.tbdomicilio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbcliente">
+              <PropertyRef Name="cli_id" />
+            </Principal>
+            <Dependent Role="tbdomicilio">
+              <PropertyRef Name="cli_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbDomicilio_tbtipoPropiedad1">
+          <End Role="tbtipopropiedad" Type="Self.tbtipopropiedad" Multiplicity="1" />
+          <End Role="tbdomicilio" Type="Self.tbdomicilio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbtipopropiedad">
+              <PropertyRef Name="tip_id" />
+            </Principal>
+            <Dependent Role="tbdomicilio">
+              <PropertyRef Name="tip_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbMenu_tbMenu1">
+          <End Role="tbmenu" Type="Self.tbmenu" Multiplicity="0..1" />
+          <End Role="tbmenu1" Type="Self.tbmenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbmenu">
+              <PropertyRef Name="men_id" />
+            </Principal>
+            <Dependent Role="tbmenu1">
+              <PropertyRef Name="men_id_padre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbAlquilada1">
+          <End Role="tbalquilada" Type="Self.tbalquilada" Multiplicity="0..1" />
+          <End Role="tboperaciones" Type="Self.tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbalquilada">
+              <PropertyRef Name="alq_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="alq_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbEnAlquiler1">
+          <End Role="tbenalquiler" Type="Self.tbenalquiler" Multiplicity="0..1" />
+          <End Role="tboperaciones" Type="Self.tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbenalquiler">
+              <PropertyRef Name="ena_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="ena_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbEncuesta1">
+          <End Role="tbencuesta" Type="Self.tbencuesta" Multiplicity="0..1" />
+          <End Role="tboperaciones" Type="Self.tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbencuesta">
+              <PropertyRef Name="enc_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="enc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbEnVenta1">
+          <End Role="tbenventa" Type="Self.tbenventa" Multiplicity="0..1" />
+          <End Role="tboperaciones" Type="Self.tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbenventa">
+              <PropertyRef Name="env_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="env_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbPropiedad1">
+          <End Role="tbpropiedad" Type="Self.tbpropiedad" Multiplicity="1" />
+          <End Role="tboperaciones" Type="Self.tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbpropiedad">
+              <PropertyRef Name="pro_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="pro_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbReservaAlquiler1">
+          <End Role="tbreservaalquiler" Type="Self.tbreservaalquiler" Multiplicity="0..1" />
+          <End Role="tboperaciones" Type="Self.tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbreservaalquiler">
+              <PropertyRef Name="rea_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="rea_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbReservaVenta1">
+          <End Role="tbreservaventa" Type="Self.tbreservaventa" Multiplicity="0..1" />
+          <End Role="tboperaciones" Type="Self.tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbreservaventa">
+              <PropertyRef Name="rev_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="rev_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbTasacion1">
+          <End Role="tbtasacion" Type="Self.tbtasacion" Multiplicity="0..1" />
+          <End Role="tboperaciones" Type="Self.tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbtasacion">
+              <PropertyRef Name="tas_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="tas_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbUsuario1">
+          <End Role="tbusuario" Type="Self.tbusuario" Multiplicity="1" />
+          <End Role="tboperaciones" Type="Self.tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbusuario">
+              <PropertyRef Name="usu_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="usu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbVenta1">
+          <End Role="tbventa" Type="Self.tbventa" Multiplicity="0..1" />
+          <End Role="tboperaciones" Type="Self.tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbventa">
+              <PropertyRef Name="ven_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="ven_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbPropiedad_tbtipoPropiedad1">
+          <End Role="tbtipopropiedad" Type="Self.tbtipopropiedad" Multiplicity="1" />
+          <End Role="tbpropiedad" Type="Self.tbpropiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbtipopropiedad">
+              <PropertyRef Name="tip_id" />
+            </Principal>
+            <Dependent Role="tbpropiedad">
+              <PropertyRef Name="tip_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbServiciosPropiedad_tbPropiedad1">
+          <End Role="tbpropiedad" Type="Self.tbpropiedad" Multiplicity="1" />
+          <End Role="tbserviciospropiedad" Type="Self.tbserviciospropiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbpropiedad">
+              <PropertyRef Name="pro_id" />
+            </Principal>
+            <Dependent Role="tbserviciospropiedad">
+              <PropertyRef Name="pro_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbServiciosPropiedad_tbServicios1">
+          <End Role="tbservicios" Type="Self.tbservicios" Multiplicity="1" />
+          <End Role="tbserviciospropiedad" Type="Self.tbserviciospropiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbservicios">
+              <PropertyRef Name="ser_id" />
+            </Principal>
+            <Dependent Role="tbserviciospropiedad">
+              <PropertyRef Name="ser_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbUsuarioMenu_tbMenu1">
+          <End Role="tbmenu" Type="Self.tbmenu" Multiplicity="1" />
+          <End Role="tbusuariomenu" Type="Self.tbusuariomenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbmenu">
+              <PropertyRef Name="men_id" />
+            </Principal>
+            <Dependent Role="tbusuariomenu">
+              <PropertyRef Name="men_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbUsuarioMenu_tbUsuario">
+          <End Role="tbusuario" Type="Self.tbusuario" Multiplicity="1" />
+          <End Role="tbusuariomenu" Type="Self.tbusuariomenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbusuario">
+              <PropertyRef Name="usu_id" />
+            </Principal>
+            <Dependent Role="tbusuariomenu">
+              <PropertyRef Name="usu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="landmanagementbdModelStoreContainer">
+          <EntitySet Name="tbalquilada" EntityType="Self.tbalquilada" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbcliente" EntityType="Self.tbcliente" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbclienteoperacion" EntityType="Self.tbclienteoperacion" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbclientepropiedad" EntityType="Self.tbclientepropiedad" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbdomicilio" EntityType="Self.tbdomicilio" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbenalquiler" EntityType="Self.tbenalquiler" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbencuesta" EntityType="Self.tbencuesta" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbenventa" EntityType="Self.tbenventa" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbmenu" EntityType="Self.tbmenu" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tboperaciones" EntityType="Self.tboperaciones" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbpropiedad" EntityType="Self.tbpropiedad" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbreservaalquiler" EntityType="Self.tbreservaalquiler" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbreservaventa" EntityType="Self.tbreservaventa" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbservicios" EntityType="Self.tbservicios" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbserviciospropiedad" EntityType="Self.tbserviciospropiedad" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbsystipocliente" EntityType="Self.tbsystipocliente" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbtasacion" EntityType="Self.tbtasacion" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbtipofamiliar" EntityType="Self.tbtipofamiliar" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbtipopropiedad" EntityType="Self.tbtipopropiedad" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbusuario" EntityType="Self.tbusuario" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbusuariomenu" EntityType="Self.tbusuariomenu" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbventa" EntityType="Self.tbventa" Schema="landmanagementbd" store:Type="Tables" />
+          <AssociationSet Name="fk_tbCliente_tbCliente1" Association="Self.fk_tbCliente_tbCliente1">
+            <End Role="tbcliente" EntitySet="tbcliente" />
+            <End Role="tbcliente1" EntitySet="tbcliente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbCliente_tbTipoFamiliar1" Association="Self.fk_tbCliente_tbTipoFamiliar1">
+            <End Role="tbtipofamiliar" EntitySet="tbtipofamiliar" />
+            <End Role="tbcliente" EntitySet="tbcliente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbClienteOperacion_tbCliente1" Association="Self.fk_tbClienteOperacion_tbCliente1">
+            <End Role="tbcliente" EntitySet="tbcliente" />
+            <End Role="tbclienteoperacion" EntitySet="tbclienteoperacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbClienteOperacion_tbOperaciones1" Association="Self.fk_tbClienteOperacion_tbOperaciones1">
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+            <End Role="tbclienteoperacion" EntitySet="tbclienteoperacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbClienteOperacion_tbSysTipoCliente1" Association="Self.fk_tbClienteOperacion_tbSysTipoCliente1">
+            <End Role="tbsystipocliente" EntitySet="tbsystipocliente" />
+            <End Role="tbclienteoperacion" EntitySet="tbclienteoperacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbClientePropiedad_tbCliente1" Association="Self.fk_tbClientePropiedad_tbCliente1">
+            <End Role="tbcliente" EntitySet="tbcliente" />
+            <End Role="tbclientepropiedad" EntitySet="tbclientepropiedad" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbClientePropiedad_tbPropiedad1" Association="Self.fk_tbClientePropiedad_tbPropiedad1">
+            <End Role="tbpropiedad" EntitySet="tbpropiedad" />
+            <End Role="tbclientepropiedad" EntitySet="tbclientepropiedad" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbDomicilio_tbCliente1" Association="Self.fk_tbDomicilio_tbCliente1">
+            <End Role="tbcliente" EntitySet="tbcliente" />
+            <End Role="tbdomicilio" EntitySet="tbdomicilio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbDomicilio_tbtipoPropiedad1" Association="Self.fk_tbDomicilio_tbtipoPropiedad1">
+            <End Role="tbtipopropiedad" EntitySet="tbtipopropiedad" />
+            <End Role="tbdomicilio" EntitySet="tbdomicilio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbMenu_tbMenu1" Association="Self.fk_tbMenu_tbMenu1">
+            <End Role="tbmenu" EntitySet="tbmenu" />
+            <End Role="tbmenu1" EntitySet="tbmenu" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbAlquilada1" Association="Self.fk_tbOperaciones_tbAlquilada1">
+            <End Role="tbalquilada" EntitySet="tbalquilada" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbEnAlquiler1" Association="Self.fk_tbOperaciones_tbEnAlquiler1">
+            <End Role="tbenalquiler" EntitySet="tbenalquiler" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbEncuesta1" Association="Self.fk_tbOperaciones_tbEncuesta1">
+            <End Role="tbencuesta" EntitySet="tbencuesta" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbEnVenta1" Association="Self.fk_tbOperaciones_tbEnVenta1">
+            <End Role="tbenventa" EntitySet="tbenventa" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbPropiedad1" Association="Self.fk_tbOperaciones_tbPropiedad1">
+            <End Role="tbpropiedad" EntitySet="tbpropiedad" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbReservaAlquiler1" Association="Self.fk_tbOperaciones_tbReservaAlquiler1">
+            <End Role="tbreservaalquiler" EntitySet="tbreservaalquiler" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbReservaVenta1" Association="Self.fk_tbOperaciones_tbReservaVenta1">
+            <End Role="tbreservaventa" EntitySet="tbreservaventa" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbTasacion1" Association="Self.fk_tbOperaciones_tbTasacion1">
+            <End Role="tbtasacion" EntitySet="tbtasacion" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbUsuario1" Association="Self.fk_tbOperaciones_tbUsuario1">
+            <End Role="tbusuario" EntitySet="tbusuario" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbVenta1" Association="Self.fk_tbOperaciones_tbVenta1">
+            <End Role="tbventa" EntitySet="tbventa" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbPropiedad_tbtipoPropiedad1" Association="Self.fk_tbPropiedad_tbtipoPropiedad1">
+            <End Role="tbtipopropiedad" EntitySet="tbtipopropiedad" />
+            <End Role="tbpropiedad" EntitySet="tbpropiedad" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbServiciosPropiedad_tbPropiedad1" Association="Self.fk_tbServiciosPropiedad_tbPropiedad1">
+            <End Role="tbpropiedad" EntitySet="tbpropiedad" />
+            <End Role="tbserviciospropiedad" EntitySet="tbserviciospropiedad" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbServiciosPropiedad_tbServicios1" Association="Self.fk_tbServiciosPropiedad_tbServicios1">
+            <End Role="tbservicios" EntitySet="tbservicios" />
+            <End Role="tbserviciospropiedad" EntitySet="tbserviciospropiedad" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbUsuarioMenu_tbMenu1" Association="Self.fk_tbUsuarioMenu_tbMenu1">
+            <End Role="tbmenu" EntitySet="tbmenu" />
+            <End Role="tbusuariomenu" EntitySet="tbusuariomenu" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbUsuarioMenu_tbUsuario" Association="Self.fk_tbUsuarioMenu_tbUsuario">
+            <End Role="tbusuario" EntitySet="tbusuario" />
+            <End Role="tbusuariomenu" EntitySet="tbusuariomenu" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="landmanagementbdModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="landmanagementbdEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbalquilada" EntityType="landmanagementbdModel.tbalquilada" />
+          <EntitySet Name="tbcliente" EntityType="landmanagementbdModel.tbcliente" />
+          <EntitySet Name="tbclienteoperacion" EntityType="landmanagementbdModel.tbclienteoperacion" />
+          <EntitySet Name="tbdomicilio" EntityType="landmanagementbdModel.tbdomicilio" />
+          <EntitySet Name="tbenalquiler" EntityType="landmanagementbdModel.tbenalquiler" />
+          <EntitySet Name="tbencuesta" EntityType="landmanagementbdModel.tbencuesta" />
+          <EntitySet Name="tbenventa" EntityType="landmanagementbdModel.tbenventa" />
+          <EntitySet Name="tbmenu" EntityType="landmanagementbdModel.tbmenu" />
+          <EntitySet Name="tboperaciones" EntityType="landmanagementbdModel.tboperaciones" />
+          <EntitySet Name="tbpropiedad" EntityType="landmanagementbdModel.tbpropiedad" />
+          <EntitySet Name="tbreservaalquiler" EntityType="landmanagementbdModel.tbreservaalquiler" />
+          <EntitySet Name="tbreservaventa" EntityType="landmanagementbdModel.tbreservaventa" />
+          <EntitySet Name="tbservicios" EntityType="landmanagementbdModel.tbservicios" />
+          <EntitySet Name="tbsystipocliente" EntityType="landmanagementbdModel.tbsystipocliente" />
+          <EntitySet Name="tbtasacion" EntityType="landmanagementbdModel.tbtasacion" />
+          <EntitySet Name="tbtipofamiliar" EntityType="landmanagementbdModel.tbtipofamiliar" />
+          <EntitySet Name="tbtipopropiedad" EntityType="landmanagementbdModel.tbtipopropiedad" />
+          <EntitySet Name="tbusuario" EntityType="landmanagementbdModel.tbusuario" />
+          <EntitySet Name="tbventa" EntityType="landmanagementbdModel.tbventa" />
+          <AssociationSet Name="fk_tbOperaciones_tbAlquilada1" Association="landmanagementbdModel.fk_tbOperaciones_tbAlquilada1">
+            <End Role="tbalquilada" EntitySet="tbalquilada" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbCliente_tbCliente1" Association="landmanagementbdModel.fk_tbCliente_tbCliente1">
+            <End Role="tbcliente" EntitySet="tbcliente" />
+            <End Role="tbcliente1" EntitySet="tbcliente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbCliente_tbTipoFamiliar1" Association="landmanagementbdModel.fk_tbCliente_tbTipoFamiliar1">
+            <End Role="tbtipofamiliar" EntitySet="tbtipofamiliar" />
+            <End Role="tbcliente" EntitySet="tbcliente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbClienteOperacion_tbCliente1" Association="landmanagementbdModel.fk_tbClienteOperacion_tbCliente1">
+            <End Role="tbcliente" EntitySet="tbcliente" />
+            <End Role="tbclienteoperacion" EntitySet="tbclienteoperacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbDomicilio_tbCliente1" Association="landmanagementbdModel.fk_tbDomicilio_tbCliente1">
+            <End Role="tbcliente" EntitySet="tbcliente" />
+            <End Role="tbdomicilio" EntitySet="tbdomicilio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbClienteOperacion_tbOperaciones1" Association="landmanagementbdModel.fk_tbClienteOperacion_tbOperaciones1">
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+            <End Role="tbclienteoperacion" EntitySet="tbclienteoperacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbClienteOperacion_tbSysTipoCliente1" Association="landmanagementbdModel.fk_tbClienteOperacion_tbSysTipoCliente1">
+            <End Role="tbsystipocliente" EntitySet="tbsystipocliente" />
+            <End Role="tbclienteoperacion" EntitySet="tbclienteoperacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbDomicilio_tbtipoPropiedad1" Association="landmanagementbdModel.fk_tbDomicilio_tbtipoPropiedad1">
+            <End Role="tbtipopropiedad" EntitySet="tbtipopropiedad" />
+            <End Role="tbdomicilio" EntitySet="tbdomicilio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbEnAlquiler1" Association="landmanagementbdModel.fk_tbOperaciones_tbEnAlquiler1">
+            <End Role="tbenalquiler" EntitySet="tbenalquiler" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbEncuesta1" Association="landmanagementbdModel.fk_tbOperaciones_tbEncuesta1">
+            <End Role="tbencuesta" EntitySet="tbencuesta" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbEnVenta1" Association="landmanagementbdModel.fk_tbOperaciones_tbEnVenta1">
+            <End Role="tbenventa" EntitySet="tbenventa" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbMenu_tbMenu1" Association="landmanagementbdModel.fk_tbMenu_tbMenu1">
+            <End Role="tbmenu" EntitySet="tbmenu" />
+            <End Role="tbmenu1" EntitySet="tbmenu" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbPropiedad1" Association="landmanagementbdModel.fk_tbOperaciones_tbPropiedad1">
+            <End Role="tbpropiedad" EntitySet="tbpropiedad" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbReservaAlquiler1" Association="landmanagementbdModel.fk_tbOperaciones_tbReservaAlquiler1">
+            <End Role="tbreservaalquiler" EntitySet="tbreservaalquiler" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbReservaVenta1" Association="landmanagementbdModel.fk_tbOperaciones_tbReservaVenta1">
+            <End Role="tbreservaventa" EntitySet="tbreservaventa" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbTasacion1" Association="landmanagementbdModel.fk_tbOperaciones_tbTasacion1">
+            <End Role="tbtasacion" EntitySet="tbtasacion" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbUsuario1" Association="landmanagementbdModel.fk_tbOperaciones_tbUsuario1">
+            <End Role="tbusuario" EntitySet="tbusuario" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbOperaciones_tbVenta1" Association="landmanagementbdModel.fk_tbOperaciones_tbVenta1">
+            <End Role="tbventa" EntitySet="tbventa" />
+            <End Role="tboperaciones" EntitySet="tboperaciones" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tbPropiedad_tbtipoPropiedad1" Association="landmanagementbdModel.fk_tbPropiedad_tbtipoPropiedad1">
+            <End Role="tbtipopropiedad" EntitySet="tbtipopropiedad" />
+            <End Role="tbpropiedad" EntitySet="tbpropiedad" />
+          </AssociationSet>
+          <AssociationSet Name="tbclientepropiedad" Association="landmanagementbdModel.tbclientepropiedad">
+            <End Role="tbcliente" EntitySet="tbcliente" />
+            <End Role="tbpropiedad" EntitySet="tbpropiedad" />
+          </AssociationSet>
+          <AssociationSet Name="tbserviciospropiedad" Association="landmanagementbdModel.tbserviciospropiedad">
+            <End Role="tbpropiedad" EntitySet="tbpropiedad" />
+            <End Role="tbservicios" EntitySet="tbservicios" />
+          </AssociationSet>
+          <AssociationSet Name="tbusuariomenu" Association="landmanagementbdModel.tbusuariomenu">
+            <End Role="tbmenu" EntitySet="tbmenu" />
+            <End Role="tbusuario" EntitySet="tbusuario" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tbalquilada">
+          <Key>
+            <PropertyRef Name="alq_id" />
+          </Key>
+          <Property Name="alq_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="alq_fecha_inicio" Type="DateTime" Nullable="false" />
+          <Property Name="alq_fecha_fin" Type="DateTime" Nullable="false" />
+          <Property Name="alq_fecha_desocupacion" Type="DateTime" Nullable="false" />
+          <Property Name="alq_precio_primer_anio" Type="Double" />
+          <Property Name="alq_precio_segundo_anio" Type="Double" />
+          <Property Name="alq_precio_tercer_anio" Type="Double" />
+          <Property Name="alq_precio_cuarto_anio" Type="Double" />
+          <Property Name="alq_precio_quinto_anio" Type="Double" />
+          <Property Name="alq_servicios_cargo_locador" Type="Boolean" Nullable="false" />
+          <Property Name="alq_pago_administracion" Type="Boolean" />
+          <Property Name="alq_factura_iva" Type="Boolean" />
+          <Property Name="alq_pago_deposito" Type="Boolean" />
+          <Property Name="alq_banco" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="alq_numero_cuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tboperaciones" Relationship="landmanagementbdModel.fk_tbOperaciones_tbAlquilada1" FromRole="tbalquilada" ToRole="tboperaciones" />
+        </EntityType>
+        <EntityType Name="tbcliente">
+          <Key>
+            <PropertyRef Name="cli_id" />
+          </Key>
+          <Property Name="cli_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cli_id_padre" Type="Int32" />
+          <Property Name="tif_id" Type="Int32" Nullable="false" />
+          <Property Name="cli_fecha" Type="DateTime" Nullable="false" />
+          <Property Name="cli_nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cli_apellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cli_telefono_celular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cli_telefono_particular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cli_telefono_laboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cli_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cli_sexo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cli_fecha_nacimiento" Type="DateTime" Nullable="false" />
+          <Property Name="cli_nacionalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cli_estado_civil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cli_tipo_documento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cli_numero_documento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cli_cuit_cuil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cli_como_llego" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbcliente1" Relationship="landmanagementbdModel.fk_tbCliente_tbCliente1" FromRole="tbcliente" ToRole="tbcliente1" />
+          <NavigationProperty Name="tbcliente2" Relationship="landmanagementbdModel.fk_tbCliente_tbCliente1" FromRole="tbcliente1" ToRole="tbcliente" />
+          <NavigationProperty Name="tbtipofamiliar" Relationship="landmanagementbdModel.fk_tbCliente_tbTipoFamiliar1" FromRole="tbcliente" ToRole="tbtipofamiliar" />
+          <NavigationProperty Name="tbclienteoperacion" Relationship="landmanagementbdModel.fk_tbClienteOperacion_tbCliente1" FromRole="tbcliente" ToRole="tbclienteoperacion" />
+          <NavigationProperty Name="tbdomicilio" Relationship="landmanagementbdModel.fk_tbDomicilio_tbCliente1" FromRole="tbcliente" ToRole="tbdomicilio" />
+          <NavigationProperty Name="tbpropiedad" Relationship="landmanagementbdModel.tbclientepropiedad" FromRole="tbcliente" ToRole="tbpropiedad" />
+        </EntityType>
+        <EntityType Name="tbclienteoperacion">
+          <Key>
+            <PropertyRef Name="cli_id" />
+            <PropertyRef Name="ope_id" />
+            <PropertyRef Name="stc_id" />
+          </Key>
+          <Property Name="cli_id" Type="Int32" Nullable="false" />
+          <Property Name="ope_id" Type="Int32" Nullable="false" />
+          <Property Name="stc_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbcliente" Relationship="landmanagementbdModel.fk_tbClienteOperacion_tbCliente1" FromRole="tbclienteoperacion" ToRole="tbcliente" />
+          <NavigationProperty Name="tboperaciones" Relationship="landmanagementbdModel.fk_tbClienteOperacion_tbOperaciones1" FromRole="tbclienteoperacion" ToRole="tboperaciones" />
+          <NavigationProperty Name="tbsystipocliente" Relationship="landmanagementbdModel.fk_tbClienteOperacion_tbSysTipoCliente1" FromRole="tbclienteoperacion" ToRole="tbsystipocliente" />
+        </EntityType>
+        <EntityType Name="tbdomicilio">
+          <Key>
+            <PropertyRef Name="dom_id" />
+          </Key>
+          <Property Name="dom_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cli_id" Type="Int32" Nullable="false" />
+          <Property Name="tip_id" Type="Int32" Nullable="false" />
+          <Property Name="dom_calle" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="dom_numero" Type="Int32" Nullable="false" />
+          <Property Name="dom_piso" Type="Int32" />
+          <Property Name="dom_departamento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dom_codigo_postal" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dom_localidad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dom_actual" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tbcliente" Relationship="landmanagementbdModel.fk_tbDomicilio_tbCliente1" FromRole="tbdomicilio" ToRole="tbcliente" />
+          <NavigationProperty Name="tbtipopropiedad" Relationship="landmanagementbdModel.fk_tbDomicilio_tbtipoPropiedad1" FromRole="tbdomicilio" ToRole="tbtipopropiedad" />
+        </EntityType>
+        <EntityType Name="tbenalquiler">
+          <Key>
+            <PropertyRef Name="ena_id" />
+          </Key>
+          <Property Name="ena_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ena_precio_primer_anio" Type="Double" />
+          <Property Name="ena_precio_segundo_anio" Type="Double" />
+          <Property Name="ena_precio_tercer_anio" Type="Double" />
+          <Property Name="ena_precio_cuarto_anio" Type="Double" />
+          <Property Name="ena_precio_quinto_anio" Type="Double" />
+          <Property Name="ena_expensas" Type="Double" />
+          <Property Name="ena_abl" Type="Double" />
+          <Property Name="ena_aguas" Type="Double" />
+          <Property Name="ena_luz" Type="Double" />
+          <Property Name="ena_gas" Type="Double" />
+          <Property Name="ena_telefono" Type="Double" />
+          <Property Name="ena_observaciones" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tboperaciones" Relationship="landmanagementbdModel.fk_tbOperaciones_tbEnAlquiler1" FromRole="tbenalquiler" ToRole="tboperaciones" />
+        </EntityType>
+        <EntityType Name="tbencuesta">
+          <Key>
+            <PropertyRef Name="enc_id" />
+          </Key>
+          <Property Name="enc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="enc_observaciones" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tboperaciones" Relationship="landmanagementbdModel.fk_tbOperaciones_tbEncuesta1" FromRole="tbencuesta" ToRole="tboperaciones" />
+        </EntityType>
+        <EntityType Name="tbenventa">
+          <Key>
+            <PropertyRef Name="env_id" />
+          </Key>
+          <Property Name="env_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="env_fecha_vencimiento" Type="DateTime" Nullable="false" />
+          <Property Name="env_precio" Type="Double" Nullable="false" />
+          <Property Name="env_cartel" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="env_observaciones" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="env_titulo_propiedad" Type="Boolean" Nullable="false" />
+          <Property Name="env_planos" Type="Boolean" Nullable="false" />
+          <Property Name="env_reglamento" Type="Boolean" Nullable="false" />
+          <Property Name="env_matricula" Type="Boolean" Nullable="false" />
+          <Property Name="env_abl" Type="Boolean" Nullable="false" />
+          <Property Name="env_agua" Type="Boolean" Nullable="false" />
+          <Property Name="env_luz" Type="Boolean" Nullable="false" />
+          <Property Name="env_gas" Type="Boolean" Nullable="false" />
+          <Property Name="env_telefono" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tboperaciones" Relationship="landmanagementbdModel.fk_tbOperaciones_tbEnVenta1" FromRole="tbenventa" ToRole="tboperaciones" />
+        </EntityType>
+        <EntityType Name="tbmenu">
+          <Key>
+            <PropertyRef Name="men_id" />
+          </Key>
+          <Property Name="men_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="men_id_padre" Type="Int32" />
+          <Property Name="men_nombre" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="men_nombre_formulario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="men_estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tbmenu1" Relationship="landmanagementbdModel.fk_tbMenu_tbMenu1" FromRole="tbmenu" ToRole="tbmenu1" />
+          <NavigationProperty Name="tbmenu2" Relationship="landmanagementbdModel.fk_tbMenu_tbMenu1" FromRole="tbmenu1" ToRole="tbmenu" />
+          <NavigationProperty Name="tbusuario" Relationship="landmanagementbdModel.tbusuariomenu" FromRole="tbmenu" ToRole="tbusuario" />
+        </EntityType>
+        <EntityType Name="tboperaciones">
+          <Key>
+            <PropertyRef Name="ope_id" />
+          </Key>
+          <Property Name="ope_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usu_id" Type="Int32" Nullable="false" />
+          <Property Name="pro_id" Type="Int32" Nullable="false" />
+          <Property Name="tas_id" Type="Int32" />
+          <Property Name="env_id" Type="Int32" />
+          <Property Name="rev_id" Type="Int32" />
+          <Property Name="ven_id" Type="Int32" />
+          <Property Name="ena_id" Type="Int32" />
+          <Property Name="rea_id" Type="Int32" />
+          <Property Name="alq_id" Type="Int32" />
+          <Property Name="enc_id" Type="Int32" />
+          <Property Name="ope_fecha" Type="DateTime" />
+          <NavigationProperty Name="tbalquilada" Relationship="landmanagementbdModel.fk_tbOperaciones_tbAlquilada1" FromRole="tboperaciones" ToRole="tbalquilada" />
+          <NavigationProperty Name="tbclienteoperacion" Relationship="landmanagementbdModel.fk_tbClienteOperacion_tbOperaciones1" FromRole="tboperaciones" ToRole="tbclienteoperacion" />
+          <NavigationProperty Name="tbenalquiler" Relationship="landmanagementbdModel.fk_tbOperaciones_tbEnAlquiler1" FromRole="tboperaciones" ToRole="tbenalquiler" />
+          <NavigationProperty Name="tbencuesta" Relationship="landmanagementbdModel.fk_tbOperaciones_tbEncuesta1" FromRole="tboperaciones" ToRole="tbencuesta" />
+          <NavigationProperty Name="tbenventa" Relationship="landmanagementbdModel.fk_tbOperaciones_tbEnVenta1" FromRole="tboperaciones" ToRole="tbenventa" />
+          <NavigationProperty Name="tbpropiedad" Relationship="landmanagementbdModel.fk_tbOperaciones_tbPropiedad1" FromRole="tboperaciones" ToRole="tbpropiedad" />
+          <NavigationProperty Name="tbreservaalquiler" Relationship="landmanagementbdModel.fk_tbOperaciones_tbReservaAlquiler1" FromRole="tboperaciones" ToRole="tbreservaalquiler" />
+          <NavigationProperty Name="tbreservaventa" Relationship="landmanagementbdModel.fk_tbOperaciones_tbReservaVenta1" FromRole="tboperaciones" ToRole="tbreservaventa" />
+          <NavigationProperty Name="tbtasacion" Relationship="landmanagementbdModel.fk_tbOperaciones_tbTasacion1" FromRole="tboperaciones" ToRole="tbtasacion" />
+          <NavigationProperty Name="tbusuario" Relationship="landmanagementbdModel.fk_tbOperaciones_tbUsuario1" FromRole="tboperaciones" ToRole="tbusuario" />
+          <NavigationProperty Name="tbventa" Relationship="landmanagementbdModel.fk_tbOperaciones_tbVenta1" FromRole="tboperaciones" ToRole="tbventa" />
+        </EntityType>
+        <EntityType Name="tbpropiedad">
+          <Key>
+            <PropertyRef Name="pro_id" />
+          </Key>
+          <Property Name="pro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tip_id" Type="Int32" Nullable="false" />
+          <Property Name="pro_calle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pro_numero" Type="Int32" Nullable="false" />
+          <Property Name="pro_piso" Type="Int32" />
+          <Property Name="pro_departamento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pro_codigo_postal" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pro_localidad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="pro_caracteristica" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tboperaciones" Relationship="landmanagementbdModel.fk_tbOperaciones_tbPropiedad1" FromRole="tbpropiedad" ToRole="tboperaciones" />
+          <NavigationProperty Name="tbtipopropiedad" Relationship="landmanagementbdModel.fk_tbPropiedad_tbtipoPropiedad1" FromRole="tbpropiedad" ToRole="tbtipopropiedad" />
+          <NavigationProperty Name="tbcliente" Relationship="landmanagementbdModel.tbclientepropiedad" FromRole="tbpropiedad" ToRole="tbcliente" />
+          <NavigationProperty Name="tbservicios" Relationship="landmanagementbdModel.tbserviciospropiedad" FromRole="tbpropiedad" ToRole="tbservicios" />
+        </EntityType>
+        <EntityType Name="tbreservaalquiler">
+          <Key>
+            <PropertyRef Name="rea_id" />
+          </Key>
+          <Property Name="rea_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rea_oferta" Type="Double" Nullable="false" />
+          <Property Name="rea_garantia" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tboperaciones" Relationship="landmanagementbdModel.fk_tbOperaciones_tbReservaAlquiler1" FromRole="tbreservaalquiler" ToRole="tboperaciones" />
+        </EntityType>
+        <EntityType Name="tbreservaventa">
+          <Key>
+            <PropertyRef Name="rev_id" />
+          </Key>
+          <Property Name="rev_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rev_oferta" Type="Double" Nullable="false" />
+          <Property Name="rev_observaciones" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tboperaciones" Relationship="landmanagementbdModel.fk_tbOperaciones_tbReservaVenta1" FromRole="tbreservaventa" ToRole="tboperaciones" />
+        </EntityType>
+        <EntityType Name="tbservicios">
+          <Key>
+            <PropertyRef Name="ser_id" />
+          </Key>
+          <Property Name="ser_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ser_descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbpropiedad" Relationship="landmanagementbdModel.tbserviciospropiedad" FromRole="tbservicios" ToRole="tbpropiedad" />
+        </EntityType>
+        <EntityType Name="tbsystipocliente">
+          <Key>
+            <PropertyRef Name="stc_id" />
+          </Key>
+          <Property Name="stc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stc_codigo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="stc_descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbclienteoperacion" Relationship="landmanagementbdModel.fk_tbClienteOperacion_tbSysTipoCliente1" FromRole="tbsystipocliente" ToRole="tbclienteoperacion" />
+        </EntityType>
+        <EntityType Name="tbtasacion">
+          <Key>
+            <PropertyRef Name="tas_id" />
+          </Key>
+          <Property Name="tas_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tas_tasacion" Type="Double" Nullable="false" />
+          <Property Name="tas_observaciones" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="tas_apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tas_nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tboperaciones" Relationship="landmanagementbdModel.fk_tbOperaciones_tbTasacion1" FromRole="tbtasacion" ToRole="tboperaciones" />
+        </EntityType>
+        <EntityType Name="tbtipofamiliar">
+          <Key>
+            <PropertyRef Name="tif_id" />
+          </Key>
+          <Property Name="tif_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tif_descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbcliente" Relationship="landmanagementbdModel.fk_tbCliente_tbTipoFamiliar1" FromRole="tbtipofamiliar" ToRole="tbcliente" />
+        </EntityType>
+        <EntityType Name="tbtipopropiedad">
+          <Key>
+            <PropertyRef Name="tip_id" />
+          </Key>
+          <Property Name="tip_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tip_descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbdomicilio" Relationship="landmanagementbdModel.fk_tbDomicilio_tbtipoPropiedad1" FromRole="tbtipopropiedad" ToRole="tbdomicilio" />
+          <NavigationProperty Name="tbpropiedad" Relationship="landmanagementbdModel.fk_tbPropiedad_tbtipoPropiedad1" FromRole="tbtipopropiedad" ToRole="tbpropiedad" />
+        </EntityType>
+        <EntityType Name="tbusuario">
+          <Key>
+            <PropertyRef Name="usu_id" />
+          </Key>
+          <Property Name="usu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usu_nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="usu_apellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="usu_email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="usu_email_password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="usu_nombre_login" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="usu_password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="usu_estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tboperaciones" Relationship="landmanagementbdModel.fk_tbOperaciones_tbUsuario1" FromRole="tbusuario" ToRole="tboperaciones" />
+          <NavigationProperty Name="tbmenu" Relationship="landmanagementbdModel.tbusuariomenu" FromRole="tbusuario" ToRole="tbmenu" />
+        </EntityType>
+        <EntityType Name="tbventa">
+          <Key>
+            <PropertyRef Name="ven_id" />
+          </Key>
+          <Property Name="ven_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ven_fecha_boleto" Type="DateTime" Nullable="false" />
+          <Property Name="ven_fecha_escritura" Type="DateTime" Nullable="false" />
+          <Property Name="ven_precio" Type="Double" Nullable="false" />
+          <Property Name="ven_escribano" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ven_presupuesto" Type="Double" Nullable="false" />
+          <Property Name="ven_escribania" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ven_cobrado" Type="Double" Nullable="false" />
+          <NavigationProperty Name="tboperaciones" Relationship="landmanagementbdModel.fk_tbOperaciones_tbVenta1" FromRole="tbventa" ToRole="tboperaciones" />
+        </EntityType>
+        <Association Name="fk_tbOperaciones_tbAlquilada1">
+          <End Type="landmanagementbdModel.tbalquilada" Role="tbalquilada" Multiplicity="0..1" />
+          <End Type="landmanagementbdModel.tboperaciones" Role="tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbalquilada">
+              <PropertyRef Name="alq_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="alq_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbCliente_tbCliente1">
+          <End Type="landmanagementbdModel.tbcliente" Role="tbcliente" Multiplicity="0..1" />
+          <End Type="landmanagementbdModel.tbcliente" Role="tbcliente1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbcliente">
+              <PropertyRef Name="cli_id" />
+            </Principal>
+            <Dependent Role="tbcliente1">
+              <PropertyRef Name="cli_id_padre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbCliente_tbTipoFamiliar1">
+          <End Type="landmanagementbdModel.tbtipofamiliar" Role="tbtipofamiliar" Multiplicity="1" />
+          <End Type="landmanagementbdModel.tbcliente" Role="tbcliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbtipofamiliar">
+              <PropertyRef Name="tif_id" />
+            </Principal>
+            <Dependent Role="tbcliente">
+              <PropertyRef Name="tif_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbClienteOperacion_tbCliente1">
+          <End Type="landmanagementbdModel.tbcliente" Role="tbcliente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="landmanagementbdModel.tbclienteoperacion" Role="tbclienteoperacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbcliente">
+              <PropertyRef Name="cli_id" />
+            </Principal>
+            <Dependent Role="tbclienteoperacion">
+              <PropertyRef Name="cli_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbDomicilio_tbCliente1">
+          <End Type="landmanagementbdModel.tbcliente" Role="tbcliente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="landmanagementbdModel.tbdomicilio" Role="tbdomicilio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbcliente">
+              <PropertyRef Name="cli_id" />
+            </Principal>
+            <Dependent Role="tbdomicilio">
+              <PropertyRef Name="cli_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbClienteOperacion_tbOperaciones1">
+          <End Type="landmanagementbdModel.tboperaciones" Role="tboperaciones" Multiplicity="1" />
+          <End Type="landmanagementbdModel.tbclienteoperacion" Role="tbclienteoperacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tboperaciones">
+              <PropertyRef Name="ope_id" />
+            </Principal>
+            <Dependent Role="tbclienteoperacion">
+              <PropertyRef Name="ope_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbClienteOperacion_tbSysTipoCliente1">
+          <End Type="landmanagementbdModel.tbsystipocliente" Role="tbsystipocliente" Multiplicity="1" />
+          <End Type="landmanagementbdModel.tbclienteoperacion" Role="tbclienteoperacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbsystipocliente">
+              <PropertyRef Name="stc_id" />
+            </Principal>
+            <Dependent Role="tbclienteoperacion">
+              <PropertyRef Name="stc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbDomicilio_tbtipoPropiedad1">
+          <End Type="landmanagementbdModel.tbtipopropiedad" Role="tbtipopropiedad" Multiplicity="1" />
+          <End Type="landmanagementbdModel.tbdomicilio" Role="tbdomicilio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbtipopropiedad">
+              <PropertyRef Name="tip_id" />
+            </Principal>
+            <Dependent Role="tbdomicilio">
+              <PropertyRef Name="tip_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbEnAlquiler1">
+          <End Type="landmanagementbdModel.tbenalquiler" Role="tbenalquiler" Multiplicity="0..1" />
+          <End Type="landmanagementbdModel.tboperaciones" Role="tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbenalquiler">
+              <PropertyRef Name="ena_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="ena_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbEncuesta1">
+          <End Type="landmanagementbdModel.tbencuesta" Role="tbencuesta" Multiplicity="0..1" />
+          <End Type="landmanagementbdModel.tboperaciones" Role="tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbencuesta">
+              <PropertyRef Name="enc_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="enc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbEnVenta1">
+          <End Type="landmanagementbdModel.tbenventa" Role="tbenventa" Multiplicity="0..1" />
+          <End Type="landmanagementbdModel.tboperaciones" Role="tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbenventa">
+              <PropertyRef Name="env_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="env_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbMenu_tbMenu1">
+          <End Type="landmanagementbdModel.tbmenu" Role="tbmenu" Multiplicity="0..1" />
+          <End Type="landmanagementbdModel.tbmenu" Role="tbmenu1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbmenu">
+              <PropertyRef Name="men_id" />
+            </Principal>
+            <Dependent Role="tbmenu1">
+              <PropertyRef Name="men_id_padre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbPropiedad1">
+          <End Type="landmanagementbdModel.tbpropiedad" Role="tbpropiedad" Multiplicity="1" />
+          <End Type="landmanagementbdModel.tboperaciones" Role="tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbpropiedad">
+              <PropertyRef Name="pro_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="pro_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbReservaAlquiler1">
+          <End Type="landmanagementbdModel.tbreservaalquiler" Role="tbreservaalquiler" Multiplicity="0..1" />
+          <End Type="landmanagementbdModel.tboperaciones" Role="tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbreservaalquiler">
+              <PropertyRef Name="rea_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="rea_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbReservaVenta1">
+          <End Type="landmanagementbdModel.tbreservaventa" Role="tbreservaventa" Multiplicity="0..1" />
+          <End Type="landmanagementbdModel.tboperaciones" Role="tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbreservaventa">
+              <PropertyRef Name="rev_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="rev_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbTasacion1">
+          <End Type="landmanagementbdModel.tbtasacion" Role="tbtasacion" Multiplicity="0..1" />
+          <End Type="landmanagementbdModel.tboperaciones" Role="tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbtasacion">
+              <PropertyRef Name="tas_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="tas_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbUsuario1">
+          <End Type="landmanagementbdModel.tbusuario" Role="tbusuario" Multiplicity="1" />
+          <End Type="landmanagementbdModel.tboperaciones" Role="tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbusuario">
+              <PropertyRef Name="usu_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="usu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbOperaciones_tbVenta1">
+          <End Type="landmanagementbdModel.tbventa" Role="tbventa" Multiplicity="0..1" />
+          <End Type="landmanagementbdModel.tboperaciones" Role="tboperaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbventa">
+              <PropertyRef Name="ven_id" />
+            </Principal>
+            <Dependent Role="tboperaciones">
+              <PropertyRef Name="ven_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tbPropiedad_tbtipoPropiedad1">
+          <End Type="landmanagementbdModel.tbtipopropiedad" Role="tbtipopropiedad" Multiplicity="1" />
+          <End Type="landmanagementbdModel.tbpropiedad" Role="tbpropiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbtipopropiedad">
+              <PropertyRef Name="tip_id" />
+            </Principal>
+            <Dependent Role="tbpropiedad">
+              <PropertyRef Name="tip_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tbclientepropiedad">
+          <End Type="landmanagementbdModel.tbcliente" Role="tbcliente" Multiplicity="*" />
+          <End Type="landmanagementbdModel.tbpropiedad" Role="tbpropiedad" Multiplicity="*" />
+        </Association>
+        <Association Name="tbserviciospropiedad">
+          <End Type="landmanagementbdModel.tbpropiedad" Role="tbpropiedad" Multiplicity="*" />
+          <End Type="landmanagementbdModel.tbservicios" Role="tbservicios" Multiplicity="*" />
+        </Association>
+        <Association Name="tbusuariomenu">
+          <End Type="landmanagementbdModel.tbmenu" Role="tbmenu" Multiplicity="*" />
+          <End Type="landmanagementbdModel.tbusuario" Role="tbusuario" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="landmanagementbdModelStoreContainer" CdmEntityContainer="landmanagementbdEntities">
+          <EntitySetMapping Name="tbalquilada">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbalquilada">
+              <MappingFragment StoreEntitySet="tbalquilada">
+                <ScalarProperty Name="alq_numero_cuenta" ColumnName="alq_numero_cuenta" />
+                <ScalarProperty Name="alq_banco" ColumnName="alq_banco" />
+                <ScalarProperty Name="alq_pago_deposito" ColumnName="alq_pago_deposito" />
+                <ScalarProperty Name="alq_factura_iva" ColumnName="alq_factura_iva" />
+                <ScalarProperty Name="alq_pago_administracion" ColumnName="alq_pago_administracion" />
+                <ScalarProperty Name="alq_servicios_cargo_locador" ColumnName="alq_servicios_cargo_locador" />
+                <ScalarProperty Name="alq_precio_quinto_anio" ColumnName="alq_precio_quinto_anio" />
+                <ScalarProperty Name="alq_precio_cuarto_anio" ColumnName="alq_precio_cuarto_anio" />
+                <ScalarProperty Name="alq_precio_tercer_anio" ColumnName="alq_precio_tercer_anio" />
+                <ScalarProperty Name="alq_precio_segundo_anio" ColumnName="alq_precio_segundo_anio" />
+                <ScalarProperty Name="alq_precio_primer_anio" ColumnName="alq_precio_primer_anio" />
+                <ScalarProperty Name="alq_fecha_desocupacion" ColumnName="alq_fecha_desocupacion" />
+                <ScalarProperty Name="alq_fecha_fin" ColumnName="alq_fecha_fin" />
+                <ScalarProperty Name="alq_fecha_inicio" ColumnName="alq_fecha_inicio" />
+                <ScalarProperty Name="alq_id" ColumnName="alq_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbcliente">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbcliente">
+              <MappingFragment StoreEntitySet="tbcliente">
+                <ScalarProperty Name="cli_como_llego" ColumnName="cli_como_llego" />
+                <ScalarProperty Name="cli_cuit_cuil" ColumnName="cli_cuit_cuil" />
+                <ScalarProperty Name="cli_numero_documento" ColumnName="cli_numero_documento" />
+                <ScalarProperty Name="cli_tipo_documento" ColumnName="cli_tipo_documento" />
+                <ScalarProperty Name="cli_estado_civil" ColumnName="cli_estado_civil" />
+                <ScalarProperty Name="cli_nacionalidad" ColumnName="cli_nacionalidad" />
+                <ScalarProperty Name="cli_fecha_nacimiento" ColumnName="cli_fecha_nacimiento" />
+                <ScalarProperty Name="cli_sexo" ColumnName="cli_sexo" />
+                <ScalarProperty Name="cli_email" ColumnName="cli_email" />
+                <ScalarProperty Name="cli_telefono_laboral" ColumnName="cli_telefono_laboral" />
+                <ScalarProperty Name="cli_telefono_particular" ColumnName="cli_telefono_particular" />
+                <ScalarProperty Name="cli_telefono_celular" ColumnName="cli_telefono_celular" />
+                <ScalarProperty Name="cli_apellido" ColumnName="cli_apellido" />
+                <ScalarProperty Name="cli_nombre" ColumnName="cli_nombre" />
+                <ScalarProperty Name="cli_fecha" ColumnName="cli_fecha" />
+                <ScalarProperty Name="tif_id" ColumnName="tif_id" />
+                <ScalarProperty Name="cli_id_padre" ColumnName="cli_id_padre" />
+                <ScalarProperty Name="cli_id" ColumnName="cli_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbclienteoperacion">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbclienteoperacion">
+              <MappingFragment StoreEntitySet="tbclienteoperacion">
+                <ScalarProperty Name="stc_id" ColumnName="stc_id" />
+                <ScalarProperty Name="ope_id" ColumnName="ope_id" />
+                <ScalarProperty Name="cli_id" ColumnName="cli_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbdomicilio">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbdomicilio">
+              <MappingFragment StoreEntitySet="tbdomicilio">
+                <ScalarProperty Name="dom_actual" ColumnName="dom_actual" />
+                <ScalarProperty Name="dom_localidad" ColumnName="dom_localidad" />
+                <ScalarProperty Name="dom_codigo_postal" ColumnName="dom_codigo_postal" />
+                <ScalarProperty Name="dom_departamento" ColumnName="dom_departamento" />
+                <ScalarProperty Name="dom_piso" ColumnName="dom_piso" />
+                <ScalarProperty Name="dom_numero" ColumnName="dom_numero" />
+                <ScalarProperty Name="dom_calle" ColumnName="dom_calle" />
+                <ScalarProperty Name="tip_id" ColumnName="tip_id" />
+                <ScalarProperty Name="cli_id" ColumnName="cli_id" />
+                <ScalarProperty Name="dom_id" ColumnName="dom_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbenalquiler">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbenalquiler">
+              <MappingFragment StoreEntitySet="tbenalquiler">
+                <ScalarProperty Name="ena_observaciones" ColumnName="ena_observaciones" />
+                <ScalarProperty Name="ena_telefono" ColumnName="ena_telefono" />
+                <ScalarProperty Name="ena_gas" ColumnName="ena_gas" />
+                <ScalarProperty Name="ena_luz" ColumnName="ena_luz" />
+                <ScalarProperty Name="ena_aguas" ColumnName="ena_aguas" />
+                <ScalarProperty Name="ena_abl" ColumnName="ena_abl" />
+                <ScalarProperty Name="ena_expensas" ColumnName="ena_expensas" />
+                <ScalarProperty Name="ena_precio_quinto_anio" ColumnName="ena_precio_quinto_anio" />
+                <ScalarProperty Name="ena_precio_cuarto_anio" ColumnName="ena_precio_cuarto_anio" />
+                <ScalarProperty Name="ena_precio_tercer_anio" ColumnName="ena_precio_tercer_anio" />
+                <ScalarProperty Name="ena_precio_segundo_anio" ColumnName="ena_precio_segundo_anio" />
+                <ScalarProperty Name="ena_precio_primer_anio" ColumnName="ena_precio_primer_anio" />
+                <ScalarProperty Name="ena_id" ColumnName="ena_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbencuesta">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbencuesta">
+              <MappingFragment StoreEntitySet="tbencuesta">
+                <ScalarProperty Name="enc_observaciones" ColumnName="enc_observaciones" />
+                <ScalarProperty Name="enc_id" ColumnName="enc_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbenventa">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbenventa">
+              <MappingFragment StoreEntitySet="tbenventa">
+                <ScalarProperty Name="env_telefono" ColumnName="env_telefono" />
+                <ScalarProperty Name="env_gas" ColumnName="env_gas" />
+                <ScalarProperty Name="env_luz" ColumnName="env_luz" />
+                <ScalarProperty Name="env_agua" ColumnName="env_agua" />
+                <ScalarProperty Name="env_abl" ColumnName="env_abl" />
+                <ScalarProperty Name="env_matricula" ColumnName="env_matricula" />
+                <ScalarProperty Name="env_reglamento" ColumnName="env_reglamento" />
+                <ScalarProperty Name="env_planos" ColumnName="env_planos" />
+                <ScalarProperty Name="env_titulo_propiedad" ColumnName="env_titulo_propiedad" />
+                <ScalarProperty Name="env_observaciones" ColumnName="env_observaciones" />
+                <ScalarProperty Name="env_cartel" ColumnName="env_cartel" />
+                <ScalarProperty Name="env_precio" ColumnName="env_precio" />
+                <ScalarProperty Name="env_fecha_vencimiento" ColumnName="env_fecha_vencimiento" />
+                <ScalarProperty Name="env_id" ColumnName="env_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbmenu">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbmenu">
+              <MappingFragment StoreEntitySet="tbmenu">
+                <ScalarProperty Name="men_estado" ColumnName="men_estado" />
+                <ScalarProperty Name="men_nombre_formulario" ColumnName="men_nombre_formulario" />
+                <ScalarProperty Name="men_nombre" ColumnName="men_nombre" />
+                <ScalarProperty Name="men_id_padre" ColumnName="men_id_padre" />
+                <ScalarProperty Name="men_id" ColumnName="men_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tboperaciones">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tboperaciones">
+              <MappingFragment StoreEntitySet="tboperaciones">
+                <ScalarProperty Name="ope_fecha" ColumnName="ope_fecha" />
+                <ScalarProperty Name="enc_id" ColumnName="enc_id" />
+                <ScalarProperty Name="alq_id" ColumnName="alq_id" />
+                <ScalarProperty Name="rea_id" ColumnName="rea_id" />
+                <ScalarProperty Name="ena_id" ColumnName="ena_id" />
+                <ScalarProperty Name="ven_id" ColumnName="ven_id" />
+                <ScalarProperty Name="rev_id" ColumnName="rev_id" />
+                <ScalarProperty Name="env_id" ColumnName="env_id" />
+                <ScalarProperty Name="tas_id" ColumnName="tas_id" />
+                <ScalarProperty Name="pro_id" ColumnName="pro_id" />
+                <ScalarProperty Name="usu_id" ColumnName="usu_id" />
+                <ScalarProperty Name="ope_id" ColumnName="ope_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbpropiedad">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbpropiedad">
+              <MappingFragment StoreEntitySet="tbpropiedad">
+                <ScalarProperty Name="pro_caracteristica" ColumnName="pro_caracteristica" />
+                <ScalarProperty Name="pro_localidad" ColumnName="pro_localidad" />
+                <ScalarProperty Name="pro_codigo_postal" ColumnName="pro_codigo_postal" />
+                <ScalarProperty Name="pro_departamento" ColumnName="pro_departamento" />
+                <ScalarProperty Name="pro_piso" ColumnName="pro_piso" />
+                <ScalarProperty Name="pro_numero" ColumnName="pro_numero" />
+                <ScalarProperty Name="pro_calle" ColumnName="pro_calle" />
+                <ScalarProperty Name="tip_id" ColumnName="tip_id" />
+                <ScalarProperty Name="pro_id" ColumnName="pro_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbreservaalquiler">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbreservaalquiler">
+              <MappingFragment StoreEntitySet="tbreservaalquiler">
+                <ScalarProperty Name="rea_garantia" ColumnName="rea_garantia" />
+                <ScalarProperty Name="rea_oferta" ColumnName="rea_oferta" />
+                <ScalarProperty Name="rea_id" ColumnName="rea_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbreservaventa">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbreservaventa">
+              <MappingFragment StoreEntitySet="tbreservaventa">
+                <ScalarProperty Name="rev_observaciones" ColumnName="rev_observaciones" />
+                <ScalarProperty Name="rev_oferta" ColumnName="rev_oferta" />
+                <ScalarProperty Name="rev_id" ColumnName="rev_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbservicios">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbservicios">
+              <MappingFragment StoreEntitySet="tbservicios">
+                <ScalarProperty Name="ser_descripcion" ColumnName="ser_descripcion" />
+                <ScalarProperty Name="ser_id" ColumnName="ser_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbsystipocliente">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbsystipocliente">
+              <MappingFragment StoreEntitySet="tbsystipocliente">
+                <ScalarProperty Name="stc_descripcion" ColumnName="stc_descripcion" />
+                <ScalarProperty Name="stc_codigo" ColumnName="stc_codigo" />
+                <ScalarProperty Name="stc_id" ColumnName="stc_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbtasacion">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbtasacion">
+              <MappingFragment StoreEntitySet="tbtasacion">
+                <ScalarProperty Name="tas_nombre" ColumnName="tas_nombre" />
+                <ScalarProperty Name="tas_apellido" ColumnName="tas_apellido" />
+                <ScalarProperty Name="tas_observaciones" ColumnName="tas_observaciones" />
+                <ScalarProperty Name="tas_tasacion" ColumnName="tas_tasacion" />
+                <ScalarProperty Name="tas_id" ColumnName="tas_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbtipofamiliar">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbtipofamiliar">
+              <MappingFragment StoreEntitySet="tbtipofamiliar">
+                <ScalarProperty Name="tif_descripcion" ColumnName="tif_descripcion" />
+                <ScalarProperty Name="tif_id" ColumnName="tif_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbtipopropiedad">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbtipopropiedad">
+              <MappingFragment StoreEntitySet="tbtipopropiedad">
+                <ScalarProperty Name="tip_descripcion" ColumnName="tip_descripcion" />
+                <ScalarProperty Name="tip_id" ColumnName="tip_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbusuario">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbusuario">
+              <MappingFragment StoreEntitySet="tbusuario">
+                <ScalarProperty Name="usu_estado" ColumnName="usu_estado" />
+                <ScalarProperty Name="usu_password" ColumnName="usu_password" />
+                <ScalarProperty Name="usu_nombre_login" ColumnName="usu_nombre_login" />
+                <ScalarProperty Name="usu_email_password" ColumnName="usu_email_password" />
+                <ScalarProperty Name="usu_email" ColumnName="usu_email" />
+                <ScalarProperty Name="usu_apellido" ColumnName="usu_apellido" />
+                <ScalarProperty Name="usu_nombre" ColumnName="usu_nombre" />
+                <ScalarProperty Name="usu_id" ColumnName="usu_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbventa">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbventa">
+              <MappingFragment StoreEntitySet="tbventa">
+                <ScalarProperty Name="ven_cobrado" ColumnName="ven_cobrado" />
+                <ScalarProperty Name="ven_escribania" ColumnName="ven_escribania" />
+                <ScalarProperty Name="ven_presupuesto" ColumnName="ven_presupuesto" />
+                <ScalarProperty Name="ven_escribano" ColumnName="ven_escribano" />
+                <ScalarProperty Name="ven_precio" ColumnName="ven_precio" />
+                <ScalarProperty Name="ven_fecha_escritura" ColumnName="ven_fecha_escritura" />
+                <ScalarProperty Name="ven_fecha_boleto" ColumnName="ven_fecha_boleto" />
+                <ScalarProperty Name="ven_id" ColumnName="ven_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tbclientepropiedad" TypeName="landmanagementbdModel.tbclientepropiedad" StoreEntitySet="tbclientepropiedad">
+            <EndProperty Name="tbpropiedad">
+              <ScalarProperty Name="pro_id" ColumnName="pro_id" />
+            </EndProperty>
+            <EndProperty Name="tbcliente">
+              <ScalarProperty Name="cli_id" ColumnName="cli_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tbserviciospropiedad" TypeName="landmanagementbdModel.tbserviciospropiedad" StoreEntitySet="tbserviciospropiedad">
+            <EndProperty Name="tbservicios">
+              <ScalarProperty Name="ser_id" ColumnName="ser_id" />
+            </EndProperty>
+            <EndProperty Name="tbpropiedad">
+              <ScalarProperty Name="pro_id" ColumnName="pro_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tbusuariomenu" TypeName="landmanagementbdModel.tbusuariomenu" StoreEntitySet="tbusuariomenu">
+            <EndProperty Name="tbusuario">
+              <ScalarProperty Name="usu_id" ColumnName="usu_id" />
+            </EndProperty>
+            <EndProperty Name="tbmenu">
+              <ScalarProperty Name="men_id" ColumnName="men_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="LandManagementModel">
+        <EntityTypeShape EntityType="landmanagementbdModel.tbalquilada" Width="1.5" PointX="9" PointY="38.125" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbcliente" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbclienteoperacion" Width="1.5" PointX="13.75" PointY="4.25" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbdomicilio" Width="1.5" PointX="3" PointY="6.875" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbenalquiler" Width="1.5" PointX="9" PointY="14.375" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbencuesta" Width="1.5" PointX="9" PointY="22.625" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbenventa" Width="1.5" PointX="9" PointY="24.875" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbmenu" Width="1.5" PointX="6.75" PointY="19.125" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tboperaciones" Width="1.875" PointX="10.875" PointY="5.875" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbpropiedad" Width="1.5" PointX="6" PointY="6.75" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbreservaalquiler" Width="1.5" PointX="9" PointY="29.625" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbreservaventa" Width="1.5" PointX="9" PointY="35.625" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbservicios" Width="1.5" PointX="8.25" PointY="7.75" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbsystipocliente" Width="1.5" PointX="11.25" PointY="2.625" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbtasacion" Width="1.5" PointX="9" PointY="11.5" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbtipofamiliar" Width="1.5" PointX="1.5" PointY="11.75" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbtipopropiedad" Width="1.5" PointX="0.75" PointY="7.625" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbusuario" Width="1.5" PointX="9" PointY="18.875" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbventa" Width="1.5" PointX="9" PointY="32.125" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbOperaciones_tbAlquilada1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbCliente_tbCliente1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbCliente_tbTipoFamiliar1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbClienteOperacion_tbCliente1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbDomicilio_tbCliente1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbClienteOperacion_tbOperaciones1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbClienteOperacion_tbSysTipoCliente1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbDomicilio_tbtipoPropiedad1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbOperaciones_tbEnAlquiler1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbOperaciones_tbEncuesta1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbOperaciones_tbEnVenta1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbMenu_tbMenu1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbOperaciones_tbPropiedad1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbOperaciones_tbReservaAlquiler1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbOperaciones_tbReservaVenta1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbOperaciones_tbTasacion1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbOperaciones_tbUsuario1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbOperaciones_tbVenta1" />
+        <AssociationConnector Association="landmanagementbdModel.fk_tbPropiedad_tbtipoPropiedad1" />
+        <AssociationConnector Association="landmanagementbdModel.tbclientepropiedad" />
+        <AssociationConnector Association="landmanagementbdModel.tbserviciospropiedad" />
+        <AssociationConnector Association="landmanagementbdModel.tbusuariomenu" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

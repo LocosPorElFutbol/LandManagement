@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EA84A8CB-45A3-413F-B040-6FC30B2D2ECC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LandManagement.Business</RootNamespace>
+    <AssemblyName>LandManagement.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlquiladaBusiness.cs" />
+    <Compile Include="ClienteBusiness.cs" />
+    <Compile Include="ClienteOperacionBusiness.cs" />
+    <Compile Include="DomicilioBusiness.cs" />
+    <Compile Include="EnAlquilerBusiness.cs" />
+    <Compile Include="EncuestaBusiness.cs" />
+    <Compile Include="EnVentaBusiness.cs" />
+    <Compile Include="FamiliarBusiness.cs" />
+    <Compile Include="MenuBusiness.cs" />
+    <Compile Include="OperacionBusiness.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropiedadBusiness.cs" />
+    <Compile Include="ReservaAlquilerBusiness.cs" />
+    <Compile Include="ReservaVentaBusiness.cs" />
+    <Compile Include="ServiciosBusiness.cs" />
+    <Compile Include="TasacionBusiness.cs" />
+    <Compile Include="TipoFamiliarBusiness.cs" />
+    <Compile Include="TipoPropiedadBusiness.cs" />
+    <Compile Include="UsuarioBusiness.cs" />
+    <Compile Include="VentaBusiness.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LandManagement.Entities\LandManagement.Entities.csproj">
+      <Project>{D4A76D75-CD3C-467B-8F5D-ABA1137FC41D}</Project>
+      <Name>LandManagement.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LandManagement.Interface\LandManagement.Interface.csproj">
+      <Project>{6EFC4BD4-62C8-45E2-9B1B-798B2FB599A2}</Project>
+      <Name>LandManagement.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LandManagement.Repository\LandManagement.Repository.csproj">
+      <Project>{188D2037-1B10-47CD-A9BF-CD5B67C51597}</Project>
+      <Name>LandManagement.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
