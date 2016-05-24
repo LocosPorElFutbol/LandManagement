@@ -70,6 +70,41 @@ namespace LandManagement.Business
 
         }
 
+        public void Update(tboperaciones _operacion, tbventa _venta, int _codigoOperador)
+        {
+            //Actualizo tbventa
+            VentaBusiness ventaBusiness = new VentaBusiness();
+            ventaBusiness.Update(_venta);
+
+            //Actualizo tbClienteOperacion
+            UpdateClienteOperacionOperador(_operacion, _codigoOperador, _operacion.ope_id);
+        }
+
+        private static void UpdateClienteOperacionOperador(tboperaciones _operacion, int _codigoOperador, int _codigoOperacion)
+        {
+            ClienteOperacionBusiness clienteOperacionBusiness = new ClienteOperacionBusiness();
+
+            List<tbclienteoperacion> operacionClienteExistentes =
+                (List<tbclienteoperacion>)clienteOperacionBusiness.GetListByIdOperacion(_codigoOperacion);
+
+            var operadoresExistentes = operacionClienteExistentes.Where(x => x.stc_id == _codigoOperador);
+            var idsOperadoresExistentes = operadoresExistentes.Select(x => x.cli_id);
+
+            var operadoresActualizados = _operacion.tbclienteoperacion.Where(x => x.stc_id == _codigoOperador);
+            var idsOperadoresActualizados = operadoresActualizados.Select(x => x.cli_id);
+
+            var operadoresNuevos = operadoresActualizados.Where(x => !idsOperadoresExistentes.Contains(x.cli_id));
+            var operadoresEliminados = operadoresExistentes.Where(x => !idsOperadoresActualizados.Contains(x.cli_id));
+
+            if (operadoresNuevos.Count() > 0)
+                foreach (tbclienteoperacion obj in operadoresNuevos)
+                    clienteOperacionBusiness.Create(obj);
+
+            if (operadoresEliminados.Count() > 0)
+                foreach (tbclienteoperacion obj in operadoresEliminados)
+                    clienteOperacionBusiness.Delete(obj);
+        }
+
         public void Delete(tboperaciones operacion)
         {
             DetectarOperacionAEliminar(operacion);

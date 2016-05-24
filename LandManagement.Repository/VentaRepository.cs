@@ -33,7 +33,21 @@ namespace LandManagement.Repository
 
         public void Update(tbventa entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                EntityKey key = Contexto.CreateEntityKey(Contexto.CreateObjectSet<tbventa>().EntitySet.Name, entity);
+                tbventa entityAux = (tbventa)Contexto.GetObjectByKey(key);
+
+                Contexto.CreateObjectSet<tbventa>().ApplyCurrentValues(entity);
+                Contexto.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
+                Contexto.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
+
+                Contexto.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Delete(tbventa entity)

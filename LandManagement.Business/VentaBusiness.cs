@@ -16,6 +16,11 @@ namespace LandManagement.Business
             ventaRepository = new VentaRepository();
         }
 
+        public void Update(tbventa _venta)
+        {
+            ventaRepository.Update(_venta);
+        }
+
         public void Delete(tbventa _venta)
         {
             ventaRepository.Delete(_venta);

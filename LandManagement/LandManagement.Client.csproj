@@ -248,6 +248,7 @@
     <Compile Include="Utilidades\Emails.cs" />
     <Compile Include="Utilidades\Formularios.cs" />
     <Compile Include="Utilidades\ListasDeElementos.cs" />
+    <Compile Include="Utilidades\TipoOperador.cs" />
     <Compile Include="Utilidades\ValidarControles.cs" />
     <Compile Include="Utilidades\VariablesDeSesion.cs" />
     <EmbeddedResource Include="frmAlquilada.resx">
