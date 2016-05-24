@@ -77,15 +77,15 @@ namespace LandManagement.Business
             ventaBusiness.Update(_venta);
 
             //Actualizo tbClienteOperacion
-            UpdateClienteOperacionOperador(_operacion, _codigoOperador, _operacion.ope_id);
+            UpdateClienteOperacionOperador(_operacion, _codigoOperador);
         }
 
-        private static void UpdateClienteOperacionOperador(tboperaciones _operacion, int _codigoOperador, int _codigoOperacion)
+        private static void UpdateClienteOperacionOperador(tboperaciones _operacion, int _codigoOperador)
         {
             ClienteOperacionBusiness clienteOperacionBusiness = new ClienteOperacionBusiness();
 
             List<tbclienteoperacion> operacionClienteExistentes =
-                (List<tbclienteoperacion>)clienteOperacionBusiness.GetListByIdOperacion(_codigoOperacion);
+                (List<tbclienteoperacion>)clienteOperacionBusiness.GetListByIdOperacion(_operacion.ope_id);
 
             var operadoresExistentes = operacionClienteExistentes.Where(x => x.stc_id == _codigoOperador);
             var idsOperadoresExistentes = operadoresExistentes.Select(x => x.cli_id);
