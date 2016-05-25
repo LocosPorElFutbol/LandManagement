@@ -26,6 +26,8 @@ namespace LandManagement.Business
             operacionRepository.Update(operacion);
         }
 
+        #region Actualizar Operaciones
+
         public void Update(tboperaciones _operacion, tbtasacion _tasacion)
         {
             TasacionBusiness tasacionBusiness = new TasacionBusiness();
@@ -80,6 +82,12 @@ namespace LandManagement.Business
             UpdateClienteOperacionOperador(_operacion, _codigoOperador);
         }
 
+        public void Update(tboperaciones _operacion, tbenalquiler _enAlquiler)
+        {
+            EnAlquilerBusiness enAlquilerBusiness = new EnAlquilerBusiness();
+            enAlquilerBusiness.Update(_enAlquiler);
+        }
+
         private static void UpdateClienteOperacionOperador(tboperaciones _operacion, int _codigoOperador)
         {
             ClienteOperacionBusiness clienteOperacionBusiness = new ClienteOperacionBusiness();
@@ -104,6 +112,7 @@ namespace LandManagement.Business
                 foreach (tbclienteoperacion obj in operadoresEliminados)
                     clienteOperacionBusiness.Delete(obj);
         }
+        #endregion
 
         public void Delete(tboperaciones operacion)
         {

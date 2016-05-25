@@ -31,7 +31,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -39,7 +38,6 @@
             this.txbPrecio = new System.Windows.Forms.TextBox();
             this.dtpFechaBoleto = new System.Windows.Forms.DateTimePicker();
             this.dtpFechaEscritura = new System.Windows.Forms.DateTimePicker();
-            this.txbEmpleado = new System.Windows.Forms.TextBox();
             this.txbEscribano = new System.Windows.Forms.TextBox();
             this.txbPresupuesto = new System.Windows.Forms.TextBox();
             this.txbEscribania = new System.Windows.Forms.TextBox();
@@ -119,19 +117,10 @@
             this.label6.TabIndex = 5;
             this.label6.Text = "Precio";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(27, 53);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(54, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Empleado";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(27, 79);
+            this.label8.Location = new System.Drawing.Point(27, 53);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(54, 13);
             this.label8.TabIndex = 7;
@@ -140,7 +129,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(15, 105);
+            this.label9.Location = new System.Drawing.Point(15, 79);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(66, 13);
             this.label9.TabIndex = 8;
@@ -170,6 +159,7 @@
             this.txbPrecio.Name = "txbPrecio";
             this.txbPrecio.Size = new System.Drawing.Size(100, 20);
             this.txbPrecio.TabIndex = 13;
+            this.txbPrecio.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // dtpFechaBoleto
             // 
@@ -187,23 +177,16 @@
             this.dtpFechaEscritura.Size = new System.Drawing.Size(121, 20);
             this.dtpFechaEscritura.TabIndex = 2;
             // 
-            // txbEmpleado
-            // 
-            this.txbEmpleado.Location = new System.Drawing.Point(87, 50);
-            this.txbEmpleado.Name = "txbEmpleado";
-            this.txbEmpleado.Size = new System.Drawing.Size(145, 20);
-            this.txbEmpleado.TabIndex = 14;
-            // 
             // txbEscribano
             // 
-            this.txbEscribano.Location = new System.Drawing.Point(87, 76);
+            this.txbEscribano.Location = new System.Drawing.Point(87, 50);
             this.txbEscribano.Name = "txbEscribano";
             this.txbEscribano.Size = new System.Drawing.Size(145, 20);
             this.txbEscribano.TabIndex = 15;
             // 
             // txbPresupuesto
             // 
-            this.txbPresupuesto.Location = new System.Drawing.Point(87, 102);
+            this.txbPresupuesto.Location = new System.Drawing.Point(87, 76);
             this.txbPresupuesto.Name = "txbPresupuesto";
             this.txbPresupuesto.Size = new System.Drawing.Size(100, 20);
             this.txbPresupuesto.TabIndex = 16;
@@ -221,6 +204,7 @@
             this.txbCobrado.Name = "txbCobrado";
             this.txbCobrado.Size = new System.Drawing.Size(100, 20);
             this.txbCobrado.TabIndex = 20;
+            this.txbCobrado.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // btnGuardar
             // 
@@ -294,9 +278,7 @@
             this.groupBox6.Controls.Add(this.label9);
             this.groupBox6.Controls.Add(this.label8);
             this.groupBox6.Controls.Add(this.txbEscribania);
-            this.groupBox6.Controls.Add(this.label7);
             this.groupBox6.Controls.Add(this.label6);
-            this.groupBox6.Controls.Add(this.txbEmpleado);
             this.groupBox6.Controls.Add(this.txbEscribano);
             this.groupBox6.Controls.Add(this.txbPresupuesto);
             this.groupBox6.Location = new System.Drawing.Point(343, 63);
@@ -309,7 +291,7 @@
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.lbxParteCompradora);
-            this.groupBox8.Location = new System.Drawing.Point(6, 268);
+            this.groupBox8.Location = new System.Drawing.Point(6, 250);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(331, 127);
             this.groupBox8.TabIndex = 24;
@@ -327,7 +309,7 @@
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.lbxParteVendedora);
-            this.groupBox7.Location = new System.Drawing.Point(6, 134);
+            this.groupBox7.Location = new System.Drawing.Point(6, 108);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(331, 125);
             this.groupBox7.TabIndex = 23;
@@ -630,7 +612,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label12;
@@ -638,7 +619,6 @@
         private System.Windows.Forms.TextBox txbPrecio;
         private System.Windows.Forms.DateTimePicker dtpFechaBoleto;
         private System.Windows.Forms.DateTimePicker dtpFechaEscritura;
-        private System.Windows.Forms.TextBox txbEmpleado;
         private System.Windows.Forms.TextBox txbEscribano;
         private System.Windows.Forms.TextBox txbPresupuesto;
         private System.Windows.Forms.TextBox txbEscribania;

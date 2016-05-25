@@ -16,6 +16,11 @@ namespace LandManagement.Business
             enAlquilerRepository = new EnAlquilerRepository();
         }
 
+        public void Update(tbenalquiler entity)
+        {
+            enAlquilerRepository.Update(entity);        
+        }
+
         public void Delete(tbenalquiler _enAlquiler)
         {
             enAlquilerRepository.Delete(_enAlquiler);
