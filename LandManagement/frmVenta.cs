@@ -220,6 +220,7 @@ namespace LandManagement
             try
             {
                 AgregaCompradorGrilla((tbcliente)cmbCliente.SelectedItem);
+                AgregaCompradorListBox((tbcliente)cmbCliente.SelectedItem);
                 cmbCliente.Items.Remove((tbcliente)cmbCliente.SelectedItem);
             }
             catch (Exception ex)
@@ -274,25 +275,29 @@ namespace LandManagement
             txbLocalidad.Text = p.pro_localidad;
             txbCodigoPostal.Text = p.pro_codigo_postal;
         }
-
+        
         private void CargoPropietariosALaGrilla(tbpropiedad p)
         {
             dgvPropietarios.Rows.Clear();
             dgvPropietarios.Refresh();
-            AgregarPropietariosGrilla(p);
-        }
-        
-        private void CargoPropietariosALaGrilla(tbpropiedad p, tboperaciones _operacion)
-        {
-            dgvPropietarios.Rows.Clear();
-            dgvPropietarios.Refresh();
+            lbxParteVendedora.Items.Clear();
 
-            if (_operacion != null)
+            if (this.getOperacionExistente() != null)
             {
-                var idsPropietarios = this.GetIdsPropietarios(_operacion);
+                var idsPropietarios = this.GetIdsPropietarios(this.getOperacionExistente());
                 foreach (tbcliente obj in cmbCliente.Items)
+                {
                     if (idsPropietarios.Contains(obj.cli_id))
+                    {
                         AgregaPropietarioGrilla(obj);
+                        AgregaPropietarioListBox(obj);
+                    }
+                }
+            }
+            else
+            {
+                AgregarPropietariosGrilla(p);
+                AgregarPropietariosListBox(p);
             }
         }
         #endregion
@@ -345,6 +350,30 @@ namespace LandManagement
             dataGridViewRow.Cells["cli_apellido"].Value = familiar.cli_apellido;
             dataGridViewRow.Cells["cli_numero_documento"].Value = familiar.cli_numero_documento;
             dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = familiar.cli_fecha_nacimiento;
+        }
+
+        #endregion
+
+        #region Carga propietarios a ListBox
+        private void AgregaPropietarioListBox(tbcliente _propietario)
+        {
+            lbxParteVendedora.Items.Add(_propietario.cli_nombre + " " + _propietario.cli_apellido);
+        }
+
+        private void AgregarPropietariosListBox(tbpropiedad prop)
+        {
+            foreach (tbcliente obj in prop.tbcliente)
+                AgregaPropietarioListBox(obj);
+        }
+
+        private void AgregaCompradorListBox(tbcliente _comprador)
+        {
+            lbxParteCompradora.Items.Add(_comprador.cli_nombre + " " + _comprador.cli_apellido);
+        }
+
+        private void EliminarCompradorListBox(tbcliente _comprador)
+        {
+            lbxParteCompradora.Items.Remove(_comprador.cli_nombre + " " + _comprador.cli_apellido);
         }
 
         #endregion
@@ -404,6 +433,7 @@ namespace LandManagement
             tbcliente cliente = ObtenerClienteSeleccionado();
 
             listaTemporal.Add(cliente);
+            EliminarCompradorListBox(cliente);
 
             cmbCliente.Items.Clear();
             cmbCliente.Refresh();
@@ -539,6 +569,7 @@ namespace LandManagement
                 if (idsCompradores.Contains(obj.cli_id))
                 {
                     AgregaCompradorGrilla(obj);
+                    AgregaCompradorListBox(obj);
                     listaCompradoresARemover.Add(obj);
                 }
             }
@@ -633,5 +664,11 @@ namespace LandManagement
         }
         #endregion
 
+        private tboperaciones getOperacionExistente()
+        {
+            if (this.operacion != null)
+                return this.operacion;
+            return null;
+        }
     }
 }
