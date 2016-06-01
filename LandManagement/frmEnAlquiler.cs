@@ -366,7 +366,7 @@ namespace LandManagement
 
         #endregion
 
-        #region Carga de Combos TipoPropiedad, Piso, Depto, Direcciones y Clientes
+        #region Carga de Combos TipoPropiedad, Piso, Depto, Direcciones
         private void CargarCombos()
         {
             this.SetearDisplayValue();

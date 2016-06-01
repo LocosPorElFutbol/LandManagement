@@ -88,6 +88,12 @@ namespace LandManagement.Business
             enAlquilerBusiness.Update(_enAlquiler);
         }
 
+        public void Update(tboperaciones _operacion, tbreservaalquiler _reservaAlquiler)
+        {
+            ReservaAlquilerBusiness reservaAlquilerBusiness = new ReservaAlquilerBusiness();
+            reservaAlquilerBusiness.Update(_reservaAlquiler);
+        }
+
         private static void UpdateClienteOperacionOperador(tboperaciones _operacion, int _codigoOperador)
         {
             ClienteOperacionBusiness clienteOperacionBusiness = new ClienteOperacionBusiness();

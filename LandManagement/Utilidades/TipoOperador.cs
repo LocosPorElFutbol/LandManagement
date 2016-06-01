@@ -10,7 +10,8 @@ namespace LandManagement.Utilidades
         AUTORIZANT = 1,
         PROPIETARI = 2,
         RESERVENTA = 3,
-        COMPRVENTA = 4
+        COMPRVENTA = 4,
+        RESERALQUI = 5
     }
 
 }

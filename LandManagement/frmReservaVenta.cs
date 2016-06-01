@@ -152,10 +152,10 @@ namespace LandManagement
 
         private void CargaObjetoActualizable(tboperaciones _operacion)
         {
-            CargoDatosOperacionTasacion(_operacion);
+            CargoDatosOperacionReservaVenta(_operacion);
         }
 
-        private void CargoDatosOperacionTasacion(tboperaciones _operacion)
+        private void CargoDatosOperacionReservaVenta(tboperaciones _operacion)
         {
             _operacion.tbreservaventa.rev_oferta = Convert.ToDouble(txbOferta.Text);
             _operacion.tbreservaventa.rev_observaciones = txbObservaciones.Text;

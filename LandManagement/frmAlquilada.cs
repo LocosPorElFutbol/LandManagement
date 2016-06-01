@@ -15,5 +15,11 @@ namespace LandManagement
         {
             InitializeComponent();
         }
+
+        private void frmAlquilada_Load(object sender, EventArgs e)
+        {
+            pnlControles.AutoScroll = true;
+
+        }
     }
 }
