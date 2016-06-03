@@ -11,7 +11,9 @@ namespace LandManagement.Utilidades
         PROPIETARI = 2,
         RESERVENTA = 3,
         COMPRVENTA = 4,
-        RESERALQUI = 5
+        RESERALQUI = 5,
+        LOCATARIO = 6,
+        GARANALQUI = 7
     }
 
 }

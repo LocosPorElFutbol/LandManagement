@@ -64,8 +64,8 @@
             this.txbPrimerAnio = new System.Windows.Forms.TextBox();
             this.txbSegundoAnio = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txbBancoNumeroCuenta = new System.Windows.Forms.TextBox();
+            this.txbBanco = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.rdbPagoDeposito = new System.Windows.Forms.RadioButton();
@@ -73,8 +73,8 @@
             this.cbxEnAdministracion = new System.Windows.Forms.CheckBox();
             this.cbxConIva = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.rdbCargoLocatario = new System.Windows.Forms.RadioButton();
-            this.rdbCargoLocador = new System.Windows.Forms.RadioButton();
+            this.rdbServiciosCargoLocatario = new System.Windows.Forms.RadioButton();
+            this.rdbServiciosCargoLocador = new System.Windows.Forms.RadioButton();
             this.dtpFechaDesocupacion = new System.Windows.Forms.DateTimePicker();
             this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
             this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
@@ -85,7 +85,7 @@
             this.dgvPropietarios = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.gbxDetallePropiedad = new System.Windows.Forms.GroupBox();
             this.label25 = new System.Windows.Forms.Label();
             this.cmbTipoPropiedad = new System.Windows.Forms.ComboBox();
             this.txbCalle = new System.Windows.Forms.TextBox();
@@ -117,7 +117,7 @@
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropietarios)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.gbxDetallePropiedad.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -475,8 +475,8 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.textBox7);
-            this.groupBox6.Controls.Add(this.textBox6);
+            this.groupBox6.Controls.Add(this.txbBancoNumeroCuenta);
+            this.groupBox6.Controls.Add(this.txbBanco);
             this.groupBox6.Controls.Add(this.label17);
             this.groupBox6.Controls.Add(this.label18);
             this.groupBox6.Controls.Add(this.rdbPagoDeposito);
@@ -490,24 +490,24 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Forma de Pago";
             // 
-            // textBox7
+            // txbBancoNumeroCuenta
             // 
-            this.textBox7.Location = new System.Drawing.Point(203, 76);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(119, 20);
-            this.textBox7.TabIndex = 44;
+            this.txbBancoNumeroCuenta.Location = new System.Drawing.Point(203, 104);
+            this.txbBancoNumeroCuenta.Name = "txbBancoNumeroCuenta";
+            this.txbBancoNumeroCuenta.Size = new System.Drawing.Size(119, 20);
+            this.txbBancoNumeroCuenta.TabIndex = 44;
             // 
-            // textBox6
+            // txbBanco
             // 
-            this.textBox6.Location = new System.Drawing.Point(74, 76);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(76, 20);
-            this.textBox6.TabIndex = 43;
+            this.txbBanco.Location = new System.Drawing.Point(74, 104);
+            this.txbBanco.Name = "txbBanco";
+            this.txbBanco.Size = new System.Drawing.Size(76, 20);
+            this.txbBanco.TabIndex = 43;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(156, 79);
+            this.label17.Location = new System.Drawing.Point(156, 107);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(41, 13);
             this.label17.TabIndex = 42;
@@ -516,7 +516,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(30, 79);
+            this.label18.Location = new System.Drawing.Point(30, 107);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(38, 13);
             this.label18.TabIndex = 41;
@@ -525,7 +525,7 @@
             // rdbPagoDeposito
             // 
             this.rdbPagoDeposito.AutoSize = true;
-            this.rdbPagoDeposito.Location = new System.Drawing.Point(17, 53);
+            this.rdbPagoDeposito.Location = new System.Drawing.Point(17, 81);
             this.rdbPagoDeposito.Name = "rdbPagoDeposito";
             this.rdbPagoDeposito.Size = new System.Drawing.Size(96, 17);
             this.rdbPagoDeposito.TabIndex = 40;
@@ -536,13 +536,14 @@
             // rdbPagoEfectivo
             // 
             this.rdbPagoEfectivo.AutoSize = true;
-            this.rdbPagoEfectivo.Location = new System.Drawing.Point(17, 102);
+            this.rdbPagoEfectivo.Location = new System.Drawing.Point(17, 58);
             this.rdbPagoEfectivo.Name = "rdbPagoEfectivo";
             this.rdbPagoEfectivo.Size = new System.Drawing.Size(94, 17);
             this.rdbPagoEfectivo.TabIndex = 39;
             this.rdbPagoEfectivo.TabStop = true;
             this.rdbPagoEfectivo.Text = "Pago efectivo.";
             this.rdbPagoEfectivo.UseVisualStyleBackColor = true;
+            this.rdbPagoEfectivo.CheckedChanged += new System.EventHandler(this.rdbPagoEfectivo_CheckedChanged);
             // 
             // cbxEnAdministracion
             // 
@@ -566,8 +567,8 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.rdbCargoLocatario);
-            this.groupBox3.Controls.Add(this.rdbCargoLocador);
+            this.groupBox3.Controls.Add(this.rdbServiciosCargoLocatario);
+            this.groupBox3.Controls.Add(this.rdbServiciosCargoLocador);
             this.groupBox3.Location = new System.Drawing.Point(13, 185);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(335, 56);
@@ -575,27 +576,27 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Servicios";
             // 
-            // rdbCargoLocatario
+            // rdbServiciosCargoLocatario
             // 
-            this.rdbCargoLocatario.AutoSize = true;
-            this.rdbCargoLocatario.Location = new System.Drawing.Point(145, 24);
-            this.rdbCargoLocatario.Name = "rdbCargoLocatario";
-            this.rdbCargoLocatario.Size = new System.Drawing.Size(123, 17);
-            this.rdbCargoLocatario.TabIndex = 29;
-            this.rdbCargoLocatario.TabStop = true;
-            this.rdbCargoLocatario.Text = "A Cargo del locatario";
-            this.rdbCargoLocatario.UseVisualStyleBackColor = true;
+            this.rdbServiciosCargoLocatario.AutoSize = true;
+            this.rdbServiciosCargoLocatario.Location = new System.Drawing.Point(145, 24);
+            this.rdbServiciosCargoLocatario.Name = "rdbServiciosCargoLocatario";
+            this.rdbServiciosCargoLocatario.Size = new System.Drawing.Size(123, 17);
+            this.rdbServiciosCargoLocatario.TabIndex = 29;
+            this.rdbServiciosCargoLocatario.TabStop = true;
+            this.rdbServiciosCargoLocatario.Text = "A Cargo del locatario";
+            this.rdbServiciosCargoLocatario.UseVisualStyleBackColor = true;
             // 
-            // rdbCargoLocador
+            // rdbServiciosCargoLocador
             // 
-            this.rdbCargoLocador.AutoSize = true;
-            this.rdbCargoLocador.Location = new System.Drawing.Point(17, 24);
-            this.rdbCargoLocador.Name = "rdbCargoLocador";
-            this.rdbCargoLocador.Size = new System.Drawing.Size(122, 17);
-            this.rdbCargoLocador.TabIndex = 28;
-            this.rdbCargoLocador.TabStop = true;
-            this.rdbCargoLocador.Text = "A Cargo del Locador";
-            this.rdbCargoLocador.UseVisualStyleBackColor = true;
+            this.rdbServiciosCargoLocador.AutoSize = true;
+            this.rdbServiciosCargoLocador.Location = new System.Drawing.Point(17, 24);
+            this.rdbServiciosCargoLocador.Name = "rdbServiciosCargoLocador";
+            this.rdbServiciosCargoLocador.Size = new System.Drawing.Size(122, 17);
+            this.rdbServiciosCargoLocador.TabIndex = 28;
+            this.rdbServiciosCargoLocador.TabStop = true;
+            this.rdbServiciosCargoLocador.Text = "A Cargo del Locador";
+            this.rdbServiciosCargoLocador.UseVisualStyleBackColor = true;
             // 
             // dtpFechaDesocupacion
             // 
@@ -681,7 +682,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.groupBox5);
+            this.groupBox2.Controls.Add(this.gbxDetallePropiedad);
             this.groupBox2.Controls.Add(this.cmbDireccion);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Location = new System.Drawing.Point(14, 56);
@@ -691,28 +692,28 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos de la Propiedad";
             // 
-            // groupBox5
+            // gbxDetallePropiedad
             // 
-            this.groupBox5.Controls.Add(this.label25);
-            this.groupBox5.Controls.Add(this.cmbTipoPropiedad);
-            this.groupBox5.Controls.Add(this.txbCalle);
-            this.groupBox5.Controls.Add(this.label1);
-            this.groupBox5.Controls.Add(this.label11);
-            this.groupBox5.Controls.Add(this.cmbDepto);
-            this.groupBox5.Controls.Add(this.label12);
-            this.groupBox5.Controls.Add(this.cmbPiso);
-            this.groupBox5.Controls.Add(this.label13);
-            this.groupBox5.Controls.Add(this.txbCodigoPostal);
-            this.groupBox5.Controls.Add(this.label14);
-            this.groupBox5.Controls.Add(this.txbLocalidad);
-            this.groupBox5.Controls.Add(this.label15);
-            this.groupBox5.Controls.Add(this.txbNumero);
-            this.groupBox5.Location = new System.Drawing.Point(11, 58);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(351, 133);
-            this.groupBox5.TabIndex = 10;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Detalle";
+            this.gbxDetallePropiedad.Controls.Add(this.label25);
+            this.gbxDetallePropiedad.Controls.Add(this.cmbTipoPropiedad);
+            this.gbxDetallePropiedad.Controls.Add(this.txbCalle);
+            this.gbxDetallePropiedad.Controls.Add(this.label1);
+            this.gbxDetallePropiedad.Controls.Add(this.label11);
+            this.gbxDetallePropiedad.Controls.Add(this.cmbDepto);
+            this.gbxDetallePropiedad.Controls.Add(this.label12);
+            this.gbxDetallePropiedad.Controls.Add(this.cmbPiso);
+            this.gbxDetallePropiedad.Controls.Add(this.label13);
+            this.gbxDetallePropiedad.Controls.Add(this.txbCodigoPostal);
+            this.gbxDetallePropiedad.Controls.Add(this.label14);
+            this.gbxDetallePropiedad.Controls.Add(this.txbLocalidad);
+            this.gbxDetallePropiedad.Controls.Add(this.label15);
+            this.gbxDetallePropiedad.Controls.Add(this.txbNumero);
+            this.gbxDetallePropiedad.Location = new System.Drawing.Point(11, 58);
+            this.gbxDetallePropiedad.Name = "gbxDetallePropiedad";
+            this.gbxDetallePropiedad.Size = new System.Drawing.Size(351, 133);
+            this.gbxDetallePropiedad.TabIndex = 10;
+            this.gbxDetallePropiedad.TabStop = false;
+            this.gbxDetallePropiedad.Text = "Detalle";
             // 
             // label25
             // 
@@ -884,8 +885,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropietarios)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
+            this.gbxDetallePropiedad.ResumeLayout(false);
+            this.gbxDetallePropiedad.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -894,7 +895,7 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox gbxDetallePropiedad;
         private System.Windows.Forms.TextBox txbCalle;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label11;
@@ -919,11 +920,11 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton rdbCargoLocatario;
-        private System.Windows.Forms.RadioButton rdbCargoLocador;
+        private System.Windows.Forms.RadioButton rdbServiciosCargoLocatario;
+        private System.Windows.Forms.RadioButton rdbServiciosCargoLocador;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txbBancoNumeroCuenta;
+        private System.Windows.Forms.TextBox txbBanco;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.RadioButton rdbPagoDeposito;
