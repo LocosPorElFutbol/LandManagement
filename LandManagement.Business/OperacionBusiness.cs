@@ -100,6 +100,12 @@ namespace LandManagement.Business
             alquiladaBusiness.Update(_alquilada);
         }
 
+        public void Update(tboperaciones _operacion, tbencuesta _encuesta)
+        {
+            EncuestaBusiness encuestaBusiness = new EncuestaBusiness();
+            encuestaBusiness.Update(_encuesta);
+        }
+
         private static void UpdateClienteOperacionOperador(tboperaciones _operacion, int _codigoOperador)
         {
             ClienteOperacionBusiness clienteOperacionBusiness = new ClienteOperacionBusiness();

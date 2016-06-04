@@ -65,10 +65,10 @@ namespace LandManagement
                 cmbGarante.AutoCompleteMode = AutoCompleteMode.Suggest;
                 cmbGarante.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                if (this.operacion != null)
+                if (this.getOperacionExistente() != null)
                 {
                     tboperaciones operacionLocal = new tboperaciones();
-                    operacionLocal = this.operacion;
+                    operacionLocal = this.getOperacionExistente();
                     CargoFormulario(operacionLocal);
                 }
             }

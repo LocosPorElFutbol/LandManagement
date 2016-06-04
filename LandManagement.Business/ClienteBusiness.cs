@@ -72,12 +72,12 @@ namespace LandManagement.Business
         {
             List<tbcliente> listaNombresCompletos = (List<tbcliente>)this.GetList();
             foreach (tbcliente obj in listaNombresCompletos)
-                this.GetDireccion(obj);
+                this.CargarNombreCompleto(obj);
 
             return listaNombresCompletos;
         }
 
-        public object GetDireccion(tbcliente cliente)
+        public object CargarNombreCompleto(tbcliente cliente)
         {
             cliente.cli_nombre_completo = cliente.cli_nombre + ", " + cliente.cli_apellido;
             return cliente;

@@ -13,7 +13,8 @@ namespace LandManagement.Utilidades
         COMPRVENTA = 4,
         RESERALQUI = 5,
         LOCATARIO = 6,
-        GARANALQUI = 7
+        GARANALQUI = 7,
+        ENCUESTADO = 8
     }
 
 }
