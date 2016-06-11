@@ -58,7 +58,7 @@ namespace LandManagement
                     CargarObjeto(tipoFamiliar);
                     GuardarObjeto(tipoFamiliar);
                     MensajeOk();
-                    ((frmTipoFamiliar)formPadre).CargarGrilla();
+                    ((frmTipoFamiliarListado)formPadre).CargarGrilla();
                     this.Close();
                 }
             }
@@ -84,7 +84,7 @@ namespace LandManagement
                     CargarObjeto(tipoFamiliarLocal);
                     GuardarObjeto(tipoFamiliarLocal);
                     MensajeOk();
-                    ((frmTipoFamiliar)formPadre).CargarGrilla();
+                    ((frmTipoFamiliarListado)formPadre).CargarGrilla();
                     this.Close();
 
                     Cursor.Current = Cursors.Default;

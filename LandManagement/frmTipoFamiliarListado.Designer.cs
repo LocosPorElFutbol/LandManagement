@@ -1,6 +1,6 @@
 ﻿namespace LandManagement
 {
-    partial class frmTipoFamiliar
+    partial class frmTipoFamiliarListado
     {
         /// <summary>
         /// Required designer variable.
@@ -39,13 +39,16 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.dataGridViewTFamiliar);
             this.groupBox1.Controls.Add(this.btnCancelar);
             this.groupBox1.Controls.Add(this.btnAgregar);
             this.groupBox1.Controls.Add(this.btnEliminar);
             this.groupBox1.Location = new System.Drawing.Point(5, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(369, 326);
+            this.groupBox1.Size = new System.Drawing.Size(362, 326);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tipo Familiar";
@@ -53,20 +56,18 @@
             // dataGridViewTFamiliar
             // 
             this.dataGridViewTFamiliar.AllowUserToAddRows = false;
-            this.dataGridViewTFamiliar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewTFamiliar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTFamiliar.Location = new System.Drawing.Point(18, 19);
             this.dataGridViewTFamiliar.Name = "dataGridViewTFamiliar";
             this.dataGridViewTFamiliar.ReadOnly = true;
             this.dataGridViewTFamiliar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTFamiliar.Size = new System.Drawing.Size(257, 271);
+            this.dataGridViewTFamiliar.Size = new System.Drawing.Size(252, 271);
             this.dataGridViewTFamiliar.TabIndex = 5;
             this.dataGridViewTFamiliar.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTFamiliar_CellDoubleClick);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(284, 77);
+            this.btnCancelar.Location = new System.Drawing.Point(276, 77);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 3;
@@ -76,7 +77,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(284, 19);
+            this.btnAgregar.Location = new System.Drawing.Point(276, 19);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 1;
@@ -86,21 +87,21 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(284, 48);
+            this.btnEliminar.Location = new System.Drawing.Point(276, 48);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 2;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // frmTipoFamiliar
+            // frmTipoFamiliarListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(553, 343);
+            this.ClientSize = new System.Drawing.Size(379, 343);
             this.Controls.Add(this.groupBox1);
-            this.Name = "frmTipoFamiliar";
+            this.Name = "frmTipoFamiliarListado";
             this.Text = "frmTipoFamiliar";
             this.Load += new System.EventHandler(this.frmTipoFamiliar_Load);
             this.groupBox1.ResumeLayout(false);
