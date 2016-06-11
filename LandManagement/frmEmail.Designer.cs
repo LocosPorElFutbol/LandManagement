@@ -290,7 +290,6 @@
             this.IMGtoolStrip.Size = new System.Drawing.Size(23, 22);
             this.IMGtoolStrip.Text = "Imagen de fondo";
             this.IMGtoolStrip.ToolTipText = "Imagen de fondo";
-            this.IMGtoolStrip.Visible = false;
             this.IMGtoolStrip.Click += new System.EventHandler(this.IMGtoolStrip_Click);
             // 
             // toolStripSplitButton1
