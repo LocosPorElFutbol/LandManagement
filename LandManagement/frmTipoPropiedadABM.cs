@@ -52,7 +52,7 @@ namespace LandManagement
                 CargaObjetoTPropiedad();
                 GuardaObjetoTPropiedad();
                 MensajeOk();
-                ((frmTipoPropiedad)formPadre).CargarGrilla();
+                ((frmTipoPropiedadListado)formPadre).CargarGrilla();
                 this.Close();
             }
             catch (Exception ex)
@@ -113,7 +113,7 @@ namespace LandManagement
                 CargaObjetoTPropiedad();
                 GuardaObjetoTPropiedad();
                 MensajeOk();
-                ((frmTipoPropiedad)formPadre).CargarGrilla();
+                ((frmTipoPropiedadListado)formPadre).CargarGrilla();
                 this.Close();
             }
             catch (Exception ex)

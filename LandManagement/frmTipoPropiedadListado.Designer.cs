@@ -1,6 +1,6 @@
 ﻿namespace LandManagement
 {
-    partial class frmTipoPropiedad
+    partial class frmTipoPropiedadListado
     {
         /// <summary>
         /// Required designer variable.
@@ -39,13 +39,16 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.dataGridViewTpropiedad);
             this.groupBox1.Controls.Add(this.btnCancelar);
             this.groupBox1.Controls.Add(this.btnAgregar);
             this.groupBox1.Controls.Add(this.btnEliminar);
             this.groupBox1.Location = new System.Drawing.Point(5, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(341, 326);
+            this.groupBox1.Size = new System.Drawing.Size(335, 302);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tipo Propiedad";
@@ -53,8 +56,6 @@
             // dataGridViewTpropiedad
             // 
             this.dataGridViewTpropiedad.AllowUserToAddRows = false;
-            this.dataGridViewTpropiedad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewTpropiedad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTpropiedad.Location = new System.Drawing.Point(18, 19);
             this.dataGridViewTpropiedad.Name = "dataGridViewTpropiedad";
@@ -72,6 +73,7 @@
             this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAgregar
             // 
@@ -81,7 +83,7 @@
             this.btnAgregar.TabIndex = 1;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click_1);
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnEliminar
             // 
@@ -91,15 +93,15 @@
             this.btnEliminar.TabIndex = 2;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // frmTipoPropiedad
+            // frmTipoPropiedadListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 342);
+            this.ClientSize = new System.Drawing.Size(352, 318);
             this.Controls.Add(this.groupBox1);
-            this.Name = "frmTipoPropiedad";
+            this.Name = "frmTipoPropiedadListado";
             this.Text = "frmTipoPropiedad";
             this.Load += new System.EventHandler(this.frmTipoPropiedad_Load);
             this.groupBox1.ResumeLayout(false);

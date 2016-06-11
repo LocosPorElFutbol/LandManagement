@@ -13,13 +13,14 @@ using LandManagement.Business;
 
 namespace LandManagement
 {
-    public partial class frmTipoPropiedad : Form
+    public partial class frmTipoPropiedadListado : Form
     {
         private TipoPropiedadBusiness tpropiedadBusiness;
         private frmTipoPropiedadABM frmtpropiedadABM;
         private DataGridViewRow dataGridViewRow;
         private DisplayNameHelper displayNameHelper;
-        public frmTipoPropiedad()
+
+        public frmTipoPropiedadListado()
         {
             InitializeComponent();
             tpropiedadBusiness = new TipoPropiedadBusiness();
@@ -29,49 +30,30 @@ namespace LandManagement
         {
             CargarGrilla();
         }
- 
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.Close();
-
-        }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmtpropiedadABM = new frmTipoPropiedadABM(this);
             ControlarInstanciaAbierta(frmtpropiedadABM);
         }
-        private void ControlarInstanciaAbierta(Form formularioPopUp)
+
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
-            Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
-            string frmCode = formularioPopUp.Name;
-
-            foreach (Type type in frmAssembly.GetTypes())
-            {
-                if (type.BaseType == typeof(Form))
-                {
-                    if (type.Name == frmCode)
-                    {
-                        if (Application.OpenForms.Cast<Form>().Any(form => form.Name == frmCode))
-                        {
-                            Form f = Application.OpenForms[frmCode];
-                            f.WindowState = FormWindowState.Normal;
-                            f.Activate();
-                        }
-                        else
-                        {
-                            formularioPopUp.MdiParent = this.MdiParent;
-                            formularioPopUp.WindowState = FormWindowState.Normal;
-                            formularioPopUp.Show();
-                        }
-
-                    }
-
-                }
-            }
-
+            this.Close();
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (MensajeEliminacionOK() == System.Windows.Forms.DialogResult.Yes)
+            {
+                dataGridViewRow = dataGridViewTpropiedad.SelectedRows[0];
+                int idTPropiedadSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["tip_id"].Value);
+                tpropiedadBusiness.Delete(new tbtipopropiedad() { tip_id = idTPropiedadSeleccionado });
+                this.CargarGrilla();
+            }
+        }
+
+        #region Cargar Grilla Tipos de Proiedades
         public void CargarGrilla()
         {
             tpropiedadBusiness = new TipoPropiedadBusiness();
@@ -125,39 +107,43 @@ namespace LandManagement
 
 
         }
+        #endregion
 
-
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void ControlarInstanciaAbierta(Form formularioPopUp)
         {
-            if (MensajeEliminacionOK() == System.Windows.Forms.DialogResult.Yes)
+            Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
+            string frmCode = formularioPopUp.Name;
+
+            foreach (Type type in frmAssembly.GetTypes())
             {
-                dataGridViewRow = dataGridViewTpropiedad.SelectedRows[0];
-                int idTPropiedadSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["tip_id"].Value);
-                tpropiedadBusiness.Delete(new tbtipopropiedad() { tip_id = idTPropiedadSeleccionado });
-                this.CargarGrilla();
+                if (type.BaseType == typeof(Form))
+                {
+                    if (type.Name == frmCode)
+                    {
+                        if (Application.OpenForms.Cast<Form>().Any(form => form.Name == frmCode))
+                        {
+                            Form f = Application.OpenForms[frmCode];
+                            f.WindowState = FormWindowState.Normal;
+                            f.Activate();
+                        }
+                        else
+                        {
+                            formularioPopUp.MdiParent = this.MdiParent;
+                            formularioPopUp.WindowState = FormWindowState.Normal;
+                            formularioPopUp.Show();
+                        }
+
+                    }
+
+                }
             }
+
         }
+
         private DialogResult MensajeEliminacionOK()
         {
             return MessageBox.Show("¿Desea eliminar el tipo de propiedad?",
                         "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-        }
-
-        private void btnAgregar_Click_1(object sender, EventArgs e)
-        {
-            frmtpropiedadABM = new frmTipoPropiedadABM(this);
-            ControlarInstanciaAbierta(frmtpropiedadABM);
-        }
-
-        private void btnEliminar_Click_1(object sender, EventArgs e)
-        {
-            if (MensajeEliminacionOK() == System.Windows.Forms.DialogResult.Yes)
-            {
-                dataGridViewRow = dataGridViewTpropiedad.SelectedRows[0];
-                int idTPropiedadSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["tip_id"].Value);
-                tpropiedadBusiness.Delete(new tbtipopropiedad() { tip_id = idTPropiedadSeleccionado });
-                this.CargarGrilla();
-            }
         }
 
     }

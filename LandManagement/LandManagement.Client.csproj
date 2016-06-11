@@ -220,11 +220,11 @@
     <Compile Include="frmTipoFamiliarABM.Designer.cs">
       <DependentUpon>frmTipoFamiliarABM.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTipoPropiedad.cs">
+    <Compile Include="frmTipoPropiedadListado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTipoPropiedad.Designer.cs">
-      <DependentUpon>frmTipoPropiedad.cs</DependentUpon>
+    <Compile Include="frmTipoPropiedadListado.Designer.cs">
+      <DependentUpon>frmTipoPropiedadListado.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTipoPropiedadABM.cs">
       <SubType>Form</SubType>
@@ -347,8 +347,8 @@
     <EmbeddedResource Include="frmTipoFamiliarABM.resx">
       <DependentUpon>frmTipoFamiliarABM.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTipoPropiedad.resx">
-      <DependentUpon>frmTipoPropiedad.cs</DependentUpon>
+    <EmbeddedResource Include="frmTipoPropiedadListado.resx">
+      <DependentUpon>frmTipoPropiedadListado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTipoPropiedadABM.resx">
       <DependentUpon>frmTipoPropiedadABM.cs</DependentUpon>
