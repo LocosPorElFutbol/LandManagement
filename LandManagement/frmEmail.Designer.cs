@@ -29,18 +29,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEmail));
-            this.btnimagen = new System.Windows.Forms.Button();
-            this.HTMLEditor = new System.Windows.Forms.WebBrowser();
+            this.hleCuerpo = new System.Windows.Forms.WebBrowser();
             this.txtasunto = new System.Windows.Forms.TextBox();
             this.txtmailto = new System.Windows.Forms.TextBox();
-            this.btnadjuntar = new System.Windows.Forms.Button();
-            this.btnenviar = new System.Windows.Forms.Button();
+            this.btnAdjuntar = new System.Windows.Forms.Button();
+            this.btnEnviar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btncancelar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtclientes = new System.Windows.Forms.TextBox();
-            this.btnagregar = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
             this.adjlabel = new System.Windows.Forms.Label();
             this.BoldtoolStrip = new System.Windows.Forms.ToolStripButton();
             this.UnderlinetoolStrip = new System.Windows.Forms.ToolStripButton();
@@ -68,27 +67,16 @@
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnimagen
+            // hleCuerpo
             // 
-            this.btnimagen.Location = new System.Drawing.Point(202, 362);
-            this.btnimagen.Name = "btnimagen";
-            this.btnimagen.Size = new System.Drawing.Size(75, 23);
-            this.btnimagen.TabIndex = 7;
-            this.btnimagen.Text = "Imagen";
-            this.btnimagen.UseVisualStyleBackColor = true;
-            this.btnimagen.Click += new System.EventHandler(this.btnimagen_Click);
-            // 
-            // HTMLEditor
-            // 
-            this.HTMLEditor.AllowWebBrowserDrop = false;
-            this.HTMLEditor.IsWebBrowserContextMenuEnabled = false;
-            this.HTMLEditor.Location = new System.Drawing.Point(20, 126);
-            this.HTMLEditor.MinimumSize = new System.Drawing.Size(20, 20);
-            this.HTMLEditor.Name = "HTMLEditor";
-            this.HTMLEditor.ScriptErrorsSuppressed = true;
-            this.HTMLEditor.Size = new System.Drawing.Size(646, 202);
-            this.HTMLEditor.TabIndex = 5;
-            this.HTMLEditor.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.HTMLEditor_DocumentCompleted);
+            this.hleCuerpo.AllowWebBrowserDrop = false;
+            this.hleCuerpo.IsWebBrowserContextMenuEnabled = false;
+            this.hleCuerpo.Location = new System.Drawing.Point(20, 126);
+            this.hleCuerpo.MinimumSize = new System.Drawing.Size(20, 20);
+            this.hleCuerpo.Name = "hleCuerpo";
+            this.hleCuerpo.ScriptErrorsSuppressed = true;
+            this.hleCuerpo.Size = new System.Drawing.Size(646, 202);
+            this.hleCuerpo.TabIndex = 5;
             // 
             // txtasunto
             // 
@@ -106,25 +94,25 @@
             this.txtmailto.TabIndex = 3;
             this.txtmailto.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
-            // btnadjuntar
+            // btnAdjuntar
             // 
-            this.btnadjuntar.Location = new System.Drawing.Point(20, 362);
-            this.btnadjuntar.Name = "btnadjuntar";
-            this.btnadjuntar.Size = new System.Drawing.Size(75, 23);
-            this.btnadjuntar.TabIndex = 6;
-            this.btnadjuntar.Text = "Adjuntar";
-            this.btnadjuntar.UseVisualStyleBackColor = true;
-            this.btnadjuntar.Click += new System.EventHandler(this.btnadjuntar_Click);
+            this.btnAdjuntar.Location = new System.Drawing.Point(20, 334);
+            this.btnAdjuntar.Name = "btnAdjuntar";
+            this.btnAdjuntar.Size = new System.Drawing.Size(75, 23);
+            this.btnAdjuntar.TabIndex = 6;
+            this.btnAdjuntar.Text = "Adjuntar";
+            this.btnAdjuntar.UseVisualStyleBackColor = true;
+            this.btnAdjuntar.Click += new System.EventHandler(this.btnAdjuntar_Click);
             // 
-            // btnenviar
+            // btnEnviar
             // 
-            this.btnenviar.Location = new System.Drawing.Point(591, 362);
-            this.btnenviar.Name = "btnenviar";
-            this.btnenviar.Size = new System.Drawing.Size(75, 23);
-            this.btnenviar.TabIndex = 9;
-            this.btnenviar.Text = "Enviar";
-            this.btnenviar.UseVisualStyleBackColor = true;
-            this.btnenviar.Click += new System.EventHandler(this.btnenviar_Click);
+            this.btnEnviar.Location = new System.Drawing.Point(510, 334);
+            this.btnEnviar.Name = "btnEnviar";
+            this.btnEnviar.Size = new System.Drawing.Size(75, 23);
+            this.btnEnviar.TabIndex = 9;
+            this.btnEnviar.Text = "Enviar";
+            this.btnEnviar.UseVisualStyleBackColor = true;
+            this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
             // 
             // label2
             // 
@@ -144,15 +132,16 @@
             this.label1.TabIndex = 26;
             this.label1.Text = "Para";
             // 
-            // btncancelar
+            // btnCancelar
             // 
-            this.btncancelar.Location = new System.Drawing.Point(373, 361);
-            this.btncancelar.Name = "btncancelar";
-            this.btncancelar.Size = new System.Drawing.Size(75, 23);
-            this.btncancelar.TabIndex = 8;
-            this.btncancelar.Text = "Cancelar";
-            this.btncancelar.UseVisualStyleBackColor = true;
-            this.btncancelar.Click += new System.EventHandler(this.btncacelar_Click);
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(591, 334);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 8;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btncacelar_Click);
             // 
             // label3
             // 
@@ -172,15 +161,15 @@
             this.txtclientes.Size = new System.Drawing.Size(477, 20);
             this.txtclientes.TabIndex = 1;
             // 
-            // btnagregar
+            // btnAgregar
             // 
-            this.btnagregar.Location = new System.Drawing.Point(557, 44);
-            this.btnagregar.Name = "btnagregar";
-            this.btnagregar.Size = new System.Drawing.Size(75, 23);
-            this.btnagregar.TabIndex = 2;
-            this.btnagregar.Text = "Agregar";
-            this.btnagregar.UseVisualStyleBackColor = true;
-            this.btnagregar.Click += new System.EventHandler(this.btnagregar_Click);
+            this.btnAgregar.Location = new System.Drawing.Point(550, 43);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(61, 21);
+            this.btnAgregar.TabIndex = 2;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // adjlabel
             // 
@@ -217,7 +206,7 @@
             this.ItalictoolStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ItalictoolStrip.Name = "ItalictoolStrip";
             this.ItalictoolStrip.Size = new System.Drawing.Size(23, 22);
-            this.ItalictoolStrip.Text = "Cursiva";
+            this.ItalictoolStrip.Text = "Italica";
             this.ItalictoolStrip.Click += new System.EventHandler(this.ItalictoolStrip_Click);
             // 
             // ColortoolStrip
@@ -237,7 +226,8 @@
             this.JustifyFulltoolStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.JustifyFulltoolStrip.Name = "JustifyFulltoolStrip";
             this.JustifyFulltoolStrip.Size = new System.Drawing.Size(23, 22);
-            this.JustifyFulltoolStrip.Text = "Alineacion normal";
+            this.JustifyFulltoolStrip.Text = "Justificar";
+            this.JustifyFulltoolStrip.ToolTipText = "Justificar";
             this.JustifyFulltoolStrip.Click += new System.EventHandler(this.JustifyFulltoolStrip_Click);
             // 
             // JustifyCentertoolStrip
@@ -247,7 +237,7 @@
             this.JustifyCentertoolStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.JustifyCentertoolStrip.Name = "JustifyCentertoolStrip";
             this.JustifyCentertoolStrip.Size = new System.Drawing.Size(23, 22);
-            this.JustifyCentertoolStrip.Text = "Alineacion al centro";
+            this.JustifyCentertoolStrip.Text = "Centrar";
             this.JustifyCentertoolStrip.Click += new System.EventHandler(this.JustifyCentertoolStrip_Click);
             // 
             // JustifyLtoolStrip
@@ -257,7 +247,8 @@
             this.JustifyLtoolStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.JustifyLtoolStrip.Name = "JustifyLtoolStrip";
             this.JustifyLtoolStrip.Size = new System.Drawing.Size(23, 22);
-            this.JustifyLtoolStrip.Text = "Alineacion a la izquierda";
+            this.JustifyLtoolStrip.Text = "Alinear a la izquierda";
+            this.JustifyLtoolStrip.ToolTipText = "Alinear a la izquierda";
             this.JustifyLtoolStrip.Click += new System.EventHandler(this.JustifyLtoolStrip_Click);
             // 
             // JustifyRtoolStrip
@@ -267,7 +258,7 @@
             this.JustifyRtoolStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.JustifyRtoolStrip.Name = "JustifyRtoolStrip";
             this.JustifyRtoolStrip.Size = new System.Drawing.Size(23, 22);
-            this.JustifyRtoolStrip.Text = "Alineacion a la derecha";
+            this.JustifyRtoolStrip.Text = "Alinear a la derecha";
             this.JustifyRtoolStrip.Click += new System.EventHandler(this.JustifyRtoolStrip_Click);
             // 
             // VinDtoolStrip
@@ -277,7 +268,7 @@
             this.VinDtoolStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.VinDtoolStrip.Name = "VinDtoolStrip";
             this.VinDtoolStrip.Size = new System.Drawing.Size(23, 22);
-            this.VinDtoolStrip.Text = "toolStripButton9";
+            this.VinDtoolStrip.Text = "Viñeta";
             this.VinDtoolStrip.Click += new System.EventHandler(this.VinDtoolStrip_Click);
             // 
             // VinNtoolStrip
@@ -287,7 +278,7 @@
             this.VinNtoolStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.VinNtoolStrip.Name = "VinNtoolStrip";
             this.VinNtoolStrip.Size = new System.Drawing.Size(23, 22);
-            this.VinNtoolStrip.Text = "toolStripButton10";
+            this.VinNtoolStrip.Text = "Numeracion";
             this.VinNtoolStrip.Click += new System.EventHandler(this.VinNtoolStrip_Click);
             // 
             // IMGtoolStrip
@@ -297,7 +288,9 @@
             this.IMGtoolStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.IMGtoolStrip.Name = "IMGtoolStrip";
             this.IMGtoolStrip.Size = new System.Drawing.Size(23, 22);
-            this.IMGtoolStrip.Text = "toolStripButton11";
+            this.IMGtoolStrip.Text = "Imagen de fondo";
+            this.IMGtoolStrip.ToolTipText = "Imagen de fondo";
+            this.IMGtoolStrip.Visible = false;
             this.IMGtoolStrip.Click += new System.EventHandler(this.IMGtoolStrip_Click);
             // 
             // toolStripSplitButton1
@@ -359,35 +352,35 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(80, 22);
             this.toolStripMenuItem2.Text = "1";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(80, 22);
             this.toolStripMenuItem3.Text = "2";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(80, 22);
             this.toolStripMenuItem4.Text = "3";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(80, 22);
             this.toolStripMenuItem5.Text = "4";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(80, 22);
             this.toolStripMenuItem6.Text = "5";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
             // 
@@ -416,19 +409,19 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(980, 532);
             this.Controls.Add(this.adjlabel);
-            this.Controls.Add(this.btnagregar);
+            this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.txtclientes);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btncancelar);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.btnimagen);
-            this.Controls.Add(this.HTMLEditor);
+            this.Controls.Add(this.hleCuerpo);
             this.Controls.Add(this.txtasunto);
             this.Controls.Add(this.txtmailto);
-            this.Controls.Add(this.btnadjuntar);
-            this.Controls.Add(this.btnenviar);
+            this.Controls.Add(this.btnAdjuntar);
+            this.Controls.Add(this.btnEnviar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "frmEmail";
@@ -443,18 +436,17 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnimagen;
-        private System.Windows.Forms.WebBrowser HTMLEditor;
+        private System.Windows.Forms.WebBrowser hleCuerpo;
         private System.Windows.Forms.TextBox txtasunto;
         private System.Windows.Forms.TextBox txtmailto;
-        private System.Windows.Forms.Button btnadjuntar;
-        private System.Windows.Forms.Button btnenviar;
+        private System.Windows.Forms.Button btnAdjuntar;
+        private System.Windows.Forms.Button btnEnviar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btncancelar;
+        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtclientes;
-        private System.Windows.Forms.Button btnagregar;
+        private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Label adjlabel;
         private System.Windows.Forms.ToolStripButton BoldtoolStrip;
         private System.Windows.Forms.ToolStripButton UnderlinetoolStrip;

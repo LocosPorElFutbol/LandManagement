@@ -20,12 +20,11 @@ namespace LandManagement
     public partial class frmEmail : Form
     {
         public static readonly ILog log = log4net.LogManager.GetLogger
-(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private ClienteBusiness clienteBusiness;
         private IHTMLDocument2 doc;
         private int port;
         private string RutImagen;
-        private string MailTo;
         private string MailFrom;
         private string MailFromPass;
         MailMessage _Correo = new MailMessage();
@@ -37,25 +36,12 @@ namespace LandManagement
             InitializeComponent();
         }
 
-        public AutoCompleteStringCollection LoadAutoComplete()
-        {
-
-            clienteBusiness = new ClienteBusiness();
-            List<tbcliente> listaclientes = (List<tbcliente>)clienteBusiness.GetList();
-            AutoCompleteStringCollection stringCol = new AutoCompleteStringCollection();
-            foreach (var obj in listaclientes)
-            {
-                if (IsValidEmail(obj.cli_email) != false)
-                    stringCol.Add(obj.cli_apellido + " " + obj.cli_nombre + " <" + obj.cli_email + ">");
-            }
-            return stringCol;
-        }
         private void frmMail_Load(object sender, EventArgs e)
         {
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            HTMLEditor.DocumentText = "<html><body></body></html>";
+            hleCuerpo.DocumentText = "<html><body></body></html>";
             doc =
-            HTMLEditor.Document.DomDocument as IHTMLDocument2;
+            hleCuerpo.Document.DomDocument as IHTMLDocument2;
             doc.designMode = "On";
 
             //
@@ -84,39 +70,21 @@ namespace LandManagement
             port = 25;
         }
 
-        private void btncacelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        bool IsValidEmail(string email)
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
- //                   MessageBox.Show("Hay una direccion de correo invalida"); //Ver como se sale de aca
-                return false;
-            }
-        }
-
-        private void btnenviar_Click(object sender, EventArgs e)
+        private void btnEnviar_Click(object sender, EventArgs e)
         {
             try
             {
                 if (this.ValidateChildren())
                 {
-                    string SAVECONTENTS = HTMLEditor.DocumentText;
+                    string SAVECONTENTS = hleCuerpo.DocumentText;
                     SAVECONTENTS = SAVECONTENTS.Replace("<BODY>", "<BODY> <div style=" + '"' + "background-image: url(cid:companylogo);" + '"' + ">");
                     SAVECONTENTS = SAVECONTENTS.Replace("</BODY>", "</div></BODY>");
                     _Correo.From = new MailAddress(MailFrom);
+                   
                     string[] toEmails = txtmailto.Text.ToString().Split(';'); //envia a varias direcciones
                     foreach (string toEmail in toEmails)
-                    {
-                      _Correo.To.Add(toEmail);
-                    }
+                        _Correo.To.Add(toEmail);
+                    
                     _Correo.Subject = txtasunto.Text;
                     _Correo.Body = SAVECONTENTS;
                     _Correo.IsBodyHtml = true;
@@ -131,17 +99,20 @@ namespace LandManagement
                     }
                     _Correo.AlternateViews.Add(htmlView);
                     _Correo.IsBodyHtml = true;
+                    
                     SmtpClient smtp = new SmtpClient();
-
                     smtp.Credentials = new NetworkCredential(MailFrom, MailFromPass);
                     smtp.Host = "smtp.gmail.com";
                     smtp.Port = port;
                     smtp.EnableSsl = true;
-                //    System.IO.File.WriteAllText(@"E:\WriteText.txt", SAVECONTENTS);  // test
+
                     try
                     {
+                        Cursor.Current = Cursors.WaitCursor;
                         smtp.Send(_Correo);
+                        Cursor.Current = Cursors.Default;
                         MessageBox.Show("Correo Enviado");
+                        this.Close();
                     }
                     catch (Exception ex)
                     {
@@ -149,7 +120,6 @@ namespace LandManagement
                         if (ex.InnerException != null)
                             log.Error(ex.InnerException.Message);
                         MessageBox.Show("No se pudo enviar el correo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     }
                 }
             }
@@ -160,25 +130,62 @@ namespace LandManagement
                     log.Error(ex.InnerException.Message);
                 MessageBox.Show("Error en el armado del mail.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
         }
 
- 
-        #region toolstrip
+        private void btnAdjuntar_Click(object sender, EventArgs e)
+        {
+            CargarArchivos();
+        }
+
+        private void btncacelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        #region Agregar Mail del Cliente al listado (from)
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            string mailcliente;
+            mailcliente = txtclientes.Text;
+            if (!string.IsNullOrEmpty(txtclientes.Text))
+            {
+                if (string.IsNullOrEmpty(txtmailto.Text))
+                    txtmailto.Text = txtmailto.Text + '"' + mailcliente.Replace("<", '"' + " <");
+                else
+                    txtmailto.Text = txtmailto.Text + ";" + '"' + mailcliente.Replace("<", '"' + " <");
+                txtclientes.Clear();
+            }
+            else MessageBox.Show("Debe seleccionar algun cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        #endregion
+
+        #region Panel de controles Envio de E-mails (Toolstrip)
         private void BoldtoolStrip_Click(object sender, EventArgs e)
         {
-            HTMLEditor.Document.ExecCommand("Bold", false, null);
+            hleCuerpo.Document.ExecCommand("Bold", false, null);
         }
 
         private void UnderlinetoolStrip_Click(object sender, EventArgs e)
         {
-            HTMLEditor.Document.ExecCommand("Underline", false, null);
+            hleCuerpo.Document.ExecCommand("Underline", false, null);
         }
 
         private void ItalictoolStrip_Click(object sender, EventArgs e)
         {
-            HTMLEditor.Document.ExecCommand("Italic", false, null);
+            hleCuerpo.Document.ExecCommand("Italic", false, null);
         }
 
         private void ColortoolStrip_Click(object sender, EventArgs e)
@@ -192,32 +199,32 @@ namespace LandManagement
 
         private void JustifyFulltoolStrip_Click(object sender, EventArgs e)
         {
-            HTMLEditor.Document.ExecCommand("JustifyFull", false, null);
+            hleCuerpo.Document.ExecCommand("JustifyFull", false, null);
         }
 
         private void JustifyCentertoolStrip_Click(object sender, EventArgs e)
         {
-            HTMLEditor.Document.ExecCommand("JustifyCenter", false, null);
+            hleCuerpo.Document.ExecCommand("JustifyCenter", false, null);
         }
 
         private void JustifyLtoolStrip_Click(object sender, EventArgs e)
         {
-            HTMLEditor.Document.ExecCommand("JustifyLeft", false, null);
+            hleCuerpo.Document.ExecCommand("JustifyLeft", false, null);
         }
 
         private void JustifyRtoolStrip_Click(object sender, EventArgs e)
         {
-            HTMLEditor.Document.ExecCommand("JustifyRight", false, null);
+            hleCuerpo.Document.ExecCommand("JustifyRight", false, null);
         }
 
         private void VinDtoolStrip_Click(object sender, EventArgs e)
         {
-            HTMLEditor.Document.ExecCommand("InsertUnorderedList", false, null);
+            hleCuerpo.Document.ExecCommand("InsertUnorderedList", false, null);
         }
 
         private void VinNtoolStrip_Click(object sender, EventArgs e)
         {
-            HTMLEditor.Document.ExecCommand("InsertOrderedList", false, null);
+            hleCuerpo.Document.ExecCommand("InsertOrderedList", false, null);
         }
 
         private void IMGtoolStrip_Click(object sender, EventArgs e)
@@ -238,42 +245,42 @@ namespace LandManagement
         }
         private void arialToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HTMLEditor.Document.ExecCommand("FontName", false, "Arial");
+            hleCuerpo.Document.ExecCommand("FontName", false, "Arial");
         }
 
         private void verdanaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HTMLEditor.Document.ExecCommand("FontName", false, "Verdana");
+            hleCuerpo.Document.ExecCommand("FontName", false, "Verdana");
         }
 
         private void currierNewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HTMLEditor.Document.ExecCommand("FontName", false, "Currier New");
+            hleCuerpo.Document.ExecCommand("FontName", false, "Currier New");
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            HTMLEditor.Document.ExecCommand("FontSize", false, 1);
+            hleCuerpo.Document.ExecCommand("FontSize", false, 1);
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            HTMLEditor.Document.ExecCommand("FontSize", false, 2);
+            hleCuerpo.Document.ExecCommand("FontSize", false, 2);
         }
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            HTMLEditor.Document.ExecCommand("FontSize", false, 3);
+            hleCuerpo.Document.ExecCommand("FontSize", false, 3);
         }
 
         private void toolStripMenuItem5_Click(object sender, EventArgs e)
         {
-            HTMLEditor.Document.ExecCommand("FontSize", false, 4);
+            hleCuerpo.Document.ExecCommand("FontSize", false, 4);
         }
 
         private void toolStripMenuItem6_Click(object sender, EventArgs e)
         {
-            HTMLEditor.Document.ExecCommand("FontSize", false, 5);
+            hleCuerpo.Document.ExecCommand("FontSize", false, 5);
         }
 
         private void toolStripButton11_Click(object sender, EventArgs e)
@@ -281,15 +288,7 @@ namespace LandManagement
 
         }
         #endregion
-        private void btnadjuntar_Click(object sender, EventArgs e)
-        {
-            CargarArchivos();
-        }
 
-        private void btnimagen_Click(object sender, EventArgs e)
-        {
-            CargarArchivos();
-        }
         private void CargarArchivos()
         {
             OpenFileDialog _file = new OpenFileDialog();
@@ -307,25 +306,7 @@ namespace LandManagement
             }
             _Correo.Attachments.Add(new System.Net.Mail.Attachment(_file.FileName));
             adjlabel.Text = adjlabel.Text + _file.SafeFileName.ToString() + System.Environment.NewLine;
-            
-
         }
-
-        private void btnagregar_Click(object sender, EventArgs e)
-        {
-            string mailcliente;
-            mailcliente = txtclientes.Text;
-            if (!string.IsNullOrEmpty(txtclientes.Text))
-            {
-                if (string.IsNullOrEmpty(txtmailto.Text))
-                    txtmailto.Text = txtmailto.Text + '"' + mailcliente.Replace("<", '"' + " <");
-                else
-                    txtmailto.Text = txtmailto.Text + ";" + '"' + mailcliente.Replace("<", '"' + " <");
-                txtclientes.Clear();
-            }
-            else MessageBox.Show("Debe seleccionar algun cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
 
         private void ValidatingControl(object sender, CancelEventArgs e)
         {
@@ -346,12 +327,17 @@ namespace LandManagement
             errorProvider1.SetError(control, error);
         }
 
-        private void HTMLEditor_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        public AutoCompleteStringCollection LoadAutoComplete()
         {
- 
+            clienteBusiness = new ClienteBusiness();
+            List<tbcliente> listaclientes = (List<tbcliente>)clienteBusiness.GetList();
+            AutoCompleteStringCollection stringCol = new AutoCompleteStringCollection();
+            foreach (var obj in listaclientes)
+            {
+                if (IsValidEmail(obj.cli_email) != false)
+                    stringCol.Add(obj.cli_apellido + " " + obj.cli_nombre + " <" + obj.cli_email + ">");
+            }
+            return stringCol;
         }
-
-
-
     }
 }
