@@ -41,6 +41,9 @@
       <HintPath>..\packages\log4net.2.0.5\lib\net40-client\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -84,6 +87,18 @@
     </Compile>
     <Compile Include="frmClientePropiedad.Designer.cs">
       <DependentUpon>frmClientePropiedad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEmail.Designer.cs">
+      <DependentUpon>frmEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEmailCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEmailCuenta.Designer.cs">
+      <DependentUpon>frmEmailCuenta.cs</DependentUpon>
     </Compile>
     <Compile Include="frmEnAlquiler.cs">
       <SubType>Form</SubType>
@@ -265,6 +280,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmClientePropiedad.resx">
       <DependentUpon>frmClientePropiedad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEmail.resx">
+      <DependentUpon>frmEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEmailCuenta.resx">
+      <DependentUpon>frmEmailCuenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEnAlquiler.resx">
       <DependentUpon>frmEnAlquiler.cs</DependentUpon>

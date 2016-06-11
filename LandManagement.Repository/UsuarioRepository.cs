@@ -40,6 +40,27 @@ namespace LandManagement.Repository
             }
         }
 
+        public void UpdateNew(tbusuario entity)
+        {
+            try
+            {
+                EntityKey key =
+                    Contexto.CreateEntityKey(Contexto.CreateObjectSet<tbusuario>().EntitySet.Name, entity);
+
+                tbusuario entityAux = (tbusuario)Contexto.GetObjectByKey(key);
+
+                Contexto.CreateObjectSet<tbusuario>().ApplyCurrentValues(entity);
+                Contexto.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
+                Contexto.ObjectStateManager.ChangeObjectState(entityAux, System.Data.EntityState.Modified);
+
+                Contexto.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void Update(tbusuario entity)
         {
             try
