@@ -31,7 +31,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.txbDescripcionTPropiedad = new System.Windows.Forms.TextBox();
+            this.txbDescripcion = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -43,11 +43,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.btnCancelar);
             this.groupBox1.Controls.Add(this.btnGuardar);
-            this.groupBox1.Controls.Add(this.txbDescripcionTPropiedad);
+            this.groupBox1.Controls.Add(this.txbDescripcion);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(8, 45);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(277, 176);
+            this.groupBox1.Size = new System.Drawing.Size(273, 84);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos de la propiedad";
@@ -55,35 +55,37 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(185, 139);
+            this.btnCancelar.Location = new System.Drawing.Point(185, 50);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(104, 139);
+            this.btnGuardar.Location = new System.Drawing.Point(104, 50);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 7;
-            this.btnGuardar.Text = "Agregar";
+            this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click_1);
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // txbDescripcionTPropiedad
+            // txbDescripcion
             // 
-            this.txbDescripcionTPropiedad.Location = new System.Drawing.Point(81, 39);
-            this.txbDescripcionTPropiedad.Multiline = true;
-            this.txbDescripcionTPropiedad.Name = "txbDescripcionTPropiedad";
-            this.txbDescripcionTPropiedad.Size = new System.Drawing.Size(190, 81);
-            this.txbDescripcionTPropiedad.TabIndex = 1;
+            this.txbDescripcion.Location = new System.Drawing.Point(75, 24);
+            this.txbDescripcion.Multiline = true;
+            this.txbDescripcion.Name = "txbDescripcion";
+            this.txbDescripcion.Size = new System.Drawing.Size(185, 20);
+            this.txbDescripcion.TabIndex = 1;
+            this.txbDescripcion.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 39);
+            this.label1.Location = new System.Drawing.Point(6, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 0;
@@ -93,7 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 266);
+            this.ClientSize = new System.Drawing.Size(297, 108);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmTipoPropiedadABM";
             this.Text = "frmTipoPropiedadABM";
@@ -109,7 +111,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.TextBox txbDescripcionTPropiedad;
+        private System.Windows.Forms.TextBox txbDescripcion;
         private System.Windows.Forms.Label label1;
     }
 }

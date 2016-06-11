@@ -8,90 +8,127 @@ using System.Text;
 using System.Windows.Forms;
 using LandManagement.Business;
 using LandManagement.Entities;
+using log4net;
+using LandManagement.Utilidades;
 
 namespace LandManagement
 {
     public partial class frmTipoPropiedadABM : Form
     {
-        private TipoPropiedadBusiness tpropiedadBusiness;
-        private tbtipopropiedad tpropiedad;
-        private int idTPropiedad = 0;
+        public static readonly ILog log = log4net.LogManager.GetLogger
+            (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private tbtipopropiedad tipoPropiedad;
         private Form formPadre;
+        ValidarControles validarControles;
         public ErrorProvider errorProvider1 = new ErrorProvider();
+
         public frmTipoPropiedadABM(Form formularioPadre)
         {
             InitializeComponent();
             this.formPadre = formularioPadre;
         }
 
-        public frmTipoPropiedadABM(tbtipopropiedad tpropiedad, Form formularioPadre)
+        public frmTipoPropiedadABM(tbtipopropiedad _tipoPropiedad, Form formularioPadre)
         {
-
             InitializeComponent();
 
-            tpropiedadBusiness = new TipoPropiedadBusiness();
-            this.idTPropiedad = tpropiedad.tip_id;
-            txbDescripcionTPropiedad.Text = tpropiedad.tip_descripcion;
+            this.tipoPropiedad = _tipoPropiedad;
             this.formPadre = formularioPadre;
 
-        }
-        private void txbNombreUsuario_TextChanged(object sender, EventArgs e)
-        {
-
+            //btnGuardar.Click -= new EventHandler(btnGuardar_Click);
+            btnGuardar.Click += new EventHandler(btnGuardarActualiza_Click);
         }
 
         private void frmTipoPropiedadABM_Load(object sender, EventArgs e)
         {
-            CargarBotones();
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+
+            if (this.getTipoPropiedad() != null)
+                CargarControles(this.getTipoPropiedad());
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
-                CargaObjetoTPropiedad();
-                GuardaObjetoTPropiedad();
-                MensajeOk();
-                ((frmTipoPropiedadListado)formPadre).CargarGrilla();
-                this.Close();
+                if (this.ValidateChildren())
+                {
+                    tbtipopropiedad tipoPropiedadLocal = new tbtipopropiedad();
+
+                    CargarObjeto(tipoPropiedadLocal);
+                    GuardarObjeto(tipoPropiedadLocal);
+                    MensajeOk();
+                    ((frmTipoPropiedadListado)formPadre).CargarGrilla();
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
-                throw ex;
+                log.Error(ex.Message);
+                if (ex.InnerException != null)
+                    log.Error(ex.InnerException.Message);
+                MessageBox.Show("Error al crear.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void CargarBotones()
+
+        private void btnGuardarActualiza_Click(object sender, EventArgs e)
         {
-            this.tpropiedad = new tbtipopropiedad();
-            if (this.idTPropiedad != 0)
+            try
             {
-                btnGuardar.Text = "Actualizar";
+                if (this.ValidateChildren())
+                {
+                    Cursor.Current = Cursors.WaitCursor;
+                    tbtipopropiedad tipoPropiedadLocal = new tbtipopropiedad();
+                    tipoPropiedadLocal = this.getTipoPropiedad();
+
+                    CargarObjeto(tipoPropiedadLocal);
+                    GuardarObjeto(tipoPropiedadLocal);
+                    MensajeOk();
+                    ((frmTipoPropiedadListado)formPadre).CargarGrilla();
+                    this.Close();
+
+                    Cursor.Current = Cursors.Default;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                if (ex.InnerException != null)
+                    log.Error(ex.InnerException.Message);
+                MessageBox.Show("Error al actualizar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void CargaObjetoTPropiedad()
+
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.tpropiedad = new tbtipopropiedad();
-
-            if (this.idTPropiedad != 0)
-                this.tpropiedad.tip_id = this.idTPropiedad;
-
-            tpropiedad.tip_descripcion = txbDescripcionTPropiedad.Text;
+            MensajeCancelar();
         }
 
-        private void GuardaObjetoTPropiedad()
+        private void CargarObjeto(tbtipopropiedad _tipoPropiedad)
         {
-            tpropiedadBusiness = new TipoPropiedadBusiness();
+            _tipoPropiedad.tip_descripcion = txbDescripcion.Text;
+        }
 
-            if (this.idTPropiedad != 0)
-                tpropiedadBusiness.Update(this.tpropiedad);
+        private void GuardarObjeto(tbtipopropiedad _tipoPropiedad)
+        {
+            TipoPropiedadBusiness tipoPropiedadBusiness = new TipoPropiedadBusiness();
+            if (getTipoPropiedad() != null)
+                tipoPropiedadBusiness.Update(_tipoPropiedad);
             else
-                tpropiedadBusiness.Create(this.tpropiedad);
+                tipoPropiedadBusiness.Create(_tipoPropiedad);
         }
-        private void MensajeOk()
+        
+        private void CargarControles(tbtipopropiedad _tipoPropiedad)
         {
-            MessageBox.Show("El registro se guardo correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            txbDescripcion.Text = _tipoPropiedad.tip_descripcion;
         }
 
+        public tbtipopropiedad getTipoPropiedad()
+        {
+            return this.tipoPropiedad;
+        }
+
+        #region Mensajes de Pantalla
         private void MensajeCancelar()
         {
             DialogResult dialogResult = DialogResult.None;
@@ -101,26 +138,38 @@ namespace LandManagement
 
             if (dialogResult == System.Windows.Forms.DialogResult.Yes)
             {
+                // Stop the validation of any controls so the form can close.
                 AutoValidate = AutoValidate.Disable;
                 this.Close();
             }
         }
 
-        private void btnGuardar_Click_1(object sender, EventArgs e)
+        private void MensajeOk()
         {
-            try
-            {
-                CargaObjetoTPropiedad();
-                GuardaObjetoTPropiedad();
-                MensajeOk();
-                ((frmTipoPropiedadListado)formPadre).CargarGrilla();
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            MessageBox.Show("El registro se guardo correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        #endregion
+
+        #region Validación de controles
+        private void ValidatingControl(object sender, CancelEventArgs e)
+        {
+            errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            validarControles = new ValidarControles();
+            Control control = validarControles.ObtenerControl(sender);
+            string error = validarControles.ValidarControl(sender);
+
+            if (!string.IsNullOrEmpty(error))
+            {
+                errorProvider1.SetError(control, error);
+
+                //Me valida hasta ingresar el valor correcto
+                e.Cancel = true;
+                return;
+            }
+
+            errorProvider1.SetError(control, error);
+        }
+        #endregion
 
     }
 }
