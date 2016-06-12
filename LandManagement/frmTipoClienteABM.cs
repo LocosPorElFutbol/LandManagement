@@ -47,7 +47,7 @@ namespace LandManagement
                 CargaObjetoTCliente();
                 GuardaObjetoTCliente();
                 MensajeOk();
-                ((frmTipoCliente)formPadre).CargarGrilla();
+                ((frmTipoClienteListado)formPadre).CargarGrilla();
                 this.Close();
             }
             catch (Exception ex)
@@ -108,7 +108,7 @@ namespace LandManagement
                 CargaObjetoTCliente();
                 GuardaObjetoTCliente();
                 MensajeOk();
-                ((frmTipoCliente)formPadre).CargarGrilla();
+                ((frmTipoClienteListado)formPadre).CargarGrilla();
                 this.Close();
             }
             catch (Exception ex)

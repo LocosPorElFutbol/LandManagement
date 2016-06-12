@@ -139,7 +139,7 @@ namespace LandManagement
                 log.Error(ex.Message);
                 if (ex.InnerException != null)
                     log.Error(ex.InnerException.Message);
-                MessageBox.Show("Error al eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al eliminar registro. Existe una referencia hacia este registro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

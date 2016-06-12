@@ -196,11 +196,11 @@
     <Compile Include="frmTasacion.designer.cs">
       <DependentUpon>frmTasacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTipoCliente.cs">
+    <Compile Include="frmTipoClienteListado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTipoCliente.Designer.cs">
-      <DependentUpon>frmTipoCliente.cs</DependentUpon>
+    <Compile Include="frmTipoClienteListado.Designer.cs">
+      <DependentUpon>frmTipoClienteListado.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTipoClienteABM.cs">
       <SubType>Form</SubType>
@@ -335,8 +335,8 @@
     <EmbeddedResource Include="frmTasacion.resx">
       <DependentUpon>frmTasacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTipoCliente.resx">
-      <DependentUpon>frmTipoCliente.cs</DependentUpon>
+    <EmbeddedResource Include="frmTipoClienteListado.resx">
+      <DependentUpon>frmTipoClienteListado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTipoClienteABM.resx">
       <DependentUpon>frmTipoClienteABM.cs</DependentUpon>

@@ -16,17 +16,15 @@ namespace LandManagement
 {
     public partial class frmClienteListado : Form
     {
-        private ClienteBusiness clienteBusiness;
+        public static readonly ILog log = log4net.LogManager.GetLogger
+            (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private frmClienteABM formularioClienteABM;
         private DataGridViewRow dataGridViewRow;
         private DisplayNameHelper displayNameHelper;
-        public static readonly ILog log = log4net.LogManager.GetLogger
-            (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public frmClienteListado()
         {
             InitializeComponent();
-            this.clienteBusiness = new ClienteBusiness();
         }
 
         private void frmClienteListado_Load(object sender, EventArgs e)
@@ -36,7 +34,7 @@ namespace LandManagement
 
         public void CargarGrilla()
         {
-            this.clienteBusiness = new ClienteBusiness();
+            ClienteBusiness clienteBusiness = new ClienteBusiness();
             dgvClientes.Rows.Clear();
             dgvClientes.Columns.Clear();
             string[] columnasGrilla = { "cli_id",
@@ -78,6 +76,7 @@ namespace LandManagement
 
         private void CargarDataGridViewLista()
         {
+            ClienteBusiness clienteBusiness = new ClienteBusiness();
             List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetList();
             CargarDataGridView(listaClientes);
         }
@@ -128,6 +127,7 @@ namespace LandManagement
                     {
                         dataGridViewRow = dgvClientes.SelectedRows[0];
                         int idClienteSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["cli_id"].Value);
+                        ClienteBusiness clienteBusiness = new ClienteBusiness();
                         clienteBusiness.Delete(new tbcliente() { cli_id = idClienteSeleccionado });
                         this.CargarGrilla();
                     }
@@ -140,7 +140,7 @@ namespace LandManagement
                 log.Error(ex.Message);
                 if (ex.InnerException != null)
                     log.Error(ex.InnerException.Message);
-                MessageBox.Show("Error al eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al eliminar registro. Existe una referencia hacia este registro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -170,6 +170,7 @@ namespace LandManagement
             dataGridViewRow = dgvClientes.SelectedRows[0];
             int idClienteSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["cli_id"].Value);
 
+            ClienteBusiness clienteBusiness = new ClienteBusiness();
             tbcliente cliente = (tbcliente)clienteBusiness.GetElement(
                 new tbcliente() { cli_id = idClienteSeleccionado });
             return cliente;
@@ -188,7 +189,7 @@ namespace LandManagement
 
                 BuscarEnDataGridView buscar = new BuscarEnDataGridView();
 
-                clienteBusiness = new ClienteBusiness();
+                ClienteBusiness clienteBusiness = new ClienteBusiness();
                 List<tbcliente> listaFiltrada = (List<tbcliente>)clienteBusiness.GetList();
                 listaFiltrada = buscar.FiltrarDataGrid(listaFiltrada, listaExcluir, txbBuscarPor.Text);
                 CargarDataGridView(listaFiltrada);

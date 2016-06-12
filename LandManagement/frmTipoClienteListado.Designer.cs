@@ -1,6 +1,6 @@
 ﻿namespace LandManagement
 {
-    partial class frmTipoCliente
+    partial class frmTipoClienteListado
     {
         /// <summary>
         /// Required designer variable.

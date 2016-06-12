@@ -13,11 +13,11 @@ using LandManagement.Business;
 
 namespace LandManagement
 {
-    public partial class frmTipoCliente : Form
+    public partial class frmTipoClienteListado : Form
     {
         private frmTipoClienteABM frmtclienteABM;
 
-        public frmTipoCliente()
+        public frmTipoClienteListado()
         {
             InitializeComponent();
         }
