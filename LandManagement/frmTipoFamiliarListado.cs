@@ -10,12 +10,14 @@ using LandManagement.Entities;
 using System.Reflection;
 using LandManagement.Utilidades;
 using LandManagement.Business;
+using log4net;
 
 namespace LandManagement
 {
     public partial class frmTipoFamiliarListado : Form
     {
-        private TipoFamiliarBusiness tfamiliarBusiness;
+        public static readonly ILog log = log4net.LogManager.GetLogger
+            (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private frmTipoFamiliarABM frmtfamiliarABM;
         private DataGridViewRow dataGridViewRow;
         private DisplayNameHelper displayNameHelper;
@@ -23,7 +25,6 @@ namespace LandManagement
         public frmTipoFamiliarListado()
         {
             InitializeComponent();
-            tfamiliarBusiness = new TipoFamiliarBusiness();
         }
 
         private void frmTipoFamiliar_Load(object sender, EventArgs e)
@@ -39,12 +40,23 @@ namespace LandManagement
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (MensajeEliminacionOK() == System.Windows.Forms.DialogResult.Yes)
+            try
             {
-                dataGridViewRow = dataGridViewTFamiliar.SelectedRows[0];
-                int idTFamiliarSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["tif_id"].Value);
-                tfamiliarBusiness.Delete(new tbtipofamiliar() { tif_id = idTFamiliarSeleccionado });
-                this.CargarGrilla();
+                if (MensajeEliminacionOK() == System.Windows.Forms.DialogResult.Yes)
+                {
+                    dataGridViewRow = dataGridViewTFamiliar.SelectedRows[0];
+                    int idTFamiliarSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["tif_id"].Value);
+                    TipoFamiliarBusiness tipoFamiliarBusiness = new TipoFamiliarBusiness();
+                    tipoFamiliarBusiness.Delete(new tbtipofamiliar() { tif_id = idTFamiliarSeleccionado });
+                    this.CargarGrilla();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                if (ex.InnerException != null)
+                    log.Error(ex.InnerException.Message);
+                MessageBox.Show("Error al eliminar registro. Existe una referencia hacia este registro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -56,7 +68,7 @@ namespace LandManagement
         #region Carga Grilla Tipo de Familiares
         public void CargarGrilla()
         {
-            tfamiliarBusiness = new TipoFamiliarBusiness();
+            TipoFamiliarBusiness tipoFamiliarBusiness = new TipoFamiliarBusiness();
             dataGridViewTFamiliar.Rows.Clear();
 
             dataGridViewTFamiliar.Columns.Clear();
@@ -75,7 +87,7 @@ namespace LandManagement
             }
 
             int indice;
-            List<tbtipofamiliar> listattfamiliar = (List<tbtipofamiliar>)tfamiliarBusiness.GetList();
+            List<tbtipofamiliar> listattfamiliar = (List<tbtipofamiliar>)tipoFamiliarBusiness.GetList();
             foreach (var obj in listattfamiliar)
             {
                 indice = dataGridViewTFamiliar.Rows.Add();
@@ -96,10 +108,11 @@ namespace LandManagement
 
         private tbtipofamiliar ObtenerTFamiliarSeleccionado()
         {
+            TipoFamiliarBusiness tipoFamiliarBusiness = new TipoFamiliarBusiness();
             dataGridViewRow = dataGridViewTFamiliar.SelectedRows[0];
             int idTFamiliarSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["tif_id"].Value);
 
-            tbtipofamiliar tfamiliar = (tbtipofamiliar)tfamiliarBusiness.GetElement(
+            tbtipofamiliar tfamiliar = (tbtipofamiliar)tipoFamiliarBusiness.GetElement(
                 new tbtipofamiliar() { tif_id = idTFamiliarSeleccionado });
             return tfamiliar;
         }
