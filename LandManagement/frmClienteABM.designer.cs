@@ -248,6 +248,7 @@
             this.txbNumeroDocumento.Name = "txbNumeroDocumento";
             this.txbNumeroDocumento.Size = new System.Drawing.Size(81, 20);
             this.txbNumeroDocumento.TabIndex = 7;
+            this.txbNumeroDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEnteros);
             this.txbNumeroDocumento.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // txbTelefonoParticular
@@ -256,6 +257,7 @@
             this.txbTelefonoParticular.Name = "txbTelefonoParticular";
             this.txbTelefonoParticular.Size = new System.Drawing.Size(84, 20);
             this.txbTelefonoParticular.TabIndex = 19;
+            this.txbTelefonoParticular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEnteros);
             this.txbTelefonoParticular.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // txbTelefonoCelular
@@ -264,6 +266,7 @@
             this.txbTelefonoCelular.Name = "txbTelefonoCelular";
             this.txbTelefonoCelular.Size = new System.Drawing.Size(84, 20);
             this.txbTelefonoCelular.TabIndex = 21;
+            this.txbTelefonoCelular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEnteros);
             // 
             // txbTelefonoLaboral
             // 
@@ -271,6 +274,7 @@
             this.txbTelefonoLaboral.Name = "txbTelefonoLaboral";
             this.txbTelefonoLaboral.Size = new System.Drawing.Size(84, 20);
             this.txbTelefonoLaboral.TabIndex = 20;
+            this.txbTelefonoLaboral.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEnteros);
             // 
             // txbNacionalidad
             // 
@@ -384,7 +388,7 @@
             this.txbNumero.Name = "txbNumero";
             this.txbNumero.Size = new System.Drawing.Size(57, 20);
             this.txbNumero.TabIndex = 14;
-            this.txbNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbNumero_KeyPress);
+            this.txbNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEnteros);
             this.txbNumero.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // txbLocalidad
@@ -692,6 +696,7 @@
             this.txbCuilCuit.Name = "txbCuilCuit";
             this.txbCuilCuit.Size = new System.Drawing.Size(164, 20);
             this.txbCuilCuit.TabIndex = 8;
+            this.txbCuilCuit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEnteros);
             // 
             // dtpFechaNacimiento
             // 

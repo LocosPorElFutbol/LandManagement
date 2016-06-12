@@ -496,6 +496,7 @@
             this.txbBancoNumeroCuenta.Name = "txbBancoNumeroCuenta";
             this.txbBancoNumeroCuenta.Size = new System.Drawing.Size(119, 20);
             this.txbBancoNumeroCuenta.TabIndex = 44;
+            this.txbBancoNumeroCuenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEntero);
             // 
             // txbBanco
             // 

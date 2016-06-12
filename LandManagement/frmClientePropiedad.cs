@@ -295,6 +295,7 @@ namespace LandManagement
             }
         }
 
+        #region Validacion de controles
         private void ValidatingControl(object sender, CancelEventArgs e)
         {
             errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
@@ -313,5 +314,11 @@ namespace LandManagement
 
             errorProvider1.SetError(control, error);
         }
+
+        private void ValidarEntero(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+        #endregion
     }
 }

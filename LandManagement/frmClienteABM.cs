@@ -662,11 +662,6 @@ namespace LandManagement
 
         #endregion
 
-        private void txbNumero_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-        }
-
         private void MensajeOk()
         {
             MessageBox.Show("El registro se guardo correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -748,5 +743,11 @@ namespace LandManagement
             errorProvider1.SetError(control, error);
         }
 
+        #region Validacion de controles
+        private void ValidarEnteros(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
+        }
+        #endregion
     }
 }

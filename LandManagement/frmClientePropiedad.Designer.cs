@@ -179,6 +179,7 @@
             this.txbNumero.Name = "txbNumero";
             this.txbNumero.Size = new System.Drawing.Size(57, 20);
             this.txbNumero.TabIndex = 6;
+            this.txbNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEntero);
             this.txbNumero.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // label9

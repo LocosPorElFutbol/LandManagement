@@ -662,6 +662,7 @@ namespace LandManagement
         }
         #endregion
 
+        #region Validacion de controles
         private void ValidatingControl(object sender, CancelEventArgs e)
         {
             errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
@@ -681,5 +682,20 @@ namespace LandManagement
             errorProvider1.SetError(control, error);
         }
 
+        private void ValidarDecimal(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                   (e.KeyChar != ','))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == ',') && ((sender as TextBox).Text.IndexOf(',') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+        #endregion
     }
 }

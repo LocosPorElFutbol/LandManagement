@@ -168,6 +168,7 @@
             this.txbPrecio.Name = "txbPrecio";
             this.txbPrecio.Size = new System.Drawing.Size(87, 20);
             this.txbPrecio.TabIndex = 21;
+            this.txbPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarDecimal);
             this.txbPrecio.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // txbCartel

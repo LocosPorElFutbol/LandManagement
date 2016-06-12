@@ -87,7 +87,7 @@
             this.cmbTipoFamiliar.Name = "cmbTipoFamiliar";
             this.cmbTipoFamiliar.Size = new System.Drawing.Size(166, 21);
             this.cmbTipoFamiliar.TabIndex = 1;
-            this.cmbTipoFamiliar.Validating += new System.ComponentModel.CancelEventHandler(this.TextboxValidating);
+            this.cmbTipoFamiliar.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // label4
             // 
@@ -119,7 +119,7 @@
             this.txbApellido.Name = "txbApellido";
             this.txbApellido.Size = new System.Drawing.Size(166, 20);
             this.txbApellido.TabIndex = 3;
-            this.txbApellido.Validating += new System.ComponentModel.CancelEventHandler(this.TextboxValidating);
+            this.txbApellido.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // label2
             // 
@@ -136,7 +136,7 @@
             this.txbNombre.Name = "txbNombre";
             this.txbNombre.Size = new System.Drawing.Size(166, 20);
             this.txbNombre.TabIndex = 2;
-            this.txbNombre.Validating += new System.ComponentModel.CancelEventHandler(this.TextboxValidating);
+            this.txbNombre.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // label3
             // 

@@ -658,6 +658,11 @@ namespace LandManagement
             }
         }
         #endregion
+
+        private void ValidarEntero(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
+        }
     
     }
 }

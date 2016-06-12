@@ -46,6 +46,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.rdbEsHijo);
             this.groupBox1.Controls.Add(this.rdbEsPadre);
             this.groupBox1.Controls.Add(this.rdbEsCabecera);
@@ -60,7 +63,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(302, 318);
+            this.groupBox1.Size = new System.Drawing.Size(317, 318);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modificación de Menú";
@@ -155,8 +158,7 @@
             this.txbNombre.Name = "txbNombre";
             this.txbNombre.Size = new System.Drawing.Size(175, 20);
             this.txbNombre.TabIndex = 1;
-            this.txbNombre.Validating += new System.ComponentModel.CancelEventHandler(this.txbNombre_Validating);
-            this.txbNombre.Validated += new System.EventHandler(this.txbNombre_Validated);
+            this.txbNombre.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // chbEstado
             // 
@@ -195,7 +197,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.CancelButton = this.btnCancelar;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(326, 342);
+            this.ClientSize = new System.Drawing.Size(341, 342);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmMenuABM";
             this.Text = "frmMenuModificacion";
