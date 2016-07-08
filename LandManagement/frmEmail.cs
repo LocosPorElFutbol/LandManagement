@@ -38,10 +38,10 @@ namespace LandManagement
 
         private void frmMail_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             hleCuerpo.DocumentText = "<html><body></body></html>";
-            doc =
-            hleCuerpo.Document.DomDocument as IHTMLDocument2;
+            doc = hleCuerpo.Document.DomDocument as IHTMLDocument2;
             doc.designMode = "On";
 
             //
@@ -49,23 +49,38 @@ namespace LandManagement
             txtclientes.AutoCompleteMode = AutoCompleteMode.Suggest;
             txtclientes.AutoCompleteSource = AutoCompleteSource.CustomSource;
             // variables
-            if (VariablesDeSesion.UsuarioLogueado.usu_email != null)
-            {
-                if (IsValidEmail(VariablesDeSesion.UsuarioLogueado.usu_email) != false)
-                MailFrom = VariablesDeSesion.UsuarioLogueado.usu_email;
-                else
-                {
-                    MessageBox.Show("Debe ingresar un correo electronico valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.Close();
-                }
-            }
 
-            if (VariablesDeSesion.UsuarioLogueado.usu_email_password != null)
-                MailFromPass = VariablesDeSesion.UsuarioLogueado.usu_email_password;
-            else
+            if (string.IsNullOrEmpty(VariablesDeSesion.UsuarioLogueado.usu_email) &&
+               string.IsNullOrEmpty(VariablesDeSesion.UsuarioLogueado.usu_email_password))
             {
-                MessageBox.Show("Debe ingresar una contraseña");
+                MessageBox.Show("Para utilizar la herramienta envio de e-mail, deberá configurar su cuenta personal en el sistema. \n Diríjase a, Sistema -> Configurar cuenta e-mail.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tstControlesFuente.Enabled = false;
+                pnlControles.Enabled = false;
             }
+            //else 
+            //{
+            //    MailFrom = VariablesDeSesion.UsuarioLogueado.usu_email;
+            //    MailFromPass = VariablesDeSesion.UsuarioLogueado.usu_email_password;
+            //}
+
+            //if (VariablesDeSesion.UsuarioLogueado.usu_email != null)
+            //{
+            //    if (IsValidEmail(VariablesDeSesion.UsuarioLogueado.usu_email) != false)
+            //    MailFrom = VariablesDeSesion.UsuarioLogueado.usu_email;
+            //    else
+            //    {
+            //        MessageBox.Show("Para utilizar la herramienta envio de e-mail, deberá configurar su cuenta personal en el sistema. \n Dirijase a Sistema -> Configurar cuenta e-mail.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        tstControlesFuente.Enabled = false;
+            //        pnlControles.Enabled = false;
+            //    }
+            //}
+
+            //if (VariablesDeSesion.UsuarioLogueado.usu_email_password != null)
+            //    MailFromPass = VariablesDeSesion.UsuarioLogueado.usu_email_password;
+            //else
+            //{
+            //    MessageBox.Show("Debe ingresar una contraseña");
+            //}
 
             port = 25;
         }
@@ -79,7 +94,8 @@ namespace LandManagement
                     string SAVECONTENTS = hleCuerpo.DocumentText;
                     SAVECONTENTS = SAVECONTENTS.Replace("<BODY>", "<BODY> <div style=" + '"' + "background-image: url(cid:companylogo);" + '"' + ">");
                     SAVECONTENTS = SAVECONTENTS.Replace("</BODY>", "</div></BODY>");
-                    _Correo.From = new MailAddress(MailFrom);
+                    //_Correo.From = new MailAddress(MailFrom);
+                    _Correo.From = new MailAddress(VariablesDeSesion.UsuarioLogueado.usu_email);
                    
                     string[] toEmails = txtmailto.Text.ToString().Split(';'); //envia a varias direcciones
                     foreach (string toEmail in toEmails)
@@ -101,7 +117,9 @@ namespace LandManagement
                     _Correo.IsBodyHtml = true;
                     
                     SmtpClient smtp = new SmtpClient();
-                    smtp.Credentials = new NetworkCredential(MailFrom, MailFromPass);
+                    //smtp.Credentials = new NetworkCredential(MailFrom, MailFromPass);
+                    smtp.Credentials = new NetworkCredential(VariablesDeSesion.UsuarioLogueado.usu_email,
+                        VariablesDeSesion.UsuarioLogueado.usu_email_password);
                     smtp.Host = "smtp.gmail.com";
                     smtp.Port = port;
                     smtp.EnableSsl = true;
@@ -119,7 +137,7 @@ namespace LandManagement
                         log.Error(ex.Message);
                         if (ex.InnerException != null)
                             log.Error(ex.InnerException.Message);
-                        MessageBox.Show("No se pudo enviar el correo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("No se pudo enviar el correo. \n Ayuda: Corrobore la configuración correcta e-mail/password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

@@ -63,15 +63,19 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStrip1.SuspendLayout();
+            this.tstControlesFuente = new System.Windows.Forms.ToolStrip();
+            this.gbxEmail = new System.Windows.Forms.GroupBox();
+            this.pnlControles = new System.Windows.Forms.Panel();
+            this.tstControlesFuente.SuspendLayout();
+            this.gbxEmail.SuspendLayout();
+            this.pnlControles.SuspendLayout();
             this.SuspendLayout();
             // 
             // hleCuerpo
             // 
             this.hleCuerpo.AllowWebBrowserDrop = false;
             this.hleCuerpo.IsWebBrowserContextMenuEnabled = false;
-            this.hleCuerpo.Location = new System.Drawing.Point(20, 126);
+            this.hleCuerpo.Location = new System.Drawing.Point(18, 87);
             this.hleCuerpo.MinimumSize = new System.Drawing.Size(20, 20);
             this.hleCuerpo.Name = "hleCuerpo";
             this.hleCuerpo.ScriptErrorsSuppressed = true;
@@ -80,7 +84,7 @@
             // 
             // txtasunto
             // 
-            this.txtasunto.Location = new System.Drawing.Point(63, 100);
+            this.txtasunto.Location = new System.Drawing.Point(61, 61);
             this.txtasunto.Name = "txtasunto";
             this.txtasunto.Size = new System.Drawing.Size(603, 20);
             this.txtasunto.TabIndex = 4;
@@ -88,7 +92,7 @@
             // 
             // txtmailto
             // 
-            this.txtmailto.Location = new System.Drawing.Point(63, 74);
+            this.txtmailto.Location = new System.Drawing.Point(61, 35);
             this.txtmailto.Name = "txtmailto";
             this.txtmailto.Size = new System.Drawing.Size(603, 20);
             this.txtmailto.TabIndex = 3;
@@ -96,7 +100,7 @@
             // 
             // btnAdjuntar
             // 
-            this.btnAdjuntar.Location = new System.Drawing.Point(20, 334);
+            this.btnAdjuntar.Location = new System.Drawing.Point(18, 295);
             this.btnAdjuntar.Name = "btnAdjuntar";
             this.btnAdjuntar.Size = new System.Drawing.Size(75, 23);
             this.btnAdjuntar.TabIndex = 6;
@@ -106,7 +110,7 @@
             // 
             // btnEnviar
             // 
-            this.btnEnviar.Location = new System.Drawing.Point(510, 334);
+            this.btnEnviar.Location = new System.Drawing.Point(508, 295);
             this.btnEnviar.Name = "btnEnviar";
             this.btnEnviar.Size = new System.Drawing.Size(75, 23);
             this.btnEnviar.TabIndex = 9;
@@ -117,7 +121,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 100);
+            this.label2.Location = new System.Drawing.Point(15, 61);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 27;
@@ -126,7 +130,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 74);
+            this.label1.Location = new System.Drawing.Point(15, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 13);
             this.label1.TabIndex = 26;
@@ -135,7 +139,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(591, 334);
+            this.btnCancelar.Location = new System.Drawing.Point(589, 295);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 8;
@@ -146,7 +150,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 47);
+            this.label3.Location = new System.Drawing.Point(15, 8);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 36;
@@ -156,14 +160,14 @@
             // 
             this.txtclientes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtclientes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtclientes.Location = new System.Drawing.Point(63, 44);
+            this.txtclientes.Location = new System.Drawing.Point(61, 5);
             this.txtclientes.Name = "txtclientes";
             this.txtclientes.Size = new System.Drawing.Size(477, 20);
             this.txtclientes.TabIndex = 1;
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(550, 43);
+            this.btnAgregar.Location = new System.Drawing.Point(548, 4);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(61, 21);
             this.btnAgregar.TabIndex = 2;
@@ -384,9 +388,9 @@
             this.toolStripMenuItem6.Text = "5";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
             // 
-            // toolStrip1
+            // tstControlesFuente
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tstControlesFuente.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BoldtoolStrip,
             this.UnderlinetoolStrip,
             this.ItalictoolStrip,
@@ -400,35 +404,61 @@
             this.IMGtoolStrip,
             this.toolStripSplitButton1,
             this.toolStripSplitButton2});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(980, 25);
-            this.toolStrip1.TabIndex = 34;
+            this.tstControlesFuente.Location = new System.Drawing.Point(0, 0);
+            this.tstControlesFuente.Name = "tstControlesFuente";
+            this.tstControlesFuente.Size = new System.Drawing.Size(789, 25);
+            this.tstControlesFuente.TabIndex = 34;
+            // 
+            // gbxEmail
+            // 
+            this.gbxEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbxEmail.Controls.Add(this.pnlControles);
+            this.gbxEmail.Location = new System.Drawing.Point(12, 28);
+            this.gbxEmail.Name = "gbxEmail";
+            this.gbxEmail.Size = new System.Drawing.Size(765, 457);
+            this.gbxEmail.TabIndex = 38;
+            this.gbxEmail.TabStop = false;
+            // 
+            // pnlControles
+            // 
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.label3);
+            this.pnlControles.Controls.Add(this.label1);
+            this.pnlControles.Controls.Add(this.btnAgregar);
+            this.pnlControles.Controls.Add(this.label2);
+            this.pnlControles.Controls.Add(this.txtclientes);
+            this.pnlControles.Controls.Add(this.btnEnviar);
+            this.pnlControles.Controls.Add(this.btnAdjuntar);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Controls.Add(this.txtmailto);
+            this.pnlControles.Controls.Add(this.txtasunto);
+            this.pnlControles.Controls.Add(this.hleCuerpo);
+            this.pnlControles.Location = new System.Drawing.Point(6, 11);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(753, 440);
+            this.pnlControles.TabIndex = 0;
             // 
             // frmEmail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(980, 532);
+            this.ClientSize = new System.Drawing.Size(789, 497);
+            this.Controls.Add(this.gbxEmail);
             this.Controls.Add(this.adjlabel);
-            this.Controls.Add(this.btnAgregar);
-            this.Controls.Add(this.txtclientes);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.hleCuerpo);
-            this.Controls.Add(this.txtasunto);
-            this.Controls.Add(this.txtmailto);
-            this.Controls.Add(this.btnAdjuntar);
-            this.Controls.Add(this.btnEnviar);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tstControlesFuente);
             this.Name = "frmEmail";
             this.Text = "frmMail";
             this.Load += new System.EventHandler(this.frmMail_Load);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.tstControlesFuente.ResumeLayout(false);
+            this.tstControlesFuente.PerformLayout();
+            this.gbxEmail.ResumeLayout(false);
+            this.pnlControles.ResumeLayout(false);
+            this.pnlControles.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -470,6 +500,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip tstControlesFuente;
+        private System.Windows.Forms.GroupBox gbxEmail;
+        private System.Windows.Forms.Panel pnlControles;
     }
 }
