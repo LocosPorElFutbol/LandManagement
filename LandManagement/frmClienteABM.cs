@@ -126,7 +126,6 @@ namespace LandManagement
                 TipoPropiedadBusiness tipoPropiedadBusiness = new TipoPropiedadBusiness();
                 tbtipopropiedad tipoPropiedad = (tbtipopropiedad)tipoPropiedadBusiness.GetElement(new tbtipopropiedad() { tip_id = domicilioActual.tip_id });
 
-                cmbTipoPropiedad.Text = tipoPropiedad.tip_descripcion;
                 txbCalle.Text = domicilioActual.dom_calle;
                 txbNumero.Text = domicilioActual.dom_numero.ToString();
                 cmbPiso.Text = domicilioActual.dom_piso.ToString();
@@ -236,7 +235,7 @@ namespace LandManagement
             try
             {
                 tbdomicilio domicilio = new tbdomicilio();
-                domicilio.tip_id = ((tbtipopropiedad)cmbTipoPropiedad.SelectedItem).tip_id;
+                domicilio.tip_id = 1; //Se limino el combo tipo de propiedad;
                 domicilio.dom_calle = string.IsNullOrEmpty(txbCalle.Text) ? null : txbCalle.Text;
                 domicilio.dom_numero = string.IsNullOrEmpty(txbNumero.Text) ? 0 : Convert.ToInt32(txbNumero.Text);
                 domicilio.dom_piso = ((ComboBoxItem)cmbPiso.SelectedItem).Value;
@@ -463,8 +462,6 @@ namespace LandManagement
             cmbDepto.DisplayMember = ComboBoxItem.DisplayMember;
             cmbDepto.ValueMember = ComboBoxItem.ValueMember;
 
-            cmbTipoPropiedad.DisplayMember = "tip_descripcion";
-            cmbTipoPropiedad.ValueMember = "tip_id";
         }
 
         private void CargarCombos()
@@ -475,7 +472,6 @@ namespace LandManagement
             this.CargarSexo();
             this.CargarPiso();
             this.CargarDepto();
-            this.CargarTipoPropiedad();
             SetearIndiceCombo();
         }
 
@@ -487,7 +483,6 @@ namespace LandManagement
             cmbSexo.SelectedIndex = 0;
             cmbPiso.SelectedIndex = 0;
             cmbDepto.SelectedIndex = 0;
-            cmbTipoPropiedad.SelectedIndex = 0;
         }
 
         private void CargarTipoFamiliar()
@@ -522,15 +517,6 @@ namespace LandManagement
         private void CargarDepto()
         {
             this.CargarCombo(listasDeElementos.GetListaDepto(), cmbDepto);
-        }
-
-        private void CargarTipoPropiedad()
-        {
-            tipoPropiedadBusiness = new TipoPropiedadBusiness();
-            List<tbtipopropiedad> listaPropiedades = (List<tbtipopropiedad>)tipoPropiedadBusiness.GetList();
-
-            foreach (var obj in listaPropiedades)
-                cmbTipoPropiedad.Items.Add(obj);
         }
 
         private void CargarCombo(List<ComboBoxItem> lista, ComboBox combo)
