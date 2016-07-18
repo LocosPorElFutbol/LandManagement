@@ -50,7 +50,7 @@ namespace LandManagement
             txtclientes.AutoCompleteSource = AutoCompleteSource.CustomSource;
             // variables
 
-            if (string.IsNullOrEmpty(VariablesDeSesion.UsuarioLogueado.usu_email) &&
+            if (string.IsNullOrEmpty(VariablesDeSesion.UsuarioLogueado.usu_email) ||
                string.IsNullOrEmpty(VariablesDeSesion.UsuarioLogueado.usu_email_password))
             {
                 MessageBox.Show("Para utilizar la herramienta envio de e-mail, deberá configurar su cuenta personal en el sistema. \n Diríjase a, Sistema -> Configurar cuenta e-mail.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
