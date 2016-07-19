@@ -63,7 +63,6 @@
             this.txbUsuario.Name = "txbUsuario";
             this.txbUsuario.Size = new System.Drawing.Size(143, 20);
             this.txbUsuario.TabIndex = 2;
-            this.txbUsuario.Text = "administrador";
             // 
             // txbPassword
             // 
@@ -72,7 +71,6 @@
             this.txbPassword.PasswordChar = '•';
             this.txbPassword.Size = new System.Drawing.Size(143, 20);
             this.txbPassword.TabIndex = 3;
-            this.txbPassword.Text = "a";
             this.txbPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPassword_KeyPress);
             // 
             // btnAceptar

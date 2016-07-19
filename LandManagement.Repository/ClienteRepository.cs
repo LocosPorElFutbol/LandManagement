@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using System.Transactions;
 
 namespace LandManagement.Repository
 {
@@ -31,13 +32,23 @@ namespace LandManagement.Repository
             try
             {
                 Contexto = new landmanagementbdEntities();
-                Contexto.CreateObjectSet<tbcliente>().AddObject(entity);
+                Contexto.Connection.Open();
 
-                Contexto.SaveChanges();
+                using (var transactionScope = new TransactionScope())
+                {
+                    Contexto.CreateObjectSet<tbcliente>().AddObject(entity);
+                    Contexto.SaveChanges();
+
+                    transactionScope.Complete();
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                Contexto.Connection.Close();
             }
         }
         

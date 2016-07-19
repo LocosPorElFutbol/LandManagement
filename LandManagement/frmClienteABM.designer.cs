@@ -404,6 +404,7 @@
             this.txbCodigoPostal.Name = "txbCodigoPostal";
             this.txbCodigoPostal.Size = new System.Drawing.Size(56, 20);
             this.txbCodigoPostal.TabIndex = 18;
+            this.txbCodigoPostal.Text = "0";
             // 
             // txbComoLlego
             // 
