@@ -86,6 +86,7 @@
             this.cmbEstadoCivil = new System.Windows.Forms.ComboBox();
             this.txbCuilCuit = new System.Windows.Forms.TextBox();
             this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.pnlControles = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFamiliares)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedades)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -95,6 +96,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.pnlControles.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -484,21 +486,10 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.cmbTipoFamiliar);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.dtpFechaAlta);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.btnCancelar);
-            this.groupBox1.Controls.Add(this.btnGuardar);
-            this.groupBox1.Controls.Add(this.groupBox7);
-            this.groupBox1.Controls.Add(this.groupBox6);
-            this.groupBox1.Controls.Add(this.groupBox5);
-            this.groupBox1.Controls.Add(this.groupBox4);
-            this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(987, 648);
+            this.groupBox1.Size = new System.Drawing.Size(1015, 648);
             this.groupBox1.TabIndex = 63;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Cliente";
@@ -507,7 +498,7 @@
             // 
             this.cmbTipoFamiliar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoFamiliar.FormattingEnabled = true;
-            this.cmbTipoFamiliar.Location = new System.Drawing.Point(86, 50);
+            this.cmbTipoFamiliar.Location = new System.Drawing.Point(85, 32);
             this.cmbTipoFamiliar.Name = "cmbTipoFamiliar";
             this.cmbTipoFamiliar.Size = new System.Drawing.Size(166, 21);
             this.cmbTipoFamiliar.TabIndex = 2;
@@ -515,7 +506,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 53);
+            this.label4.Location = new System.Drawing.Point(13, 35);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 13);
             this.label4.TabIndex = 46;
@@ -524,7 +515,7 @@
             // dtpFechaAlta
             // 
             this.dtpFechaAlta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaAlta.Location = new System.Drawing.Point(86, 24);
+            this.dtpFechaAlta.Location = new System.Drawing.Point(85, 6);
             this.dtpFechaAlta.Name = "dtpFechaAlta";
             this.dtpFechaAlta.Size = new System.Drawing.Size(84, 20);
             this.dtpFechaAlta.TabIndex = 1;
@@ -532,7 +523,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 27);
+            this.label1.Location = new System.Drawing.Point(20, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 44;
@@ -541,7 +532,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(882, 611);
+            this.btnCancelar.Location = new System.Drawing.Point(903, 570);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 31;
@@ -551,7 +542,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(801, 611);
+            this.btnGuardar.Location = new System.Drawing.Point(822, 570);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 30;
@@ -564,7 +555,7 @@
             this.groupBox7.Controls.Add(this.dgvPropiedades);
             this.groupBox7.Controls.Add(this.btnAddPropiedad);
             this.groupBox7.Controls.Add(this.btnRemovePropiedad);
-            this.groupBox7.Location = new System.Drawing.Point(484, 409);
+            this.groupBox7.Location = new System.Drawing.Point(484, 391);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(497, 173);
             this.groupBox7.TabIndex = 43;
@@ -576,7 +567,7 @@
             this.groupBox6.Controls.Add(this.dgvFamiliares);
             this.groupBox6.Controls.Add(this.btnAddFamiliar);
             this.groupBox6.Controls.Add(this.btnRemoveFamiliar);
-            this.groupBox6.Location = new System.Drawing.Point(6, 409);
+            this.groupBox6.Location = new System.Drawing.Point(6, 391);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(472, 173);
             this.groupBox6.TabIndex = 42;
@@ -586,7 +577,7 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.txbComoLlego);
-            this.groupBox5.Location = new System.Drawing.Point(653, 83);
+            this.groupBox5.Location = new System.Drawing.Point(647, 65);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(328, 127);
             this.groupBox5.TabIndex = 41;
@@ -603,7 +594,7 @@
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.txbTelefonoLaboral);
-            this.groupBox4.Location = new System.Drawing.Point(296, 216);
+            this.groupBox4.Location = new System.Drawing.Point(290, 198);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(351, 187);
             this.groupBox4.TabIndex = 40;
@@ -624,7 +615,7 @@
             this.groupBox3.Controls.Add(this.label25);
             this.groupBox3.Controls.Add(this.cmbDepto);
             this.groupBox3.Controls.Add(this.txbLocalidad);
-            this.groupBox3.Location = new System.Drawing.Point(296, 83);
+            this.groupBox3.Location = new System.Drawing.Point(290, 65);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(351, 127);
             this.groupBox3.TabIndex = 39;
@@ -651,7 +642,7 @@
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.cmbSexo);
-            this.groupBox2.Location = new System.Drawing.Point(6, 83);
+            this.groupBox2.Location = new System.Drawing.Point(5, 65);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(279, 320);
             this.groupBox2.TabIndex = 38;
@@ -684,12 +675,34 @@
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(84, 20);
             this.dtpFechaNacimiento.TabIndex = 5;
             // 
+            // pnlControles
+            // 
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.label1);
+            this.pnlControles.Controls.Add(this.groupBox5);
+            this.pnlControles.Controls.Add(this.groupBox7);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Controls.Add(this.cmbTipoFamiliar);
+            this.pnlControles.Controls.Add(this.btnGuardar);
+            this.pnlControles.Controls.Add(this.groupBox2);
+            this.pnlControles.Controls.Add(this.label4);
+            this.pnlControles.Controls.Add(this.groupBox6);
+            this.pnlControles.Controls.Add(this.groupBox4);
+            this.pnlControles.Controls.Add(this.dtpFechaAlta);
+            this.pnlControles.Controls.Add(this.groupBox3);
+            this.pnlControles.Location = new System.Drawing.Point(6, 19);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(1003, 623);
+            this.pnlControles.TabIndex = 47;
+            // 
             // frmClienteABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(1011, 672);
+            this.ClientSize = new System.Drawing.Size(1039, 672);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmClienteABM";
             this.Text = "frmClienteABM";
@@ -697,7 +710,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvFamiliares)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedades)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
@@ -708,6 +720,8 @@
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.pnlControles.ResumeLayout(false);
+            this.pnlControles.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -772,5 +786,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dtpFechaAlta;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel pnlControles;
     }
 }

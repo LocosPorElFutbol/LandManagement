@@ -35,7 +35,9 @@
             this.txbmail = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.pnlControles = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
+            this.pnlControles.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -43,22 +45,17 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.btnGuardar);
-            this.groupBox1.Controls.Add(this.btnCancelar);
-            this.groupBox1.Controls.Add(this.txbpwd);
-            this.groupBox1.Controls.Add(this.txbmail);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(549, 296);
+            this.groupBox1.Size = new System.Drawing.Size(318, 111);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Configuracion de Email";
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(148, 92);
+            this.btnGuardar.Location = new System.Drawing.Point(145, 59);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 4;
@@ -69,7 +66,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(229, 92);
+            this.btnCancelar.Location = new System.Drawing.Point(226, 59);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 3;
@@ -79,7 +76,7 @@
             // 
             // txbpwd
             // 
-            this.txbpwd.Location = new System.Drawing.Point(101, 66);
+            this.txbpwd.Location = new System.Drawing.Point(98, 33);
             this.txbpwd.Name = "txbpwd";
             this.txbpwd.PasswordChar = '*';
             this.txbpwd.Size = new System.Drawing.Size(203, 20);
@@ -88,7 +85,7 @@
             // 
             // txbmail
             // 
-            this.txbmail.Location = new System.Drawing.Point(101, 36);
+            this.txbmail.Location = new System.Drawing.Point(98, 3);
             this.txbmail.Name = "txbmail";
             this.txbmail.Size = new System.Drawing.Size(203, 20);
             this.txbmail.TabIndex = 1;
@@ -97,7 +94,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 70);
+            this.label2.Location = new System.Drawing.Point(31, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 0;
@@ -106,24 +103,41 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 40);
+            this.label1.Location = new System.Drawing.Point(4, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Direccion de mail";
+            // 
+            // pnlControles
+            // 
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.txbmail);
+            this.pnlControles.Controls.Add(this.btnGuardar);
+            this.pnlControles.Controls.Add(this.label1);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Controls.Add(this.label2);
+            this.pnlControles.Controls.Add(this.txbpwd);
+            this.pnlControles.Location = new System.Drawing.Point(6, 19);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(306, 86);
+            this.pnlControles.TabIndex = 5;
             // 
             // frmEmailCuenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(573, 320);
+            this.ClientSize = new System.Drawing.Size(342, 135);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmEmailCuenta";
             this.Text = "frmMailCuenta";
             this.Load += new System.EventHandler(this.frmMailCuenta_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.pnlControles.ResumeLayout(false);
+            this.pnlControles.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -137,5 +151,6 @@
         private System.Windows.Forms.TextBox txbmail;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel pnlControles;
     }
 }

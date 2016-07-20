@@ -44,7 +44,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.pnlControles = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
+            this.pnlControles.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -52,24 +54,10 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.chbEstado);
-            this.groupBox1.Controls.Add(this.txbPassword);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.txbConfirmarEmailUsuario);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.btnCancelar);
-            this.groupBox1.Controls.Add(this.btnGuardar);
-            this.groupBox1.Controls.Add(this.txbEmailUsuario);
-            this.groupBox1.Controls.Add(this.txbNombreLogin);
-            this.groupBox1.Controls.Add(this.txbApellidoUsuario);
-            this.groupBox1.Controls.Add(this.txbNombreUsuario);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(292, 342);
+            this.groupBox1.Size = new System.Drawing.Size(280, 304);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Usuario";
@@ -79,7 +67,7 @@
             this.chbEstado.AutoSize = true;
             this.chbEstado.Checked = true;
             this.chbEstado.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbEstado.Location = new System.Drawing.Point(96, 258);
+            this.chbEstado.Location = new System.Drawing.Point(87, 224);
             this.chbEstado.Name = "chbEstado";
             this.chbEstado.Size = new System.Drawing.Size(115, 17);
             this.chbEstado.TabIndex = 13;
@@ -88,7 +76,7 @@
             // 
             // txbPassword
             // 
-            this.txbPassword.Location = new System.Drawing.Point(96, 224);
+            this.txbPassword.Location = new System.Drawing.Point(89, 190);
             this.txbPassword.Name = "txbPassword";
             this.txbPassword.PasswordChar = '*';
             this.txbPassword.Size = new System.Drawing.Size(164, 20);
@@ -97,7 +85,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(38, 228);
+            this.label6.Location = new System.Drawing.Point(29, 194);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 13);
             this.label6.TabIndex = 11;
@@ -105,7 +93,7 @@
             // 
             // txbConfirmarEmailUsuario
             // 
-            this.txbConfirmarEmailUsuario.Location = new System.Drawing.Point(96, 150);
+            this.txbConfirmarEmailUsuario.Location = new System.Drawing.Point(89, 116);
             this.txbConfirmarEmailUsuario.Name = "txbConfirmarEmailUsuario";
             this.txbConfirmarEmailUsuario.Size = new System.Drawing.Size(164, 20);
             this.txbConfirmarEmailUsuario.TabIndex = 4;
@@ -113,7 +101,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 154);
+            this.label5.Location = new System.Drawing.Point(3, 120);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(85, 13);
             this.label5.TabIndex = 10;
@@ -122,7 +110,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(185, 300);
+            this.btnCancelar.Location = new System.Drawing.Point(178, 247);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 8;
@@ -132,7 +120,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(104, 300);
+            this.btnGuardar.Location = new System.Drawing.Point(97, 247);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 7;
@@ -142,28 +130,28 @@
             // 
             // txbEmailUsuario
             // 
-            this.txbEmailUsuario.Location = new System.Drawing.Point(96, 113);
+            this.txbEmailUsuario.Location = new System.Drawing.Point(89, 79);
             this.txbEmailUsuario.Name = "txbEmailUsuario";
             this.txbEmailUsuario.Size = new System.Drawing.Size(164, 20);
             this.txbEmailUsuario.TabIndex = 3;
             // 
             // txbNombreLogin
             // 
-            this.txbNombreLogin.Location = new System.Drawing.Point(96, 187);
+            this.txbNombreLogin.Location = new System.Drawing.Point(89, 153);
             this.txbNombreLogin.Name = "txbNombreLogin";
             this.txbNombreLogin.Size = new System.Drawing.Size(164, 20);
             this.txbNombreLogin.TabIndex = 5;
             // 
             // txbApellidoUsuario
             // 
-            this.txbApellidoUsuario.Location = new System.Drawing.Point(96, 76);
+            this.txbApellidoUsuario.Location = new System.Drawing.Point(89, 42);
             this.txbApellidoUsuario.Name = "txbApellidoUsuario";
             this.txbApellidoUsuario.Size = new System.Drawing.Size(164, 20);
             this.txbApellidoUsuario.TabIndex = 2;
             // 
             // txbNombreUsuario
             // 
-            this.txbNombreUsuario.Location = new System.Drawing.Point(96, 39);
+            this.txbNombreUsuario.Location = new System.Drawing.Point(89, 5);
             this.txbNombreUsuario.Name = "txbNombreUsuario";
             this.txbNombreUsuario.Size = new System.Drawing.Size(164, 20);
             this.txbNombreUsuario.TabIndex = 1;
@@ -171,7 +159,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(59, 117);
+            this.label4.Location = new System.Drawing.Point(50, 83);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 13);
             this.label4.TabIndex = 3;
@@ -180,7 +168,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 191);
+            this.label3.Location = new System.Drawing.Point(8, 157);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 13);
             this.label3.TabIndex = 2;
@@ -189,7 +177,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(47, 80);
+            this.label2.Location = new System.Drawing.Point(38, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 1;
@@ -198,23 +186,49 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(47, 43);
+            this.label1.Location = new System.Drawing.Point(38, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre: ";
+            // 
+            // pnlControles
+            // 
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.label5);
+            this.pnlControles.Controls.Add(this.chbEstado);
+            this.pnlControles.Controls.Add(this.label1);
+            this.pnlControles.Controls.Add(this.txbPassword);
+            this.pnlControles.Controls.Add(this.label2);
+            this.pnlControles.Controls.Add(this.label6);
+            this.pnlControles.Controls.Add(this.label3);
+            this.pnlControles.Controls.Add(this.txbConfirmarEmailUsuario);
+            this.pnlControles.Controls.Add(this.label4);
+            this.pnlControles.Controls.Add(this.txbNombreUsuario);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Controls.Add(this.txbApellidoUsuario);
+            this.pnlControles.Controls.Add(this.btnGuardar);
+            this.pnlControles.Controls.Add(this.txbNombreLogin);
+            this.pnlControles.Controls.Add(this.txbEmailUsuario);
+            this.pnlControles.Location = new System.Drawing.Point(6, 19);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(268, 278);
+            this.pnlControles.TabIndex = 14;
             // 
             // frmUsuarioABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(316, 366);
+            this.ClientSize = new System.Drawing.Size(304, 328);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmUsuarioABM";
             this.Text = "frmUsuarioABM";
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.pnlControles.ResumeLayout(false);
+            this.pnlControles.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -237,5 +251,6 @@
         private System.Windows.Forms.CheckBox chbEstado;
         private System.Windows.Forms.TextBox txbPassword;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel pnlControles;
     }
 }

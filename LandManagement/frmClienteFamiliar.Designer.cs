@@ -40,8 +40,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.pnlControles = new System.Windows.Forms.Panel();
             this.gbxDatosDelFamiliar.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.pnlControles.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbxDatosDelFamiliar
@@ -49,11 +51,10 @@
             this.gbxDatosDelFamiliar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbxDatosDelFamiliar.Controls.Add(this.btnCancelar);
-            this.gbxDatosDelFamiliar.Controls.Add(this.btnGuardar);
+            this.gbxDatosDelFamiliar.Controls.Add(this.pnlControles);
             this.gbxDatosDelFamiliar.Location = new System.Drawing.Point(12, 12);
             this.gbxDatosDelFamiliar.Name = "gbxDatosDelFamiliar";
-            this.gbxDatosDelFamiliar.Size = new System.Drawing.Size(303, 233);
+            this.gbxDatosDelFamiliar.Size = new System.Drawing.Size(309, 235);
             this.gbxDatosDelFamiliar.TabIndex = 0;
             this.gbxDatosDelFamiliar.TabStop = false;
             this.gbxDatosDelFamiliar.Text = "Datos del Familiar";
@@ -61,7 +62,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(216, 198);
+            this.btnCancelar.Location = new System.Drawing.Point(211, 180);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 6;
@@ -71,7 +72,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(135, 198);
+            this.btnGuardar.Location = new System.Drawing.Point(130, 180);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 5;
@@ -83,7 +84,7 @@
             // 
             this.cmbTipoFamiliar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoFamiliar.FormattingEnabled = true;
-            this.cmbTipoFamiliar.Location = new System.Drawing.Point(104, 36);
+            this.cmbTipoFamiliar.Location = new System.Drawing.Point(87, 6);
             this.cmbTipoFamiliar.Name = "cmbTipoFamiliar";
             this.cmbTipoFamiliar.Size = new System.Drawing.Size(166, 21);
             this.cmbTipoFamiliar.TabIndex = 1;
@@ -92,7 +93,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(32, 39);
+            this.label4.Location = new System.Drawing.Point(15, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 13);
             this.label4.TabIndex = 49;
@@ -106,7 +107,7 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.dtpFechaNacimiento);
-            this.groupBox2.Location = new System.Drawing.Point(24, 69);
+            this.groupBox2.Location = new System.Drawing.Point(7, 39);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(279, 135);
             this.groupBox2.TabIndex = 48;
@@ -164,15 +165,27 @@
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(84, 20);
             this.dtpFechaNacimiento.TabIndex = 4;
             // 
+            // pnlControles
+            // 
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.cmbTipoFamiliar);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Controls.Add(this.label4);
+            this.pnlControles.Controls.Add(this.btnGuardar);
+            this.pnlControles.Controls.Add(this.groupBox2);
+            this.pnlControles.Location = new System.Drawing.Point(6, 19);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(297, 210);
+            this.pnlControles.TabIndex = 7;
+            // 
             // frmClienteFamiliar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(327, 257);
-            this.Controls.Add(this.cmbTipoFamiliar);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(333, 259);
             this.Controls.Add(this.gbxDatosDelFamiliar);
             this.Name = "frmClienteFamiliar";
             this.Text = "frmClienteFamiliar";
@@ -180,8 +193,9 @@
             this.gbxDatosDelFamiliar.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.pnlControles.ResumeLayout(false);
+            this.pnlControles.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -199,5 +213,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
+        private System.Windows.Forms.Panel pnlControles;
     }
 }

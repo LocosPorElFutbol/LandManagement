@@ -65,6 +65,7 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cmbDireccion = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pnlControles = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -72,12 +73,13 @@
             this.groupBox2.SuspendLayout();
             this.gbxDetallePropiedad.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.pnlControles.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(38, 27);
+            this.label2.Location = new System.Drawing.Point(16, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 1;
@@ -86,7 +88,7 @@
             // dtpFecha
             // 
             this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFecha.Location = new System.Drawing.Point(82, 24);
+            this.dtpFecha.Location = new System.Drawing.Point(60, 3);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(92, 20);
             this.dtpFecha.TabIndex = 6;
@@ -94,7 +96,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(618, 343);
+            this.btnCancelar.Location = new System.Drawing.Point(620, 317);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 10;
@@ -104,7 +106,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(537, 343);
+            this.btnGuardar.Location = new System.Drawing.Point(539, 317);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 11;
@@ -117,15 +119,10 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.dtpFecha);
-            this.groupBox1.Controls.Add(this.btnGuardar);
-            this.groupBox1.Controls.Add(this.btnCancelar);
-            this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(699, 375);
+            this.groupBox1.Size = new System.Drawing.Size(712, 368);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Reserva de Alquiler";
@@ -134,7 +131,7 @@
             // 
             this.groupBox3.Controls.Add(this.groupBox7);
             this.groupBox3.Controls.Add(this.groupBox4);
-            this.groupBox3.Location = new System.Drawing.Point(390, 55);
+            this.groupBox3.Location = new System.Drawing.Point(392, 29);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(303, 282);
             this.groupBox3.TabIndex = 26;
@@ -258,7 +255,7 @@
             // 
             this.groupBox2.Controls.Add(this.gbxDetallePropiedad);
             this.groupBox2.Controls.Add(this.groupBox5);
-            this.groupBox2.Location = new System.Drawing.Point(6, 55);
+            this.groupBox2.Location = new System.Drawing.Point(8, 29);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(378, 282);
             this.groupBox2.TabIndex = 25;
@@ -434,18 +431,33 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Dirección";
             // 
+            // pnlControles
+            // 
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.dtpFecha);
+            this.pnlControles.Controls.Add(this.btnGuardar);
+            this.pnlControles.Controls.Add(this.groupBox3);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Controls.Add(this.label2);
+            this.pnlControles.Controls.Add(this.groupBox2);
+            this.pnlControles.Location = new System.Drawing.Point(6, 19);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(700, 343);
+            this.pnlControles.TabIndex = 27;
+            // 
             // frmReservaAlquiler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(723, 399);
+            this.ClientSize = new System.Drawing.Size(736, 392);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmReservaAlquiler";
             this.Text = "frmReservaAlquiler";
             this.Load += new System.EventHandler(this.frmReservaAlquiler_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
@@ -456,6 +468,8 @@
             this.gbxDetallePropiedad.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.pnlControles.ResumeLayout(false);
+            this.pnlControles.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -499,5 +513,6 @@
         private System.Windows.Forms.TextBox txbLocalidad;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txbNumero;
+        private System.Windows.Forms.Panel pnlControles;
     }
 }

@@ -45,21 +45,14 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pnlControles = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.lbxParteCompradora = new System.Windows.Forms.ListBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.lbxParteVendedora = new System.Windows.Forms.ListBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.btnRemoveComprador = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.cmbCliente = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dgvComprador = new System.Windows.Forms.DataGridView();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dgvPropietarios = new System.Windows.Forms.DataGridView();
+            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.gbxDetallePropiedad = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -78,22 +71,31 @@
             this.label18 = new System.Windows.Forms.Label();
             this.cmbDireccion = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnRemoveComprador = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.cmbCliente = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dgvComprador = new System.Windows.Forms.DataGridView();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dgvPropietarios = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
+            this.pnlControles.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.gbxDetallePropiedad.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComprador)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropietarios)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.gbxDetallePropiedad.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(247, 32);
+            this.label2.Location = new System.Drawing.Point(216, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 13);
             this.label2.TabIndex = 1;
@@ -102,7 +104,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(466, 32);
+            this.label3.Location = new System.Drawing.Point(435, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 13);
             this.label3.TabIndex = 2;
@@ -138,7 +140,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 421);
+            this.label12.Location = new System.Drawing.Point(6, 401);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(119, 13);
             this.label12.TabIndex = 11;
@@ -147,7 +149,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(78, 447);
+            this.label13.Location = new System.Drawing.Point(78, 427);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(47, 13);
             this.label13.TabIndex = 12;
@@ -164,7 +166,7 @@
             // dtpFechaBoleto
             // 
             this.dtpFechaBoleto.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaBoleto.Location = new System.Drawing.Point(323, 28);
+            this.dtpFechaBoleto.Location = new System.Drawing.Point(292, 5);
             this.dtpFechaBoleto.Name = "dtpFechaBoleto";
             this.dtpFechaBoleto.Size = new System.Drawing.Size(121, 20);
             this.dtpFechaBoleto.TabIndex = 1;
@@ -172,7 +174,7 @@
             // dtpFechaEscritura
             // 
             this.dtpFechaEscritura.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaEscritura.Location = new System.Drawing.Point(553, 28);
+            this.dtpFechaEscritura.Location = new System.Drawing.Point(522, 5);
             this.dtpFechaEscritura.Name = "dtpFechaEscritura";
             this.dtpFechaEscritura.Size = new System.Drawing.Size(121, 20);
             this.dtpFechaEscritura.TabIndex = 2;
@@ -193,14 +195,14 @@
             // 
             // txbEscribania
             // 
-            this.txbEscribania.Location = new System.Drawing.Point(132, 417);
+            this.txbEscribania.Location = new System.Drawing.Point(132, 397);
             this.txbEscribania.Name = "txbEscribania";
             this.txbEscribania.Size = new System.Drawing.Size(100, 20);
             this.txbEscribania.TabIndex = 19;
             // 
             // txbCobrado
             // 
-            this.txbCobrado.Location = new System.Drawing.Point(132, 443);
+            this.txbCobrado.Location = new System.Drawing.Point(132, 423);
             this.txbCobrado.Name = "txbCobrado";
             this.txbCobrado.Size = new System.Drawing.Size(100, 20);
             this.txbCobrado.TabIndex = 20;
@@ -208,7 +210,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(535, 554);
+            this.btnGuardar.Location = new System.Drawing.Point(532, 521);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 21;
@@ -219,7 +221,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(616, 554);
+            this.btnCancelar.Location = new System.Drawing.Point(613, 521);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 22;
@@ -232,41 +234,44 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.dtpFecha);
-            this.groupBox1.Controls.Add(this.groupBox6);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.dtpFechaBoleto);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.dtpFechaEscritura);
-            this.groupBox1.Controls.Add(this.groupBox5);
-            this.groupBox1.Controls.Add(this.btnCancelar);
-            this.groupBox1.Controls.Add(this.btnGuardar);
-            this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(702, 587);
+            this.groupBox1.Size = new System.Drawing.Size(722, 573);
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Venta de una Propiedad";
             // 
+            // pnlControles
+            // 
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.label4);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Controls.Add(this.groupBox5);
+            this.pnlControles.Controls.Add(this.btnGuardar);
+            this.pnlControles.Controls.Add(this.groupBox3);
+            this.pnlControles.Controls.Add(this.groupBox6);
+            this.pnlControles.Controls.Add(this.dtpFechaEscritura);
+            this.pnlControles.Controls.Add(this.dtpFecha);
+            this.pnlControles.Controls.Add(this.label2);
+            this.pnlControles.Controls.Add(this.dtpFechaBoleto);
+            this.pnlControles.Controls.Add(this.label3);
+            this.pnlControles.Controls.Add(this.groupBox2);
+            this.pnlControles.Location = new System.Drawing.Point(6, 19);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(710, 548);
+            this.pnlControles.TabIndex = 29;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(34, 32);
+            this.label4.Location = new System.Drawing.Point(3, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 13);
             this.label4.TabIndex = 27;
             this.label4.Text = "Fecha";
-            // 
-            // dtpFecha
-            // 
-            this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFecha.Location = new System.Drawing.Point(77, 28);
-            this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(121, 20);
-            this.dtpFecha.TabIndex = 28;
             // 
             // groupBox6
             // 
@@ -282,7 +287,7 @@
             this.groupBox6.Controls.Add(this.label6);
             this.groupBox6.Controls.Add(this.txbEscribano);
             this.groupBox6.Controls.Add(this.txbPresupuesto);
-            this.groupBox6.Location = new System.Drawing.Point(343, 63);
+            this.groupBox6.Location = new System.Drawing.Point(340, 38);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(348, 477);
             this.groupBox6.TabIndex = 26;
@@ -325,97 +330,20 @@
             this.lbxParteVendedora.Size = new System.Drawing.Size(319, 95);
             this.lbxParteVendedora.TabIndex = 17;
             // 
-            // groupBox5
+            // dtpFecha
             // 
-            this.groupBox5.Controls.Add(this.btnRemoveComprador);
-            this.groupBox5.Controls.Add(this.btnAgregar);
-            this.groupBox5.Controls.Add(this.cmbCliente);
-            this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Controls.Add(this.dgvComprador);
-            this.groupBox5.Location = new System.Drawing.Point(6, 382);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(331, 158);
-            this.groupBox5.TabIndex = 25;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Datos Comprador";
-            // 
-            // btnRemoveComprador
-            // 
-            this.btnRemoveComprador.Location = new System.Drawing.Point(298, 53);
-            this.btnRemoveComprador.Name = "btnRemoveComprador";
-            this.btnRemoveComprador.Size = new System.Drawing.Size(27, 23);
-            this.btnRemoveComprador.TabIndex = 27;
-            this.btnRemoveComprador.Text = "-";
-            this.btnRemoveComprador.UseVisualStyleBackColor = true;
-            this.btnRemoveComprador.Click += new System.EventHandler(this.btnRemoveComprador_Click);
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Location = new System.Drawing.Point(213, 21);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(56, 23);
-            this.btnAgregar.TabIndex = 24;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // cmbCliente
-            // 
-            this.cmbCliente.FormattingEnabled = true;
-            this.cmbCliente.Location = new System.Drawing.Point(53, 22);
-            this.cmbCliente.Name = "cmbCliente";
-            this.cmbCliente.Size = new System.Drawing.Size(154, 21);
-            this.cmbCliente.TabIndex = 23;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 26);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(39, 13);
-            this.label5.TabIndex = 22;
-            this.label5.Text = "Cliente";
-            // 
-            // dgvComprador
-            // 
-            this.dgvComprador.AllowUserToAddRows = false;
-            this.dgvComprador.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvComprador.Location = new System.Drawing.Point(6, 53);
-            this.dgvComprador.MultiSelect = false;
-            this.dgvComprador.Name = "dgvComprador";
-            this.dgvComprador.ReadOnly = true;
-            this.dgvComprador.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvComprador.Size = new System.Drawing.Size(288, 99);
-            this.dgvComprador.TabIndex = 12;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.dgvPropietarios);
-            this.groupBox3.Location = new System.Drawing.Point(6, 265);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(331, 111);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Datos Propietarios";
-            // 
-            // dgvPropietarios
-            // 
-            this.dgvPropietarios.AllowUserToAddRows = false;
-            this.dgvPropietarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPropietarios.Location = new System.Drawing.Point(6, 19);
-            this.dgvPropietarios.MultiSelect = false;
-            this.dgvPropietarios.Name = "dgvPropietarios";
-            this.dgvPropietarios.ReadOnly = true;
-            this.dgvPropietarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPropietarios.Size = new System.Drawing.Size(319, 86);
-            this.dgvPropietarios.TabIndex = 11;
+            this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFecha.Location = new System.Drawing.Point(46, 5);
+            this.dtpFecha.Name = "dtpFecha";
+            this.dtpFecha.Size = new System.Drawing.Size(121, 20);
+            this.dtpFecha.TabIndex = 28;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.gbxDetallePropiedad);
             this.groupBox2.Controls.Add(this.cmbDireccion);
             this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Location = new System.Drawing.Point(6, 63);
+            this.groupBox2.Location = new System.Drawing.Point(3, 31);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(331, 196);
             this.groupBox2.TabIndex = 1;
@@ -580,31 +508,117 @@
             this.label19.TabIndex = 0;
             this.label19.Text = "Dirección";
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btnRemoveComprador);
+            this.groupBox5.Controls.Add(this.btnAgregar);
+            this.groupBox5.Controls.Add(this.cmbCliente);
+            this.groupBox5.Controls.Add(this.label5);
+            this.groupBox5.Controls.Add(this.dgvComprador);
+            this.groupBox5.Location = new System.Drawing.Point(3, 357);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(331, 158);
+            this.groupBox5.TabIndex = 25;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Datos Comprador";
+            // 
+            // btnRemoveComprador
+            // 
+            this.btnRemoveComprador.Location = new System.Drawing.Point(298, 53);
+            this.btnRemoveComprador.Name = "btnRemoveComprador";
+            this.btnRemoveComprador.Size = new System.Drawing.Size(27, 23);
+            this.btnRemoveComprador.TabIndex = 27;
+            this.btnRemoveComprador.Text = "-";
+            this.btnRemoveComprador.UseVisualStyleBackColor = true;
+            this.btnRemoveComprador.Click += new System.EventHandler(this.btnRemoveComprador_Click);
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Location = new System.Drawing.Point(213, 21);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(56, 23);
+            this.btnAgregar.TabIndex = 24;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // cmbCliente
+            // 
+            this.cmbCliente.FormattingEnabled = true;
+            this.cmbCliente.Location = new System.Drawing.Point(53, 22);
+            this.cmbCliente.Name = "cmbCliente";
+            this.cmbCliente.Size = new System.Drawing.Size(154, 21);
+            this.cmbCliente.TabIndex = 23;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 26);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(39, 13);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Cliente";
+            // 
+            // dgvComprador
+            // 
+            this.dgvComprador.AllowUserToAddRows = false;
+            this.dgvComprador.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvComprador.Location = new System.Drawing.Point(6, 53);
+            this.dgvComprador.MultiSelect = false;
+            this.dgvComprador.Name = "dgvComprador";
+            this.dgvComprador.ReadOnly = true;
+            this.dgvComprador.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvComprador.Size = new System.Drawing.Size(288, 99);
+            this.dgvComprador.TabIndex = 12;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dgvPropietarios);
+            this.groupBox3.Location = new System.Drawing.Point(3, 233);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(331, 111);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Datos Propietarios";
+            // 
+            // dgvPropietarios
+            // 
+            this.dgvPropietarios.AllowUserToAddRows = false;
+            this.dgvPropietarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPropietarios.Location = new System.Drawing.Point(6, 19);
+            this.dgvPropietarios.MultiSelect = false;
+            this.dgvPropietarios.Name = "dgvPropietarios";
+            this.dgvPropietarios.ReadOnly = true;
+            this.dgvPropietarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPropietarios.Size = new System.Drawing.Size(319, 86);
+            this.dgvPropietarios.TabIndex = 11;
+            // 
             // frmVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(726, 611);
+            this.ClientSize = new System.Drawing.Size(746, 597);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmVenta";
             this.Text = "frmVenta";
             this.Load += new System.EventHandler(this.frmVenta_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.pnlControles.ResumeLayout(false);
+            this.pnlControles.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.gbxDetallePropiedad.ResumeLayout(false);
+            this.gbxDetallePropiedad.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComprador)).EndInit();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropietarios)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.gbxDetallePropiedad.ResumeLayout(false);
-            this.gbxDetallePropiedad.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -661,5 +675,6 @@
         private System.Windows.Forms.Button btnRemoveComprador;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cmbTipoPropiedad;
+        private System.Windows.Forms.Panel pnlControles;
     }
 }

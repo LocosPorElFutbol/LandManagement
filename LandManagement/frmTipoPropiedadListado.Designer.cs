@@ -33,8 +33,10 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.pnlControles = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTpropiedad)).BeginInit();
+            this.pnlControles.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -42,13 +44,10 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.dataGridViewTpropiedad);
-            this.groupBox1.Controls.Add(this.btnCancelar);
-            this.groupBox1.Controls.Add(this.btnAgregar);
-            this.groupBox1.Controls.Add(this.btnEliminar);
+            this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(5, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(335, 302);
+            this.groupBox1.Size = new System.Drawing.Size(329, 307);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tipo Propiedad";
@@ -57,7 +56,7 @@
             // 
             this.dataGridViewTpropiedad.AllowUserToAddRows = false;
             this.dataGridViewTpropiedad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTpropiedad.Location = new System.Drawing.Point(18, 19);
+            this.dataGridViewTpropiedad.Location = new System.Drawing.Point(3, 5);
             this.dataGridViewTpropiedad.Name = "dataGridViewTpropiedad";
             this.dataGridViewTpropiedad.ReadOnly = true;
             this.dataGridViewTpropiedad.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -67,7 +66,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(253, 77);
+            this.btnCancelar.Location = new System.Drawing.Point(238, 63);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 3;
@@ -77,7 +76,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(253, 19);
+            this.btnAgregar.Location = new System.Drawing.Point(238, 5);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 1;
@@ -87,7 +86,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(253, 48);
+            this.btnEliminar.Location = new System.Drawing.Point(238, 34);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 2;
@@ -95,17 +94,32 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // pnlControles
+            // 
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.dataGridViewTpropiedad);
+            this.pnlControles.Controls.Add(this.btnEliminar);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Controls.Add(this.btnAgregar);
+            this.pnlControles.Location = new System.Drawing.Point(7, 19);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(316, 282);
+            this.pnlControles.TabIndex = 6;
+            // 
             // frmTipoPropiedadListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(352, 318);
+            this.ClientSize = new System.Drawing.Size(346, 323);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmTipoPropiedadListado";
             this.Text = "frmTipoPropiedad";
             this.Load += new System.EventHandler(this.frmTipoPropiedad_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTpropiedad)).EndInit();
+            this.pnlControles.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -117,5 +131,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Panel pnlControles;
     }
 }

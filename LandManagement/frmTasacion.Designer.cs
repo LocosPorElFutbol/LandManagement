@@ -60,16 +60,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cmbDireccion = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pnlControles = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbxDetalleDireccion.SuspendLayout();
+            this.pnlControles.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 28);
+            this.label2.Location = new System.Drawing.Point(21, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 1;
@@ -112,7 +114,7 @@
             // dtpFecha
             // 
             this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFecha.Location = new System.Drawing.Point(73, 24);
+            this.dtpFecha.Location = new System.Drawing.Point(67, 3);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(93, 20);
             this.dtpFecha.TabIndex = 1;
@@ -136,7 +138,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(225, 480);
+            this.btnGuardar.Location = new System.Drawing.Point(220, 451);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 13;
@@ -147,7 +149,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(308, 480);
+            this.btnCancelar.Location = new System.Drawing.Point(303, 451);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 14;
@@ -160,15 +162,10 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.groupBox4);
-            this.groupBox1.Controls.Add(this.dtpFecha);
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.btnCancelar);
-            this.groupBox1.Controls.Add(this.btnGuardar);
+            this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(389, 511);
+            this.groupBox1.Size = new System.Drawing.Size(396, 504);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tasación de una Propiedad";
@@ -183,12 +180,12 @@
             this.groupBox4.Controls.Add(this.txbNombreTasador);
             this.groupBox4.Controls.Add(this.txbTasacion);
             this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Location = new System.Drawing.Point(8, 264);
+            this.groupBox4.Location = new System.Drawing.Point(3, 235);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(375, 210);
             this.groupBox4.TabIndex = 14;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Datos del Tasador";
+            this.groupBox4.Text = "Datos del Tasado";
             // 
             // txbObservaciones
             // 
@@ -212,7 +209,7 @@
             this.groupBox2.Controls.Add(this.gbxDetalleDireccion);
             this.groupBox2.Controls.Add(this.cmbDireccion);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(6, 58);
+            this.groupBox2.Location = new System.Drawing.Point(3, 29);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(375, 200);
             this.groupBox2.TabIndex = 13;
@@ -377,24 +374,41 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Dirección";
             // 
+            // pnlControles
+            // 
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.dtpFecha);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Controls.Add(this.groupBox4);
+            this.pnlControles.Controls.Add(this.btnGuardar);
+            this.pnlControles.Controls.Add(this.label2);
+            this.pnlControles.Controls.Add(this.groupBox2);
+            this.pnlControles.Location = new System.Drawing.Point(6, 19);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(384, 479);
+            this.pnlControles.TabIndex = 15;
+            // 
             // frmTasacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(413, 535);
+            this.ClientSize = new System.Drawing.Size(420, 528);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmTasacion";
             this.Text = "frmTasacion";
             this.Load += new System.EventHandler(this.frmTasacion_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.gbxDetalleDireccion.ResumeLayout(false);
             this.gbxDetalleDireccion.PerformLayout();
+            this.pnlControles.ResumeLayout(false);
+            this.pnlControles.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -433,5 +447,6 @@
         private System.Windows.Forms.ComboBox cmbTipoPropiedad;
         private System.Windows.Forms.TextBox txbObservaciones;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Panel pnlControles;
     }
 }

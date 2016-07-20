@@ -52,6 +52,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cmbPiso = new System.Windows.Forms.ComboBox();
             this.cmbDepartamento = new System.Windows.Forms.ComboBox();
+            this.pnlControles = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropietarios)).BeginInit();
@@ -59,6 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvOperacionesPropiedad)).BeginInit();
             this.gbxDireccion.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.pnlControles.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -66,14 +68,10 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.btnCancelar);
-            this.groupBox1.Controls.Add(this.groupBox5);
-            this.groupBox1.Controls.Add(this.btnGuardar);
-            this.groupBox1.Controls.Add(this.gbxDireccion);
+            this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(415, 605);
+            this.groupBox1.Size = new System.Drawing.Size(422, 582);
             this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información de la Propiedad";
@@ -81,7 +79,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dgvPropietarios);
-            this.groupBox2.Location = new System.Drawing.Point(6, 285);
+            this.groupBox2.Location = new System.Drawing.Point(3, 259);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(402, 130);
             this.groupBox2.TabIndex = 40;
@@ -103,7 +101,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(333, 571);
+            this.btnCancelar.Location = new System.Drawing.Point(330, 531);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 12;
@@ -114,7 +112,7 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.dgvOperacionesPropiedad);
-            this.groupBox5.Location = new System.Drawing.Point(6, 435);
+            this.groupBox5.Location = new System.Drawing.Point(3, 395);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(402, 130);
             this.groupBox5.TabIndex = 39;
@@ -135,7 +133,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(252, 571);
+            this.btnGuardar.Location = new System.Drawing.Point(249, 531);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 11;
@@ -160,7 +158,7 @@
             this.gbxDireccion.Controls.Add(this.label4);
             this.gbxDireccion.Controls.Add(this.cmbPiso);
             this.gbxDireccion.Controls.Add(this.cmbDepartamento);
-            this.gbxDireccion.Location = new System.Drawing.Point(6, 24);
+            this.gbxDireccion.Location = new System.Drawing.Point(3, 3);
             this.gbxDireccion.Name = "gbxDireccion";
             this.gbxDireccion.Size = new System.Drawing.Size(402, 250);
             this.gbxDireccion.TabIndex = 28;
@@ -300,12 +298,27 @@
             this.cmbDepartamento.Size = new System.Drawing.Size(56, 21);
             this.cmbDepartamento.TabIndex = 5;
             // 
+            // pnlControles
+            // 
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.gbxDireccion);
+            this.pnlControles.Controls.Add(this.groupBox5);
+            this.pnlControles.Controls.Add(this.groupBox2);
+            this.pnlControles.Controls.Add(this.btnGuardar);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Location = new System.Drawing.Point(6, 19);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(410, 557);
+            this.pnlControles.TabIndex = 41;
+            // 
             // frmPropiedadABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(439, 629);
+            this.ClientSize = new System.Drawing.Size(446, 606);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmPropiedadABM";
             this.Text = "frmPropiedadABM";
@@ -319,6 +332,7 @@
             this.gbxDireccion.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.pnlControles.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -349,5 +363,6 @@
         private System.Windows.Forms.ComboBox cmbDepartamento;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dgvPropietarios;
+        private System.Windows.Forms.Panel pnlControles;
     }
 }
