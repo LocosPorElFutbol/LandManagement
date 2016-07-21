@@ -42,6 +42,7 @@ namespace LandManagement
 
         private void frmServiciosABM_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             CargarBotones();
         }
 

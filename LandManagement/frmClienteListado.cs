@@ -29,6 +29,7 @@ namespace LandManagement
 
         private void frmClienteListado_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             CargarGrilla();
         }
 
@@ -153,10 +154,14 @@ namespace LandManagement
         {
             try
             {
+                Cursor.Current = Cursors.WaitCursor;
+
                 tbcliente cliente = ObtenerClienteSeleccionado();
 
                 formularioClienteABM = new frmClienteABM(cliente, this);
                 ControlarInstanciaAbierta(formularioClienteABM, "Planilla de Cliente");
+                
+                Cursor.Current = Cursors.Default;
             }
             catch (Exception ex)
             {

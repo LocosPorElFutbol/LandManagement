@@ -51,6 +51,7 @@ namespace LandManagement
 
         private void frmClienteFamiliar_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             this.AutoValidate = AutoValidate.Disable;
             errorProvider1 = new ErrorProvider();
             this.CargarCombos();

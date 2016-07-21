@@ -31,6 +31,7 @@ namespace LandManagement
 
         private void frmPermisos_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             var listaTodosLosPermisos = this.FiltrarTodosLosPermisos(this.usuarioSeleccionado);
             CargoLista(lbxTodosLosPermisos, listaTodosLosPermisos);
 

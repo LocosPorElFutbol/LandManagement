@@ -36,6 +36,7 @@ namespace LandManagement
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             this.Icon = (Icon)Recursos.ResourceImages.ResourceManager.GetObject("Llave");
             this.Text = "Inicio de Sesión";
             pbxLogoCliente.Image = (Image)Recursos.ResourceImages.ResourceManager.GetObject("Logo");

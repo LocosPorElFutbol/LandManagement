@@ -39,16 +39,19 @@ namespace LandManagement
         private void frmMail_Load(object sender, EventArgs e)
         {
             pnlControles.AutoScroll = true;
+            cmbCategorias.Sorted = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             hleCuerpo.DocumentText = "<html><body></body></html>";
             doc = hleCuerpo.Document.DomDocument as IHTMLDocument2;
             doc.designMode = "On";
+            port = 25;
 
             //
             txtclientes.AutoCompleteCustomSource = LoadAutoComplete();
             txtclientes.AutoCompleteMode = AutoCompleteMode.Suggest;
             txtclientes.AutoCompleteSource = AutoCompleteSource.CustomSource;
             // variables
+
 
             if (string.IsNullOrEmpty(VariablesDeSesion.UsuarioLogueado.usu_email) ||
                string.IsNullOrEmpty(VariablesDeSesion.UsuarioLogueado.usu_email_password))
@@ -57,32 +60,8 @@ namespace LandManagement
                 tstControlesFuente.Enabled = false;
                 pnlControles.Enabled = false;
             }
-            //else 
-            //{
-            //    MailFrom = VariablesDeSesion.UsuarioLogueado.usu_email;
-            //    MailFromPass = VariablesDeSesion.UsuarioLogueado.usu_email_password;
-            //}
 
-            //if (VariablesDeSesion.UsuarioLogueado.usu_email != null)
-            //{
-            //    if (IsValidEmail(VariablesDeSesion.UsuarioLogueado.usu_email) != false)
-            //    MailFrom = VariablesDeSesion.UsuarioLogueado.usu_email;
-            //    else
-            //    {
-            //        MessageBox.Show("Para utilizar la herramienta envio de e-mail, deberá configurar su cuenta personal en el sistema. \n Dirijase a Sistema -> Configurar cuenta e-mail.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        tstControlesFuente.Enabled = false;
-            //        pnlControles.Enabled = false;
-            //    }
-            //}
-
-            //if (VariablesDeSesion.UsuarioLogueado.usu_email_password != null)
-            //    MailFromPass = VariablesDeSesion.UsuarioLogueado.usu_email_password;
-            //else
-            //{
-            //    MessageBox.Show("Debe ingresar una contraseña");
-            //}
-
-            port = 25;
+            CargarComboCategorias();
         }
 
         private void btnEnviar_Click(object sender, EventArgs e)
@@ -97,7 +76,7 @@ namespace LandManagement
                     //_Correo.From = new MailAddress(MailFrom);
                     _Correo.From = new MailAddress(VariablesDeSesion.UsuarioLogueado.usu_email);
                    
-                    string[] toEmails = txtmailto.Text.ToString().Split(';'); //envia a varias direcciones
+                    string[] toEmails = txbPara.Text.ToString().Split(';'); //envia a varias direcciones
                     foreach (string toEmail in toEmails)
                         _Correo.To.Add(toEmail);
                     
@@ -180,10 +159,10 @@ namespace LandManagement
             mailcliente = txtclientes.Text;
             if (!string.IsNullOrEmpty(txtclientes.Text))
             {
-                if (string.IsNullOrEmpty(txtmailto.Text))
-                    txtmailto.Text = txtmailto.Text + '"' + mailcliente.Replace("<", '"' + " <");
+                if (string.IsNullOrEmpty(txbPara.Text))
+                    txbPara.Text = txbPara.Text + '"' + mailcliente.Replace("<", '"' + " <");
                 else
-                    txtmailto.Text = txtmailto.Text + ";" + '"' + mailcliente.Replace("<", '"' + " <");
+                    txbPara.Text = txbPara.Text + ";" + '"' + mailcliente.Replace("<", '"' + " <");
                 txtclientes.Clear();
             }
             else MessageBox.Show("Debe seleccionar algun cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -307,6 +286,65 @@ namespace LandManagement
         }
         #endregion
 
+        #region Categorias de cliente
+        public void SetearDisplayValue()
+        {
+            cmbCategorias.ValueMember = "cat_id";
+            cmbCategorias.DisplayMember = "cat_descripcion";
+
+            lbxPara.ValueMember = "cat_id";
+            lbxPara.DisplayMember = "cat_descripcion";
+        }
+
+        public void CargarComboCategorias()
+        {
+            this.SetearDisplayValue();
+            CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
+            List<tbcategoria> listaCategorias = (List<tbcategoria>)categoriaBusiness.GetListaCategorias();
+
+            foreach (tbcategoria cat in listaCategorias)
+                cmbCategorias.Items.Add(cat);
+        }
+
+        private void btnAgregarCategoria_Click(object sender, EventArgs e)
+        {
+            tbcategoria categoria = (tbcategoria)cmbCategorias.SelectedItem;
+
+            if (categoria != null)
+            {
+                lbxPara.Items.Add(categoria);
+                cmbCategorias.Items.Remove(categoria);
+            }
+        }
+
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+            this.listaDeEmails();
+
+            tbcategoria categoria = (tbcategoria)lbxPara.SelectedItem;
+            if (categoria != null)
+            {
+                lbxPara.Items.Remove(lbxPara.SelectedItem);
+                cmbCategorias.Items.Add(categoria);
+            }
+        }
+
+        private List<string> listaDeEmails()
+        {
+            CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
+            List<tbclienteoperacion> tc = (List<tbclienteoperacion>)categoriaBusiness
+                .GetClientesByIdCategoria(new List<int> { 1, 2 });
+
+            foreach (var obj in tc)
+            {
+                int sarasa = obj.stc_id;
+            
+            }
+
+            return null;
+        }
+        #endregion
+
         private void CargarArchivos()
         {
             OpenFileDialog _file = new OpenFileDialog();
@@ -357,5 +395,6 @@ namespace LandManagement
             }
             return stringCol;
         }
+
     }
 }

@@ -92,6 +92,11 @@ namespace LandManagement
             ValidarRadioButtons();
         }
 
+        private void frmMenuABM_Load(object sender, EventArgs e)
+        {
+            pnlControles.AutoScroll = true;
+        }
+        
         private void SeleccionarItemCombo(tbmenu pMenu)
         {
             tbmenu menuPadre = (tbmenu)menuBusiness.GetElement(

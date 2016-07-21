@@ -22,7 +22,7 @@ namespace LandManagement
         private PropiedadBusiness propiedadBusiness;
         private FamiliarBusiness familiarBusiness;
         private TipoFamiliarBusiness tipoFamiliarBusiness;
-        private TipoPropiedadBusiness tipoPropiedadBusiness;
+        //private TipoPropiedadBusiness tipoPropiedadBusiness;
         private tbcliente cliente;
         private int idCliente = 0;
         private DisplayNameHelper displayNameHelper; 
@@ -73,6 +73,7 @@ namespace LandManagement
 
             InicializarGrillaFamiliares();
             InicializarGrillaPropiedades();
+            InicializarGrillaCategorias();
             
             //Carga grilla propiedades
             foreach (var prop in pCliente.tbpropiedad)
@@ -92,6 +93,12 @@ namespace LandManagement
                 AgregaFamiliarAGrilla(cli1);
             }
 
+            //Carga Grilla categorias
+            CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
+            List<tbcategoria> listaCategorias = (List<tbcategoria>)categoriaBusiness.GetListByClienteId(pCliente);
+            foreach (tbcategoria obj in listaCategorias)
+                this.AgregaCategoriaAGrilla(obj);
+
             btnGuardar.Click -= new EventHandler(btnGuardar_Click);
             btnGuardar.Click += new EventHandler(btnGuardarActualiza_Click);
 
@@ -99,6 +106,7 @@ namespace LandManagement
 
         private void frmClienteABM_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             listasDeElementos = new ListasDeElementos();
             SetearDisplayValueCombos();
@@ -336,7 +344,6 @@ namespace LandManagement
         #endregion
 
         #region Carga Propiedades a la Grilla de Propiedades
-
         private void InicializarGrillaPropiedades()
         {
             dgvPropiedades.Rows.Clear();
@@ -437,8 +444,44 @@ namespace LandManagement
                 }
             }
         }
-
         #endregion
+
+        #region Carga Propiedades a la Grilla de Categorias
+        private void InicializarGrillaCategorias()
+        {
+            dgvCategorias.Rows.Clear();
+            dgvCategorias.Columns.Clear();
+            string[] columnasGrilla = {
+                                        "cat_id",
+                                        "cat_descripcion",
+                                        "cat_fecha"
+                                      };
+
+            int i = 0;
+            foreach (string s in columnasGrilla)
+            {
+                PropertyInfo pi = typeof(tbcategoria).GetProperty(s);
+                displayNameHelper = new DisplayNameHelper();
+                string columna = displayNameHelper.GetMetaDisplayName(pi);
+                dgvCategorias.Columns.Add(s, columna);
+                i++;
+            }
+
+            dgvCategorias.Columns[0].Visible = false;
+        }
+
+        public void AgregaCategoriaAGrilla(tbcategoria _categoria)
+        {
+            int indice;
+            DataGridViewRow dataGridViewRow = new DataGridViewRow();
+            indice = dgvCategorias.Rows.Add();
+            dataGridViewRow = dgvCategorias.Rows[indice];
+            dataGridViewRow.Cells["cat_id"].Value = _categoria.cat_id;
+            dataGridViewRow.Cells["cat_descripcion"].Value = _categoria.cat_descripcion;
+            dataGridViewRow.Cells["cat_fecha"].Value = _categoria.cat_fecha;
+        }
+        #endregion
+
 
         #region CARGA DE COMBOS
 

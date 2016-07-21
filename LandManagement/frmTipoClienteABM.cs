@@ -35,8 +35,10 @@ namespace LandManagement
             //this.formPadre = formularioPadre;
 
         }
+        
         private void frmTipoClienteABM_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             CargarBotones();
         }
 
@@ -55,6 +57,7 @@ namespace LandManagement
                 throw ex;
             }
         }
+        
         private void CargarBotones()
         {
             //this.tcliente = new tbtipocliente();
@@ -63,6 +66,7 @@ namespace LandManagement
             //    btnGuardar.Text = "Actualizar";
             //}
         }
+        
         private void CargaObjetoTCliente()
         {
             //this.tcliente = new tbtipocliente();
@@ -82,6 +86,7 @@ namespace LandManagement
             //else
             //    tclienteBusiness.Create(this.tcliente);
         }
+        
         private void MensajeOk()
         {
             MessageBox.Show("El registro se guardo correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);

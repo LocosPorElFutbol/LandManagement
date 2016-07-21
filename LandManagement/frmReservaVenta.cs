@@ -42,6 +42,7 @@ namespace LandManagement
         {
             try
             {
+                pnlControles.AutoScroll = true;
                 this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
                 this.CargarCombos();
                 gbxDetallePropiedad.Enabled = false;

@@ -32,6 +32,7 @@ namespace LandManagement
 
         private void frmOperacionListado_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             CargarGrilla();
         }
 

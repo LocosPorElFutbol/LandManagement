@@ -41,6 +41,7 @@ namespace LandManagement
 
         private void frmTipoPropiedadABM_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
 
             if (this.getTipoPropiedad() != null)

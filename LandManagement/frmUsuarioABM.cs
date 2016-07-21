@@ -44,6 +44,11 @@ namespace LandManagement
             btnGuardar.Click += new EventHandler(btnGuardarActualiza_Click);
         }
 
+        private void frmUsuarioABM_Load(object sender, EventArgs e)
+        {
+            pnlControles.AutoScroll = true;
+        }
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try

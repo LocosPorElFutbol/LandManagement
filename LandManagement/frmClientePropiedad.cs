@@ -50,6 +50,7 @@ namespace LandManagement
 
         private void frmClientePropiedad_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             listasDeElementos = new ListasDeElementos();
             this.CargarCombos();

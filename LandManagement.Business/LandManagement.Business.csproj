@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlquiladaBusiness.cs" />
+    <Compile Include="CategoriaBusiness.cs" />
     <Compile Include="ClienteBusiness.cs" />
     <Compile Include="ClienteOperacionBusiness.cs" />
     <Compile Include="DomicilioBusiness.cs" />

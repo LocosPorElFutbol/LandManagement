@@ -46,6 +46,7 @@ namespace LandManagement
 
         private void frmTasacion_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.gbxDetalleDireccion.Enabled = false;
             listasDeElementos = new ListasDeElementos();

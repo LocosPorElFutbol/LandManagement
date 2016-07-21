@@ -29,6 +29,7 @@ namespace LandManagement
 
         private void frmTipoFamiliar_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             CargarGrilla();
         }
 

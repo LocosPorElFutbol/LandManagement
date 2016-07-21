@@ -71,32 +71,36 @@
             this.btnAddPropiedad = new System.Windows.Forms.Button();
             this.btnRemovePropiedad = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmbTipoFamiliar = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
+            this.pnlControles = new System.Windows.Forms.Panel();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.dgvCategorias = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.cmbTipoFamiliar = new System.Windows.Forms.ComboBox();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbEstadoCivil = new System.Windows.Forms.ComboBox();
             this.txbCuilCuit = new System.Windows.Forms.TextBox();
             this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
-            this.pnlControles = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFamiliares)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedades)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.groupBox6.SuspendLayout();
+            this.pnlControles.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).BeginInit();
             this.groupBox5.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.pnlControles.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -494,31 +498,51 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Cliente";
             // 
-            // cmbTipoFamiliar
+            // pnlControles
             // 
-            this.cmbTipoFamiliar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipoFamiliar.FormattingEnabled = true;
-            this.cmbTipoFamiliar.Location = new System.Drawing.Point(85, 32);
-            this.cmbTipoFamiliar.Name = "cmbTipoFamiliar";
-            this.cmbTipoFamiliar.Size = new System.Drawing.Size(166, 21);
-            this.cmbTipoFamiliar.TabIndex = 2;
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.groupBox8);
+            this.pnlControles.Controls.Add(this.label1);
+            this.pnlControles.Controls.Add(this.groupBox5);
+            this.pnlControles.Controls.Add(this.groupBox7);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Controls.Add(this.cmbTipoFamiliar);
+            this.pnlControles.Controls.Add(this.btnGuardar);
+            this.pnlControles.Controls.Add(this.groupBox2);
+            this.pnlControles.Controls.Add(this.label4);
+            this.pnlControles.Controls.Add(this.groupBox6);
+            this.pnlControles.Controls.Add(this.groupBox4);
+            this.pnlControles.Controls.Add(this.dtpFechaAlta);
+            this.pnlControles.Controls.Add(this.groupBox3);
+            this.pnlControles.Location = new System.Drawing.Point(6, 19);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(1003, 623);
+            this.pnlControles.TabIndex = 47;
             // 
-            // label4
+            // groupBox8
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 35);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 13);
-            this.label4.TabIndex = 46;
-            this.label4.Text = "Tipo Familiar";
+            this.groupBox8.Controls.Add(this.dgvCategorias);
+            this.groupBox8.Location = new System.Drawing.Point(653, 198);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(322, 187);
+            this.groupBox8.TabIndex = 47;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Categorias";
             // 
-            // dtpFechaAlta
+            // dgvCategorias
             // 
-            this.dtpFechaAlta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaAlta.Location = new System.Drawing.Point(85, 6);
-            this.dtpFechaAlta.Name = "dtpFechaAlta";
-            this.dtpFechaAlta.Size = new System.Drawing.Size(84, 20);
-            this.dtpFechaAlta.TabIndex = 1;
+            this.dgvCategorias.AllowUserToAddRows = false;
+            this.dgvCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCategorias.Location = new System.Drawing.Point(6, 16);
+            this.dgvCategorias.MultiSelect = false;
+            this.dgvCategorias.Name = "dgvCategorias";
+            this.dgvCategorias.ReadOnly = true;
+            this.dgvCategorias.RowHeadersVisible = false;
+            this.dgvCategorias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCategorias.Size = new System.Drawing.Size(307, 165);
+            this.dgvCategorias.TabIndex = 0;
             // 
             // label1
             // 
@@ -529,26 +553,15 @@
             this.label1.TabIndex = 44;
             this.label1.Text = "Fecha Alta";
             // 
-            // btnCancelar
+            // groupBox5
             // 
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(903, 570);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 31;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Location = new System.Drawing.Point(822, 570);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.TabIndex = 30;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            this.groupBox5.Controls.Add(this.txbComoLlego);
+            this.groupBox5.Location = new System.Drawing.Point(647, 65);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(328, 127);
+            this.groupBox5.TabIndex = 41;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Como llego a nosotros";
             // 
             // groupBox7
             // 
@@ -562,65 +575,35 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Propiedades";
             // 
-            // groupBox6
+            // btnCancelar
             // 
-            this.groupBox6.Controls.Add(this.dgvFamiliares);
-            this.groupBox6.Controls.Add(this.btnAddFamiliar);
-            this.groupBox6.Controls.Add(this.btnRemoveFamiliar);
-            this.groupBox6.Location = new System.Drawing.Point(6, 391);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(472, 173);
-            this.groupBox6.TabIndex = 42;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Familiares";
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(903, 570);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 31;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // groupBox5
+            // cmbTipoFamiliar
             // 
-            this.groupBox5.Controls.Add(this.txbComoLlego);
-            this.groupBox5.Location = new System.Drawing.Point(647, 65);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(328, 127);
-            this.groupBox5.TabIndex = 41;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Como llego a nosotros";
+            this.cmbTipoFamiliar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoFamiliar.FormattingEnabled = true;
+            this.cmbTipoFamiliar.Location = new System.Drawing.Point(85, 32);
+            this.cmbTipoFamiliar.Name = "cmbTipoFamiliar";
+            this.cmbTipoFamiliar.Size = new System.Drawing.Size(166, 21);
+            this.cmbTipoFamiliar.TabIndex = 2;
             // 
-            // groupBox4
+            // btnGuardar
             // 
-            this.groupBox4.Controls.Add(this.label5);
-            this.groupBox4.Controls.Add(this.label6);
-            this.groupBox4.Controls.Add(this.txbTelefonoParticular);
-            this.groupBox4.Controls.Add(this.txbTelefonoCelular);
-            this.groupBox4.Controls.Add(this.txbEmail);
-            this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this.txbTelefonoLaboral);
-            this.groupBox4.Location = new System.Drawing.Point(290, 198);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(351, 187);
-            this.groupBox4.TabIndex = 40;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Datos de Contacto";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.txbCalle);
-            this.groupBox3.Controls.Add(this.label20);
-            this.groupBox3.Controls.Add(this.label21);
-            this.groupBox3.Controls.Add(this.txbNumero);
-            this.groupBox3.Controls.Add(this.label23);
-            this.groupBox3.Controls.Add(this.label22);
-            this.groupBox3.Controls.Add(this.txbCodigoPostal);
-            this.groupBox3.Controls.Add(this.label24);
-            this.groupBox3.Controls.Add(this.cmbPiso);
-            this.groupBox3.Controls.Add(this.label25);
-            this.groupBox3.Controls.Add(this.cmbDepto);
-            this.groupBox3.Controls.Add(this.txbLocalidad);
-            this.groupBox3.Location = new System.Drawing.Point(290, 65);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(351, 127);
-            this.groupBox3.TabIndex = 39;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Domicilio";
+            this.btnGuardar.Location = new System.Drawing.Point(822, 570);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.TabIndex = 30;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // groupBox2
             // 
@@ -675,27 +658,72 @@
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(84, 20);
             this.dtpFechaNacimiento.TabIndex = 5;
             // 
-            // pnlControles
+            // label4
             // 
-            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlControles.Controls.Add(this.label1);
-            this.pnlControles.Controls.Add(this.groupBox5);
-            this.pnlControles.Controls.Add(this.groupBox7);
-            this.pnlControles.Controls.Add(this.btnCancelar);
-            this.pnlControles.Controls.Add(this.cmbTipoFamiliar);
-            this.pnlControles.Controls.Add(this.btnGuardar);
-            this.pnlControles.Controls.Add(this.groupBox2);
-            this.pnlControles.Controls.Add(this.label4);
-            this.pnlControles.Controls.Add(this.groupBox6);
-            this.pnlControles.Controls.Add(this.groupBox4);
-            this.pnlControles.Controls.Add(this.dtpFechaAlta);
-            this.pnlControles.Controls.Add(this.groupBox3);
-            this.pnlControles.Location = new System.Drawing.Point(6, 19);
-            this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(1003, 623);
-            this.pnlControles.TabIndex = 47;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 35);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 13);
+            this.label4.TabIndex = 46;
+            this.label4.Text = "Tipo Familiar";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.dgvFamiliares);
+            this.groupBox6.Controls.Add(this.btnAddFamiliar);
+            this.groupBox6.Controls.Add(this.btnRemoveFamiliar);
+            this.groupBox6.Location = new System.Drawing.Point(6, 391);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(472, 173);
+            this.groupBox6.TabIndex = 42;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Familiares";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.txbTelefonoParticular);
+            this.groupBox4.Controls.Add(this.txbTelefonoCelular);
+            this.groupBox4.Controls.Add(this.txbEmail);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Controls.Add(this.txbTelefonoLaboral);
+            this.groupBox4.Location = new System.Drawing.Point(290, 198);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(351, 187);
+            this.groupBox4.TabIndex = 40;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Datos de Contacto";
+            // 
+            // dtpFechaAlta
+            // 
+            this.dtpFechaAlta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaAlta.Location = new System.Drawing.Point(85, 6);
+            this.dtpFechaAlta.Name = "dtpFechaAlta";
+            this.dtpFechaAlta.Size = new System.Drawing.Size(84, 20);
+            this.dtpFechaAlta.TabIndex = 1;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.txbCalle);
+            this.groupBox3.Controls.Add(this.label20);
+            this.groupBox3.Controls.Add(this.label21);
+            this.groupBox3.Controls.Add(this.txbNumero);
+            this.groupBox3.Controls.Add(this.label23);
+            this.groupBox3.Controls.Add(this.label22);
+            this.groupBox3.Controls.Add(this.txbCodigoPostal);
+            this.groupBox3.Controls.Add(this.label24);
+            this.groupBox3.Controls.Add(this.cmbPiso);
+            this.groupBox3.Controls.Add(this.label25);
+            this.groupBox3.Controls.Add(this.cmbDepto);
+            this.groupBox3.Controls.Add(this.txbLocalidad);
+            this.groupBox3.Location = new System.Drawing.Point(290, 65);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(351, 127);
+            this.groupBox3.TabIndex = 39;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Domicilio";
             // 
             // frmClienteABM
             // 
@@ -710,18 +738,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvFamiliares)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedades)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
+            this.pnlControles.ResumeLayout(false);
+            this.pnlControles.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.pnlControles.ResumeLayout(false);
-            this.pnlControles.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -787,5 +817,7 @@
         private System.Windows.Forms.DateTimePicker dtpFechaAlta;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlControles;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.DataGridView dgvCategorias;
     }
 }

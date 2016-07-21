@@ -46,6 +46,7 @@ namespace LandManagement
 
         private void frmPropiedadABM_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             listasDeElementos = new ListasDeElementos();
             this.CargarCombos();
 

@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlquiladaRepository.cs" />
+    <Compile Include="CategoriaRepository.cs" />
     <Compile Include="ClienteOperacionRepository.cs" />
     <Compile Include="ClienteRepository.cs" />
     <Compile Include="DomicilioRepository.cs" />

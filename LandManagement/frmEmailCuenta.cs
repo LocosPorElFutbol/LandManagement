@@ -28,6 +28,7 @@ namespace LandManagement
 
         private void frmMailCuenta_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             txbmail.Text = VariablesDeSesion.UsuarioLogueado.usu_email;
             txbpwd.Text = VariablesDeSesion.UsuarioLogueado.usu_email_password;
