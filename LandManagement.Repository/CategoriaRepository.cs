@@ -63,23 +63,42 @@ namespace LandManagement.Repository
         {
             try
             {
-                var clientesConCategoriaYFecha = (from co in Contexto.tbclienteoperacion
-                                                  join o in Contexto.tboperaciones on co.ope_id equals o.ope_id
-                                                  select new { co.cli_id, co.stc_id, co.ope_id, o.ope_fecha });
+                ClienteOperacionRepository clienteOperacionRepository = new ClienteOperacionRepository();
+                List<tbclienteoperacion> clientesMayor = 
+                    (List<tbclienteoperacion>)clienteOperacionRepository.GetList();
 
-                var clientesUltimaCategoria = from cc in clientesConCategoriaYFecha
-                                              group cc by cc.cli_id into g
-                                              select g.OrderByDescending(x => x.ope_fecha).FirstOrDefault();
+                //var filtro = from 
+                //var clientesConCategoriaYFecha = from o in Contexto.tboperaciones
+                //                                 join co in Contexto.tbclienteoperacion on o.ope_id equals co.ope_id
+                //                                 select new tbcategoria { cli_id = co.cli_id, cat_id = co.stc_id, ope_id = co.ope_id, cat_fecha = o.ope_fecha };
+
+
+
+                //var clientesUltimaCategoria = clientesConCategoriaYFecha.GroupBy(x => x.cli_id)
+                //                              .Select(x => x.OrderByDescending(s => s.cat_fecha)
+                //                              .FirstOrDefault());
+
+                //string sa = (clientesUltimaCategoria as System.Data.Objects.ObjectQuery).ToTraceString();
+
+                //var clientesUltimaCategoria = from cc in clientesConCategoriaYFecha
+                //                              group cc by cc.cli_id into g
+                //                              select g.OrderByDescending(x => x.cat_fecha).First();
 
                 //var clientes = from cuc in clientesUltimaCategoria
+                //               join c in Contexto.tbcliente on cuc.cli_id equals c.cli_id
+                //               select c;
+
+
+                //var clientes = (from cuc in clientesUltimaCategoria
+                //               join c in Contexto.tbcliente on c.cli_id equals cuc.cli_id
                 //               select new { cli_id = cuc.cli_id, stc_id = cuc.stc_id, ope_id = cuc.ope_id };
 
-                var clientes2 = (from cc in Contexto.tbclienteoperacion
-                                from cuc in clientesUltimaCategoria
-                                where cc.cli_id == cuc.cli_id
-                                && cc.ope_id == cuc.ope_id
-                                && cc.stc_id == cuc.stc_id
-                                select cc).ToList();
+                //var clientes2 = (from cc in Contexto.tbclienteoperacion
+                //                from cuc in clientesUltimaCategoria
+                //                where cc.cli_id == cuc.cli_id
+                //                && cc.ope_id == cuc.ope_id
+                //                && cc.stc_id == cuc.stc_id
+                //                select cc).ToList();
                                     
 
                 //List<tbclienteoperacion> c = new List<tbclienteoperacion>();
@@ -115,7 +134,7 @@ namespace LandManagement.Repository
                 //                    join c in Contexto.tbcliente on cc.cli_id equals c.cli_id
                 //                    select c;
 
-                return clientes2.ToList();
+                return clientesMayor.ToList();
             }
             catch (Exception ex)
             {

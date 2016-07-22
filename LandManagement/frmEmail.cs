@@ -332,12 +332,12 @@ namespace LandManagement
         private List<string> listaDeEmails()
         {
             CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
-            List<tbclienteoperacion> tc = (List<tbclienteoperacion>)categoriaBusiness
+            List<tbcategoria> tc = (List<tbcategoria>)categoriaBusiness
                 .GetClientesByIdCategoria(new List<int> { 1, 2 });
 
             foreach (var obj in tc)
             {
-                int sarasa = obj.stc_id;
+                int sarasa = obj.cat_id;
             
             }
 

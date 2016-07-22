@@ -88,6 +88,13 @@ namespace LandManagement.Repository
             }
         }
 
+        public object GetList()
+        {
+            return Contexto.tbclienteoperacion.Include("tbcliente")
+                                              .Include("tboperaciones")
+                                              .Include("tbsystipocliente").ToList();
+        }
+
         public object GetListByIdOperacion(int _idOperacion)
         {
             try

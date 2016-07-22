@@ -11,6 +11,8 @@ namespace LandManagement.Entities
     public class tbcategoria
     {
         public int cat_id { get; set; }
+        public int cli_id { get; set; }
+        public int ope_id { get; set; }
         public string cat_descripcion { get; set; }
         public DateTime? cat_fecha { get; set; }
     }

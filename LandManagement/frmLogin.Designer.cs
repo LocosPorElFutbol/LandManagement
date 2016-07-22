@@ -65,6 +65,7 @@
             this.txbUsuario.Name = "txbUsuario";
             this.txbUsuario.Size = new System.Drawing.Size(143, 20);
             this.txbUsuario.TabIndex = 2;
+            this.txbUsuario.Text = "administrador";
             // 
             // txbPassword
             // 
@@ -73,6 +74,7 @@
             this.txbPassword.PasswordChar = '•';
             this.txbPassword.Size = new System.Drawing.Size(143, 20);
             this.txbPassword.TabIndex = 3;
+            this.txbPassword.Text = "a";
             this.txbPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPassword_KeyPress);
             // 
             // btnAceptar
@@ -129,7 +131,7 @@
             this.pnlControles.Controls.Add(this.btnAceptar);
             this.pnlControles.Location = new System.Drawing.Point(12, 12);
             this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(325, 153);
+            this.pnlControles.Size = new System.Drawing.Size(318, 148);
             this.pnlControles.TabIndex = 8;
             // 
             // frmLogin
@@ -137,7 +139,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(349, 177);
+            this.ClientSize = new System.Drawing.Size(342, 172);
             this.Controls.Add(this.pnlControles);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
