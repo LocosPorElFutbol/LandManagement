@@ -185,5 +185,32 @@ namespace LandManagement.Repository
             }
         }
 
+        public object GetClientesByIdCategoria(List<int> _idsCategoria)
+        {
+            try
+            {
+                CategoriaRepository categoriaRepository = new CategoriaRepository();
+
+                //Busco en categorias los clientes correspondientes a las categorias
+                //enviadas por parametro
+                List<tbcategoria> idClientesByIdCategoria =
+                    (List<tbcategoria>)categoriaRepository.GetIdClientesByIdCategoria(_idsCategoria);
+
+                //Obtengo solo los ids del cliente
+                List<int> ids = idClientesByIdCategoria.Select(x => x.cli_id).ToList();
+
+                //Traigo los clientes matcheando con los ids de la consulta anterior.
+                var clientesByCategoria = from c in Contexto.tbcliente
+                                          where ids.Contains(c.cli_id)
+                                          select c;
+
+                return clientesByCategoria.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

@@ -59,87 +59,55 @@ namespace LandManagement.Repository
             }
         }
 
-        public object GetClientesByIdCategoria(List<int> idsCategoria)
+        private object GetUltimaCategoriaDeClientes()
+        {
+            //Traigo la fecha de operacion a todos los registros de tbclienteoperacion
+            var clientesConCategoriaYFecha = from o in Contexto.tboperaciones
+                                             join co in Contexto.tbclienteoperacion on o.ope_id equals co.ope_id
+                                             select new tbcategoria { cli_id = co.cli_id, cat_id = co.stc_id, ope_id = co.ope_id, cat_fecha = o.ope_fecha };
+
+            //Filtro por ultima fecha de operacion al cliente
+            var maximos = from ccyf in clientesConCategoriaYFecha
+                          group ccyf by ccyf.cli_id into g
+                          select new { cli_id = g.Key, fecha = g.Max(x => x.cat_fecha) };
+
+            //Obtengo el registro de tbclienteoperacion con la ultima fecha de operacion
+            //realizada por el cliente (ultima categoría del cliente)
+            var clientesUltimaCategoria = from co in clientesConCategoriaYFecha
+                                          from cc in maximos
+                                          where co.cli_id == cc.cli_id
+                                          && co.cat_fecha == cc.fecha
+                                          select co;
+
+            //devuelvo lista de tbcategorias
+            return clientesUltimaCategoria.ToList();
+        }
+
+        /// <summary>
+        /// Retorna los ids del cliente en base a los ids de categoría enviados por parametro.
+        /// Nota: Este metodo se invoca desde clienteBusiness, que es el encargado de retornar
+        /// la lista de clientes.
+        /// </summary>
+        /// <param name="_idsCategoria">Lista de enteros correspondientes a las categorias.</param>
+        /// <returns></returns>
+        public object GetIdClientesByIdCategoria(List<int> _idsCategoria)
         {
             try
             {
-                ClienteOperacionRepository clienteOperacionRepository = new ClienteOperacionRepository();
-                List<tbclienteoperacion> clientesMayor = 
-                    (List<tbclienteoperacion>)clienteOperacionRepository.GetList();
+                List<tbcategoria> clientesUltimaCategoria = 
+                    (List<tbcategoria>)this.GetUltimaCategoriaDeClientes();
 
-                //var filtro = from 
-                //var clientesConCategoriaYFecha = from o in Contexto.tboperaciones
-                //                                 join co in Contexto.tbclienteoperacion on o.ope_id equals co.ope_id
-                //                                 select new tbcategoria { cli_id = co.cli_id, cat_id = co.stc_id, ope_id = co.ope_id, cat_fecha = o.ope_fecha };
+                var idClientesByCategoria = from cuc in clientesUltimaCategoria
+                                          where _idsCategoria.Contains(cuc.cat_id)
+                                          select cuc;
 
-
-
-                //var clientesUltimaCategoria = clientesConCategoriaYFecha.GroupBy(x => x.cli_id)
-                //                              .Select(x => x.OrderByDescending(s => s.cat_fecha)
-                //                              .FirstOrDefault());
-
-                //string sa = (clientesUltimaCategoria as System.Data.Objects.ObjectQuery).ToTraceString();
-
-                //var clientesUltimaCategoria = from cc in clientesConCategoriaYFecha
-                //                              group cc by cc.cli_id into g
-                //                              select g.OrderByDescending(x => x.cat_fecha).First();
-
-                //var clientes = from cuc in clientesUltimaCategoria
-                //               join c in Contexto.tbcliente on cuc.cli_id equals c.cli_id
-                //               select c;
-
-
-                //var clientes = (from cuc in clientesUltimaCategoria
-                //               join c in Contexto.tbcliente on c.cli_id equals cuc.cli_id
-                //               select new { cli_id = cuc.cli_id, stc_id = cuc.stc_id, ope_id = cuc.ope_id };
-
-                //var clientes2 = (from cc in Contexto.tbclienteoperacion
-                //                from cuc in clientesUltimaCategoria
-                //                where cc.cli_id == cuc.cli_id
-                //                && cc.ope_id == cuc.ope_id
-                //                && cc.stc_id == cuc.stc_id
-                //                select cc).ToList();
-                                    
-
-                //List<tbclienteoperacion> c = new List<tbclienteoperacion>();
-                //foreach (var obj in clientes)
-                //{
-                //    c.Add(new tbclienteoperacion() { cli_id = obj.cli_id, ope_id = obj.ope_id, stc_id = obj.stc_id});
-                //}
-
-                //var clientesConCategoria = (from co in Contexto.tbclienteoperacion
-                //                            join c in Contexto.tbcliente on co.cli_id equals c.cli_id
-                //                            join o in Contexto.tboperaciones on co.ope_id equals o.ope_id
-                //                            select new { cli_id = co.cli_id, stc_id = co.stc_id, ope_id = o.ope_id, ope_fecha = o.ope_fecha });
-
-                //var clientesUltimaCategoria = from cc in clientesConCategoria
-                //                              group cc by cc.cli_id into g
-                //                              select g.OrderByDescending(x => x.ope_fecha).FirstOrDefault();
-
-                //var clientes = from cuc in clientesUltimaCategoria
-                //               select new tbclienteoperacion { cli_id = cuc.cli_id, stc_id = cuc.stc_id, ope_id = cuc.ope_id };
-
-
-
-
-                //select new tbcategoria { cli_id = g.Key, cat_fecha = g.Max(x => x.ope_fecha) };
-
-                //var clientesPorCategoria = from lc in clientesConCategoria
-                //                           where idsCategoria.Contains(lc.stc_id)
-                //                           select new { lc.cli_id, lc.stc_id, lc.ope_fecha };
-
-
-
-                //var listaClientes = from cc in clientesPorCategoria
-                //                    join c in Contexto.tbcliente on cc.cli_id equals c.cli_id
-                //                    select c;
-
-                return clientesMayor.ToList();
+                return idClientesByCategoria.ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+
     }
 }

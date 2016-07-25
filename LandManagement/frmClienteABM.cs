@@ -11,6 +11,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace LandManagement
 {
@@ -22,7 +23,6 @@ namespace LandManagement
         private PropiedadBusiness propiedadBusiness;
         private FamiliarBusiness familiarBusiness;
         private TipoFamiliarBusiness tipoFamiliarBusiness;
-        //private TipoPropiedadBusiness tipoPropiedadBusiness;
         private tbcliente cliente;
         private int idCliente = 0;
         private DisplayNameHelper displayNameHelper; 
@@ -482,7 +482,6 @@ namespace LandManagement
         }
         #endregion
 
-
         #region CARGA DE COMBOS
 
         private void SetearDisplayValueCombos()
@@ -776,6 +775,49 @@ namespace LandManagement
         private void ValidarEnteros(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
+        }
+
+        bool ValidarEmail(string email)
+        {
+            try
+            {
+                string pattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|"
+                    + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)"
+                    + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
+
+                Regex regEx = new Regex(pattern);
+                Match match = regEx.Match(email);
+
+                if (!match.Success)
+                    return false;
+                else
+                    return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private void txbEmail_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txbEmail.Text))
+            {
+                if (!ValidarEmail(txbEmail.Text))
+                {
+                    btnGuardar.Enabled = false;
+                    txbEmail.ForeColor = Color.Red;
+                    txbEmail.Focus();
+                }
+                else
+                {
+                    txbEmail.ForeColor = Color.Black;
+                    btnGuardar.Enabled = true;
+                }
+            }
+            else
+                btnGuardar.Enabled = true;
+
         }
         #endregion
     }

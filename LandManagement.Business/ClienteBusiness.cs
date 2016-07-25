@@ -77,6 +77,11 @@ namespace LandManagement.Business
             return listaNombresCompletos;
         }
 
+        public object GetClientesByIdCategoria(List<int> _idsCategoria)
+        {
+            return clienteRepository.GetClientesByIdCategoria(_idsCategoria);
+        }
+
         public object CargarNombreCompleto(tbcliente cliente)
         {
             cliente.cli_nombre_completo = cliente.cli_nombre + ", " + cliente.cli_apellido;

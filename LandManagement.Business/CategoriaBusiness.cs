@@ -25,10 +25,5 @@ namespace LandManagement.Business
         {
             return categoriaRepository.GetListaCategorias();
         }
-
-        public object GetClientesByIdCategoria(List<int> idsCategoria)
-        {
-            return categoriaRepository.GetClientesByIdCategoria(idsCategoria);
-        }
     }
 }

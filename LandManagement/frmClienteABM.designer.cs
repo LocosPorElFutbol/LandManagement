@@ -293,6 +293,7 @@
             this.txbEmail.Name = "txbEmail";
             this.txbEmail.Size = new System.Drawing.Size(251, 20);
             this.txbEmail.TabIndex = 22;
+            this.txbEmail.Leave += new System.EventHandler(this.txbEmail_Leave);
             // 
             // cmbSexo
             // 

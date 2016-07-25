@@ -21,12 +21,9 @@ namespace LandManagement
     {
         public static readonly ILog log = log4net.LogManager.GetLogger
             (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        private ClienteBusiness clienteBusiness;
         private IHTMLDocument2 doc;
         private int port;
         private string RutImagen;
-        private string MailFrom;
-        private string MailFromPass;
         MailMessage _Correo = new MailMessage();
         ValidarControles validarControles;
         private ErrorProvider errorProvider1 = new ErrorProvider();
@@ -45,13 +42,6 @@ namespace LandManagement
             doc = hleCuerpo.Document.DomDocument as IHTMLDocument2;
             doc.designMode = "On";
             port = 25;
-
-            //
-            txtclientes.AutoCompleteCustomSource = LoadAutoComplete();
-            txtclientes.AutoCompleteMode = AutoCompleteMode.Suggest;
-            txtclientes.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            // variables
-
 
             if (string.IsNullOrEmpty(VariablesDeSesion.UsuarioLogueado.usu_email) ||
                string.IsNullOrEmpty(VariablesDeSesion.UsuarioLogueado.usu_email_password))
@@ -73,12 +63,11 @@ namespace LandManagement
                     string SAVECONTENTS = hleCuerpo.DocumentText;
                     SAVECONTENTS = SAVECONTENTS.Replace("<BODY>", "<BODY> <div style=" + '"' + "background-image: url(cid:companylogo);" + '"' + ">");
                     SAVECONTENTS = SAVECONTENTS.Replace("</BODY>", "</div></BODY>");
-                    //_Correo.From = new MailAddress(MailFrom);
+
+                    //direccion e-mail origen
                     _Correo.From = new MailAddress(VariablesDeSesion.UsuarioLogueado.usu_email);
-                   
-                    string[] toEmails = txbPara.Text.ToString().Split(';'); //envia a varias direcciones
-                    foreach (string toEmail in toEmails)
-                        _Correo.To.Add(toEmail);
+
+                    CargarEmailsDestinatarios();
                     
                     _Correo.Subject = txtasunto.Text;
                     _Correo.Body = SAVECONTENTS;
@@ -96,7 +85,8 @@ namespace LandManagement
                     _Correo.IsBodyHtml = true;
                     
                     SmtpClient smtp = new SmtpClient();
-                    //smtp.Credentials = new NetworkCredential(MailFrom, MailFromPass);
+
+                    //Cargo credenciales de e-mail origen
                     smtp.Credentials = new NetworkCredential(VariablesDeSesion.UsuarioLogueado.usu_email,
                         VariablesDeSesion.UsuarioLogueado.usu_email_password);
                     smtp.Host = "smtp.gmail.com";
@@ -129,6 +119,23 @@ namespace LandManagement
             }
         }
 
+        private void CargarEmailsDestinatarios()
+        {
+            try
+            {
+                //Carga de emails destino
+                foreach (var email in obtenerListaDeEmails())
+                    _Correo.To.Add(email);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                if (ex.InnerException != null)
+                    log.Error(ex.InnerException.Message);
+                MessageBox.Show("Error en dirección de e-mail/s de destinatario/s. \n por favor, controle almacenamiento de direcciones de email.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnAdjuntar_Click(object sender, EventArgs e)
         {
             CargarArchivos();
@@ -138,36 +145,6 @@ namespace LandManagement
         {
             this.Close();
         }
-
-        bool IsValidEmail(string email)
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        #region Agregar Mail del Cliente al listado (from)
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            string mailcliente;
-            mailcliente = txtclientes.Text;
-            if (!string.IsNullOrEmpty(txtclientes.Text))
-            {
-                if (string.IsNullOrEmpty(txbPara.Text))
-                    txbPara.Text = txbPara.Text + '"' + mailcliente.Replace("<", '"' + " <");
-                else
-                    txbPara.Text = txbPara.Text + ";" + '"' + mailcliente.Replace("<", '"' + " <");
-                txtclientes.Clear();
-            }
-            else MessageBox.Show("Debe seleccionar algun cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-        #endregion
 
         #region Panel de controles Envio de E-mails (Toolstrip)
         private void BoldtoolStrip_Click(object sender, EventArgs e)
@@ -319,8 +296,6 @@ namespace LandManagement
 
         private void btnQuitar_Click(object sender, EventArgs e)
         {
-            this.listaDeEmails();
-
             tbcategoria categoria = (tbcategoria)lbxPara.SelectedItem;
             if (categoria != null)
             {
@@ -329,19 +304,29 @@ namespace LandManagement
             }
         }
 
-        private List<string> listaDeEmails()
+        private List<int> getListIdsCategoriasSelecionadas()
         {
-            CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
-            List<tbcategoria> tc = (List<tbcategoria>)categoriaBusiness
-                .GetClientesByIdCategoria(new List<int> { 1, 2 });
+            List<int> listaCategorias = new List<int>();
+            foreach (tbcategoria cat in lbxPara.Items)
+                listaCategorias.Add(cat.cat_id);
 
-            foreach (var obj in tc)
-            {
-                int sarasa = obj.cat_id;
-            
-            }
+            return listaCategorias;        
+        }
 
-            return null;
+        private List<string> obtenerListaDeEmails()
+        {
+            ClienteBusiness clienteBusiness = new ClienteBusiness();
+            List<string> listaEmails = new List<string>();
+
+            List<tbcliente> clientes =
+                (List<tbcliente>)clienteBusiness.GetClientesByIdCategoria(
+                    getListIdsCategoriasSelecionadas());
+
+            foreach (var obj in clientes)
+                if (!string.IsNullOrEmpty(obj.cli_email))
+                    listaEmails.Add(obj.cli_email);
+
+            return listaEmails;
         }
         #endregion
 
@@ -381,19 +366,6 @@ namespace LandManagement
             }
 
             errorProvider1.SetError(control, error);
-        }
-
-        public AutoCompleteStringCollection LoadAutoComplete()
-        {
-            clienteBusiness = new ClienteBusiness();
-            List<tbcliente> listaclientes = (List<tbcliente>)clienteBusiness.GetList();
-            AutoCompleteStringCollection stringCol = new AutoCompleteStringCollection();
-            foreach (var obj in listaclientes)
-            {
-                if (IsValidEmail(obj.cli_email) != false)
-                    stringCol.Add(obj.cli_apellido + " " + obj.cli_nombre + " <" + obj.cli_email + ">");
-            }
-            return stringCol;
         }
 
     }
