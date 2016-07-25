@@ -33,6 +33,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pnlControles = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txbNombreReservante = new System.Windows.Forms.TextBox();
@@ -65,15 +66,18 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cmbDireccion = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.pnlControles = new System.Windows.Forms.Panel();
+            this.dgvReservantes = new System.Windows.Forms.DataGridView();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnQuitar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.pnlControles.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbxDetallePropiedad.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.pnlControles.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReservantes)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -122,10 +126,26 @@
             this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(712, 368);
+            this.groupBox1.Size = new System.Drawing.Size(1077, 368);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Reserva de Alquiler";
+            // 
+            // pnlControles
+            // 
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.dtpFecha);
+            this.pnlControles.Controls.Add(this.btnGuardar);
+            this.pnlControles.Controls.Add(this.groupBox3);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Controls.Add(this.label2);
+            this.pnlControles.Controls.Add(this.groupBox2);
+            this.pnlControles.Location = new System.Drawing.Point(6, 19);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(1065, 343);
+            this.pnlControles.TabIndex = 27;
             // 
             // groupBox3
             // 
@@ -133,13 +153,15 @@
             this.groupBox3.Controls.Add(this.groupBox4);
             this.groupBox3.Location = new System.Drawing.Point(392, 29);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(303, 282);
+            this.groupBox3.Size = new System.Drawing.Size(652, 282);
             this.groupBox3.TabIndex = 26;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Reservante";
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.btnQuitar);
+            this.groupBox7.Controls.Add(this.dgvReservantes);
             this.groupBox7.Controls.Add(this.txbNombreReservante);
             this.groupBox7.Controls.Add(this.label7);
             this.groupBox7.Controls.Add(this.label3);
@@ -150,7 +172,7 @@
             this.groupBox7.Controls.Add(this.txbGarantia);
             this.groupBox7.Location = new System.Drawing.Point(8, 96);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(288, 171);
+            this.groupBox7.Size = new System.Drawing.Size(638, 171);
             this.groupBox7.TabIndex = 15;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Cliente";
@@ -223,11 +245,12 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.btnAgregar);
             this.groupBox4.Controls.Add(this.cmbCliente);
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Location = new System.Drawing.Point(8, 24);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(286, 61);
+            this.groupBox4.Size = new System.Drawing.Size(360, 61);
             this.groupBox4.TabIndex = 14;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Buscar Cliente";
@@ -431,33 +454,52 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Dirección";
             // 
-            // pnlControles
+            // dgvReservantes
             // 
-            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlControles.Controls.Add(this.dtpFecha);
-            this.pnlControles.Controls.Add(this.btnGuardar);
-            this.pnlControles.Controls.Add(this.groupBox3);
-            this.pnlControles.Controls.Add(this.btnCancelar);
-            this.pnlControles.Controls.Add(this.label2);
-            this.pnlControles.Controls.Add(this.groupBox2);
-            this.pnlControles.Location = new System.Drawing.Point(6, 19);
-            this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(700, 343);
-            this.pnlControles.TabIndex = 27;
+            this.dgvReservantes.AllowUserToAddRows = false;
+            this.dgvReservantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReservantes.Location = new System.Drawing.Point(281, 15);
+            this.dgvReservantes.MultiSelect = false;
+            this.dgvReservantes.Name = "dgvReservantes";
+            this.dgvReservantes.ReadOnly = true;
+            this.dgvReservantes.RowHeadersVisible = false;
+            this.dgvReservantes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvReservantes.Size = new System.Drawing.Size(308, 150);
+            this.dgvReservantes.TabIndex = 14;
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Location = new System.Drawing.Point(271, 24);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(60, 21);
+            this.btnAgregar.TabIndex = 2;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // btnQuitar
+            // 
+            this.btnQuitar.Location = new System.Drawing.Point(595, 15);
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Size = new System.Drawing.Size(30, 23);
+            this.btnQuitar.TabIndex = 15;
+            this.btnQuitar.Text = "-";
+            this.btnQuitar.UseVisualStyleBackColor = true;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
             // 
             // frmReservaAlquiler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(736, 392);
+            this.ClientSize = new System.Drawing.Size(1101, 392);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmReservaAlquiler";
             this.Text = "frmReservaAlquiler";
             this.Load += new System.EventHandler(this.frmReservaAlquiler_Load);
             this.groupBox1.ResumeLayout(false);
+            this.pnlControles.ResumeLayout(false);
+            this.pnlControles.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
@@ -468,8 +510,7 @@
             this.gbxDetallePropiedad.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.pnlControles.ResumeLayout(false);
-            this.pnlControles.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReservantes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -514,5 +555,8 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txbNumero;
         private System.Windows.Forms.Panel pnlControles;
+        private System.Windows.Forms.DataGridView dgvReservantes;
+        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnQuitar;
     }
 }
