@@ -48,8 +48,6 @@ namespace LandManagement
                 this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
                 this.CargarCombos();
                 gbxDetallePropiedad.Enabled = false;
-                txbNombreReservante.Enabled = false;
-                txbApellidoReservante.Enabled = false;
 
                 cmbDireccion.AutoCompleteMode = AutoCompleteMode.Suggest;
                 cmbDireccion.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -176,17 +174,6 @@ namespace LandManagement
         {
             tbclienteoperacion clienteOperacion;
 
-            //Carga de reservante viejo
-            //if (!string.IsNullOrEmpty(txbNombreReservante.Text))
-            //{
-            //    clienteOperacion = new tbclienteoperacion();
-            //    clienteOperacion.cli_id = ((tbcliente)cmbCliente.SelectedItem).cli_id;
-            //    clienteOperacion.stc_id = (int)TipoOperador.RESERALQUI;
-
-            //    _operacion.tbclienteoperacion.Add(clienteOperacion);
-            //}
-
-            //Carga de reservante nueva
             if (dgvReservantes.Rows.Count > 0)
             {
                 foreach (DataGridViewRow obj in dgvReservantes.Rows)
@@ -197,7 +184,6 @@ namespace LandManagement
 
                     _operacion.tbclienteoperacion.Add(clienteOperacion);
                 }
-            
             }
         }
 
@@ -233,7 +219,7 @@ namespace LandManagement
             dtpFecha.Value = _operacion.ope_fecha.Value;
 
             CargarComboDireccion(_operacion);
-            CargarComboReservante(_operacion);
+            CargarGrillaReservante(_operacion);
 
             txbOferta.Text = _operacion.tbreservaalquiler.rea_oferta.ToString();
             txbGarantia.Text = _operacion.tbreservaalquiler.rea_garantia;
@@ -260,32 +246,30 @@ namespace LandManagement
         }
 
         /// <summary>
-        /// Carga el combo del cliente reservante, tener en cuenta que tambien carga los datos del cliente.
+        /// Agrega los reservantes a la grilla (los quita del combo y los agrega a la grilla
         /// </summary>
-        private void CargarComboReservante(tboperaciones _operacion)
+        /// <param name="_operacion">Objeto operacion del cual obtendra los reservantes.</param>
+        private void CargarGrillaReservante(tboperaciones _operacion)
         {
             cmbCliente.Enabled = false;
-            var idAutorizantes = GetIdReservante(_operacion);
-            tbcliente clienteSeleccionado = new tbcliente();
+            btnAgregar.Enabled = false;
+            btnQuitar.Enabled = false;
+
+            var idsReservantes = GetIdsReservante(_operacion);
 
             foreach (tbcliente obj in cmbCliente.Items)
             {
-                if (obj.cli_id == idAutorizantes)
-                {
-                    clienteSeleccionado = obj;
-                    break;
-                }
+                if (idsReservantes.Contains(obj.cli_id))
+                    this.AgregaAutorizanteGrilla(obj);
             }
-
-            cmbCliente.SelectedItem = clienteSeleccionado;
         }
 
-        private int GetIdReservante(tboperaciones _operacion)
+        private List<int> GetIdsReservante(tboperaciones _operacion)
         {
-            var idReservante = GetClientesOperacion(_operacion)
-                .Where(x => x.stc_id == (int)TipoOperador.RESERALQUI)
-                .Select(x => x.cli_id).FirstOrDefault();
-            return idReservante;
+            var idsReservantes = GetClientesOperacion(_operacion)
+                                    .Where(x => x.stc_id == (int)TipoOperador.RESERALQUI)
+                                    .Select(x => x.cli_id).ToList<int>();
+            return idsReservantes;
         }
 
         private IEnumerable<tbclienteoperacion> GetClientesOperacion(tboperaciones _operacion)
@@ -325,17 +309,6 @@ namespace LandManagement
             cmbDepto.Text = _propiedad.pro_departamento;
             txbLocalidad.Text = _propiedad.pro_localidad;
             txbCodigoPostal.Text = _propiedad.pro_codigo_postal;
-        }
-
-        private void cmbCliente_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CargarControlesCliente((tbcliente)cmbCliente.SelectedItem);
-        }
-
-        private void CargarControlesCliente(tbcliente c)
-        {
-            txbNombreReservante.Text = c.cli_nombre;
-            txbApellidoReservante.Text = c.cli_apellido;
         }
         #endregion
 
@@ -412,19 +385,6 @@ namespace LandManagement
         {
             return Convert.ToInt32(_dataGridViewRow.Cells["cli_id"].Value);
         }
-
-        //private tbcliente ObtenerReservanteSeleccionado()
-        //{
-        //    int idClienteSeleccionado = this.ObtenerIdReservanteGrilla(dgvReservantes.SelectedRows[0]);
-
-        //    ClienteBusiness clienteBusiness = new ClienteBusiness();
-        //    tbcliente cliente = (tbcliente)clienteBusiness.GetElement(
-        //        new tbcliente() { cli_id = idClienteSeleccionado });
-
-        //    cliente.cli_nombre_completo = cliente.cli_nombre + ", " + cliente.cli_apellido;
-
-        //    return cliente;
-        //}
         #endregion
 
         #region Carga de Combos TipoPropiedad, Piso, Depto, Direcciones y Clientes

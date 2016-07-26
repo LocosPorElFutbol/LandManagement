@@ -10,6 +10,7 @@ using log4net;
 using LandManagement.Business;
 using LandManagement.Entities;
 using LandManagement.Utilidades;
+using System.Reflection;
 
 namespace LandManagement
 {
@@ -43,17 +44,18 @@ namespace LandManagement
             try
             {
                 pnlControles.AutoScroll = true;
+                cmbCliente.Sorted = true;
                 this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
                 this.CargarCombos();
                 gbxDetallePropiedad.Enabled = false;
-                txbNombreReservante.Enabled = false;
-                txbApellidoReservante.Enabled = false;
 
                 cmbDireccion.AutoCompleteMode = AutoCompleteMode.Suggest;
                 cmbDireccion.AutoCompleteSource = AutoCompleteSource.ListItems;
 
                 cmbCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
                 cmbCliente.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+                InicializarGrillaReservantes();
 
                 if (this.operacion != null)
                 {
@@ -166,13 +168,17 @@ namespace LandManagement
         {
             tbclienteoperacion clienteOperacion;
 
-            if (!string.IsNullOrEmpty(txbNombreReservante.Text))
+            if (dgvReservantes.Rows.Count > 0)
             {
-                clienteOperacion = new tbclienteoperacion();
-                clienteOperacion.cli_id = ((tbcliente)cmbCliente.SelectedItem).cli_id;
-                clienteOperacion.stc_id = (int)TipoOperador.RESERVENTA;
+                foreach (DataGridViewRow obj in dgvReservantes.Rows)
+                {
+                    clienteOperacion = new tbclienteoperacion();
+                    clienteOperacion.cli_id = this.ObtenerIdReservanteGrilla(obj);
+                    clienteOperacion.stc_id = (int)TipoOperador.RESERALQUI;
 
-                _operacion.tbclienteoperacion.Add(clienteOperacion);
+                    _operacion.tbclienteoperacion.Add(clienteOperacion);
+                }
+
             }
         }
 
@@ -225,18 +231,81 @@ namespace LandManagement
             txbLocalidad.Text = p.pro_localidad;
             txbCodigoPostal.Text = p.pro_codigo_postal;
         }
+        #endregion
 
-        private void cmbCliente_SelectedIndexChanged(object sender, EventArgs e)
+        #region Grilla de Reservantes
+        public void InicializarGrillaReservantes()
         {
-            CargarControlesCliente((tbcliente)cmbCliente.SelectedItem);
+            dgvReservantes.Rows.Clear();
+            dgvReservantes.Columns.Clear();
+            string[] columnasGrilla = {
+                                        "cli_id",
+                                        "tif_id",
+                                        "cli_nombre_completo",
+                                        "cli_nombre",
+                                        "cli_apellido",
+                                        "cli_numero_documento",
+                                        "cli_fecha_nacimiento"
+                                      };
+
+            int i = 0;
+            DisplayNameHelper displayNameHelper = new DisplayNameHelper();
+            foreach (string s in columnasGrilla)
+            {
+                PropertyInfo pi = typeof(tbcliente).GetProperty(s);
+                string columna = displayNameHelper.GetMetaDisplayName(pi);
+                dgvReservantes.Columns.Add(s, columna);
+                i++;
+            }
+
+            dgvReservantes.Columns[0].Visible = false;
+            dgvReservantes.Columns[1].Visible = false;
+            dgvReservantes.Columns[2].Visible = false;
         }
 
-        private void CargarControlesCliente(tbcliente c)
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
-            txbNombreReservante.Text = c.cli_nombre;
-            txbApellidoReservante.Text = c.cli_apellido;
+            tbcliente cliente = (tbcliente)cmbCliente.SelectedItem;
+            cmbCliente.Items.Remove(cliente);
+            AgregaAutorizanteGrilla(cliente);
         }
 
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+            int idCliente = 0;
+            if (dgvReservantes.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow obj in dgvReservantes.SelectedRows)
+                {
+                    idCliente = this.ObtenerIdReservanteGrilla(obj);
+                    dgvReservantes.Rows.RemoveAt(obj.Index);
+                }
+
+                ClienteBusiness clienteBusiness = new ClienteBusiness();
+                tbcliente cliente = (tbcliente)clienteBusiness.GetElement(new tbcliente() { cli_id = idCliente });
+                cliente = (tbcliente)clienteBusiness.CargarNombreCompleto(cliente);
+                cmbCliente.Items.Add(cliente);
+            }
+        }
+
+        public void AgregaAutorizanteGrilla(tbcliente _reservante)
+        {
+            DataGridViewRow dataGridViewRow = new DataGridViewRow();
+            int indice = dgvReservantes.Rows.Add();
+            dataGridViewRow = dgvReservantes.Rows[indice];
+            dataGridViewRow.Cells["cli_id"].Value = _reservante.cli_id;
+            dataGridViewRow.Cells["tif_id"].Value = _reservante.tif_id;
+            dataGridViewRow.Cells["cli_nombre_completo"].Value = _reservante.cli_nombre_completo;
+            dataGridViewRow.Cells["cli_nombre"].Value = _reservante.cli_nombre;
+            dataGridViewRow.Cells["cli_apellido"].Value = _reservante.cli_apellido;
+            dataGridViewRow.Cells["cli_numero_documento"].Value = _reservante.cli_numero_documento;
+            dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = _reservante.cli_fecha_nacimiento.ToString("dd/MM/yyyy");
+        }
+
+        public int ObtenerIdReservanteGrilla(DataGridViewRow _dataGridViewRow)
+        {
+            return Convert.ToInt32(_dataGridViewRow.Cells["cli_id"].Value);
+        }
         #endregion
 
         #region Carga de Combos TipoPropiedad, Piso, Depto, Direcciones y Clientes
@@ -323,7 +392,7 @@ namespace LandManagement
             dtpFecha.Value = _operacion.ope_fecha.Value;
 
             CargarComboDireccion(_operacion);
-            CargarComboReservante(_operacion);
+            CargarGrillaReservante(_operacion);
             txbOferta.Text = _operacion.tbreservaventa.rev_oferta.ToString();
             txbObservaciones.Text = this.operacion.tbreservaventa.rev_observaciones;
         }
@@ -349,24 +418,22 @@ namespace LandManagement
         }
 
         /// <summary>
-        /// Carga el combo del cliente reservante, tener en cuenta que tambien carga los datos del cliente.
+        /// Agrega los reservantes a la grilla (los quita del combo y los agrega a la grilla
         /// </summary>
-        private void CargarComboReservante(tboperaciones _operacion)
+        /// <param name="_operacion">Objeto operacion del cual obtendra los reservantes.</param>
+        private void CargarGrillaReservante(tboperaciones _operacion)
         {
             cmbCliente.Enabled = false;
-            var idAutorizantes = GetIdReservante(_operacion);
-            tbcliente clienteSeleccionado = new tbcliente();
+            btnAgregar.Enabled = false;
+            btnQuitar.Enabled = false;
+
+            var idsReservantes = GetIdsReservante(_operacion);
 
             foreach (tbcliente obj in cmbCliente.Items)
             {
-                if (obj.cli_id == idAutorizantes)
-                {
-                    clienteSeleccionado = obj;
-                    break;
-                }
+                if (idsReservantes.Contains(obj.cli_id))
+                    this.AgregaAutorizanteGrilla(obj);
             }
-
-            cmbCliente.SelectedItem = clienteSeleccionado;
         }
 
         private IEnumerable<tbclienteoperacion> GetClientesOperacion(tboperaciones _operacion)
@@ -377,12 +444,12 @@ namespace LandManagement
             return clientesOperacion;
         }
 
-        private int GetIdReservante(tboperaciones _operacion)
+        private List<int> GetIdsReservante(tboperaciones _operacion)
         {
-            var idReservante = GetClientesOperacion(_operacion)
-                .Where(x => x.stc_id == (int)TipoOperador.RESERVENTA)
-                .Select(x => x.cli_id).FirstOrDefault();
-            return idReservante;
+            var idsReservantes = GetClientesOperacion(_operacion)
+                                    .Where(x => x.stc_id == (int)TipoOperador.RESERALQUI)
+                                    .Select(x => x.cli_id).ToList<int>();
+            return idsReservantes;
         }
 
         #endregion
@@ -429,5 +496,6 @@ namespace LandManagement
             errorProvider1.SetError(control, error);
         }
         #endregion
+
     }
 }

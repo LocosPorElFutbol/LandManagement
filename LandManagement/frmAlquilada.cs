@@ -45,14 +45,12 @@ namespace LandManagement
             try
             {
                 pnlControles.AutoScroll = true;
+                cmbCliente.Sorted = true;
+                cmbGarante.Sorted = true;
                 this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
                 this.CargarCombos();
                 this.InicializarGrillaPropietarios();
                 gbxDetallePropiedad.Enabled = false;
-                txbNombreLocatario.Enabled = false;
-                txbApellidoLocatario.Enabled = false;
-                txbNombreGarante.Enabled = false;
-                txbApellidoGarante.Enabled = false;
                 rdbServiciosCargoLocatario.Checked = true;
                 rdbPagoEfectivo.Checked = true;
 
@@ -64,6 +62,9 @@ namespace LandManagement
 
                 cmbGarante.AutoCompleteMode = AutoCompleteMode.Suggest;
                 cmbGarante.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+                InicializarGrillaLocatarios();
+                InicializarGrillaGarantes();
 
                 if (this.getOperacionExistente() != null)
                 {
@@ -184,13 +185,16 @@ namespace LandManagement
         {
             tbclienteoperacion clienteOperacion;
 
-            if (!string.IsNullOrEmpty(txbNombreLocatario.Text))
+            if (dgvLocatarios.Rows.Count > 0)
             {
-                clienteOperacion = new tbclienteoperacion();
-                clienteOperacion.cli_id = ((tbcliente)cmbCliente.SelectedItem).cli_id;
-                clienteOperacion.stc_id = (int)TipoOperador.LOCATARIO;
+                foreach (DataGridViewRow obj in dgvLocatarios.Rows)
+                {
+                    clienteOperacion = new tbclienteoperacion();
+                    clienteOperacion.cli_id = this.ObtenerIdLocatarioGrilla(obj);
+                    clienteOperacion.stc_id = (int)TipoOperador.LOCATARIO;
 
-                _operacion.tbclienteoperacion.Add(clienteOperacion);
+                    _operacion.tbclienteoperacion.Add(clienteOperacion);
+                }
             }
         }
 
@@ -198,13 +202,16 @@ namespace LandManagement
         {
             tbclienteoperacion clienteOperacion;
 
-            if (!string.IsNullOrEmpty(txbNombreGarante.Text))
+            if (dgvGarantes.Rows.Count > 0)
             {
-                clienteOperacion = new tbclienteoperacion();
-                clienteOperacion.cli_id = ((tbcliente)cmbGarante.SelectedItem).cli_id;
-                clienteOperacion.stc_id = (int)TipoOperador.GARANALQUI;
+                foreach (DataGridViewRow obj in dgvGarantes.Rows)
+                {
+                    clienteOperacion = new tbclienteoperacion();
+                    clienteOperacion.cli_id = this.ObtenerIdGaranteGrilla(obj);
+                    clienteOperacion.stc_id = (int)TipoOperador.GARANALQUI;
 
-                _operacion.tbclienteoperacion.Add(clienteOperacion);
+                    _operacion.tbclienteoperacion.Add(clienteOperacion);
+                }
             }
         }
 
@@ -260,8 +267,8 @@ namespace LandManagement
             dtpFecha.Value = _operacion.ope_fecha.Value;
 
             CargarComboDireccion(_operacion);
-            CargarComboLocatario(_operacion);
-            CargarComboGarante(_operacion);
+            CargarGrillaLocatarios(_operacion);
+            CargarGrillaGarantes(_operacion);
 
             //Cargo datos del objeto actualizable
             dtpFechaInicio.Value = _operacion.tbalquilada.alq_fecha_inicio;
@@ -323,47 +330,57 @@ namespace LandManagement
         }
 
         /// <summary>
-        /// Carga el combo del locatario, tener en cuenta que tambien carga los datos del cliente por el
-        /// evento index change del combo de clientes.
+        /// Agrega los locatarios a la grilla (los quita del combo y los agrega a la grilla)
         /// </summary>
-        private void CargarComboLocatario(tboperaciones _operacion)
+        /// <param name="_operacion">Objeto operacion del cual obtendra los reservantes.</param>
+        private void CargarGrillaLocatarios(tboperaciones _operacion)
         {
             cmbCliente.Enabled = false;
-            var idLocatario = GetIdsOperador(_operacion, (int)TipoOperador.LOCATARIO).FirstOrDefault();
-            tbcliente clienteSeleccionado = new tbcliente();
+            btnAgregarLocatario.Enabled = false;
+            btnQuitarLocatario.Enabled = false;
+
+            var idsLocatarios = GetIdsLocatarios(_operacion);
 
             foreach (tbcliente obj in cmbCliente.Items)
             {
-                if (obj.cli_id == idLocatario)
-                {
-                    clienteSeleccionado = obj;
-                    break;
-                }
+                if (idsLocatarios.Contains(obj.cli_id))
+                    this.AgregaLocatarioGrilla(obj);
             }
+        }
 
-            cmbCliente.SelectedItem = clienteSeleccionado;
+        private List<int> GetIdsLocatarios(tboperaciones _operacion)
+        {
+            var idsLocatarios = GetClientesOperacion(_operacion)
+                                    .Where(x => x.stc_id == (int)TipoOperador.LOCATARIO)
+                                    .Select(x => x.cli_id).ToList<int>();
+            return idsLocatarios;
         }
 
         /// <summary>
-        /// Carga el combo del Garante, tener en cuenta que tambien carga los datos del garante por el
-        /// evento index change del combo de garante.
+        /// Agrega los Garantes a la grilla (los quita del combo y los agrega a la grilla)
         /// </summary>
-        private void CargarComboGarante(tboperaciones _operacion)
+        /// <param name="_operacion">Objeto operacion del cual obtendra los reservantes.</param>
+        private void CargarGrillaGarantes(tboperaciones _operacion)
         {
             cmbGarante.Enabled = false;
-            var idGarante = GetIdsOperador(_operacion, (int)TipoOperador.GARANALQUI).FirstOrDefault();
-            tbcliente clienteSeleccionado = new tbcliente();
+            btnAgregarGarante.Enabled = false;
+            btnQuitarGarante.Enabled = false;
+
+            var idsGarantes = GetIdsGarantes(_operacion);
 
             foreach (tbcliente obj in cmbGarante.Items)
             {
-                if (obj.cli_id == idGarante)
-                {
-                    clienteSeleccionado = obj;
-                    break;
-                }
+                if (idsGarantes.Contains(obj.cli_id))
+                    this.AgregaGaranteGrilla(obj);
             }
+        }
 
-            cmbGarante.SelectedItem = clienteSeleccionado;
+        private List<int> GetIdsGarantes(tboperaciones _operacion)
+        {
+            var idsGarantes = GetClientesOperacion(_operacion)
+                                    .Where(x => x.stc_id == (int)TipoOperador.GARANALQUI)
+                                    .Select(x => x.cli_id).ToList<int>();
+            return idsGarantes;
         }
 
         private IEnumerable<int> GetIdsOperador(tboperaciones _operacion, int _codigoOperador)
@@ -413,23 +430,6 @@ namespace LandManagement
             txbCodigoPostal.Text = _propiedad.pro_codigo_postal;
         }
 
-        private void cmbCliente_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CargarControlesCliente(
-                (tbcliente)cmbCliente.SelectedItem, txbNombreLocatario, txbApellidoLocatario);
-        }
-
-        private void cmbGarante_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CargarControlesCliente(
-                (tbcliente)cmbGarante.SelectedItem, txbNombreGarante, txbApellidoGarante);
-        }
-
-        private void CargarControlesCliente(tbcliente c, TextBox _txbNom, TextBox _txbApe)
-        {
-            _txbNom.Text = c.cli_nombre;
-            _txbApe.Text = c.cli_apellido;
-        }
         #endregion
 
         #region Carga Propietarios a la Grilla de Propietarios
@@ -497,6 +497,156 @@ namespace LandManagement
             dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = familiar.cli_fecha_nacimiento;
         }
 
+        #endregion
+
+        #region Grilla de Locatarios
+        public void InicializarGrillaLocatarios()
+        {
+            dgvLocatarios.Rows.Clear();
+            dgvLocatarios.Columns.Clear();
+            string[] columnasGrilla = {
+                                        "cli_id",
+                                        "tif_id",
+                                        "cli_nombre_completo",
+                                        "cli_nombre",
+                                        "cli_apellido",
+                                        "cli_numero_documento",
+                                        "cli_fecha_nacimiento"
+                                      };
+
+            int i = 0;
+            DisplayNameHelper displayNameHelper = new DisplayNameHelper();
+            foreach (string s in columnasGrilla)
+            {
+                PropertyInfo pi = typeof(tbcliente).GetProperty(s);
+                string columna = displayNameHelper.GetMetaDisplayName(pi);
+                dgvLocatarios.Columns.Add(s, columna);
+                i++;
+            }
+
+            dgvLocatarios.Columns[0].Visible = false;
+            dgvLocatarios.Columns[1].Visible = false;
+            dgvLocatarios.Columns[2].Visible = false;
+        }
+
+        private void btnAgregarLocatario_Click(object sender, EventArgs e)
+        {
+            tbcliente cliente = (tbcliente)cmbCliente.SelectedItem;
+            cmbCliente.Items.Remove(cliente);
+            AgregaLocatarioGrilla(cliente);
+        }
+
+        private void btnQuitarLocatario_Click(object sender, EventArgs e)
+        {
+            int idCliente = 0;
+            if (dgvLocatarios.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow obj in dgvLocatarios.SelectedRows)
+                {
+                    idCliente = this.ObtenerIdLocatarioGrilla(obj);
+                    dgvLocatarios.Rows.RemoveAt(obj.Index);
+                }
+
+                ClienteBusiness clienteBusiness = new ClienteBusiness();
+                tbcliente cliente = (tbcliente)clienteBusiness.GetElement(new tbcliente() { cli_id = idCliente });
+                cliente = (tbcliente)clienteBusiness.CargarNombreCompleto(cliente);
+                cmbCliente.Items.Add(cliente);
+            }
+        }
+
+        public void AgregaLocatarioGrilla(tbcliente _locatario)
+        {
+            DataGridViewRow dataGridViewRow = new DataGridViewRow();
+            int indice = dgvLocatarios.Rows.Add();
+            dataGridViewRow = dgvLocatarios.Rows[indice];
+            dataGridViewRow.Cells["cli_id"].Value = _locatario.cli_id;
+            dataGridViewRow.Cells["tif_id"].Value = _locatario.tif_id;
+            dataGridViewRow.Cells["cli_nombre_completo"].Value = _locatario.cli_nombre_completo;
+            dataGridViewRow.Cells["cli_nombre"].Value = _locatario.cli_nombre;
+            dataGridViewRow.Cells["cli_apellido"].Value = _locatario.cli_apellido;
+            dataGridViewRow.Cells["cli_numero_documento"].Value = _locatario.cli_numero_documento;
+            dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = _locatario.cli_fecha_nacimiento.ToString("dd/MM/yyyy");
+        }
+
+        public int ObtenerIdLocatarioGrilla(DataGridViewRow _dataGridViewRow)
+        {
+            return Convert.ToInt32(_dataGridViewRow.Cells["cli_id"].Value);
+        }
+        #endregion
+
+        #region Grilla de Garantes
+        public void InicializarGrillaGarantes()
+        {
+            dgvGarantes.Rows.Clear();
+            dgvGarantes.Columns.Clear();
+            string[] columnasGrilla = {
+                                        "cli_id",
+                                        "tif_id",
+                                        "cli_nombre_completo",
+                                        "cli_nombre",
+                                        "cli_apellido",
+                                        "cli_numero_documento",
+                                        "cli_fecha_nacimiento"
+                                      };
+
+            int i = 0;
+            DisplayNameHelper displayNameHelper = new DisplayNameHelper();
+            foreach (string s in columnasGrilla)
+            {
+                PropertyInfo pi = typeof(tbcliente).GetProperty(s);
+                string columna = displayNameHelper.GetMetaDisplayName(pi);
+                dgvGarantes.Columns.Add(s, columna);
+                i++;
+            }
+
+            dgvGarantes.Columns[0].Visible = false;
+            dgvGarantes.Columns[1].Visible = false;
+            dgvGarantes.Columns[2].Visible = false;
+        }
+
+        private void btnAgregarGarante_Click(object sender, EventArgs e)
+        {
+            tbcliente cliente = (tbcliente)cmbGarante.SelectedItem;
+            cmbGarante.Items.Remove(cliente);
+            AgregaGaranteGrilla(cliente);
+        }
+
+        private void btnQuitarGarante_Click(object sender, EventArgs e)
+        {
+            int idCliente = 0;
+            if (dgvGarantes.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow obj in dgvGarantes.SelectedRows)
+                {
+                    idCliente = this.ObtenerIdGaranteGrilla(obj);
+                    dgvGarantes.Rows.RemoveAt(obj.Index);
+                }
+
+                ClienteBusiness clienteBusiness = new ClienteBusiness();
+                tbcliente cliente = (tbcliente)clienteBusiness.GetElement(new tbcliente() { cli_id = idCliente });
+                cliente = (tbcliente)clienteBusiness.CargarNombreCompleto(cliente);
+                cmbGarante.Items.Add(cliente);
+            }
+        }
+
+        public void AgregaGaranteGrilla(tbcliente _garante)
+        {
+            DataGridViewRow dataGridViewRow = new DataGridViewRow();
+            int indice = dgvGarantes.Rows.Add();
+            dataGridViewRow = dgvGarantes.Rows[indice];
+            dataGridViewRow.Cells["cli_id"].Value = _garante.cli_id;
+            dataGridViewRow.Cells["tif_id"].Value = _garante.tif_id;
+            dataGridViewRow.Cells["cli_nombre_completo"].Value = _garante.cli_nombre_completo;
+            dataGridViewRow.Cells["cli_nombre"].Value = _garante.cli_nombre;
+            dataGridViewRow.Cells["cli_apellido"].Value = _garante.cli_apellido;
+            dataGridViewRow.Cells["cli_numero_documento"].Value = _garante.cli_numero_documento;
+            dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = _garante.cli_fecha_nacimiento.ToString("dd/MM/yyyy");
+        }
+
+        public int ObtenerIdGaranteGrilla(DataGridViewRow _dataGridViewRow)
+        {
+            return Convert.ToInt32(_dataGridViewRow.Cells["cli_id"].Value);
+        }
         #endregion
 
         #region Mensajes de Pantalla
@@ -663,6 +813,6 @@ namespace LandManagement
         {
             e.Handled = !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
         }
-    
+
     }
 }
