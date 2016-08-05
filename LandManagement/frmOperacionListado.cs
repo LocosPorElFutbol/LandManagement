@@ -77,13 +77,13 @@ namespace LandManagement
         private void CargarDataGridView(List<tboperaciones> listaOperaciones)
         {
             dgvOperaciones.Rows.Clear();
+            CargarTipoOperacion(listaOperaciones);
             int indice;
             foreach (var obj in listaOperaciones)
             {
                 indice = dgvOperaciones.Rows.Add();
                 dataGridViewRow = dgvOperaciones.Rows[indice];
                 dataGridViewRow.Cells["ope_id"].Value = obj.ope_id;
-                CargarTipoOperacion(obj);
                 dataGridViewRow.Cells["ope_tipo_operacion"].Value = obj.ope_tipo_operacion;
                 dataGridViewRow.Cells["ope_fecha"].Value = obj.ope_fecha;//.ToString("dd/MM/yyyy");
                 dataGridViewRow.Cells["pro_tip_descripcion"].Value = obj.tbpropiedad.tbtipopropiedad.tip_descripcion;
@@ -96,24 +96,27 @@ namespace LandManagement
             }
         }
 
-        private void CargarTipoOperacion(tboperaciones oper)
+        private void CargarTipoOperacion(List<tboperaciones> _listaOperaciones)
         {
-            if (oper.tas_id != null)
-                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERTASACI"].ToString();
-            if (oper.env_id != null)
-                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERENVENT"].ToString();
-            if (oper.rev_id != null)
-                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERRESVEN"].ToString();
-            if (oper.ven_id != null)
-                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERVENTA"].ToString();
-            if (oper.ena_id != null)
-                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERENALQU"].ToString();
-            if (oper.rea_id != null)
-                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERRESALQ"].ToString();
-            if (oper.alq_id != null)
-                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERALQUIL"].ToString();
-            if (oper.enc_id != null)
-                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERENCUES"].ToString();
+            foreach (var oper in _listaOperaciones)
+            {
+                if (oper.tas_id != null)
+                    oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERTASACI"].ToString();
+                if (oper.env_id != null)
+                    oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERENVENT"].ToString();
+                if (oper.rev_id != null)
+                    oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERRESVEN"].ToString();
+                if (oper.ven_id != null)
+                    oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERVENTA"].ToString();
+                if (oper.ena_id != null)
+                    oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERENALQU"].ToString();
+                if (oper.rea_id != null)
+                    oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERRESALQ"].ToString();
+                if (oper.alq_id != null)
+                    oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERALQUIL"].ToString();
+                if (oper.enc_id != null)
+                    oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERENCUES"].ToString();
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -221,14 +224,12 @@ namespace LandManagement
         {
             try
             {
-                List<string> listaExcluir = new List<string>();
+                Cursor.Current = Cursors.WaitCursor;
 
                 BuscarEnDataGridView buscar = new BuscarEnDataGridView();
-
-                operacionBusiness = new OperacionBusiness();
-                List<tboperaciones> listaFiltrada = (List<tboperaciones>)operacionBusiness.GetList();
-                listaFiltrada = buscar.FiltrarDataGrid(listaFiltrada, listaExcluir, txbBuscarPor.Text);
-                CargarDataGridView(listaFiltrada);
+                dgvOperaciones = buscar.FiltrarDataGridView(dgvOperaciones, txbBuscarPor.Text);
+                
+                Cursor.Current = Cursors.Default;
             }
             catch (Exception ex)
             {

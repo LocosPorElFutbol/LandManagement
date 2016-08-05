@@ -41,10 +41,10 @@ namespace LandManagement
             string[] columnasGrilla = { "cli_id",
                                         "cli_id_padre",
                                         "tif_id",
-                                        "cli_parentezco",
-                                        "cli_fecha",
                                         "cli_nombre",
                                         "cli_apellido",
+                                        "cli_parentezco",
+                                        "cli_fecha",
                                         "cli_telefono_celular",
                                         "cli_telefono_particular",
                                         "cli_telefono_laboral",
@@ -102,7 +102,7 @@ namespace LandManagement
                 dataGridViewRow.Cells["cli_telefono_laboral"].Value = obj.cli_telefono_laboral;
                 dataGridViewRow.Cells["cli_email"].Value = obj.cli_email;
                 dataGridViewRow.Cells["cli_sexo"].Value = obj.cli_sexo;
-                dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = obj.cli_fecha_nacimiento;
+                dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = obj.cli_fecha_nacimiento.ToString("dd/MM/yyyy");
                 dataGridViewRow.Cells["cli_nacionalidad"].Value = obj.cli_nacionalidad;
                 dataGridViewRow.Cells["cli_estado_civil"].Value = obj.cli_estado_civil;
                 dataGridViewRow.Cells["cli_tipo_documento"].Value = obj.cli_tipo_documento;

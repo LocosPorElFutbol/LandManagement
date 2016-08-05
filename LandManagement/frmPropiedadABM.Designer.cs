@@ -29,12 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dgvPropietarios = new System.Windows.Forms.DataGridView();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.dgvOperacionesPropiedad = new System.Windows.Forms.DataGridView();
-            this.btnGuardar = new System.Windows.Forms.Button();
+            this.pnlControles = new System.Windows.Forms.Panel();
             this.gbxDireccion = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txbCalle = new System.Windows.Forms.TextBox();
@@ -52,15 +47,20 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cmbPiso = new System.Windows.Forms.ComboBox();
             this.cmbDepartamento = new System.Windows.Forms.ComboBox();
-            this.pnlControles = new System.Windows.Forms.Panel();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.dgvOperacionesPropiedad = new System.Windows.Forms.DataGridView();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dgvPropietarios = new System.Windows.Forms.DataGridView();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPropietarios)).BeginInit();
-            this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOperacionesPropiedad)).BeginInit();
+            this.pnlControles.SuspendLayout();
             this.gbxDireccion.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.pnlControles.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOperacionesPropiedad)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPropietarios)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -71,75 +71,25 @@
             this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(422, 582);
+            this.groupBox1.Size = new System.Drawing.Size(1086, 507);
             this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información de la Propiedad";
             // 
-            // groupBox2
+            // pnlControles
             // 
-            this.groupBox2.Controls.Add(this.dgvPropietarios);
-            this.groupBox2.Location = new System.Drawing.Point(3, 259);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(402, 130);
-            this.groupBox2.TabIndex = 40;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Propietarios";
-            // 
-            // dgvPropietarios
-            // 
-            this.dgvPropietarios.AllowUserToAddRows = false;
-            this.dgvPropietarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPropietarios.Location = new System.Drawing.Point(6, 19);
-            this.dgvPropietarios.MultiSelect = false;
-            this.dgvPropietarios.Name = "dgvPropietarios";
-            this.dgvPropietarios.ReadOnly = true;
-            this.dgvPropietarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPropietarios.Size = new System.Drawing.Size(377, 101);
-            this.dgvPropietarios.TabIndex = 0;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(330, 531);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 12;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.dgvOperacionesPropiedad);
-            this.groupBox5.Location = new System.Drawing.Point(3, 395);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(402, 130);
-            this.groupBox5.TabIndex = 39;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Operaciones de la Propiedad";
-            // 
-            // dgvOperacionesPropiedad
-            // 
-            this.dgvOperacionesPropiedad.AllowUserToAddRows = false;
-            this.dgvOperacionesPropiedad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOperacionesPropiedad.Location = new System.Drawing.Point(6, 23);
-            this.dgvOperacionesPropiedad.MultiSelect = false;
-            this.dgvOperacionesPropiedad.Name = "dgvOperacionesPropiedad";
-            this.dgvOperacionesPropiedad.ReadOnly = true;
-            this.dgvOperacionesPropiedad.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOperacionesPropiedad.Size = new System.Drawing.Size(377, 101);
-            this.dgvOperacionesPropiedad.TabIndex = 10;
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Location = new System.Drawing.Point(249, 531);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.TabIndex = 11;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Visible = false;
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.gbxDireccion);
+            this.pnlControles.Controls.Add(this.groupBox5);
+            this.pnlControles.Controls.Add(this.groupBox2);
+            this.pnlControles.Controls.Add(this.btnGuardar);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Location = new System.Drawing.Point(6, 19);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(1074, 482);
+            this.pnlControles.TabIndex = 41;
             // 
             // gbxDireccion
             // 
@@ -298,41 +248,91 @@
             this.cmbDepartamento.Size = new System.Drawing.Size(56, 21);
             this.cmbDepartamento.TabIndex = 5;
             // 
-            // pnlControles
+            // groupBox5
             // 
-            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlControles.Controls.Add(this.gbxDireccion);
-            this.pnlControles.Controls.Add(this.groupBox5);
-            this.pnlControles.Controls.Add(this.groupBox2);
-            this.pnlControles.Controls.Add(this.btnGuardar);
-            this.pnlControles.Controls.Add(this.btnCancelar);
-            this.pnlControles.Location = new System.Drawing.Point(6, 19);
-            this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(410, 557);
-            this.pnlControles.TabIndex = 41;
+            this.groupBox5.Controls.Add(this.dgvOperacionesPropiedad);
+            this.groupBox5.Location = new System.Drawing.Point(411, 3);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(660, 447);
+            this.groupBox5.TabIndex = 39;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Operaciones de la Propiedad";
+            // 
+            // dgvOperacionesPropiedad
+            // 
+            this.dgvOperacionesPropiedad.AllowUserToAddRows = false;
+            this.dgvOperacionesPropiedad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOperacionesPropiedad.Location = new System.Drawing.Point(6, 23);
+            this.dgvOperacionesPropiedad.MultiSelect = false;
+            this.dgvOperacionesPropiedad.Name = "dgvOperacionesPropiedad";
+            this.dgvOperacionesPropiedad.ReadOnly = true;
+            this.dgvOperacionesPropiedad.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvOperacionesPropiedad.Size = new System.Drawing.Size(648, 418);
+            this.dgvOperacionesPropiedad.TabIndex = 10;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dgvPropietarios);
+            this.groupBox2.Location = new System.Drawing.Point(3, 259);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(402, 191);
+            this.groupBox2.TabIndex = 40;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Propietarios";
+            // 
+            // dgvPropietarios
+            // 
+            this.dgvPropietarios.AllowUserToAddRows = false;
+            this.dgvPropietarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPropietarios.Location = new System.Drawing.Point(6, 19);
+            this.dgvPropietarios.MultiSelect = false;
+            this.dgvPropietarios.Name = "dgvPropietarios";
+            this.dgvPropietarios.ReadOnly = true;
+            this.dgvPropietarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPropietarios.Size = new System.Drawing.Size(377, 166);
+            this.dgvPropietarios.TabIndex = 0;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(909, 456);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.TabIndex = 11;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Visible = false;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(990, 456);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 12;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // frmPropiedadABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(446, 606);
+            this.ClientSize = new System.Drawing.Size(1110, 531);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmPropiedadABM";
             this.Text = "frmPropiedadABM";
             this.Load += new System.EventHandler(this.frmPropiedadABM_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPropietarios)).EndInit();
-            this.groupBox5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOperacionesPropiedad)).EndInit();
+            this.pnlControles.ResumeLayout(false);
             this.gbxDireccion.ResumeLayout(false);
             this.gbxDireccion.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.pnlControles.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOperacionesPropiedad)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPropietarios)).EndInit();
             this.ResumeLayout(false);
 
         }
