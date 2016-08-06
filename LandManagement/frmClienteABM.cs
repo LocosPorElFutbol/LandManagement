@@ -33,7 +33,6 @@ namespace LandManagement
         private DataGridViewRow dataGridViewRow;
         ValidarControles validarControles;
         private ErrorProvider errorProvider1 = new ErrorProvider();
-
         public frmClienteABM(Form formularioPadre)
         {
             InitializeComponent();
@@ -759,6 +758,8 @@ namespace LandManagement
             Control control = validarControles.ObtenerControl(sender);
             string error = validarControles.ValidarControl(sender);
 
+            //Ingresa al if cuando error tiene un valor 
+            //(es el mensaje de error que se va a mostrar)
             if (!string.IsNullOrEmpty(error))
             {
                 errorProvider1.SetError(control, error);
@@ -768,7 +769,25 @@ namespace LandManagement
                 return;
             }
 
+            //error es nulo
             errorProvider1.SetError(control, error);
+        }
+
+        private void ValidatingControlDni(object sender, CancelEventArgs e)
+        {
+            errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            TextBox textBoxDni = sender as TextBox;
+
+            if (string.IsNullOrEmpty(textBoxDni.Text))
+                ValidatingControl(sender, e);
+
+            if (!string.IsNullOrEmpty(errorProvider1.GetError(textBoxDni)))
+            {
+                e.Cancel = true;
+                return;
+            }
+            
+            errorProvider1.SetError(textBoxDni, "");
         }
 
         #region Validacion de controles
@@ -819,6 +838,21 @@ namespace LandManagement
                 btnGuardar.Enabled = true;
 
         }
+
+        private void txbNumeroDocumento_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            tbcliente cliente = new tbcliente() { cli_numero_documento = textBox.Text };
+
+            ClienteBusiness clienteBus = new ClienteBusiness();
+            tbcliente clienteRepetido = (tbcliente)clienteBus.ValidarExistenciaByDNI(cliente);
+
+            if (clienteRepetido != null)
+                errorProvider1.SetError(textBox, "Numero Existente.");
+            else
+                errorProvider1.SetError(textBox, "");
+        }
         #endregion
+
     }
 }

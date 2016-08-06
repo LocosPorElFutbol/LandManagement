@@ -63,6 +63,11 @@ namespace LandManagement.Business
             return clienteRepository.GetElement(cliente);
         }
 
+        public object ValidarExistenciaByDNI(tbcliente cliente)
+        {
+            return clienteRepository.ValidarExitenciaByDni(cliente);
+        }
+
         public object GetList()
         {
             return clienteRepository.GetList();

@@ -162,6 +162,15 @@ namespace LandManagement.Repository
             }
         }
 
+        public object ValidarExitenciaByDni(tbcliente entity)
+        {
+            var cliente = (from c in Contexto.tbcliente
+                          where c.cli_numero_documento == entity.cli_numero_documento
+                          select c).FirstOrDefault();
+            
+            return cliente;
+        }
+
         public object GetList()
         {
             //return Contexto.CreateObjectSet<tbcliente>().ToList();

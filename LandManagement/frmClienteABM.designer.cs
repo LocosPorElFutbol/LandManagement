@@ -205,7 +205,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(141, 139);
+            this.label14.Location = new System.Drawing.Point(150, 139);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(22, 13);
             this.label14.TabIndex = 14;
@@ -224,7 +224,7 @@
             // 
             this.txbNombre.Location = new System.Drawing.Point(80, 25);
             this.txbNombre.Name = "txbNombre";
-            this.txbNombre.Size = new System.Drawing.Size(166, 20);
+            this.txbNombre.Size = new System.Drawing.Size(179, 20);
             this.txbNombre.TabIndex = 3;
             this.txbNombre.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
@@ -232,7 +232,7 @@
             // 
             this.txbApellido.Location = new System.Drawing.Point(80, 61);
             this.txbApellido.Name = "txbApellido";
-            this.txbApellido.Size = new System.Drawing.Size(166, 20);
+            this.txbApellido.Size = new System.Drawing.Size(179, 20);
             this.txbApellido.TabIndex = 4;
             this.txbApellido.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
@@ -248,12 +248,13 @@
             // 
             // txbNumeroDocumento
             // 
-            this.txbNumeroDocumento.Location = new System.Drawing.Point(165, 133);
+            this.txbNumeroDocumento.Location = new System.Drawing.Point(178, 134);
             this.txbNumeroDocumento.Name = "txbNumeroDocumento";
             this.txbNumeroDocumento.Size = new System.Drawing.Size(81, 20);
             this.txbNumeroDocumento.TabIndex = 7;
+            this.txbNumeroDocumento.TextChanged += new System.EventHandler(this.txbNumeroDocumento_TextChanged);
             this.txbNumeroDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEnteros);
-            this.txbNumeroDocumento.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
+            this.txbNumeroDocumento.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControlDni);
             // 
             // txbTelefonoParticular
             // 
@@ -284,7 +285,7 @@
             // 
             this.txbNacionalidad.Location = new System.Drawing.Point(82, 206);
             this.txbNacionalidad.Name = "txbNacionalidad";
-            this.txbNacionalidad.Size = new System.Drawing.Size(164, 20);
+            this.txbNacionalidad.Size = new System.Drawing.Size(177, 20);
             this.txbNacionalidad.TabIndex = 9;
             // 
             // txbEmail
@@ -301,7 +302,7 @@
             this.cmbSexo.FormattingEnabled = true;
             this.cmbSexo.Location = new System.Drawing.Point(82, 278);
             this.cmbSexo.Name = "cmbSexo";
-            this.cmbSexo.Size = new System.Drawing.Size(164, 21);
+            this.cmbSexo.Size = new System.Drawing.Size(177, 21);
             this.cmbSexo.TabIndex = 11;
             this.cmbSexo.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
@@ -593,7 +594,7 @@
             this.cmbTipoFamiliar.FormattingEnabled = true;
             this.cmbTipoFamiliar.Location = new System.Drawing.Point(85, 32);
             this.cmbTipoFamiliar.Name = "cmbTipoFamiliar";
-            this.cmbTipoFamiliar.Size = new System.Drawing.Size(166, 21);
+            this.cmbTipoFamiliar.Size = new System.Drawing.Size(179, 21);
             this.cmbTipoFamiliar.TabIndex = 2;
             // 
             // btnGuardar
@@ -639,7 +640,7 @@
             this.cmbEstadoCivil.FormattingEnabled = true;
             this.cmbEstadoCivil.Location = new System.Drawing.Point(82, 239);
             this.cmbEstadoCivil.Name = "cmbEstadoCivil";
-            this.cmbEstadoCivil.Size = new System.Drawing.Size(164, 21);
+            this.cmbEstadoCivil.Size = new System.Drawing.Size(177, 21);
             this.cmbEstadoCivil.TabIndex = 10;
             this.cmbEstadoCivil.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
@@ -647,7 +648,7 @@
             // 
             this.txbCuilCuit.Location = new System.Drawing.Point(82, 170);
             this.txbCuilCuit.Name = "txbCuilCuit";
-            this.txbCuilCuit.Size = new System.Drawing.Size(164, 20);
+            this.txbCuilCuit.Size = new System.Drawing.Size(177, 20);
             this.txbCuilCuit.TabIndex = 8;
             this.txbCuilCuit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEnteros);
             // 
@@ -656,7 +657,7 @@
             this.dtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpFechaNacimiento.Location = new System.Drawing.Point(80, 97);
             this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
-            this.dtpFechaNacimiento.Size = new System.Drawing.Size(84, 20);
+            this.dtpFechaNacimiento.Size = new System.Drawing.Size(83, 20);
             this.dtpFechaNacimiento.TabIndex = 5;
             // 
             // label4
