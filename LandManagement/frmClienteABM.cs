@@ -57,7 +57,7 @@ namespace LandManagement
 
             txbNombre.Text = pCliente.cli_nombre;
             txbApellido.Text = pCliente.cli_apellido;
-            txbTelefonoCelular.Text = pCliente.cli_telefono_celular;
+            mtbTelefonoCelular.Text = pCliente.cli_telefono_celular;
             txbTelefonoParticular.Text = pCliente.cli_telefono_particular;
             txbTelefonoLaboral.Text = pCliente.cli_telefono_laboral;
             txbEmail.Text = pCliente.cli_email;
@@ -207,7 +207,7 @@ namespace LandManagement
             this.cliente.tif_id = ((tbtipofamiliar)cmbTipoFamiliar.SelectedItem).tif_id;
             this.cliente.cli_nombre = string.IsNullOrEmpty(txbNombre.Text) ? null : txbNombre.Text;
             this.cliente.cli_apellido = string.IsNullOrEmpty(txbApellido.Text) ? null : txbApellido.Text;
-            this.cliente.cli_telefono_celular = string.IsNullOrEmpty(txbTelefonoCelular.Text) ? null : txbTelefonoCelular.Text;
+            this.cliente.cli_telefono_celular = MaskedTextboxNulo(mtbTelefonoCelular) ? null : mtbTelefonoCelular.Text;
             this.cliente.cli_telefono_particular = string.IsNullOrEmpty(txbTelefonoParticular.Text) ? null : txbTelefonoParticular.Text;
             this.cliente.cli_telefono_laboral = string.IsNullOrEmpty(txbTelefonoLaboral.Text) ? null : txbTelefonoLaboral.Text;
             this.cliente.cli_email = string.IsNullOrEmpty(txbEmail.Text) ? null : txbEmail.Text;
@@ -851,6 +851,13 @@ namespace LandManagement
                 errorProvider1.SetError(textBox, "Numero Existente.");
             else
                 errorProvider1.SetError(textBox, "");
+        }
+
+        private bool MaskedTextboxNulo(MaskedTextBox _maskedTextBox)
+        {
+            if (_maskedTextBox.Text.Replace("-", "").Replace(" ", "").Length == 0)
+                return true;
+            return false;
         }
         #endregion
 

@@ -46,7 +46,6 @@
             this.cmbTipoDocumento = new System.Windows.Forms.ComboBox();
             this.txbNumeroDocumento = new System.Windows.Forms.TextBox();
             this.txbTelefonoParticular = new System.Windows.Forms.TextBox();
-            this.txbTelefonoCelular = new System.Windows.Forms.TextBox();
             this.txbTelefonoLaboral = new System.Windows.Forms.TextBox();
             this.txbNacionalidad = new System.Windows.Forms.TextBox();
             this.txbEmail = new System.Windows.Forms.TextBox();
@@ -89,6 +88,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.mtbTelefonoCelular = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFamiliares)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedades)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -244,7 +244,6 @@
             this.cmbTipoDocumento.Name = "cmbTipoDocumento";
             this.cmbTipoDocumento.Size = new System.Drawing.Size(49, 21);
             this.cmbTipoDocumento.TabIndex = 6;
-            this.cmbTipoDocumento.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // txbNumeroDocumento
             // 
@@ -263,15 +262,6 @@
             this.txbTelefonoParticular.Size = new System.Drawing.Size(131, 20);
             this.txbTelefonoParticular.TabIndex = 19;
             this.txbTelefonoParticular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEnteros);
-            // 
-            // txbTelefonoCelular
-            // 
-            this.txbTelefonoCelular.Location = new System.Drawing.Point(69, 67);
-            this.txbTelefonoCelular.Name = "txbTelefonoCelular";
-            this.txbTelefonoCelular.Size = new System.Drawing.Size(131, 20);
-            this.txbTelefonoCelular.TabIndex = 21;
-            this.txbTelefonoCelular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEnteros);
-            this.txbTelefonoCelular.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // txbTelefonoLaboral
             // 
@@ -304,7 +294,6 @@
             this.cmbSexo.Name = "cmbSexo";
             this.cmbSexo.Size = new System.Drawing.Size(177, 21);
             this.cmbSexo.TabIndex = 11;
-            this.cmbSexo.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // label20
             // 
@@ -376,7 +365,6 @@
             this.cmbPiso.Name = "cmbPiso";
             this.cmbPiso.Size = new System.Drawing.Size(56, 21);
             this.cmbPiso.TabIndex = 15;
-            this.cmbPiso.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // cmbDepto
             // 
@@ -386,7 +374,6 @@
             this.cmbDepto.Name = "cmbDepto";
             this.cmbDepto.Size = new System.Drawing.Size(56, 21);
             this.cmbDepto.TabIndex = 16;
-            this.cmbDepto.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // txbNumero
             // 
@@ -642,7 +629,6 @@
             this.cmbEstadoCivil.Name = "cmbEstadoCivil";
             this.cmbEstadoCivil.Size = new System.Drawing.Size(177, 21);
             this.cmbEstadoCivil.TabIndex = 10;
-            this.cmbEstadoCivil.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // txbCuilCuit
             // 
@@ -683,10 +669,10 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.mtbTelefonoCelular);
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.txbTelefonoParticular);
-            this.groupBox4.Controls.Add(this.txbTelefonoCelular);
             this.groupBox4.Controls.Add(this.txbEmail);
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Controls.Add(this.label8);
@@ -726,6 +712,15 @@
             this.groupBox3.TabIndex = 39;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Domicilio";
+            // 
+            // mtbTelefonoCelular
+            // 
+            this.mtbTelefonoCelular.Location = new System.Drawing.Point(69, 66);
+            this.mtbTelefonoCelular.Mask = "00-0000-0000";
+            this.mtbTelefonoCelular.Name = "mtbTelefonoCelular";
+            this.mtbTelefonoCelular.Size = new System.Drawing.Size(81, 20);
+            this.mtbTelefonoCelular.TabIndex = 48;
+            this.mtbTelefonoCelular.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // frmClienteABM
             // 
@@ -778,7 +773,6 @@
         private System.Windows.Forms.ComboBox cmbTipoDocumento;
         private System.Windows.Forms.TextBox txbNumeroDocumento;
         private System.Windows.Forms.TextBox txbTelefonoParticular;
-        private System.Windows.Forms.TextBox txbTelefonoCelular;
         private System.Windows.Forms.TextBox txbTelefonoLaboral;
         private System.Windows.Forms.TextBox txbNacionalidad;
         private System.Windows.Forms.TextBox txbEmail;
@@ -821,5 +815,6 @@
         private System.Windows.Forms.Panel pnlControles;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.DataGridView dgvCategorias;
+        private System.Windows.Forms.MaskedTextBox mtbTelefonoCelular;
     }
 }
