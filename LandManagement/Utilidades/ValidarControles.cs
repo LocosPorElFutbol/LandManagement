@@ -81,7 +81,7 @@ namespace LandManagement.Utilidades
         private bool ValidarSiEstaIncompleto(MaskedTextBox _maskedTextBox)
         {
             if (ValidarSiEsNulo(_maskedTextBox))
-                return false;
+                return true;
 
             return !_maskedTextBox.MaskCompleted;
         }

@@ -58,8 +58,8 @@ namespace LandManagement
             txbNombre.Text = pCliente.cli_nombre;
             txbApellido.Text = pCliente.cli_apellido;
             mtbTelefonoCelular.Text = pCliente.cli_telefono_celular;
-            txbTelefonoParticular.Text = pCliente.cli_telefono_particular;
-            txbTelefonoLaboral.Text = pCliente.cli_telefono_laboral;
+            mtbTelefonoParticular.Text = pCliente.cli_telefono_particular;
+            mtbTelefonoLaboral.Text = pCliente.cli_telefono_laboral;
             txbEmail.Text = pCliente.cli_email;
             cmbSexo.Text = pCliente.cli_sexo;
             dtpFechaNacimiento.Value = pCliente.cli_fecha_nacimiento;
@@ -113,6 +113,8 @@ namespace LandManagement
 
             if (this.cliente != null)
             {
+                cmbTipoDocumento.Enabled = false;
+                txbNumeroDocumento.Enabled = false;
                 cmbTipoFamiliar.Text = this.cliente.tbtipofamiliar.tif_descripcion;
                 cmbTipoDocumento.Text = this.cliente.cli_tipo_documento;
                 cmbEstadoCivil.Text = this.cliente.cli_estado_civil;
@@ -208,8 +210,8 @@ namespace LandManagement
             this.cliente.cli_nombre = string.IsNullOrEmpty(txbNombre.Text) ? null : txbNombre.Text;
             this.cliente.cli_apellido = string.IsNullOrEmpty(txbApellido.Text) ? null : txbApellido.Text;
             this.cliente.cli_telefono_celular = MaskedTextboxNulo(mtbTelefonoCelular) ? null : mtbTelefonoCelular.Text;
-            this.cliente.cli_telefono_particular = string.IsNullOrEmpty(txbTelefonoParticular.Text) ? null : txbTelefonoParticular.Text;
-            this.cliente.cli_telefono_laboral = string.IsNullOrEmpty(txbTelefonoLaboral.Text) ? null : txbTelefonoLaboral.Text;
+            this.cliente.cli_telefono_particular = MaskedTextboxNulo(mtbTelefonoParticular) ? null : mtbTelefonoParticular.Text;
+            this.cliente.cli_telefono_laboral = MaskedTextboxNulo(mtbTelefonoLaboral) ? null : mtbTelefonoLaboral.Text;
             this.cliente.cli_email = string.IsNullOrEmpty(txbEmail.Text) ? null : txbEmail.Text;
             this.cliente.cli_sexo = string.IsNullOrEmpty(cmbSexo.Text) ? null : cmbSexo.Text;
             this.cliente.cli_fecha_nacimiento=dtpFechaNacimiento.Value;
@@ -786,8 +788,24 @@ namespace LandManagement
                 e.Cancel = true;
                 return;
             }
-            
+
             errorProvider1.SetError(textBoxDni, "");
+        }
+        private void ValidatingControlMaskedTextBox(object sender, CancelEventArgs e)
+        {
+            errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            MaskedTextBox maskedTextBox = sender as MaskedTextBox;
+
+            if (!this.MaskedTextboxNulo(maskedTextBox))
+                if (!maskedTextBox.MaskCompleted)
+                {
+                    errorProvider1.SetError(maskedTextBox, "Error en validación.");
+
+                    e.Cancel = true;
+                    return;
+                }
+
+            errorProvider1.SetError(maskedTextBox, "");
         }
 
         #region Validacion de controles
@@ -841,16 +859,19 @@ namespace LandManagement
 
         private void txbNumeroDocumento_TextChanged(object sender, EventArgs e)
         {
-            TextBox textBox = sender as TextBox;
-            tbcliente cliente = new tbcliente() { cli_numero_documento = textBox.Text };
+            if (this.cliente == null)
+            {
+                TextBox textBox = sender as TextBox;
+                tbcliente cliente = new tbcliente() { cli_numero_documento = textBox.Text };
 
-            ClienteBusiness clienteBus = new ClienteBusiness();
-            tbcliente clienteRepetido = (tbcliente)clienteBus.ValidarExistenciaByDNI(cliente);
+                ClienteBusiness clienteBus = new ClienteBusiness();
+                tbcliente clienteRepetido = (tbcliente)clienteBus.ValidarExistenciaByDNI(cliente);
 
-            if (clienteRepetido != null)
-                errorProvider1.SetError(textBox, "Numero Existente.");
-            else
-                errorProvider1.SetError(textBox, "");
+                if (clienteRepetido != null)
+                    errorProvider1.SetError(textBox, "Numero Existente.");
+                else
+                    errorProvider1.SetError(textBox, "");
+            }
         }
 
         private bool MaskedTextboxNulo(MaskedTextBox _maskedTextBox)
