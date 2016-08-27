@@ -267,7 +267,7 @@
             this.txbEmail.Location = new System.Drawing.Point(69, 143);
             this.txbEmail.Name = "txbEmail";
             this.txbEmail.Size = new System.Drawing.Size(251, 20);
-            this.txbEmail.TabIndex = 22;
+            this.txbEmail.TabIndex = 0;
             this.txbEmail.Leave += new System.EventHandler(this.txbEmail_Leave);
             // 
             // cmbSexo
@@ -338,7 +338,7 @@
             this.txbCalle.Location = new System.Drawing.Point(69, 23);
             this.txbCalle.Name = "txbCalle";
             this.txbCalle.Size = new System.Drawing.Size(131, 20);
-            this.txbCalle.TabIndex = 13;
+            this.txbCalle.TabIndex = 12;
             this.txbCalle.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // cmbPiso
@@ -364,7 +364,7 @@
             this.txbNumero.Location = new System.Drawing.Point(263, 22);
             this.txbNumero.Name = "txbNumero";
             this.txbNumero.Size = new System.Drawing.Size(57, 20);
-            this.txbNumero.TabIndex = 14;
+            this.txbNumero.TabIndex = 13;
             this.txbNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEnteros);
             this.txbNumero.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
@@ -403,7 +403,7 @@
             this.dgvFamiliares.ReadOnly = true;
             this.dgvFamiliares.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvFamiliares.Size = new System.Drawing.Size(409, 148);
-            this.dgvFamiliares.TabIndex = 24;
+            this.dgvFamiliares.TabIndex = 25;
             this.dgvFamiliares.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFamiliares_CellDoubleClick);
             // 
             // btnAddFamiliar
@@ -411,7 +411,7 @@
             this.btnAddFamiliar.Location = new System.Drawing.Point(430, 19);
             this.btnAddFamiliar.Name = "btnAddFamiliar";
             this.btnAddFamiliar.Size = new System.Drawing.Size(27, 23);
-            this.btnAddFamiliar.TabIndex = 25;
+            this.btnAddFamiliar.TabIndex = 26;
             this.btnAddFamiliar.Text = "+";
             this.btnAddFamiliar.UseVisualStyleBackColor = true;
             this.btnAddFamiliar.Click += new System.EventHandler(this.btnAddFamiliar_Click);
@@ -421,7 +421,7 @@
             this.btnRemoveFamiliar.Location = new System.Drawing.Point(430, 48);
             this.btnRemoveFamiliar.Name = "btnRemoveFamiliar";
             this.btnRemoveFamiliar.Size = new System.Drawing.Size(27, 23);
-            this.btnRemoveFamiliar.TabIndex = 26;
+            this.btnRemoveFamiliar.TabIndex = 27;
             this.btnRemoveFamiliar.Text = "-";
             this.btnRemoveFamiliar.UseVisualStyleBackColor = true;
             this.btnRemoveFamiliar.Click += new System.EventHandler(this.btnRemoveFamiliar_Click);
@@ -435,7 +435,7 @@
             this.dgvPropiedades.ReadOnly = true;
             this.dgvPropiedades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPropiedades.Size = new System.Drawing.Size(433, 148);
-            this.dgvPropiedades.TabIndex = 27;
+            this.dgvPropiedades.TabIndex = 28;
             this.dgvPropiedades.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPropiedades_CellDoubleClick);
             // 
             // btnAddPropiedad
@@ -443,7 +443,7 @@
             this.btnAddPropiedad.Location = new System.Drawing.Point(455, 19);
             this.btnAddPropiedad.Name = "btnAddPropiedad";
             this.btnAddPropiedad.Size = new System.Drawing.Size(27, 23);
-            this.btnAddPropiedad.TabIndex = 28;
+            this.btnAddPropiedad.TabIndex = 29;
             this.btnAddPropiedad.Text = "+";
             this.btnAddPropiedad.UseVisualStyleBackColor = true;
             this.btnAddPropiedad.Click += new System.EventHandler(this.btnAddPropiedad_Click);
@@ -453,7 +453,7 @@
             this.btnRemovePropiedad.Location = new System.Drawing.Point(455, 48);
             this.btnRemovePropiedad.Name = "btnRemovePropiedad";
             this.btnRemovePropiedad.Size = new System.Drawing.Size(27, 23);
-            this.btnRemovePropiedad.TabIndex = 29;
+            this.btnRemovePropiedad.TabIndex = 30;
             this.btnRemovePropiedad.Text = "-";
             this.btnRemovePropiedad.UseVisualStyleBackColor = true;
             this.btnRemovePropiedad.Click += new System.EventHandler(this.btnRemovePropiedad_Click);
@@ -493,6 +493,7 @@
             this.pnlControles.Name = "pnlControles";
             this.pnlControles.Size = new System.Drawing.Size(1003, 623);
             this.pnlControles.TabIndex = 47;
+            this.pnlControles.TabStop = true;
             // 
             // groupBox8
             // 
@@ -515,7 +516,7 @@
             this.dgvCategorias.RowHeadersVisible = false;
             this.dgvCategorias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCategorias.Size = new System.Drawing.Size(307, 165);
-            this.dgvCategorias.TabIndex = 0;
+            this.dgvCategorias.TabIndex = 24;
             // 
             // label1
             // 
@@ -554,7 +555,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(903, 570);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 31;
+            this.btnCancelar.TabIndex = 32;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -573,7 +574,7 @@
             this.btnGuardar.Location = new System.Drawing.Point(822, 570);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.TabIndex = 30;
+            this.btnGuardar.TabIndex = 31;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -636,7 +637,7 @@
             this.label4.Location = new System.Drawing.Point(13, 35);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 13);
-            this.label4.TabIndex = 46;
+            this.label4.TabIndex = 0;
             this.label4.Text = "Tipo Familiar";
             // 
             // groupBox6
@@ -674,7 +675,7 @@
             this.mtbTelefonoLaboral.Mask = "0000-0000";
             this.mtbTelefonoLaboral.Name = "mtbTelefonoLaboral";
             this.mtbTelefonoLaboral.Size = new System.Drawing.Size(77, 20);
-            this.mtbTelefonoLaboral.TabIndex = 50;
+            this.mtbTelefonoLaboral.TabIndex = 21;
             this.mtbTelefonoLaboral.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControlMaskedTextBox);
             // 
             // mtbTelefonoParticular
@@ -683,7 +684,7 @@
             this.mtbTelefonoParticular.Mask = "0000-0000";
             this.mtbTelefonoParticular.Name = "mtbTelefonoParticular";
             this.mtbTelefonoParticular.Size = new System.Drawing.Size(77, 20);
-            this.mtbTelefonoParticular.TabIndex = 49;
+            this.mtbTelefonoParticular.TabIndex = 20;
             this.mtbTelefonoParticular.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControlMaskedTextBox);
             // 
             // mtbTelefonoCelular
@@ -692,7 +693,7 @@
             this.mtbTelefonoCelular.Mask = "00-0000-0000";
             this.mtbTelefonoCelular.Name = "mtbTelefonoCelular";
             this.mtbTelefonoCelular.Size = new System.Drawing.Size(77, 20);
-            this.mtbTelefonoCelular.TabIndex = 48;
+            this.mtbTelefonoCelular.TabIndex = 19;
             this.mtbTelefonoCelular.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // dtpFechaAlta
@@ -701,7 +702,7 @@
             this.dtpFechaAlta.Location = new System.Drawing.Point(85, 6);
             this.dtpFechaAlta.Name = "dtpFechaAlta";
             this.dtpFechaAlta.Size = new System.Drawing.Size(84, 20);
-            this.dtpFechaAlta.TabIndex = 1;
+            this.dtpFechaAlta.TabIndex = 0;
             // 
             // groupBox3
             // 
