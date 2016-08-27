@@ -113,8 +113,6 @@ namespace LandManagement
 
             if (this.cliente != null)
             {
-                cmbTipoDocumento.Enabled = false;
-                txbNumeroDocumento.Enabled = false;
                 cmbTipoFamiliar.Text = this.cliente.tbtipofamiliar.tif_descripcion;
                 cmbTipoDocumento.Text = this.cliente.cli_tipo_documento;
                 cmbEstadoCivil.Text = this.cliente.cli_estado_civil;
