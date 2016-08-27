@@ -48,7 +48,7 @@
             this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(595, 300);
+            this.groupBox1.Size = new System.Drawing.Size(610, 321);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Usuarios";
@@ -65,7 +65,7 @@
             this.pnlControles.Controls.Add(this.btnEliminar);
             this.pnlControles.Location = new System.Drawing.Point(6, 19);
             this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(583, 281);
+            this.pnlControles.Size = new System.Drawing.Size(598, 296);
             this.pnlControles.TabIndex = 5;
             // 
             // dgvUsuarios
@@ -82,8 +82,7 @@
             // 
             // btnPermisos
             // 
-            this.btnPermisos.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnPermisos.Location = new System.Drawing.Point(503, 62);
+            this.btnPermisos.Location = new System.Drawing.Point(511, 62);
             this.btnPermisos.Name = "btnPermisos";
             this.btnPermisos.Size = new System.Drawing.Size(75, 23);
             this.btnPermisos.TabIndex = 4;
@@ -93,8 +92,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnAgregar.Location = new System.Drawing.Point(503, 4);
+            this.btnAgregar.Location = new System.Drawing.Point(511, 4);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 1;
@@ -104,9 +102,8 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(503, 91);
+            this.btnCancelar.Location = new System.Drawing.Point(511, 91);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 3;
@@ -116,8 +113,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnEliminar.Location = new System.Drawing.Point(503, 33);
+            this.btnEliminar.Location = new System.Drawing.Point(511, 33);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 2;
@@ -130,7 +126,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(619, 324);
+            this.ClientSize = new System.Drawing.Size(634, 345);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmUsuarioListado";
             this.Text = "frmUsuario";
