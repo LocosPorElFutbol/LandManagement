@@ -16,6 +16,11 @@ namespace LandManagement.Business
             reservaAlquilerRepository = new ReservaAlquilerRepository();
         }
 
+        public void Update(tbreservaalquiler _reservaAlquiler)
+        {
+            reservaAlquilerRepository.Update(_reservaAlquiler);
+        }
+
         public void Delete(tbreservaalquiler _reservaAlquiler)
         {
             reservaAlquilerRepository.Delete(_reservaAlquiler);

@@ -10,31 +10,27 @@ using LandManagement.Entities;
 using System.Reflection;
 using LandManagement.Utilidades;
 using LandManagement.Business;
+using log4net;
 
 namespace LandManagement
 {
-    public partial class frmTipoPropiedad : Form
+    public partial class frmTipoPropiedadListado : Form
     {
-        private TipoPropiedadBusiness tpropiedadBusiness;
+        public static readonly ILog log = log4net.LogManager.GetLogger
+            (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private frmTipoPropiedadABM frmtpropiedadABM;
         private DataGridViewRow dataGridViewRow;
         private DisplayNameHelper displayNameHelper;
-        public frmTipoPropiedad()
+
+        public frmTipoPropiedadListado()
         {
             InitializeComponent();
-            tpropiedadBusiness = new TipoPropiedadBusiness();
         }
 
         private void frmTipoPropiedad_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             CargarGrilla();
-        }
- 
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.Close();
-
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -42,6 +38,90 @@ namespace LandManagement
             frmtpropiedadABM = new frmTipoPropiedadABM(this);
             ControlarInstanciaAbierta(frmtpropiedadABM);
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MensajeEliminacionOK() == System.Windows.Forms.DialogResult.Yes)
+                {
+                    dataGridViewRow = dataGridViewTpropiedad.SelectedRows[0];
+                    int idTPropiedadSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["tip_id"].Value);
+                    TipoPropiedadBusiness tipoPropiedadBusiness = new TipoPropiedadBusiness();
+                    tipoPropiedadBusiness.Delete(new tbtipopropiedad() { tip_id = idTPropiedadSeleccionado });
+                    this.CargarGrilla();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                if (ex.InnerException != null)
+                    log.Error(ex.InnerException.Message);
+                MessageBox.Show("Error al eliminar registro. Existe una referencia hacia este registro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #region Cargar Grilla Tipos de Proiedades
+        public void CargarGrilla()
+        {
+            TipoPropiedadBusiness tipoPropiedadBusiness = new TipoPropiedadBusiness();
+            dataGridViewTpropiedad.Rows.Clear();
+
+            //.Rows.Clear();
+            dataGridViewTpropiedad.Columns.Clear();
+            string[] columnasGrilla = { "tip_id",
+                                         "tip_descripcion",
+                                       };
+
+            int i = 0;
+            foreach (string s in columnasGrilla)
+            {
+                PropertyInfo pi = typeof(tbtipopropiedad).GetProperty(s);
+                displayNameHelper = new DisplayNameHelper();
+                string columna = displayNameHelper.GetMetaDisplayName(pi);
+                dataGridViewTpropiedad.Columns.Add(s, columna);
+                i++;
+            }
+
+            int indice;
+            List<tbtipopropiedad> listatpropiedad = (List<tbtipopropiedad>)tipoPropiedadBusiness.GetList();
+            foreach (var obj in listatpropiedad)
+            {
+                indice = dataGridViewTpropiedad.Rows.Add();
+                dataGridViewRow = dataGridViewTpropiedad.Rows[indice];
+                dataGridViewRow.Cells["tip_id"].Value = obj.tip_id;
+                dataGridViewRow.Cells["tip_descripcion"].Value = obj.tip_descripcion;
+
+            }
+        }
+
+        private void dataGridViewTpropiedad_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tbtipopropiedad tpropiedad = ObtenerTPropiedadSeleccionado();
+
+            frmtpropiedadABM = new frmTipoPropiedadABM(tpropiedad, this);
+            ControlarInstanciaAbierta(frmtpropiedadABM);
+        }
+
+        private tbtipopropiedad ObtenerTPropiedadSeleccionado()
+        {
+            dataGridViewRow = dataGridViewTpropiedad.SelectedRows[0];
+            int idTPropiedadSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["tip_id"].Value);
+
+            TipoPropiedadBusiness tipoPropiedadBusiness = new TipoPropiedadBusiness();
+            tbtipopropiedad tpropiedad = (tbtipopropiedad)tipoPropiedadBusiness.GetElement(
+                new tbtipopropiedad() { tip_id = idTPropiedadSeleccionado });
+            return tpropiedad;
+
+
+        }
+        #endregion
+
         private void ControlarInstanciaAbierta(Form formularioPopUp)
         {
             Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
@@ -72,92 +152,11 @@ namespace LandManagement
             }
 
         }
-        public void CargarGrilla()
-        {
-            tpropiedadBusiness = new TipoPropiedadBusiness();
-            dataGridViewTpropiedad.Rows.Clear();
 
-            //.Rows.Clear();
-            dataGridViewTpropiedad.Columns.Clear();
-            string[] columnasGrilla = { "tip_id",
-                                         "tip_descripcion",
-                                       };
-
-            int i = 0;
-            foreach (string s in columnasGrilla)
-            {
-                PropertyInfo pi = typeof(tbtipopropiedad).GetProperty(s);
-                displayNameHelper = new DisplayNameHelper();
-                string columna = displayNameHelper.GetMetaDisplayName(pi);
-                dataGridViewTpropiedad.Columns.Add(s, columna);
-                i++;
-            }
-
-            int indice;
-            List<tbtipopropiedad> listatpropiedad = (List<tbtipopropiedad>)tpropiedadBusiness.GetList();
-            foreach (var obj in listatpropiedad)
-            {
-                indice = dataGridViewTpropiedad.Rows.Add();
-                dataGridViewRow = dataGridViewTpropiedad.Rows[indice];
-                dataGridViewRow.Cells["tip_id"].Value = obj.tip_id;
-                dataGridViewRow.Cells["tip_descripcion"].Value = obj.tip_descripcion;
-
-            }
-        }
-
-        private void dataGridViewTpropiedad_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            tbtipopropiedad tpropiedad = ObtenerTPropiedadSeleccionado();
-
-
-            frmtpropiedadABM = new frmTipoPropiedadABM(tpropiedad, this);
-            ControlarInstanciaAbierta(frmtpropiedadABM);
-        }
-
-        private tbtipopropiedad ObtenerTPropiedadSeleccionado()
-        {
-            dataGridViewRow = dataGridViewTpropiedad.SelectedRows[0];
-            int idTPropiedadSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["tip_id"].Value);
-
-            tbtipopropiedad tpropiedad = (tbtipopropiedad)tpropiedadBusiness.GetElement(
-                new tbtipopropiedad() { tip_id = idTPropiedadSeleccionado });
-            return tpropiedad;
-
-
-        }
-
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            if (MensajeEliminacionOK() == System.Windows.Forms.DialogResult.Yes)
-            {
-                dataGridViewRow = dataGridViewTpropiedad.SelectedRows[0];
-                int idTPropiedadSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["tip_id"].Value);
-                tpropiedadBusiness.Delete(new tbtipopropiedad() { tip_id = idTPropiedadSeleccionado });
-                this.CargarGrilla();
-            }
-        }
         private DialogResult MensajeEliminacionOK()
         {
             return MessageBox.Show("¿Desea eliminar el tipo de propiedad?",
                         "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-        }
-
-        private void btnAgregar_Click_1(object sender, EventArgs e)
-        {
-            frmtpropiedadABM = new frmTipoPropiedadABM(this);
-            ControlarInstanciaAbierta(frmtpropiedadABM);
-        }
-
-        private void btnEliminar_Click_1(object sender, EventArgs e)
-        {
-            if (MensajeEliminacionOK() == System.Windows.Forms.DialogResult.Yes)
-            {
-                dataGridViewRow = dataGridViewTpropiedad.SelectedRows[0];
-                int idTPropiedadSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["tip_id"].Value);
-                tpropiedadBusiness.Delete(new tbtipopropiedad() { tip_id = idTPropiedadSeleccionado });
-                this.CargarGrilla();
-            }
         }
 
     }

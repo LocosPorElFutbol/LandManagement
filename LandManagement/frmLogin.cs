@@ -12,6 +12,7 @@ using LandManagement.Business;
 using LandManagement.Entities;
 using LandManagement.Utilidades;
 using log4net;
+using System.Configuration;
 
 namespace LandManagement
 {
@@ -36,9 +37,18 @@ namespace LandManagement
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             this.Icon = (Icon)Recursos.ResourceImages.ResourceManager.GetObject("Llave");
             this.Text = "Inicio de Sesión";
             pbxLogoCliente.Image = (Image)Recursos.ResourceImages.ResourceManager.GetObject("Logo");
+            this.Text += " - Land Management v" + ConfigurationManager.AppSettings["version"].ToString();
+
+            if (Properties.Settings.Default.nombreUsuario != string.Empty)
+            {
+                txbUsuario.Text = Properties.Settings.Default.nombreUsuario;
+                txbPassword.Text = Properties.Settings.Default.passwordUsuario;
+                cbxRecordar.Checked = true;
+            }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -46,6 +56,9 @@ namespace LandManagement
             try
             {
                 log.Info("ingreso");
+
+                RecordarDatosDeUsuario();
+
                 Cursor.Current = Cursors.WaitCursor;
                 cantParpadeos = 0;
                 if (ValidacionCredenciales())
@@ -66,6 +79,22 @@ namespace LandManagement
                 MessageBox.Show(ex.InnerException.Message);
             }
             log.Info("salio");
+        }
+
+        private void RecordarDatosDeUsuario()
+        {
+            if (cbxRecordar.Checked)
+            {
+                Properties.Settings.Default.nombreUsuario = txbUsuario.Text;
+                Properties.Settings.Default.passwordUsuario = txbPassword.Text;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Properties.Settings.Default.nombreUsuario = string.Empty;
+                Properties.Settings.Default.passwordUsuario = string.Empty;
+                Properties.Settings.Default.Save();
+            }
         }
 
         void timerParpadeo_Tick(object sender, EventArgs e)

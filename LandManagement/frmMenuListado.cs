@@ -15,7 +15,6 @@ namespace LandManagement
 {
     public partial class frmMenuListado : Form
     {
-        private MenuBusiness menuBusiness;
         private frmMenuABM formularioMenuABM;
         private DataGridViewRow dataGridViewRow;
         private DisplayNameHelper displayNameHelper;
@@ -23,11 +22,11 @@ namespace LandManagement
         public frmMenuListado()
         {
             InitializeComponent();
-            menuBusiness = new MenuBusiness();
         }
 
         private void frmMenu_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             CargarGrilla();
         }
 
@@ -60,7 +59,7 @@ namespace LandManagement
 
         private void CargarDataGridViewLista()
         {
-            menuBusiness = new MenuBusiness();
+            MenuBusiness menuBusiness = new MenuBusiness();
             List<tbmenu> listaMenu = (List<tbmenu>)menuBusiness.GetList();
             CargarDataGridView(listaMenu);
         }
@@ -73,6 +72,7 @@ namespace LandManagement
             {
                 tbmenu padre = new tbmenu() { men_nombre = string.Empty };
 
+                MenuBusiness menuBusiness = new MenuBusiness();
                 if (obj.men_id_padre != null)
                     padre = (tbmenu)menuBusiness.GetElement(new tbmenu() { men_id = obj.men_id_padre.Value });
 
@@ -97,6 +97,7 @@ namespace LandManagement
         {
             dataGridViewRow = dgvMenu.SelectedRows[0];
             int idMenuSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["men_id"].Value);
+            MenuBusiness menuBusiness = new MenuBusiness();
             tbmenu menu = (tbmenu)menuBusiness.GetElement(new tbmenu() { men_id = idMenuSeleccionado });
             
             formularioMenuABM = new frmMenuABM(menu, this);
@@ -109,6 +110,7 @@ namespace LandManagement
             {
                 dataGridViewRow = dgvMenu.SelectedRows[0];
                 int idMenuSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["men_id"].Value);
+                MenuBusiness menuBusiness = new MenuBusiness();
                 menuBusiness.Delete(new tbmenu() { men_id = idMenuSeleccionado });
                 this.CargarGrilla();
             }
@@ -126,7 +128,7 @@ namespace LandManagement
             List<string> listaExcluir = new List<string>() { "men_id", "men_id_padre", "men_nombre_formulario", "men_estado" };
             BuscarEnDataGridView buscar = new BuscarEnDataGridView();
 
-            menuBusiness = new MenuBusiness();
+            MenuBusiness menuBusiness = new MenuBusiness();
             List<tbmenu> listaFiltrada = (List<tbmenu>)menuBusiness.GetList();
             listaFiltrada = buscar.FiltrarDataGrid(listaFiltrada, listaExcluir, txbBuscarPor.Text);
             CargarDataGridView(listaFiltrada);

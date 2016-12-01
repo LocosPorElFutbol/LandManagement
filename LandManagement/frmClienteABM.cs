@@ -11,6 +11,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace LandManagement
 {
@@ -22,7 +23,6 @@ namespace LandManagement
         private PropiedadBusiness propiedadBusiness;
         private FamiliarBusiness familiarBusiness;
         private TipoFamiliarBusiness tipoFamiliarBusiness;
-        private TipoPropiedadBusiness tipoPropiedadBusiness;
         private tbcliente cliente;
         private int idCliente = 0;
         private DisplayNameHelper displayNameHelper; 
@@ -33,7 +33,6 @@ namespace LandManagement
         private DataGridViewRow dataGridViewRow;
         ValidarControles validarControles;
         private ErrorProvider errorProvider1 = new ErrorProvider();
-
         public frmClienteABM(Form formularioPadre)
         {
             InitializeComponent();
@@ -58,9 +57,9 @@ namespace LandManagement
 
             txbNombre.Text = pCliente.cli_nombre;
             txbApellido.Text = pCliente.cli_apellido;
-            txbTelefonoCelular.Text = pCliente.cli_telefono_celular;
-            txbTelefonoParticular.Text = pCliente.cli_telefono_particular;
-            txbTelefonoLaboral.Text = pCliente.cli_telefono_laboral;
+            mtbTelefonoCelular.Text = pCliente.cli_telefono_celular;
+            mtbTelefonoParticular.Text = pCliente.cli_telefono_particular;
+            mtbTelefonoLaboral.Text = pCliente.cli_telefono_laboral;
             txbEmail.Text = pCliente.cli_email;
             cmbSexo.Text = pCliente.cli_sexo;
             dtpFechaNacimiento.Value = pCliente.cli_fecha_nacimiento;
@@ -73,6 +72,7 @@ namespace LandManagement
 
             InicializarGrillaFamiliares();
             InicializarGrillaPropiedades();
+            InicializarGrillaCategorias();
             
             //Carga grilla propiedades
             foreach (var prop in pCliente.tbpropiedad)
@@ -92,6 +92,12 @@ namespace LandManagement
                 AgregaFamiliarAGrilla(cli1);
             }
 
+            //Carga Grilla categorias
+            CategoriaBusiness categoriaBusiness = new CategoriaBusiness();
+            List<tbcategoria> listaCategorias = (List<tbcategoria>)categoriaBusiness.GetListByClienteId(pCliente);
+            foreach (tbcategoria obj in listaCategorias)
+                this.AgregaCategoriaAGrilla(obj);
+
             btnGuardar.Click -= new EventHandler(btnGuardar_Click);
             btnGuardar.Click += new EventHandler(btnGuardarActualiza_Click);
 
@@ -99,6 +105,7 @@ namespace LandManagement
 
         private void frmClienteABM_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             listasDeElementos = new ListasDeElementos();
             SetearDisplayValueCombos();
@@ -126,7 +133,6 @@ namespace LandManagement
                 TipoPropiedadBusiness tipoPropiedadBusiness = new TipoPropiedadBusiness();
                 tbtipopropiedad tipoPropiedad = (tbtipopropiedad)tipoPropiedadBusiness.GetElement(new tbtipopropiedad() { tip_id = domicilioActual.tip_id });
 
-                cmbTipoPropiedad.Text = tipoPropiedad.tip_descripcion;
                 txbCalle.Text = domicilioActual.dom_calle;
                 txbNumero.Text = domicilioActual.dom_numero.ToString();
                 cmbPiso.Text = domicilioActual.dom_piso.ToString();
@@ -201,9 +207,9 @@ namespace LandManagement
             this.cliente.tif_id = ((tbtipofamiliar)cmbTipoFamiliar.SelectedItem).tif_id;
             this.cliente.cli_nombre = string.IsNullOrEmpty(txbNombre.Text) ? null : txbNombre.Text;
             this.cliente.cli_apellido = string.IsNullOrEmpty(txbApellido.Text) ? null : txbApellido.Text;
-            this.cliente.cli_telefono_celular = string.IsNullOrEmpty(txbTelefonoCelular.Text) ? null : txbTelefonoCelular.Text;
-            this.cliente.cli_telefono_particular = string.IsNullOrEmpty(txbTelefonoParticular.Text) ? null : txbTelefonoParticular.Text;
-            this.cliente.cli_telefono_laboral = string.IsNullOrEmpty(txbTelefonoLaboral.Text) ? null : txbTelefonoLaboral.Text;
+            this.cliente.cli_telefono_celular = MaskedTextboxNulo(mtbTelefonoCelular) ? null : mtbTelefonoCelular.Text;
+            this.cliente.cli_telefono_particular = MaskedTextboxNulo(mtbTelefonoParticular) ? null : mtbTelefonoParticular.Text;
+            this.cliente.cli_telefono_laboral = MaskedTextboxNulo(mtbTelefonoLaboral) ? null : mtbTelefonoLaboral.Text;
             this.cliente.cli_email = string.IsNullOrEmpty(txbEmail.Text) ? null : txbEmail.Text;
             this.cliente.cli_sexo = string.IsNullOrEmpty(cmbSexo.Text) ? null : cmbSexo.Text;
             this.cliente.cli_fecha_nacimiento=dtpFechaNacimiento.Value;
@@ -236,7 +242,7 @@ namespace LandManagement
             try
             {
                 tbdomicilio domicilio = new tbdomicilio();
-                domicilio.tip_id = ((tbtipopropiedad)cmbTipoPropiedad.SelectedItem).tip_id;
+                domicilio.tip_id = 1; //Se limino el combo tipo de propiedad;
                 domicilio.dom_calle = string.IsNullOrEmpty(txbCalle.Text) ? null : txbCalle.Text;
                 domicilio.dom_numero = string.IsNullOrEmpty(txbNumero.Text) ? 0 : Convert.ToInt32(txbNumero.Text);
                 domicilio.dom_piso = ((ComboBoxItem)cmbPiso.SelectedItem).Value;
@@ -337,7 +343,6 @@ namespace LandManagement
         #endregion
 
         #region Carga Propiedades a la Grilla de Propiedades
-
         private void InicializarGrillaPropiedades()
         {
             dgvPropiedades.Rows.Clear();
@@ -438,7 +443,42 @@ namespace LandManagement
                 }
             }
         }
+        #endregion
 
+        #region Carga Propiedades a la Grilla de Categorias
+        private void InicializarGrillaCategorias()
+        {
+            dgvCategorias.Rows.Clear();
+            dgvCategorias.Columns.Clear();
+            string[] columnasGrilla = {
+                                        "cat_id",
+                                        "cat_descripcion",
+                                        "cat_fecha"
+                                      };
+
+            int i = 0;
+            foreach (string s in columnasGrilla)
+            {
+                PropertyInfo pi = typeof(tbcategoria).GetProperty(s);
+                displayNameHelper = new DisplayNameHelper();
+                string columna = displayNameHelper.GetMetaDisplayName(pi);
+                dgvCategorias.Columns.Add(s, columna);
+                i++;
+            }
+
+            dgvCategorias.Columns[0].Visible = false;
+        }
+
+        public void AgregaCategoriaAGrilla(tbcategoria _categoria)
+        {
+            int indice;
+            DataGridViewRow dataGridViewRow = new DataGridViewRow();
+            indice = dgvCategorias.Rows.Add();
+            dataGridViewRow = dgvCategorias.Rows[indice];
+            dataGridViewRow.Cells["cat_id"].Value = _categoria.cat_id;
+            dataGridViewRow.Cells["cat_descripcion"].Value = _categoria.cat_descripcion;
+            dataGridViewRow.Cells["cat_fecha"].Value = _categoria.cat_fecha;
+        }
         #endregion
 
         #region CARGA DE COMBOS
@@ -463,8 +503,6 @@ namespace LandManagement
             cmbDepto.DisplayMember = ComboBoxItem.DisplayMember;
             cmbDepto.ValueMember = ComboBoxItem.ValueMember;
 
-            cmbTipoPropiedad.DisplayMember = "tip_descripcion";
-            cmbTipoPropiedad.ValueMember = "tip_id";
         }
 
         private void CargarCombos()
@@ -475,7 +513,6 @@ namespace LandManagement
             this.CargarSexo();
             this.CargarPiso();
             this.CargarDepto();
-            this.CargarTipoPropiedad();
             SetearIndiceCombo();
         }
 
@@ -487,7 +524,6 @@ namespace LandManagement
             cmbSexo.SelectedIndex = 0;
             cmbPiso.SelectedIndex = 0;
             cmbDepto.SelectedIndex = 0;
-            cmbTipoPropiedad.SelectedIndex = 0;
         }
 
         private void CargarTipoFamiliar()
@@ -522,15 +558,6 @@ namespace LandManagement
         private void CargarDepto()
         {
             this.CargarCombo(listasDeElementos.GetListaDepto(), cmbDepto);
-        }
-
-        private void CargarTipoPropiedad()
-        {
-            tipoPropiedadBusiness = new TipoPropiedadBusiness();
-            List<tbtipopropiedad> listaPropiedades = (List<tbtipopropiedad>)tipoPropiedadBusiness.GetList();
-
-            foreach (var obj in listaPropiedades)
-                cmbTipoPropiedad.Items.Add(obj);
         }
 
         private void CargarCombo(List<ComboBoxItem> lista, ComboBox combo)
@@ -662,11 +689,6 @@ namespace LandManagement
 
         #endregion
 
-        private void txbNumero_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-        }
-
         private void MensajeOk()
         {
             MessageBox.Show("El registro se guardo correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -736,6 +758,8 @@ namespace LandManagement
             Control control = validarControles.ObtenerControl(sender);
             string error = validarControles.ValidarControl(sender);
 
+            //Ingresa al if cuando error tiene un valor 
+            //(es el mensaje de error que se va a mostrar)
             if (!string.IsNullOrEmpty(error))
             {
                 errorProvider1.SetError(control, error);
@@ -745,8 +769,116 @@ namespace LandManagement
                 return;
             }
 
+            //error es nulo
             errorProvider1.SetError(control, error);
         }
+
+        private void ValidatingControlDni(object sender, CancelEventArgs e)
+        {
+            errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            TextBox textBoxDni = sender as TextBox;
+
+            if (string.IsNullOrEmpty(textBoxDni.Text))
+                ValidatingControl(sender, e);
+
+            if (!string.IsNullOrEmpty(errorProvider1.GetError(textBoxDni)))
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            errorProvider1.SetError(textBoxDni, "");
+        }
+        private void ValidatingControlMaskedTextBox(object sender, CancelEventArgs e)
+        {
+            errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            MaskedTextBox maskedTextBox = sender as MaskedTextBox;
+
+            if (!this.MaskedTextboxNulo(maskedTextBox))
+                if (!maskedTextBox.MaskCompleted)
+                {
+                    errorProvider1.SetError(maskedTextBox, "Error en validación.");
+
+                    e.Cancel = true;
+                    return;
+                }
+
+            errorProvider1.SetError(maskedTextBox, "");
+        }
+
+        #region Validacion de controles
+        private void ValidarEnteros(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
+        }
+
+        bool ValidarEmail(string email)
+        {
+            try
+            {
+                string pattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|"
+                    + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)"
+                    + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
+
+                Regex regEx = new Regex(pattern);
+                Match match = regEx.Match(email);
+
+                if (!match.Success)
+                    return false;
+                else
+                    return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private void txbEmail_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txbEmail.Text))
+            {
+                if (!ValidarEmail(txbEmail.Text))
+                {
+                    btnGuardar.Enabled = false;
+                    txbEmail.ForeColor = Color.Red;
+                    txbEmail.Focus();
+                }
+                else
+                {
+                    txbEmail.ForeColor = Color.Black;
+                    btnGuardar.Enabled = true;
+                }
+            }
+            else
+                btnGuardar.Enabled = true;
+
+        }
+
+        private void txbNumeroDocumento_TextChanged(object sender, EventArgs e)
+        {
+            if (this.cliente == null)
+            {
+                TextBox textBox = sender as TextBox;
+                tbcliente cliente = new tbcliente() { cli_numero_documento = textBox.Text };
+
+                ClienteBusiness clienteBus = new ClienteBusiness();
+                tbcliente clienteRepetido = (tbcliente)clienteBus.ValidarExistenciaByDNI(cliente);
+
+                if (clienteRepetido != null)
+                    errorProvider1.SetError(textBox, "Numero Existente.");
+                else
+                    errorProvider1.SetError(textBox, "");
+            }
+        }
+
+        private bool MaskedTextboxNulo(MaskedTextBox _maskedTextBox)
+        {
+            if (_maskedTextBox.Text.Replace("-", "").Replace(" ", "").Length == 0)
+                return true;
+            return false;
+        }
+        #endregion
 
     }
 }

@@ -104,6 +104,7 @@
       <DependentUpon>LandManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tbcategoria.cs" />
     <Compile Include="tbcliente.cs" />
     <Compile Include="tbmenu.cs" />
     <Compile Include="tboperaciones.cs" />

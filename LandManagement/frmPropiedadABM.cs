@@ -46,6 +46,7 @@ namespace LandManagement
 
         private void frmPropiedadABM_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             listasDeElementos = new ListasDeElementos();
             this.CargarCombos();
 
@@ -178,10 +179,23 @@ namespace LandManagement
 
         private void CargarTipoOperacion(tboperaciones oper)
         {
+            if (oper.tas_id != null)
+                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERTASACI"].ToString();
             if (oper.env_id != null)
                 oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERENVENT"].ToString();
-        }
-        
+            if (oper.rev_id != null)
+                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERRESVEN"].ToString();
+            if (oper.ven_id != null)
+                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERVENTA"].ToString();
+            if (oper.ena_id != null)
+                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERENALQU"].ToString();
+            if (oper.rea_id != null)
+                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERRESALQ"].ToString();
+            if (oper.alq_id != null)
+                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERALQUIL"].ToString();
+            if (oper.enc_id != null)
+                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERENCUES"].ToString();
+        }        
         #endregion
 
         #region Carga de combos

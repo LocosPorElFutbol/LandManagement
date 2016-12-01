@@ -46,6 +46,7 @@ namespace LandManagement
 
         private void frmTasacion_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.gbxDetalleDireccion.Enabled = false;
             listasDeElementos = new ListasDeElementos();
@@ -148,9 +149,6 @@ namespace LandManagement
             this.operacion.tbtasacion.tas_observaciones = txbObservaciones.Text;
         }
 
-        /// <summary>
-        /// Recordar que se esta clavando el 2 de propietario y el 1 de autorizante, MEJORAR!
-        /// </summary>
         private void CargoPropietariosALaOperacion()
         {
             tbclienteoperacion clienteOperacion;
@@ -166,7 +164,7 @@ namespace LandManagement
                 {
                     clienteOperacion = new tbclienteoperacion();
                     clienteOperacion.cli_id = obj.cli_id;
-                    clienteOperacion.stc_id = 2;
+                    clienteOperacion.stc_id = (int)TipoOperador.PROPIETARI;
 
                     this.operacion.tbclienteoperacion.Add(clienteOperacion);
                 }

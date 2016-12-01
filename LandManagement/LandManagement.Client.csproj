@@ -41,6 +41,9 @@
       <HintPath>..\packages\log4net.2.0.5\lib\net40-client\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -84,6 +87,18 @@
     </Compile>
     <Compile Include="frmClientePropiedad.Designer.cs">
       <DependentUpon>frmClientePropiedad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEmail.Designer.cs">
+      <DependentUpon>frmEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEmailCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEmailCuenta.Designer.cs">
+      <DependentUpon>frmEmailCuenta.cs</DependentUpon>
     </Compile>
     <Compile Include="frmEnAlquiler.cs">
       <SubType>Form</SubType>
@@ -181,11 +196,11 @@
     <Compile Include="frmTasacion.designer.cs">
       <DependentUpon>frmTasacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTipoCliente.cs">
+    <Compile Include="frmTipoClienteListado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTipoCliente.Designer.cs">
-      <DependentUpon>frmTipoCliente.cs</DependentUpon>
+    <Compile Include="frmTipoClienteListado.Designer.cs">
+      <DependentUpon>frmTipoClienteListado.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTipoClienteABM.cs">
       <SubType>Form</SubType>
@@ -193,11 +208,11 @@
     <Compile Include="frmTipoClienteABM.Designer.cs">
       <DependentUpon>frmTipoClienteABM.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTipoFamiliar.cs">
+    <Compile Include="frmTipoFamiliarListado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTipoFamiliar.Designer.cs">
-      <DependentUpon>frmTipoFamiliar.cs</DependentUpon>
+    <Compile Include="frmTipoFamiliarListado.Designer.cs">
+      <DependentUpon>frmTipoFamiliarListado.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTipoFamiliarABM.cs">
       <SubType>Form</SubType>
@@ -205,11 +220,11 @@
     <Compile Include="frmTipoFamiliarABM.Designer.cs">
       <DependentUpon>frmTipoFamiliarABM.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTipoPropiedad.cs">
+    <Compile Include="frmTipoPropiedadListado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTipoPropiedad.Designer.cs">
-      <DependentUpon>frmTipoPropiedad.cs</DependentUpon>
+    <Compile Include="frmTipoPropiedadListado.Designer.cs">
+      <DependentUpon>frmTipoPropiedadListado.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTipoPropiedadABM.cs">
       <SubType>Form</SubType>
@@ -248,6 +263,7 @@
     <Compile Include="Utilidades\Emails.cs" />
     <Compile Include="Utilidades\Formularios.cs" />
     <Compile Include="Utilidades\ListasDeElementos.cs" />
+    <Compile Include="Utilidades\TipoOperador.cs" />
     <Compile Include="Utilidades\ValidarControles.cs" />
     <Compile Include="Utilidades\VariablesDeSesion.cs" />
     <EmbeddedResource Include="frmAlquilada.resx">
@@ -264,6 +280,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmClientePropiedad.resx">
       <DependentUpon>frmClientePropiedad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEmail.resx">
+      <DependentUpon>frmEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEmailCuenta.resx">
+      <DependentUpon>frmEmailCuenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEnAlquiler.resx">
       <DependentUpon>frmEnAlquiler.cs</DependentUpon>
@@ -313,20 +335,20 @@
     <EmbeddedResource Include="frmTasacion.resx">
       <DependentUpon>frmTasacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTipoCliente.resx">
-      <DependentUpon>frmTipoCliente.cs</DependentUpon>
+    <EmbeddedResource Include="frmTipoClienteListado.resx">
+      <DependentUpon>frmTipoClienteListado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTipoClienteABM.resx">
       <DependentUpon>frmTipoClienteABM.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTipoFamiliar.resx">
-      <DependentUpon>frmTipoFamiliar.cs</DependentUpon>
+    <EmbeddedResource Include="frmTipoFamiliarListado.resx">
+      <DependentUpon>frmTipoFamiliarListado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTipoFamiliarABM.resx">
       <DependentUpon>frmTipoFamiliarABM.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTipoPropiedad.resx">
-      <DependentUpon>frmTipoPropiedad.cs</DependentUpon>
+    <EmbeddedResource Include="frmTipoPropiedadListado.resx">
+      <DependentUpon>frmTipoPropiedadListado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTipoPropiedadABM.resx">
       <DependentUpon>frmTipoPropiedadABM.cs</DependentUpon>

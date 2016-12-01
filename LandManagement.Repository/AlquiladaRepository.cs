@@ -33,7 +33,23 @@ namespace LandManagement.Repository
 
         public void Update(tbalquilada entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                EntityKey key = Contexto.CreateEntityKey(
+                    Contexto.CreateObjectSet<tbalquilada>().EntitySet.Name, entity);
+
+                tbalquilada entityAux = (tbalquilada)Contexto.GetObjectByKey(key);
+
+                Contexto.CreateObjectSet<tbalquilada>().ApplyCurrentValues(entity);
+                Contexto.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
+                Contexto.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
+
+                Contexto.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Delete(tbalquilada entity)

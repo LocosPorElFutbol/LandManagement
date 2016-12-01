@@ -33,7 +33,21 @@ namespace LandManagement.Repository
 
         public void Update(tbenalquiler entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                EntityKey key = Contexto.CreateEntityKey(Contexto.CreateObjectSet<tbenalquiler>().EntitySet.Name, entity);
+                tbenalquiler entityAux = (tbenalquiler)Contexto.GetObjectByKey(key);
+
+                Contexto.CreateObjectSet<tbenalquiler>().ApplyCurrentValues(entity);
+                Contexto.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
+                Contexto.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
+
+                Contexto.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Delete(tbenalquiler entity)

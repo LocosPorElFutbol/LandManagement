@@ -30,6 +30,12 @@ namespace LandManagement.Utilidades
                 validacion = ValidarSiEsNulo(comboBox);
             }
 
+            if (_sender is MaskedTextBox)
+            {
+                MaskedTextBox maskedTextBox = (MaskedTextBox)_sender;
+                validacion = ValidarSiEstaIncompleto(maskedTextBox);
+            }
+
             if (validacion)
                 return ConfigurationManager.AppSettings["ErrorValidacion"].ToString();
 
@@ -50,6 +56,12 @@ namespace LandManagement.Utilidades
                 ComboBox comboBox = (ComboBox)_sender;
                 control = comboBox;
             }
+
+            if (_sender is MaskedTextBox)
+            {
+                MaskedTextBox maskedTextBox = (MaskedTextBox)_sender;
+                control = maskedTextBox;
+            }
             
             return control;
         }
@@ -65,5 +77,21 @@ namespace LandManagement.Utilidades
                 return true;
             return false;
         }
+
+        private bool ValidarSiEstaIncompleto(MaskedTextBox _maskedTextBox)
+        {
+            if (ValidarSiEsNulo(_maskedTextBox))
+                return true;
+
+            return !_maskedTextBox.MaskCompleted;
+        }
+
+        private bool ValidarSiEsNulo(MaskedTextBox _maskedTextBox)
+        {
+            if (_maskedTextBox.Text.Replace("-", "").Replace(" ", "").Length == 0)
+                return true;
+            return false;
+        }
+
     }
 }

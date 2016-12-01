@@ -18,7 +18,7 @@ namespace LandManagement.Entities
         [DisplayName("Id")]
         public int tip_id { get; set; }
 
-        [DisplayName("Descripcion del servicio")]
+        [DisplayName("Tipo de Propiedad")]
         public string tip_descripcion { get; set; }
 
         /*        [DisplayName("Apellido del Usuario")]

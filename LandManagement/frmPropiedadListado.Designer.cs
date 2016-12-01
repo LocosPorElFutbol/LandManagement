@@ -37,9 +37,11 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvPropiedad = new System.Windows.Forms.DataGridView();
+            this.pnlControles = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedad)).BeginInit();
+            this.pnlControles.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -47,13 +49,10 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.btnCancelar);
-            this.groupBox1.Controls.Add(this.btnEliminar);
-            this.groupBox1.Controls.Add(this.dgvPropiedad);
+            this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(589, 362);
+            this.groupBox1.Size = new System.Drawing.Size(601, 362);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Propiedades";
@@ -64,7 +63,7 @@
             this.groupBox2.Controls.Add(this.btnBuscar);
             this.groupBox2.Controls.Add(this.txbBuscarPor);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(6, 24);
+            this.groupBox2.Location = new System.Drawing.Point(3, 5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(496, 62);
             this.groupBox2.TabIndex = 5;
@@ -111,7 +110,7 @@
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(508, 122);
+            this.btnCancelar.Location = new System.Drawing.Point(505, 102);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 3;
@@ -122,7 +121,7 @@
             // btnEliminar
             // 
             this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEliminar.Location = new System.Drawing.Point(508, 93);
+            this.btnEliminar.Location = new System.Drawing.Point(505, 73);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 2;
@@ -136,21 +135,35 @@
             this.dgvPropiedad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvPropiedad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPropiedad.Location = new System.Drawing.Point(6, 93);
+            this.dgvPropiedad.Location = new System.Drawing.Point(3, 73);
             this.dgvPropiedad.MultiSelect = false;
             this.dgvPropiedad.Name = "dgvPropiedad";
             this.dgvPropiedad.ReadOnly = true;
             this.dgvPropiedad.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPropiedad.Size = new System.Drawing.Size(496, 263);
+            this.dgvPropiedad.Size = new System.Drawing.Size(496, 261);
             this.dgvPropiedad.TabIndex = 0;
             this.dgvPropiedad.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPropiedad_CellDoubleClick);
+            // 
+            // pnlControles
+            // 
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.groupBox2);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Controls.Add(this.dgvPropiedad);
+            this.pnlControles.Controls.Add(this.btnEliminar);
+            this.pnlControles.Location = new System.Drawing.Point(6, 19);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(589, 337);
+            this.pnlControles.TabIndex = 6;
             // 
             // frmPropiedadListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(613, 386);
+            this.ClientSize = new System.Drawing.Size(625, 386);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmPropiedadListado";
             this.Text = "frmPropiedadListado";
@@ -159,6 +172,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedad)).EndInit();
+            this.pnlControles.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -174,5 +188,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView dgvPropiedad;
+        private System.Windows.Forms.Panel pnlControles;
     }
 }

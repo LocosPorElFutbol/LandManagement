@@ -10,12 +10,14 @@ using LandManagement.Entities;
 using System.Reflection;
 using LandManagement.Business;
 using LandManagement.Utilidades;
+using log4net;
 
 namespace LandManagement
 {
     public partial class frmUsuarioListado : Form
     {
-        private UsuarioBusiness usuarioBusiness;
+        public static readonly ILog log = log4net.LogManager.GetLogger
+            (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private frmUsuarioABM formularioUsuarioABM;
         private DataGridViewRow dataGridViewRow;
         private DisplayNameHelper displayNameHelper;
@@ -24,17 +26,17 @@ namespace LandManagement
         public frmUsuarioListado()
         {
             InitializeComponent();
-            usuarioBusiness = new UsuarioBusiness();
         }
 
         private void frmUsuario_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             CargarGrilla();
         }
 
         public void CargarGrilla()
         {
-            usuarioBusiness = new UsuarioBusiness();
+            UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
             dgvUsuarios.Rows.Clear();
             dgvUsuarios.Columns.Clear();
             string[] columnasGrilla = { "usu_id", 
@@ -79,18 +81,29 @@ namespace LandManagement
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (dgvUsuarios.SelectedRows.Count != 0)
+            try
             {
-                if (MensajeEliminacionOK() == System.Windows.Forms.DialogResult.Yes)
+                if (dgvUsuarios.SelectedRows.Count != 0)
                 {
-                    dataGridViewRow = dgvUsuarios.SelectedRows[0];
-                    int idUsuarioSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["usu_id"].Value);
-                    usuarioBusiness.Delete(new tbusuario() { usu_id = idUsuarioSeleccionado });
-                    this.CargarGrilla();
+                    if (MensajeEliminacionOK() == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        dataGridViewRow = dgvUsuarios.SelectedRows[0];
+                        int idUsuarioSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["usu_id"].Value);
+                        UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
+                        usuarioBusiness.Delete(new tbusuario() { usu_id = idUsuarioSeleccionado });
+                        this.CargarGrilla();
+                    }
                 }
+                else
+                    this.MensajeSeleccionarElemento();
             }
-            else
-                this.MensajeSeleccionarElemento();
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                if (ex.InnerException != null)
+                    log.Error(ex.InnerException.Message);
+                MessageBox.Show("Error al eliminar registro. Existe una referencia hacia este registro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnPermisos_Click(object sender, EventArgs e)
@@ -117,6 +130,7 @@ namespace LandManagement
             dataGridViewRow = dgvUsuarios.SelectedRows[0];
             int idUsuarioSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["usu_id"].Value);
 
+            UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
             tbusuario usuario = (tbusuario)usuarioBusiness.GetElement(
                 new tbusuario() { usu_id = idUsuarioSeleccionado });
             return usuario;
@@ -175,37 +189,6 @@ namespace LandManagement
             }
 
         }
-
-        //private void ControlarInstanciaAbierta(Form formularioPopUp)
-        //{
-        //    Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
-        //    string frmCode = formularioPopUp.Name;
-
-        //    foreach (Type type in frmAssembly.GetTypes())
-        //    {
-        //        if (type.BaseType == typeof(Form))
-        //        {
-        //            if (type.Name == frmCode)
-        //            {
-        //                if (Application.OpenForms.Cast<Form>().Any(form => form.Name == frmCode))
-        //                {
-        //                    Form f = Application.OpenForms[frmCode];
-        //                    f.WindowState = FormWindowState.Normal;
-        //                    f.Activate();
-        //                }
-        //                else
-        //                {
-        //                    formularioPopUp.MdiParent = this.MdiParent;
-        //                    formularioPopUp.WindowState = FormWindowState.Normal;
-        //                    formularioPopUp.Show();
-        //                }
-
-        //            }
-
-        //        }
-        //    }
-
-        //}
-
+    
     }
 }

@@ -54,11 +54,13 @@
             this.rdbPropiedadNueva = new System.Windows.Forms.RadioButton();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.pnlControles = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.gbxDatosPropiedad.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.gbxEstadoPropiedad.SuspendLayout();
+            this.pnlControles.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -66,13 +68,10 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.gbxDatosPropiedad);
-            this.groupBox1.Controls.Add(this.gbxEstadoPropiedad);
-            this.groupBox1.Controls.Add(this.btnCancelar);
-            this.groupBox1.Controls.Add(this.btnGuardar);
+            this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(425, 514);
+            this.groupBox1.Size = new System.Drawing.Size(427, 514);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Asignación de una Propiedad";
@@ -81,7 +80,7 @@
             // 
             this.gbxDatosPropiedad.Controls.Add(this.groupBox3);
             this.gbxDatosPropiedad.Controls.Add(this.groupBox4);
-            this.gbxDatosPropiedad.Location = new System.Drawing.Point(6, 140);
+            this.gbxDatosPropiedad.Location = new System.Drawing.Point(3, 119);
             this.gbxDatosPropiedad.Name = "gbxDatosPropiedad";
             this.gbxDatosPropiedad.Size = new System.Drawing.Size(407, 329);
             this.gbxDatosPropiedad.TabIndex = 44;
@@ -179,6 +178,7 @@
             this.txbNumero.Name = "txbNumero";
             this.txbNumero.Size = new System.Drawing.Size(57, 20);
             this.txbNumero.TabIndex = 6;
+            this.txbNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEntero);
             this.txbNumero.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // label9
@@ -258,7 +258,7 @@
             this.gbxEstadoPropiedad.Controls.Add(this.lblDireccion);
             this.gbxEstadoPropiedad.Controls.Add(this.rdbExistente);
             this.gbxEstadoPropiedad.Controls.Add(this.rdbPropiedadNueva);
-            this.gbxEstadoPropiedad.Location = new System.Drawing.Point(6, 24);
+            this.gbxEstadoPropiedad.Location = new System.Drawing.Point(3, 3);
             this.gbxEstadoPropiedad.Name = "gbxEstadoPropiedad";
             this.gbxEstadoPropiedad.Size = new System.Drawing.Size(407, 110);
             this.gbxEstadoPropiedad.TabIndex = 43;
@@ -310,7 +310,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(338, 475);
+            this.btnCancelar.Location = new System.Drawing.Point(335, 454);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 13;
@@ -320,7 +320,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(257, 475);
+            this.btnGuardar.Location = new System.Drawing.Point(254, 454);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 12;
@@ -328,12 +328,26 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // pnlControles
+            // 
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.gbxEstadoPropiedad);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Controls.Add(this.btnGuardar);
+            this.pnlControles.Controls.Add(this.gbxDatosPropiedad);
+            this.pnlControles.Location = new System.Drawing.Point(6, 19);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(415, 489);
+            this.pnlControles.TabIndex = 45;
+            // 
             // frmClientePropiedad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(449, 538);
+            this.ClientSize = new System.Drawing.Size(451, 538);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmClientePropiedad";
             this.Text = "frmClientePropiedad";
@@ -346,6 +360,7 @@
             this.groupBox4.PerformLayout();
             this.gbxEstadoPropiedad.ResumeLayout(false);
             this.gbxEstadoPropiedad.PerformLayout();
+            this.pnlControles.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -378,5 +393,6 @@
         private System.Windows.Forms.RadioButton rdbExistente;
         private System.Windows.Forms.RadioButton rdbPropiedadNueva;
         private System.Windows.Forms.GroupBox gbxDatosPropiedad;
+        private System.Windows.Forms.Panel pnlControles;
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using System.Transactions;
 
 namespace LandManagement.Repository
 {
@@ -31,13 +32,23 @@ namespace LandManagement.Repository
             try
             {
                 Contexto = new landmanagementbdEntities();
-                Contexto.CreateObjectSet<tbcliente>().AddObject(entity);
+                Contexto.Connection.Open();
 
-                Contexto.SaveChanges();
+                using (var transactionScope = new TransactionScope())
+                {
+                    Contexto.CreateObjectSet<tbcliente>().AddObject(entity);
+                    Contexto.SaveChanges();
+
+                    transactionScope.Complete();
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                Contexto.Connection.Close();
             }
         }
         
@@ -151,6 +162,15 @@ namespace LandManagement.Repository
             }
         }
 
+        public object ValidarExitenciaByDni(tbcliente entity)
+        {
+            var cliente = (from c in Contexto.tbcliente
+                          where c.cli_numero_documento == entity.cli_numero_documento
+                          select c).FirstOrDefault();
+            
+            return cliente;
+        }
+
         public object GetList()
         {
             //return Contexto.CreateObjectSet<tbcliente>().ToList();
@@ -167,6 +187,33 @@ namespace LandManagement.Repository
                               select p).ToList<tbcliente>();
 
                 return salida;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public object GetClientesByIdCategoria(List<int> _idsCategoria)
+        {
+            try
+            {
+                CategoriaRepository categoriaRepository = new CategoriaRepository();
+
+                //Busco en categorias los clientes correspondientes a las categorias
+                //enviadas por parametro
+                List<tbcategoria> idClientesByIdCategoria =
+                    (List<tbcategoria>)categoriaRepository.GetIdClientesByIdCategoria(_idsCategoria);
+
+                //Obtengo solo los ids del cliente
+                List<int> ids = idClientesByIdCategoria.Select(x => x.cli_id).ToList();
+
+                //Traigo los clientes matcheando con los ids de la consulta anterior.
+                var clientesByCategoria = from c in Contexto.tbcliente
+                                          where ids.Contains(c.cli_id)
+                                          select c;
+
+                return clientesByCategoria.ToList();
             }
             catch (Exception ex)
             {

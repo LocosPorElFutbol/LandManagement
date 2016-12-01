@@ -20,6 +20,7 @@ namespace LandManagement
         private ComboBoxItem comboBoxItem;
         private int idMenu = 0;
         private Form formPadre;
+        private ValidarControles validarControles;
         public ErrorProvider errorProvider1 = new ErrorProvider();
 
         public frmMenuABM(Form formularioPadre)
@@ -91,6 +92,11 @@ namespace LandManagement
             ValidarRadioButtons();
         }
 
+        private void frmMenuABM_Load(object sender, EventArgs e)
+        {
+            pnlControles.AutoScroll = true;
+        }
+        
         private void SeleccionarItemCombo(tbmenu pMenu)
         {
             tbmenu menuPadre = (tbmenu)menuBusiness.GetElement(
@@ -233,38 +239,24 @@ namespace LandManagement
             }
         }
 
-        #region Validación de textos
-
-        private void txbNombre_Validating(object sender, CancelEventArgs e)
+        #region Validacion de controles
+        private void ValidatingControl(object sender, CancelEventArgs e)
         {
-            string errorMsg;
-            if (!ValidacionContenido(txbNombre.Text, out errorMsg))
+            errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            validarControles = new ValidarControles();
+            Control control = validarControles.ObtenerControl(sender);
+            string error = validarControles.ValidarControl(sender);
+
+            if (!string.IsNullOrEmpty(error))
             {
-                // Cancel the event and select the text to be corrected by the user.
+                errorProvider1.SetError(control, error);
+
+                //Me valida hasta ingresar el valor correcto
                 e.Cancel = true;
-                //txbNombre.Select(0, txbNombre.Text.Length);
-
-                // Set the ErrorProvider error with the text to display. 
-                this.errorProvider1.SetError(txbNombre, errorMsg);
-            }
-        }
-
-        private void txbNombre_Validated(object sender, EventArgs e)
-        {
-            // If all conditions have been met, clear the ErrorProvider of errors.
-            errorProvider1.SetError(txbNombre, "");
-        }
-
-        public bool ValidacionContenido(string texto, out string errorMessage)
-        {
-            if (string.IsNullOrEmpty(texto))
-            {
-                errorMessage = "El campo no puede ser nulo.";
-                return false;
+                return;
             }
 
-            errorMessage = string.Empty;
-            return true;
+            errorProvider1.SetError(control, error);
         }
 
         public bool ValidEmailAddress(string emailAddress, out string errorMessage)
@@ -290,8 +282,6 @@ namespace LandManagement
                "For example 'someone@example.com' ";
             return false;
         }
-
         #endregion
-
     }
 }

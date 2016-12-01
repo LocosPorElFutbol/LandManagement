@@ -13,27 +13,19 @@ using LandManagement.Business;
 
 namespace LandManagement
 {
-    public partial class frmTipoCliente : Form
+    public partial class frmTipoClienteListado : Form
     {
-        //private TipoClienteBusiness tclienteBusiness;
         private frmTipoClienteABM frmtclienteABM;
-        private DataGridViewRow dataGridViewRow;
-        private DisplayNameHelper displayNameHelper;
 
+        public frmTipoClienteListado()
+        {
+            InitializeComponent();
+        }
 
         private void frmTipoCliente_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             CargarGrilla();
-        }
-        public frmTipoCliente()
-        {
-            InitializeComponent();
-            //tclienteBusiness = new TipoClienteBusiness();
-        }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.Close();
-
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -41,6 +33,12 @@ namespace LandManagement
             frmtclienteABM = new frmTipoClienteABM(this);
             ControlarInstanciaAbierta(frmtclienteABM);
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        
         private void ControlarInstanciaAbierta(Form formularioPopUp)
         {
             Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
@@ -71,6 +69,7 @@ namespace LandManagement
             }
 
         }
+        
         public void CargarGrilla()
         {
   //          //tclienteBusiness = new TipoClienteBusiness();

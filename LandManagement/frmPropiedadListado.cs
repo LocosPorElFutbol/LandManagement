@@ -18,7 +18,6 @@ namespace LandManagement
     {
         public static readonly ILog log = log4net.LogManager.GetLogger
             (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        private PropiedadBusiness propiedadBusiness;
         private frmPropiedadABM formularioPropiedadABM;
         private DataGridViewRow dataGridViewRow;
         private DisplayNameHelper displayNameHelper;
@@ -28,11 +27,11 @@ namespace LandManagement
         public frmPropiedadListado()
         {
             InitializeComponent();
-            this.propiedadBusiness= new PropiedadBusiness();
         }
 
         private void frmPropiedadListado_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             CargarGrilla();
         }
 
@@ -70,6 +69,7 @@ namespace LandManagement
 
         private void CargarDataGridViewLista()
         {
+            PropiedadBusiness propiedadBusiness = new PropiedadBusiness();
             List<tbpropiedad> listaPropiedad = (List<tbpropiedad>)propiedadBusiness.GetList();
             CargarDataGridView(listaPropiedad);
         }
@@ -105,6 +105,7 @@ namespace LandManagement
                     {
                         dataGridViewRow = dgvPropiedad.SelectedRows[0];
                         int idSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["pro_id"].Value);
+                        PropiedadBusiness propiedadBusiness = new PropiedadBusiness();
                         propiedadBusiness.Delete(new tbpropiedad() { pro_id = idSeleccionado });
                         this.CargarGrilla();
                     }
@@ -117,7 +118,7 @@ namespace LandManagement
                 log.Error(ex.Message);
                 if (ex.InnerException != null)
                     log.Error(ex.InnerException.Message);
-                MessageBox.Show("Error al eliminar registro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al eliminar registro. Existe una referencia hacia este registro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -149,6 +150,7 @@ namespace LandManagement
             dataGridViewRow = dgvPropiedad.SelectedRows[0];
             int idSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["pro_id"].Value);
 
+            PropiedadBusiness propiedadBusiness = new PropiedadBusiness();
             tbpropiedad obj = (tbpropiedad)propiedadBusiness.GetElement(
                 new tbpropiedad() { pro_id = idSeleccionado });
             return obj;
@@ -164,6 +166,7 @@ namespace LandManagement
 
                 BuscarEnDataGridView buscar = new BuscarEnDataGridView();
 
+                PropiedadBusiness propiedadBusiness = new PropiedadBusiness();
                 List<tbpropiedad> listaFiltrada = (List<tbpropiedad>)propiedadBusiness.GetList();
                 listaFiltrada = buscar.FiltrarDataGrid(listaFiltrada, listaExcluir, txbBuscarPor.Text);
                 CargarDataGridView(listaFiltrada);

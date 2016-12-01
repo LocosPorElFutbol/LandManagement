@@ -16,6 +16,11 @@ namespace LandManagement.Business
             alquiladaRepository = new AlquiladaRepository();
         }
 
+        public void Update(tbalquilada _alquilada)
+        {
+            alquiladaRepository.Update(_alquilada);
+        }
+
         public void Delete(tbalquilada _alquilada)
         {
             alquiladaRepository.Delete(_alquilada);

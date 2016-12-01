@@ -51,6 +51,7 @@ namespace LandManagement
 
         private void frmClienteFamiliar_Load(object sender, EventArgs e)
         {
+            pnlControles.AutoScroll = true;
             this.AutoValidate = AutoValidate.Disable;
             errorProvider1 = new ErrorProvider();
             this.CargarCombos();
@@ -164,8 +165,7 @@ namespace LandManagement
         }
 
         #region Validación de campos requeridos
-
-        private void TextboxValidating(object sender, CancelEventArgs e)
+        private void ValidatingControl(object sender, CancelEventArgs e)
         {
             errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             validarControles = new ValidarControles();
@@ -183,7 +183,7 @@ namespace LandManagement
 
             errorProvider1.SetError(control, error);
         }
-
         #endregion
+
     }
 }

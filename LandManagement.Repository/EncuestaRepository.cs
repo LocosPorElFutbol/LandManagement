@@ -33,7 +33,23 @@ namespace LandManagement.Repository
 
         public void Update(tbencuesta entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                EntityKey key = Contexto.CreateEntityKey(
+                    Contexto.CreateObjectSet<tbencuesta>().EntitySet.Name, entity);
+
+                tbencuesta entityAux = (tbencuesta)Contexto.GetObjectByKey(key);
+
+                Contexto.CreateObjectSet<tbencuesta>().ApplyCurrentValues(entity);
+                Contexto.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
+                Contexto.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
+
+                Contexto.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Delete(tbencuesta entity)

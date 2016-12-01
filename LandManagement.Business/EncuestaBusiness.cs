@@ -16,6 +16,11 @@ namespace LandManagement.Business
             encuestaRepository = new EncuestaRepository();
         }
 
+        public void Update(tbencuesta _encuesta)
+        {
+            encuestaRepository.Update(_encuesta);
+        }
+
         public void Delete(tbencuesta _encuesta)
         {
             encuestaRepository.Delete(_encuesta);
