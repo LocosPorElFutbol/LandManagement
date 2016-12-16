@@ -100,8 +100,15 @@ namespace LandManagement.Entities
             get;
             set;
         }
+    
+        public virtual string dom_domicilio_importado
+        {
+            get;
+            set;
+        }
 
         #endregion
+
         #region Navigation Properties
     
         public virtual tbcliente tbcliente
@@ -135,6 +142,7 @@ namespace LandManagement.Entities
         private tbtipopropiedad _tbtipopropiedad;
 
         #endregion
+
         #region Association Fixup
     
         private void Fixuptbcliente(tbcliente previousValue)
@@ -178,5 +186,6 @@ namespace LandManagement.Entities
         }
 
         #endregion
+
     }
 }

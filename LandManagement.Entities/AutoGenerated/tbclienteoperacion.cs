@@ -71,6 +71,7 @@ namespace LandManagement.Entities
         private int _stc_id;
 
         #endregion
+
         #region Navigation Properties
     
         public virtual tbcliente tbcliente
@@ -119,6 +120,7 @@ namespace LandManagement.Entities
         private tbsystipocliente _tbsystipocliente;
 
         #endregion
+
         #region Association Fixup
     
         private void Fixuptbcliente(tbcliente previousValue)
@@ -182,5 +184,6 @@ namespace LandManagement.Entities
         }
 
         #endregion
+
     }
 }

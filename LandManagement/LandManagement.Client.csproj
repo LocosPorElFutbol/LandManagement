@@ -37,12 +37,32 @@
     <ApplicationIcon>Imagenes\Cliente\LogoLandManagement.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BusinessExcel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Utilidades\Librerias\Excel\BusinessExcel.dll</HintPath>
+    </Reference>
+    <Reference Include="EntititesExcel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Utilidades\Librerias\Excel\EntititesExcel.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqToExcel, Version=1.10.1.0, Culture=neutral, PublicKeyToken=9c8ea65a58f03f1f, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Utilidades\Librerias\Excel\LinqToExcel.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.5\lib\net40-client\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Utilidades\Librerias\Excel\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="RepositoriesExcel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Utilidades\Librerias\Excel\RepositoriesExcel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -117,6 +137,12 @@
     </Compile>
     <Compile Include="frmEnVenta.designer.cs">
       <DependentUpon>frmEnVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmImportarExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImportarExcel.Designer.cs">
+      <DependentUpon>frmImportarExcel.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -296,6 +322,9 @@
     <EmbeddedResource Include="frmEnVenta.resx">
       <DependentUpon>frmEnVenta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmImportarExcel.resx">
+      <DependentUpon>frmImportarExcel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -402,6 +431,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Imagenes\Cliente\Tool.ico" />
+    <Content Include="Utilidades\Librerias\Excel\BusinessExcel.dll" />
+    <Content Include="Utilidades\Librerias\Excel\EntititesExcel.dll" />
+    <Content Include="Utilidades\Librerias\Excel\LinqToExcel.dll" />
+    <Content Include="Utilidades\Librerias\Excel\log4net.dll" />
+    <Content Include="Utilidades\Librerias\Excel\Remotion.Data.Linq.dll" />
+    <Content Include="Utilidades\Librerias\Excel\RepositoriesExcel.dll" />
     <None Include="Imagenes\Cliente\Clientes.ico" />
     <Content Include="Imagenes\Cliente\Llave.ico" />
     <Content Include="Imagenes\Cliente\Logo.jpg" />
@@ -409,6 +444,7 @@
     <None Include="Recursos\Resources\Llave.bmp" />
     <None Include="Recursos\Resources\Logo.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

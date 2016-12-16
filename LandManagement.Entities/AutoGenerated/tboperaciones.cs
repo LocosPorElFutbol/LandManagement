@@ -282,6 +282,7 @@ namespace LandManagement.Entities
         }
 
         #endregion
+
         #region Navigation Properties
     
         public virtual tbalquilada tbalquilada
@@ -467,6 +468,7 @@ namespace LandManagement.Entities
         private tbventa _tbventa;
 
         #endregion
+
         #region Association Fixup
     
         private bool _settingFK = false;
@@ -726,5 +728,6 @@ namespace LandManagement.Entities
         }
 
         #endregion
+
     }
 }

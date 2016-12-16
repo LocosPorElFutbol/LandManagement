@@ -68,6 +68,7 @@ namespace LandManagement.Entities
         }
 
         #endregion
+
         #region Navigation Properties
     
         public virtual ICollection<tboperaciones> tboperaciones
@@ -103,6 +104,7 @@ namespace LandManagement.Entities
         private ICollection<tboperaciones> _tboperaciones;
 
         #endregion
+
         #region Association Fixup
     
         private void Fixuptboperaciones(object sender, NotifyCollectionChangedEventArgs e)
@@ -128,5 +130,6 @@ namespace LandManagement.Entities
         }
 
         #endregion
+
     }
 }

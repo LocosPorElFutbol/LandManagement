@@ -69,6 +69,7 @@ namespace LandManagement.Entities
         }
 
         #endregion
+
         #region Navigation Properties
     
         public virtual ICollection<tbmenu> tbmenu1
@@ -151,6 +152,7 @@ namespace LandManagement.Entities
         private ICollection<tbusuario> _tbusuario;
 
         #endregion
+
         #region Association Fixup
     
         private bool _settingFK = false;
@@ -227,5 +229,6 @@ namespace LandManagement.Entities
         }
 
         #endregion
+
     }
 }

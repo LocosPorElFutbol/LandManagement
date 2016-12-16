@@ -32,6 +32,7 @@ namespace LandManagement.Entities
         }
 
         #endregion
+
         #region Navigation Properties
     
         public virtual ICollection<tbpropiedad> tbpropiedad
@@ -67,6 +68,7 @@ namespace LandManagement.Entities
         private ICollection<tbpropiedad> _tbpropiedad;
 
         #endregion
+
         #region Association Fixup
     
         private void Fixuptbpropiedad(object sender, NotifyCollectionChangedEventArgs e)
@@ -95,5 +97,6 @@ namespace LandManagement.Entities
         }
 
         #endregion
+
     }
 }

@@ -32,6 +32,7 @@ namespace LandManagement.Entities
         }
 
         #endregion
+
         #region Navigation Properties
     
         public virtual ICollection<tbcliente> tbcliente
@@ -67,6 +68,7 @@ namespace LandManagement.Entities
         private ICollection<tbcliente> _tbcliente;
 
         #endregion
+
         #region Association Fixup
     
         private void Fixuptbcliente(object sender, NotifyCollectionChangedEventArgs e)
@@ -92,5 +94,6 @@ namespace LandManagement.Entities
         }
 
         #endregion
+
     }
 }

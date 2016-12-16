@@ -164,8 +164,39 @@ namespace LandManagement.Entities
             get;
             set;
         }
+    
+        public virtual Nullable<System.DateTime> cli_actualizado
+        {
+            get;
+            set;
+        }
+    
+        public virtual string cli_titulo
+        {
+            get;
+            set;
+        }
+    
+        public virtual string cli_nombre_pila
+        {
+            get;
+            set;
+        }
+    
+        public virtual Nullable<bool> cli_imprime_carta
+        {
+            get;
+            set;
+        }
+    
+        public virtual string cli_estado_actual
+        {
+            get;
+            set;
+        }
 
         #endregion
+
         #region Navigation Properties
     
         public virtual ICollection<tbcliente> tbcliente1
@@ -327,6 +358,7 @@ namespace LandManagement.Entities
         private ICollection<tbpropiedad> _tbpropiedad;
 
         #endregion
+
         #region Association Fixup
     
         private bool _settingFK = false;
@@ -467,5 +499,6 @@ namespace LandManagement.Entities
         }
 
         #endregion
+
     }
 }

@@ -158,5 +158,6 @@ namespace LandManagement.Repository
         private ObjectSet<tbventa> _tbventa;
 
         #endregion
+
     }
 }

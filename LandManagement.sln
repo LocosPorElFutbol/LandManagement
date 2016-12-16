@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03", "03", "{8B2CECC7-806E-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04", "04", "{523AD372-AB28-479B-B122-94E78604EFFF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "90 ImportExcel", "90 ImportExcel", "{9D6BD040-57CA-4C86-A571-85C39AB257DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
