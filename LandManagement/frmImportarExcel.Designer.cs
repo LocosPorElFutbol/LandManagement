@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txbPathArchivoExcel = new System.Windows.Forms.TextBox();
             this.btnCargar = new System.Windows.Forms.Button();
+            this.prbImportarExcel = new System.Windows.Forms.ProgressBar();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,6 +42,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.prbImportarExcel);
             this.groupBox1.Controls.Add(this.btnImportar);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txbPathArchivoExcel);
@@ -88,6 +90,13 @@
             this.btnCargar.UseVisualStyleBackColor = true;
             this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
             // 
+            // prbImportarExcel
+            // 
+            this.prbImportarExcel.Location = new System.Drawing.Point(10, 74);
+            this.prbImportarExcel.Name = "prbImportarExcel";
+            this.prbImportarExcel.Size = new System.Drawing.Size(261, 23);
+            this.prbImportarExcel.TabIndex = 4;
+            // 
             // frmImportarExcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -109,5 +118,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txbPathArchivoExcel;
         private System.Windows.Forms.Button btnImportar;
+        private System.Windows.Forms.ProgressBar prbImportarExcel;
     }
 }
