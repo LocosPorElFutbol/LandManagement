@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnImportar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txbPathArchivoExcel = new System.Windows.Forms.TextBox();
             this.btnCargar = new System.Windows.Forms.Button();
-            this.btnImportar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +51,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Importar datos de Excel";
+            // 
+            // btnImportar
+            // 
+            this.btnImportar.Location = new System.Drawing.Point(312, 46);
+            this.btnImportar.Name = "btnImportar";
+            this.btnImportar.Size = new System.Drawing.Size(75, 23);
+            this.btnImportar.TabIndex = 3;
+            this.btnImportar.Text = "Importar";
+            this.btnImportar.UseVisualStyleBackColor = true;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
             // 
             // label1
             // 
@@ -72,21 +82,11 @@
             // 
             this.btnCargar.Location = new System.Drawing.Point(277, 46);
             this.btnCargar.Name = "btnCargar";
-            this.btnCargar.Size = new System.Drawing.Size(75, 23);
+            this.btnCargar.Size = new System.Drawing.Size(29, 23);
             this.btnCargar.TabIndex = 0;
-            this.btnCargar.Text = "Cargar";
+            this.btnCargar.Text = "...";
             this.btnCargar.UseVisualStyleBackColor = true;
             this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
-            // 
-            // btnImportar
-            // 
-            this.btnImportar.Location = new System.Drawing.Point(358, 48);
-            this.btnImportar.Name = "btnImportar";
-            this.btnImportar.Size = new System.Drawing.Size(75, 23);
-            this.btnImportar.TabIndex = 3;
-            this.btnImportar.Text = "Importar";
-            this.btnImportar.UseVisualStyleBackColor = true;
-            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
             // 
             // frmImportarExcel
             // 

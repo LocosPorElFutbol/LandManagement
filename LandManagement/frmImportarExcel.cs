@@ -21,7 +21,7 @@ namespace LandManagement
         private void btnCargar_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofdExcel = new OpenFileDialog();
-            ofdExcel.InitialDirectory = "C:\\";
+            ofdExcel.InitialDirectory = "C:\\Leo\\Temp\\";
             ofdExcel.Filter = "Archivos Excel (*.xlsx) | *.xlsx";
 
             if (ofdExcel.ShowDialog() == System.Windows.Forms.DialogResult.OK)
