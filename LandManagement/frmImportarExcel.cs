@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using BusinessExcel;
 using EntititesExcel;
+using LandManagement.Business;
 using LandManagement.Entities;
 using LandManagement.Utilidades;
 using log4net;
@@ -50,19 +51,18 @@ namespace LandManagement
             {
                 if (this.ValidateChildren())
                 {
+                    lblResultado.Text = string.Empty;
+                    btnImportar.Enabled = false;
+                    btnCargar.Enabled = false;
                     prbImportarExcel.Visible = true;
+
                     ExcelBusiness excelBusiness = new ExcelBusiness(txbPathArchivoExcel.Text);
                     List<PersonaExcel> listaPersonas = (List<PersonaExcel>)excelBusiness.RetornarRowExcel(txbNombreHoja.Text);
 
-                    //Seteo parametros del progressbar y creo el thread
-                    prbImportarExcel.Value = 0;
-                    prbImportarExcel.Maximum = listaPersonas.Count;
-                    prbImportarExcel.Step = 1;
-
-                    if (ImportarFilas(listaPersonas))
-                        ImportacionOK();
-                    else
-                        ImportacionError("Se produjo un error en la importación de datos.");
+                    List<tbcliente> listaClientes = ImportarFilas(listaPersonas);
+                    configuroProgressBar(listaClientes.Count);
+                    persistirListaClientes(listaClientes);
+                    ImportacionOK();
                 }
             }
             catch (Exception ex)
@@ -83,20 +83,20 @@ namespace LandManagement
             this.Close();
         }
 
-        bool ImportarFilas(List<PersonaExcel> listaPersonas)
+        List<tbcliente> ImportarFilas(List<PersonaExcel> listaPersonas)
         {
-            bool resultado = false;
+            List<tbcliente> listaClientes = new List<tbcliente>();
             try
             {
-                int porcentajeBarra = 0;
-
                 tbcliente cliente;
                 foreach (PersonaExcel persona in listaPersonas)
                 {
-                    cliente = CargarDatosCliente(persona);
-                    prbImportarExcel.Value = porcentajeBarra++;
+                    if (!persona.fechaDeIngreso.Equals(new DateTime(0001,01,01)))
+                    {
+                        cliente = CargarDatosCliente(persona);
+                        listaClientes.Add(cliente);
+                    }
                 }
-                resultado = true;
             }
             catch (Exception ex)
             {
@@ -105,8 +105,29 @@ namespace LandManagement
                     log.Error(ex.InnerException.Message);
                 ImportacionError("Error al crear los objetos cliente. \nControle las columnas del archivo excel");
             }
+            return listaClientes;
+        }
 
-            return resultado;
+        void persistirListaClientes(List<tbcliente> listaClientes)
+        {
+            try
+            {
+                ClienteBusiness clienteBusiness = new ClienteBusiness();
+
+                foreach (var obj in listaClientes)
+                {
+                    clienteBusiness.Create(obj);
+                    prbImportarExcel.Value++;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                if (ex.InnerException != null)
+                    log.Error(ex.InnerException.Message);
+                ImportacionError("Error al persistir lista de clientes.");
+            }
+        
         }
 
         #region Cargar Datos del Cliente
@@ -123,9 +144,9 @@ namespace LandManagement
                     cli_fecha = DateTime.Parse(persona.fechaDeIngreso.ToString()),
                     cli_actualizado = DateTime.Parse(persona.actualizado.ToString()),
                     cli_titulo = persona.titulo,
-                    cli_apellido = persona.apellido,
+                    cli_apellido = CargarDatoNulo(persona.apellido),
                     cli_nombre_pila = persona.nombreDePila,
-                    cli_nombre = persona.nombreCompleto,
+                    cli_nombre = CargarDatoNulo(persona.nombreCompleto),
                     cli_imprime_carta = persona.imprimeCarta,
                     cli_estado_actual = persona.estadoActual,
                     cli_telefono_celular = persona.celular,
@@ -133,20 +154,24 @@ namespace LandManagement
                     cli_email = persona.email,
                     cli_fecha_nacimiento = DateTime.Parse(persona.nacimiento.ToString()),
                     cli_nacionalidad = persona.nacionalidad,
-                    cli_numero_documento = persona.dniTitular,
+                    cli_numero_documento = CargarDatoNulo(persona.dniTitular),
                     cli_cuit_cuil = persona.cuitCuilTitular,
                     cli_estado_civil = persona.estadoCivil,
                     cli_como_llego = persona.observaciones
                 };
 
+                //Agrego campo obligatorio cli_tipo_documento
+                cliente.cli_tipo_documento = "DNI";
+                cliente.tif_id = 6;
+
                 CargarDomicilio(persona, cliente);
 
-                if (!string.IsNullOrEmpty(persona.apellidoConyuge) &&
-                   !string.IsNullOrEmpty(persona.nombreDePila) &&
-                   !string.IsNullOrEmpty(persona.dniConyuge) &&
-                   !string.IsNullOrEmpty(persona.cuitCuilConyuge) &&
-                   !!string.IsNullOrEmpty(persona.nacionalidadConyuge) &&
-                   !!string.IsNullOrEmpty(persona.mailConyuge))
+                if (!string.IsNullOrEmpty(persona.apellidoConyuge) ||
+                   !string.IsNullOrEmpty(persona.nombrePilaConyuge) ||
+                   !string.IsNullOrEmpty(persona.dniConyuge) ||
+                   !string.IsNullOrEmpty(persona.cuitCuilConyuge) ||
+                   !string.IsNullOrEmpty(persona.nacionalidadConyuge) ||
+                   !string.IsNullOrEmpty(persona.mailConyuge))
                     CargarConyuge(persona, cliente);
             }
             catch (Exception ex)
@@ -165,9 +190,12 @@ namespace LandManagement
             //Cargo datos del domicilio
             tbdomicilio domicilio = new tbdomicilio()
             {
+                tip_id = 4, //dato obligatorio importado
+                dom_calle = "Domicilio importado excel", //dato obligatorio
+                dom_numero = 0, //dato obligatorio
                 dom_domicilio_importado = persona.domicilio,
                 dom_codigo_postal = persona.codigoPostal.ToString(),
-                dom_localidad = persona.localidad
+                dom_localidad = CargarDatoNulo(persona.localidad)
             };
             cliente.tbdomicilio.Add(domicilio);
         }
@@ -177,10 +205,12 @@ namespace LandManagement
             //Cargo datos del conyuge
             tbcliente conyuje = new tbcliente()
             {
-                cli_apellido = persona.apellidoConyuge,
+                tif_id = 6, //Cargo tipo de familiar Conyuje
+                cli_apellido = CargarDatoNulo(persona.apellidoConyuge),
                 cli_nombre_pila = persona.nombrePilaConyuge,
-                cli_nombre = persona.nombreCompletoConyuge,
-                cli_numero_documento = persona.dniConyuge,
+                cli_nombre = CargarDatoNulo(persona.nombreCompletoConyuge),
+                cli_tipo_documento = "DNI", // Obligatorio tipo de documento
+                cli_numero_documento = CargarDatoNulo(persona.dniConyuge),
                 cli_cuit_cuil = persona.cuitCuilConyuge,
                 cli_fecha_nacimiento = DateTime.Parse(persona.nacimientoConyuge.ToString()),
                 cli_nacionalidad = persona.nacionalidadConyuge,
@@ -189,7 +219,19 @@ namespace LandManagement
             };
             cliente.tbcliente1.Add(conyuje);
         }
+
+        private static string CargarDatoNulo(string campoString)
+        {
+            return string.IsNullOrEmpty(campoString) ? "Dato sin cargar" : campoString;
+        }
         #endregion
+
+        void configuroProgressBar(int value)
+        {
+            prbImportarExcel.Value = 0;
+            prbImportarExcel.Maximum = value;
+            prbImportarExcel.Step = 1;
+        }
 
         #region Validacion de controles
         private void CampoRequerido(object sender, CancelEventArgs e)
