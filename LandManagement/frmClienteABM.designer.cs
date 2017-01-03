@@ -69,6 +69,11 @@
             this.btnRemovePropiedad = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pnlControles = new System.Windows.Forms.Panel();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.txbEstadoActual = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.dtpActualizado = new System.Windows.Forms.DateTimePicker();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.dgvCategorias = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -78,42 +83,37 @@
             this.cmbTipoFamiliar = new System.Windows.Forms.ComboBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbxImprimeCarta = new System.Windows.Forms.CheckBox();
+            this.txbNombreDePila = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.cmbTitulo = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.cmbEstadoCivil = new System.Windows.Forms.ComboBox();
             this.txbCuilCuit = new System.Windows.Forms.TextBox();
-            this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.mtbTelefonoLaboral = new System.Windows.Forms.MaskedTextBox();
             this.mtbTelefonoParticular = new System.Windows.Forms.MaskedTextBox();
             this.mtbTelefonoCelular = new System.Windows.Forms.MaskedTextBox();
-            this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.dtpActualizado = new System.Windows.Forms.DateTimePicker();
-            this.label17 = new System.Windows.Forms.Label();
-            this.cmbTitulo = new System.Windows.Forms.ComboBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.txbNombreDePila = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.label26 = new System.Windows.Forms.Label();
             this.txbDomicilioImportado = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFamiliares)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedades)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.pnlControles.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox9.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -507,6 +507,53 @@
             this.pnlControles.TabIndex = 47;
             this.pnlControles.TabStop = true;
             // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.txbEstadoActual);
+            this.groupBox9.Controls.Add(this.label19);
+            this.groupBox9.Controls.Add(this.label16);
+            this.groupBox9.Controls.Add(this.dtpActualizado);
+            this.groupBox9.Location = new System.Drawing.Point(672, 385);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(322, 113);
+            this.groupBox9.TabIndex = 48;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Estado";
+            // 
+            // txbEstadoActual
+            // 
+            this.txbEstadoActual.Location = new System.Drawing.Point(83, 45);
+            this.txbEstadoActual.Multiline = true;
+            this.txbEstadoActual.Name = "txbEstadoActual";
+            this.txbEstadoActual.Size = new System.Drawing.Size(230, 55);
+            this.txbEstadoActual.TabIndex = 51;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(5, 51);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(72, 13);
+            this.label19.TabIndex = 50;
+            this.label19.Text = "Estado actual";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(15, 18);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(62, 13);
+            this.label16.TabIndex = 48;
+            this.label16.Text = "Actualizado";
+            // 
+            // dtpActualizado
+            // 
+            this.dtpActualizado.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpActualizado.Location = new System.Drawing.Point(83, 13);
+            this.dtpActualizado.Name = "dtpActualizado";
+            this.dtpActualizado.Size = new System.Drawing.Size(84, 20);
+            this.dtpActualizado.TabIndex = 49;
+            // 
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.dgvCategorias);
@@ -593,7 +640,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.cbxImprimeCarta);
             this.groupBox2.Controls.Add(this.txbNombreDePila);
             this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Controls.Add(this.cmbTitulo);
@@ -625,6 +672,50 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos Personales";
             // 
+            // cbxImprimeCarta
+            // 
+            this.cbxImprimeCarta.AutoSize = true;
+            this.cbxImprimeCarta.Location = new System.Drawing.Point(91, 403);
+            this.cbxImprimeCarta.Name = "cbxImprimeCarta";
+            this.cbxImprimeCarta.Size = new System.Drawing.Size(89, 17);
+            this.cbxImprimeCarta.TabIndex = 41;
+            this.cbxImprimeCarta.Text = "Imprime carta";
+            this.cbxImprimeCarta.UseVisualStyleBackColor = true;
+            // 
+            // txbNombreDePila
+            // 
+            this.txbNombreDePila.Location = new System.Drawing.Point(91, 64);
+            this.txbNombreDePila.Name = "txbNombreDePila";
+            this.txbNombreDePila.Size = new System.Drawing.Size(168, 20);
+            this.txbNombreDePila.TabIndex = 19;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(6, 66);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(78, 13);
+            this.label18.TabIndex = 18;
+            this.label18.Text = "Nombre de pila";
+            // 
+            // cmbTitulo
+            // 
+            this.cmbTitulo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTitulo.FormattingEnabled = true;
+            this.cmbTitulo.Location = new System.Drawing.Point(91, 26);
+            this.cmbTitulo.Name = "cmbTitulo";
+            this.cmbTitulo.Size = new System.Drawing.Size(83, 21);
+            this.cmbTitulo.TabIndex = 17;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(51, 31);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(33, 13);
+            this.label17.TabIndex = 16;
+            this.label17.Text = "Titulo";
+            // 
             // cmbEstadoCivil
             // 
             this.cmbEstadoCivil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -641,35 +732,6 @@
             this.txbCuilCuit.Size = new System.Drawing.Size(168, 20);
             this.txbCuilCuit.TabIndex = 8;
             this.txbCuilCuit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEnteros);
-            // 
-            // dtpFechaNacimiento
-            // 
-            this.dtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaNacimiento.Location = new System.Drawing.Point(91, 175);
-            this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
-            this.dtpFechaNacimiento.Size = new System.Drawing.Size(83, 20);
-            this.dtpFechaNacimiento.TabIndex = 5;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 35);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Tipo Familiar";
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.dgvFamiliares);
-            this.groupBox6.Controls.Add(this.btnAddFamiliar);
-            this.groupBox6.Controls.Add(this.btnRemoveFamiliar);
-            this.groupBox6.Location = new System.Drawing.Point(12, 504);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(472, 173);
-            this.groupBox6.TabIndex = 42;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Familiares";
             // 
             // groupBox4
             // 
@@ -715,14 +777,6 @@
             this.mtbTelefonoCelular.TabIndex = 19;
             this.mtbTelefonoCelular.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
-            // dtpFechaAlta
-            // 
-            this.dtpFechaAlta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaAlta.Location = new System.Drawing.Point(85, 6);
-            this.dtpFechaAlta.Name = "dtpFechaAlta";
-            this.dtpFechaAlta.Size = new System.Drawing.Size(84, 20);
-            this.dtpFechaAlta.TabIndex = 0;
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.txbDomicilioImportado);
@@ -746,96 +800,13 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Domicilio";
             // 
-            // label16
+            // txbDomicilioImportado
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(15, 18);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(62, 13);
-            this.label16.TabIndex = 48;
-            this.label16.Text = "Actualizado";
-            // 
-            // dtpActualizado
-            // 
-            this.dtpActualizado.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpActualizado.Location = new System.Drawing.Point(83, 13);
-            this.dtpActualizado.Name = "dtpActualizado";
-            this.dtpActualizado.Size = new System.Drawing.Size(84, 20);
-            this.dtpActualizado.TabIndex = 49;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(51, 31);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(33, 13);
-            this.label17.TabIndex = 16;
-            this.label17.Text = "Titulo";
-            // 
-            // cmbTitulo
-            // 
-            this.cmbTitulo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTitulo.FormattingEnabled = true;
-            this.cmbTitulo.Location = new System.Drawing.Point(91, 26);
-            this.cmbTitulo.Name = "cmbTitulo";
-            this.cmbTitulo.Size = new System.Drawing.Size(83, 21);
-            this.cmbTitulo.TabIndex = 17;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(6, 66);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(78, 13);
-            this.label18.TabIndex = 18;
-            this.label18.Text = "Nombre de pila";
-            // 
-            // txbNombreDePila
-            // 
-            this.txbNombreDePila.Location = new System.Drawing.Point(91, 64);
-            this.txbNombreDePila.Name = "txbNombreDePila";
-            this.txbNombreDePila.Size = new System.Drawing.Size(168, 20);
-            this.txbNombreDePila.TabIndex = 19;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(91, 403);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(89, 17);
-            this.checkBox1.TabIndex = 41;
-            this.checkBox1.Text = "Imprime carta";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(5, 51);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(72, 13);
-            this.label19.TabIndex = 50;
-            this.label19.Text = "Estado actual";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(83, 45);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(230, 55);
-            this.textBox1.TabIndex = 51;
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.textBox1);
-            this.groupBox9.Controls.Add(this.label19);
-            this.groupBox9.Controls.Add(this.label16);
-            this.groupBox9.Controls.Add(this.dtpActualizado);
-            this.groupBox9.Location = new System.Drawing.Point(672, 385);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(322, 113);
-            this.groupBox9.TabIndex = 48;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Estado";
+            this.txbDomicilioImportado.Location = new System.Drawing.Point(110, 127);
+            this.txbDomicilioImportado.Multiline = true;
+            this.txbDomicilioImportado.Name = "txbDomicilioImportado";
+            this.txbDomicilioImportado.Size = new System.Drawing.Size(210, 67);
+            this.txbDomicilioImportado.TabIndex = 43;
             // 
             // label26
             // 
@@ -846,13 +817,42 @@
             this.label26.TabIndex = 42;
             this.label26.Text = "Domicilio importado";
             // 
-            // txbDomicilioImportado
+            // dtpFechaNacimiento
             // 
-            this.txbDomicilioImportado.Location = new System.Drawing.Point(110, 127);
-            this.txbDomicilioImportado.Multiline = true;
-            this.txbDomicilioImportado.Name = "txbDomicilioImportado";
-            this.txbDomicilioImportado.Size = new System.Drawing.Size(210, 67);
-            this.txbDomicilioImportado.TabIndex = 43;
+            this.dtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaNacimiento.Location = new System.Drawing.Point(91, 175);
+            this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
+            this.dtpFechaNacimiento.Size = new System.Drawing.Size(83, 20);
+            this.dtpFechaNacimiento.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 35);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Tipo Familiar";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.dgvFamiliares);
+            this.groupBox6.Controls.Add(this.btnAddFamiliar);
+            this.groupBox6.Controls.Add(this.btnRemoveFamiliar);
+            this.groupBox6.Location = new System.Drawing.Point(12, 504);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(472, 173);
+            this.groupBox6.TabIndex = 42;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Familiares";
+            // 
+            // dtpFechaAlta
+            // 
+            this.dtpFechaAlta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaAlta.Location = new System.Drawing.Point(85, 6);
+            this.dtpFechaAlta.Name = "dtpFechaAlta";
+            this.dtpFechaAlta.Size = new System.Drawing.Size(84, 20);
+            this.dtpFechaAlta.TabIndex = 0;
             // 
             // frmClienteABM
             // 
@@ -869,6 +869,8 @@
             this.groupBox1.ResumeLayout(false);
             this.pnlControles.ResumeLayout(false);
             this.pnlControles.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).EndInit();
             this.groupBox5.ResumeLayout(false);
@@ -876,13 +878,11 @@
             this.groupBox7.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -957,9 +957,9 @@
         private System.Windows.Forms.ComboBox cmbTitulo;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txbEstadoActual;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cbxImprimeCarta;
         private System.Windows.Forms.TextBox txbDomicilioImportado;
         private System.Windows.Forms.Label label26;
     }

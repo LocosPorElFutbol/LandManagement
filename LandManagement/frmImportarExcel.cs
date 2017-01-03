@@ -127,7 +127,6 @@ namespace LandManagement
                     log.Error(ex.InnerException.Message);
                 ImportacionError("Error al persistir lista de clientes.");
             }
-        
         }
 
         #region Cargar Datos del Cliente
@@ -195,7 +194,9 @@ namespace LandManagement
                 dom_numero = 0, //dato obligatorio
                 dom_domicilio_importado = persona.domicilio,
                 dom_codigo_postal = persona.codigoPostal.ToString(),
-                dom_localidad = CargarDatoNulo(persona.localidad)
+                dom_localidad = CargarDatoNulo(persona.localidad),
+                dom_actual = true, //Para que tome el domicilio importado
+                dom_departamento = "-"
             };
             cliente.tbdomicilio.Add(domicilio);
         }
@@ -215,6 +216,7 @@ namespace LandManagement
                 cli_fecha_nacimiento = DateTime.Parse(persona.nacimientoConyuge.ToString()),
                 cli_nacionalidad = persona.nacionalidadConyuge,
                 cli_telefono_celular = persona.celularConyuge,
+                cli_actualizado = persona.actualizado, //Asigno fecha actualizado para no generar error.
                 cli_email = persona.mailConyuge
             };
             cliente.tbcliente1.Add(conyuje);

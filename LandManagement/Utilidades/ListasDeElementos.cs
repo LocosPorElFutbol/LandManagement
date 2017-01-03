@@ -73,7 +73,7 @@ namespace LandManagement.Utilidades
         public List<ComboBoxItem> GetListaDepto()
         {
             List<ComboBoxItem> lista = new List<ComboBoxItem>(){
-                new ComboBoxItem("",0),
+                new ComboBoxItem("-",0),
                 new ComboBoxItem("1",1),
                 new ComboBoxItem("2",2),
                 new ComboBoxItem("3",3),
@@ -127,6 +127,17 @@ namespace LandManagement.Utilidades
                 new ComboBoxItem("Y",51),
                 new ComboBoxItem("Z",52)
             };
+
+            return lista;
+        }
+
+        public List<ComboBoxItem> GetListaTitulo()
+        {
+            List<ComboBoxItem> lista = new List<ComboBoxItem>(){
+                new ComboBoxItem("Sr.",0),
+                new ComboBoxItem("Sra.",1),
+                new ComboBoxItem("Srta.",1)
+               };
 
             return lista;
         }

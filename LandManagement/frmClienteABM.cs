@@ -33,6 +33,7 @@ namespace LandManagement
         private DataGridViewRow dataGridViewRow;
         ValidarControles validarControles;
         private ErrorProvider errorProvider1 = new ErrorProvider();
+
         public frmClienteABM(Form formularioPadre)
         {
             InitializeComponent();
@@ -70,6 +71,16 @@ namespace LandManagement
             txbCuilCuit.Text = pCliente.cli_cuit_cuil;
             txbComoLlego.Text = pCliente.cli_como_llego;
 
+            //Cargo datos de Propiedades importadas
+            dtpActualizado.Value = (DateTime)pCliente.cli_actualizado;
+            //titulo se carga en el load, posterior a la carga de combos
+            txbNombreDePila.Text = pCliente.cli_nombre_pila;
+            if (pCliente.cli_imprime_carta == null)
+                cbxImprimeCarta.Checked = false;
+            else
+                cbxImprimeCarta.Checked = (bool)pCliente.cli_imprime_carta;
+            txbEstadoActual.Text = pCliente.cli_estado_actual;
+
             InicializarGrillaFamiliares();
             InicializarGrillaPropiedades();
             InicializarGrillaCategorias();
@@ -105,6 +116,7 @@ namespace LandManagement
 
         private void frmClienteABM_Load(object sender, EventArgs e)
         {
+            txbDomicilioImportado.Enabled = false;
             pnlControles.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             listasDeElementos = new ListasDeElementos();
@@ -117,9 +129,10 @@ namespace LandManagement
                 cmbTipoDocumento.Text = this.cliente.cli_tipo_documento;
                 cmbEstadoCivil.Text = this.cliente.cli_estado_civil;
                 cmbSexo.Text = this.cliente.cli_sexo;
+                //El titulo se carga aca porque tiene que tener cargado el combo
+                cmbTitulo.Text = string.IsNullOrEmpty(this.cliente.cli_titulo) ? "Sr." : this.cliente.cli_titulo;
 
                 CargaDatosDelDomicilio();
-            
             }
         }
 
@@ -139,6 +152,9 @@ namespace LandManagement
                 cmbDepto.Text = domicilioActual.dom_departamento;
                 txbLocalidad.Text = domicilioActual.dom_localidad;
                 txbCodigoPostal.Text = domicilioActual.dom_codigo_postal;
+
+                //Cargo domicilio importado
+                txbDomicilioImportado.Text = domicilioActual.dom_domicilio_importado;
             }
         }
 
@@ -212,13 +228,20 @@ namespace LandManagement
             this.cliente.cli_telefono_laboral = MaskedTextboxNulo(mtbTelefonoLaboral) ? null : mtbTelefonoLaboral.Text;
             this.cliente.cli_email = string.IsNullOrEmpty(txbEmail.Text) ? null : txbEmail.Text;
             this.cliente.cli_sexo = string.IsNullOrEmpty(cmbSexo.Text) ? null : cmbSexo.Text;
-            this.cliente.cli_fecha_nacimiento=dtpFechaNacimiento.Value;
+            this.cliente.cli_fecha_nacimiento = dtpFechaNacimiento.Value;
             this.cliente.cli_nacionalidad = string.IsNullOrEmpty(txbNacionalidad.Text) ? null : txbNacionalidad.Text;
             this.cliente.cli_estado_civil = string.IsNullOrEmpty(cmbEstadoCivil.Text) ? null : cmbEstadoCivil.Text;
             this.cliente.cli_tipo_documento = string.IsNullOrEmpty(cmbTipoDocumento.Text) ? null : cmbTipoDocumento.Text;
             this.cliente.cli_numero_documento = string.IsNullOrEmpty(txbNumeroDocumento.Text) ? null : txbNumeroDocumento.Text;
             this.cliente.cli_cuit_cuil = string.IsNullOrEmpty(txbCuilCuit.Text) ? null : txbCuilCuit.Text;
             this.cliente.cli_como_llego = string.IsNullOrEmpty(txbComoLlego.Text) ? null : txbComoLlego.Text;
+
+            //Cargo campos importados
+            this.cliente.cli_actualizado = dtpActualizado.Value;
+            this.cliente.cli_titulo = cmbTitulo.Text;
+            this.cliente.cli_nombre_pila = txbNombreDePila.Text;
+            this.cliente.cli_imprime_carta = cbxImprimeCarta.Checked;
+            this.cliente.cli_estado_actual = txbEstadoActual.Text;
 
             CargaDomicilioAlCliente();
             CargaFamiliaresAlCliente();
@@ -250,6 +273,7 @@ namespace LandManagement
                 domicilio.dom_codigo_postal = string.IsNullOrEmpty(txbCodigoPostal.Text) ? null : txbCodigoPostal.Text;
                 domicilio.dom_localidad = string.IsNullOrEmpty(txbLocalidad.Text) ? null : txbLocalidad.Text;
                 domicilio.dom_actual = true;
+                
                 this.cliente.tbdomicilio.Add(domicilio);
             }
             catch (Exception ex)
@@ -503,6 +527,8 @@ namespace LandManagement
             cmbDepto.DisplayMember = ComboBoxItem.DisplayMember;
             cmbDepto.ValueMember = ComboBoxItem.ValueMember;
 
+            cmbTitulo.DisplayMember = ComboBoxItem.DisplayMember;
+            cmbTitulo.ValueMember = ComboBoxItem.ValueMember;
         }
 
         private void CargarCombos()
@@ -513,6 +539,7 @@ namespace LandManagement
             this.CargarSexo();
             this.CargarPiso();
             this.CargarDepto();
+            this.CargarTitulo();
             SetearIndiceCombo();
         }
 
@@ -524,6 +551,7 @@ namespace LandManagement
             cmbSexo.SelectedIndex = 0;
             cmbPiso.SelectedIndex = 0;
             cmbDepto.SelectedIndex = 0;
+            cmbTitulo.SelectedIndex = 0;
         }
 
         private void CargarTipoFamiliar()
@@ -558,6 +586,11 @@ namespace LandManagement
         private void CargarDepto()
         {
             this.CargarCombo(listasDeElementos.GetListaDepto(), cmbDepto);
+        }
+
+        private void CargarTitulo()
+        {
+            this.CargarCombo(listasDeElementos.GetListaTitulo(), cmbTitulo);
         }
 
         private void CargarCombo(List<ComboBoxItem> lista, ComboBox combo)

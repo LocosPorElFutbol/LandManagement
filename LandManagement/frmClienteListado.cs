@@ -29,8 +29,12 @@ namespace LandManagement
 
         private void frmClienteListado_Load(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
+
             pnlControles.AutoScroll = true;
             CargarGrilla();
+
+            this.Cursor = Cursors.Default;
         }
 
         public void CargarGrilla()
@@ -68,7 +72,7 @@ namespace LandManagement
                 i++;
             }
 
-            dgvClientes.Columns[0].Visible = false;
+            //dgvClientes.Columns[0].Visible = false;
             dgvClientes.Columns[1].Visible = false;
             dgvClientes.Columns[2].Visible = false;
 
@@ -188,9 +192,10 @@ namespace LandManagement
             try
             {
                 List<string> listaExcluir = new List<string>() 
-                { "cli_id",
-                                        "cli_id_padre",
-                                        "tif_id"};
+                { 
+                    "cli_id_padre",
+                    "tif_id"
+                };
 
                 BuscarEnDataGridView buscar = new BuscarEnDataGridView();
 
