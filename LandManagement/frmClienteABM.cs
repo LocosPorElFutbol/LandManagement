@@ -273,6 +273,9 @@ namespace LandManagement
                 domicilio.dom_codigo_postal = string.IsNullOrEmpty(txbCodigoPostal.Text) ? null : txbCodigoPostal.Text;
                 domicilio.dom_localidad = string.IsNullOrEmpty(txbLocalidad.Text) ? null : txbLocalidad.Text;
                 domicilio.dom_actual = true;
+
+                //Guardo siempre el domicilio importado, sino se pierde
+                domicilio.dom_domicilio_importado = txbDomicilioImportado.Text;
                 
                 this.cliente.tbdomicilio.Add(domicilio);
             }
