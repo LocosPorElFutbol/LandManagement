@@ -52,6 +52,7 @@
           <Property Name="cli_nombre_pila" Type="varchar" MaxLength="45" />
           <Property Name="cli_imprime_carta" Type="bool" />
           <Property Name="cli_estado_actual" Type="varchar" MaxLength="300" />
+          <Property Name="cli_id_import" Type="int" />
         </EntityType>
         <EntityType Name="tbclienteoperacion">
           <Key>
@@ -866,6 +867,7 @@
           <Property Name="cli_nombre_pila" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="cli_imprime_carta" Type="Boolean" />
           <Property Name="cli_estado_actual" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="cli_id_import" Type="Int32" />
         </EntityType>
         <EntityType Name="tbclienteoperacion">
           <Key>
@@ -1370,6 +1372,7 @@
           <EntitySetMapping Name="tbcliente">
             <EntityTypeMapping TypeName="landmanagementbdModel.tbcliente">
               <MappingFragment StoreEntitySet="tbcliente">
+                <ScalarProperty Name="cli_id_import" ColumnName="cli_id_import" />
                 <ScalarProperty Name="cli_estado_actual" ColumnName="cli_estado_actual" />
                 <ScalarProperty Name="cli_imprime_carta" ColumnName="cli_imprime_carta" />
                 <ScalarProperty Name="cli_nombre_pila" ColumnName="cli_nombre_pila" />
@@ -1649,7 +1652,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="LandManagementModel">
+      <Diagram Name="LandManagementModel" ZoomLevel="55">
         <EntityTypeShape EntityType="landmanagementbdModel.tbalquilada" Width="1.5" PointX="9" PointY="38.125" />
         <EntityTypeShape EntityType="landmanagementbdModel.tbcliente" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="landmanagementbdModel.tbclienteoperacion" Width="1.5" PointX="13.75" PointY="4.25" />

@@ -43,6 +43,7 @@ namespace LandManagement
             dgvClientes.Rows.Clear();
             dgvClientes.Columns.Clear();
             string[] columnasGrilla = { "cli_id",
+                                        "cli_id_import",
                                         "cli_id_padre",
                                         "tif_id",
                                         "cli_nombre",
@@ -73,8 +74,8 @@ namespace LandManagement
             }
 
             //dgvClientes.Columns[0].Visible = false;
-            dgvClientes.Columns[1].Visible = false;
             dgvClientes.Columns[2].Visible = false;
+            dgvClientes.Columns[3].Visible = false;
 
             CargarDataGridViewLista();
         }
@@ -95,6 +96,7 @@ namespace LandManagement
                 indice = dgvClientes.Rows.Add();
                 dataGridViewRow = dgvClientes.Rows[indice];
                 dataGridViewRow.Cells["cli_id"].Value = obj.cli_id;
+                dataGridViewRow.Cells["cli_id_import"].Value = obj.cli_id_import;
                 dataGridViewRow.Cells["cli_id_padre"].Value = obj.cli_id_padre;
                 dataGridViewRow.Cells["tif_id"].Value = obj.tif_id;
                 dataGridViewRow.Cells["cli_parentezco"].Value = obj.tbtipofamiliar.tif_descripcion;

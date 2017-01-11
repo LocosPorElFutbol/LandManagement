@@ -139,7 +139,7 @@ namespace LandManagement
                 cliente = new tbcliente()
                 {
                     //Cargo datos del titular
-                    cli_id = persona.id,
+                    cli_id_import = persona.id, //Asigno el id existente al campo id_import
                     cli_fecha = DateTime.Parse(persona.fechaDeIngreso.ToString()),
                     cli_actualizado = DateTime.Parse(persona.actualizado.ToString()),
                     cli_titulo = persona.titulo,
@@ -161,7 +161,8 @@ namespace LandManagement
 
                 //Agrego campo obligatorio cli_tipo_documento
                 cliente.cli_tipo_documento = "DNI";
-                cliente.tif_id = 6;
+                //cliente.tif_id = 6; CHEQUEAR PORQUE TENIA 6!!!!!!
+                cliente.tif_id = 5;
 
                 CargarDomicilio(persona, cliente);
 
@@ -206,7 +207,8 @@ namespace LandManagement
             //Cargo datos del conyuge
             tbcliente conyuje = new tbcliente()
             {
-                tif_id = 6, //Cargo tipo de familiar Conyuje
+                //tif_id = 6, //Cargo tipo de familiar Conyuje
+                tif_id = 5, //Cargo tipo de familiar Conyuje
                 cli_apellido = CargarDatoNulo(persona.apellidoConyuge),
                 cli_nombre_pila = persona.nombrePilaConyuge,
                 cli_nombre = CargarDatoNulo(persona.nombreCompletoConyuge),

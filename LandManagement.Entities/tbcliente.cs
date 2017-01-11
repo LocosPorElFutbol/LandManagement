@@ -17,7 +17,10 @@ namespace LandManagement.Entities
     public class tbcliente_metadata
     {
         [DisplayName("Id Cliente")]
-        public int cli_id{get;set;}
+        public int cli_id { get; set; }
+
+        [DisplayName("Id Importado")]
+        public int cli_id_import { get; set; }
 
         [DisplayName("Id Cliente Padre")]
         public int cli_id_padre { get; set; }

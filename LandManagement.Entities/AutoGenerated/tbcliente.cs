@@ -194,6 +194,12 @@ namespace LandManagement.Entities
             get;
             set;
         }
+    
+        public virtual Nullable<int> cli_id_import
+        {
+            get;
+            set;
+        }
 
         #endregion
 
