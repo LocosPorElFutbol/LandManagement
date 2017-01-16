@@ -36,7 +36,7 @@ namespace LandManagement
         private void btnCargar_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofdExcel = new OpenFileDialog();
-            ofdExcel.InitialDirectory = "C:\\Leo\\Temp";
+            ofdExcel.InitialDirectory = "C:\\";
             ofdExcel.Filter = "Archivos Excel (*.xlsx) | *.xlsx";
 
             if (ofdExcel.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -83,7 +83,12 @@ namespace LandManagement
             this.Close();
         }
 
-        List<tbcliente> ImportarFilas(List<PersonaExcel> listaPersonas)
+        /// <summary>
+        /// Convierte los elementos de List<PersonaExcel> a List<tbCliente>
+        /// </summary>
+        /// <param name="listaPersonas">lista de personas cargadas del documento Excel.</param>
+        /// <returns>Lista de tbcliente para persistir</returns>
+        private List<tbcliente> ImportarFilas(List<PersonaExcel> listaPersonas)
         {
             List<tbcliente> listaClientes = new List<tbcliente>();
             try
@@ -91,11 +96,8 @@ namespace LandManagement
                 tbcliente cliente;
                 foreach (PersonaExcel persona in listaPersonas)
                 {
-                    if (!persona.fechaDeIngreso.Equals(new DateTime(0001,01,01)))
-                    {
-                        cliente = CargarDatosCliente(persona);
-                        listaClientes.Add(cliente);
-                    }
+                    cliente = CargarDatosCliente(persona);
+                    listaClientes.Add(cliente);
                 }
             }
             catch (Exception ex)
@@ -161,7 +163,6 @@ namespace LandManagement
 
                 //Agrego campo obligatorio cli_tipo_documento
                 cliente.cli_tipo_documento = "DNI";
-                //cliente.tif_id = 6; CHEQUEAR PORQUE TENIA 6!!!!!!
                 cliente.tif_id = 5;
 
                 CargarDomicilio(persona, cliente);
@@ -193,6 +194,7 @@ namespace LandManagement
                 tip_id = 4, //dato obligatorio importado
                 dom_calle = "Domicilio importado excel", //dato obligatorio
                 dom_numero = 0, //dato obligatorio
+                dom_piso = 0, // se carga el dato para sincronizar con alta de nuevo cliente
                 dom_domicilio_importado = persona.domicilio,
                 dom_codigo_postal = persona.codigoPostal.ToString(),
                 dom_localidad = CargarDatoNulo(persona.localidad),
@@ -207,8 +209,8 @@ namespace LandManagement
             //Cargo datos del conyuge
             tbcliente conyuje = new tbcliente()
             {
-                //tif_id = 6, //Cargo tipo de familiar Conyuje
-                tif_id = 5, //Cargo tipo de familiar Conyuje
+                tif_id = 6, //Cargo tipo de familiar Conyuje
+                cli_fecha = DateTime.Parse(persona.fechaDeIngreso.ToString()), //Asigno misma fecha de alta que el cliente
                 cli_apellido = CargarDatoNulo(persona.apellidoConyuge),
                 cli_nombre_pila = persona.nombrePilaConyuge,
                 cli_nombre = CargarDatoNulo(persona.nombreCompletoConyuge),

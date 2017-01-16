@@ -41,5 +41,14 @@ namespace LandManagement.Business
             return domicilioRepository.GetList();
         }
 
+        #region Métodos Particulares
+        public object GetDomicilioByIdCliente(tbcliente _cliente)
+        {
+            List<tbdomicilio> listaDomicilio = (List<tbdomicilio>)this.GetList();
+            return listaDomicilio
+                .Where(d => d.cli_id == _cliente.cli_id && d.dom_actual == true).SingleOrDefault();
+        }
+
+        #endregion
     }
 }

@@ -73,6 +73,13 @@ namespace LandManagement.Business
             return clienteRepository.GetList();
         }
 
+        public object GetListCumpleanieros(DateTime fecha)
+        {
+            return ((List<tbcliente>)this.GetList())
+                .Where(m => m.cli_fecha_nacimiento.Day == fecha.Day && 
+                    m.cli_fecha_nacimiento.Month == fecha.Month).ToList();
+        }
+
         public object GetListNombresCompletos()
         {
             List<tbcliente> listaNombresCompletos = (List<tbcliente>)this.GetList();
