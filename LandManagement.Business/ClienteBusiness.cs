@@ -77,7 +77,9 @@ namespace LandManagement.Business
         {
             return ((List<tbcliente>)this.GetList())
                 .Where(m => m.cli_fecha_nacimiento.Day == fecha.Day && 
-                    m.cli_fecha_nacimiento.Month == fecha.Month).ToList();
+                    m.cli_fecha_nacimiento.Month == fecha.Month &&
+                    m.cli_imprime_carta == true)
+                    .ToList();
         }
 
         public object GetListNombresCompletos()

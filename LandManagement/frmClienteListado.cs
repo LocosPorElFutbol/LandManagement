@@ -162,7 +162,8 @@ namespace LandManagement
             {
                 Cursor.Current = Cursors.WaitCursor;
 
-                tbcliente cliente = ObtenerClienteSeleccionado();
+                tbcliente cliente = new tbcliente();
+                cliente = ObtenerClienteSeleccionado();
 
                 formularioClienteABM = new frmClienteABM(cliente, this);
                 ControlarInstanciaAbierta(formularioClienteABM, "Planilla de Cliente");
@@ -171,8 +172,10 @@ namespace LandManagement
             }
             catch (Exception ex)
             {
-                log.Error(ex.InnerException.Message);
-                MessageBox.Show("Error al seleccionar");
+                log.Error(ex.Message);
+                if (ex.InnerException != null)
+                    log.Error(ex.InnerException.Message);
+                MessageBox.Show("Error al seleccionar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

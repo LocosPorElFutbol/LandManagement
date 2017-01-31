@@ -72,7 +72,9 @@ namespace LandManagement
             txbComoLlego.Text = pCliente.cli_como_llego;
 
             //Cargo datos de Propiedades importadas
-            dtpActualizado.Value = (DateTime)pCliente.cli_actualizado;
+            if (pCliente.cli_actualizado != null)
+                dtpActualizado.Value = (DateTime)pCliente.cli_actualizado;
+
             //titulo se carga en el load, posterior a la carga de combos
             txbNombreDePila.Text = pCliente.cli_nombre_pila;
             if (pCliente.cli_imprime_carta == null)
