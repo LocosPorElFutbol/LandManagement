@@ -22,7 +22,7 @@ namespace LandManagement
             (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private ErrorProvider errorProvider1 = new ErrorProvider();
         private ClienteBusiness clienteBusiness;
-        private List<EtiquetaEntity> listaEtiquetas = null;
+        private List<CartaEntity> listaEtiquetas = null;
 
         public frmCartasCumpleanios()
         {
@@ -60,16 +60,13 @@ namespace LandManagement
         {
             try
             {
-                string pathWordTemplate = ConfigurationManager.AppSettings["pathWordTemplate"].ToString();
-                string pathNuevoWordEtiquetas = ConfigurationManager.AppSettings["pathNuevoWordEtiquetas"].ToString();
+                string TemplateEtiquetas300 = ConfigurationManager.AppSettings["TemplateEtiquetas300"].ToString();
+                string TemplateEtiquetas300Actualizado = ConfigurationManager.AppSettings["TemplateEtiquetas300Actualizado"].ToString();
 
                 ReemplazarEtiquetasBusiness reemplazarEtiquetasBusiness =
-                    new ReemplazarEtiquetasBusiness(pathWordTemplate, pathNuevoWordEtiquetas);
+                    new ReemplazarEtiquetasBusiness(TemplateEtiquetas300, TemplateEtiquetas300Actualizado);
 
-                reemplazarEtiquetasBusiness.Reemplazar(this.listaEtiquetas);
-
-                //Todavia no se testo la funcion imprimir
-                //reemplazarEtiquetasBusiness.ImprimirEtiquetas();
+                reemplazarEtiquetasBusiness.ReemplazarImprimir300Etiquetas(this.listaEtiquetas);
             }
             catch (Exception ex)
             {
@@ -90,31 +87,41 @@ namespace LandManagement
         }
 
         #region Carga las etiquetas con los datos de los cumpleañeros
+        /// <summary>
+        /// Carga la lista de CartaEntity con los clientes que cumplen años
+        /// en la fecha enviada desde el formulario
+        /// </summary>
+        /// <param name="_listaClientes">Lista de clientes con los datos para cargar Lista de CartaEntity</param>
         private void CargarListaEtiquetas(List<tbcliente> _listaClientes)
         {
-            listaEtiquetas = new List<EtiquetaEntity>();
+            listaEtiquetas = new List<CartaEntity>();
 
             //Ordeno clientes por dia de cumpleaños para preservar el orden de impresion
             //Esto se realiza por pedido del cliente.
             _listaClientes.OrderBy(e => e.cli_fecha_nacimiento.Day);
 
-            EtiquetaEntity etiqueta;
-            EtiquetaEntity etiquetaTemp;
+            CartaEntity cartaEntity;
+            CartaEntity cartaEntityTemp;
 
             foreach (var obj in _listaClientes)
             {
-                etiqueta = new EtiquetaEntity();
+                cartaEntity = new CartaEntity();
+                cartaEntityTemp = new CartaEntity();
+
                 //Cargo los datos del domicilio en etiqueta auxiliar
-                etiquetaTemp = ParseoDomicilioDelCliente(obj);
+                cartaEntityTemp = ParseoDomicilioDelCliente(obj);
 
-                if (etiquetaTemp != null)
+                if (cartaEntityTemp != null)
                 {
-                    etiqueta.NombreApellido = obj.cli_nombre + ", " + obj.cli_apellido;
-                    etiqueta.Direccion = etiquetaTemp.Direccion;
-                    etiqueta.Localidad = etiquetaTemp.Localidad;
-                    etiqueta.CodigoPostal = etiquetaTemp.CodigoPostal;
+                    cartaEntity.Titulo = obj.cli_titulo;
+                    cartaEntity.NombrePila = obj.cli_nombre_pila;
+                    cartaEntity.NombreCompleto = obj.cli_nombre + ", " + obj.cli_apellido;
+                    cartaEntity.Direccion = cartaEntityTemp.Direccion;
+                    cartaEntity.Localidad = cartaEntityTemp.Localidad;
+                    cartaEntity.CodigoPostal = cartaEntityTemp.CodigoPostal;
+                    cartaEntity.FechaCumpleanios = obj.cli_fecha_nacimiento;
 
-                    listaEtiquetas.Add(etiqueta);
+                    listaEtiquetas.Add(cartaEntity);
                 }
             }
         }
@@ -125,10 +132,10 @@ namespace LandManagement
         /// </summary>
         /// <param name="_cliente">Contiene el id del cliente por el cual se buscara el domicilio actual</param>
         /// <returns>string con la direccion concatenada por calle, numero, piso y depto</returns>
-        private EtiquetaEntity ParseoDomicilioDelCliente(tbcliente _cliente)
+        private CartaEntity ParseoDomicilioDelCliente(tbcliente _cliente)
         {
             string direccion = string.Empty;
-            EtiquetaEntity e = null;
+            CartaEntity e = null;
             
             //Cargo direccion
             DomicilioBusiness domicilioBusiness = new DomicilioBusiness();
@@ -136,7 +143,7 @@ namespace LandManagement
 
             if (domicilio != null)
             {
-                e = new EtiquetaEntity();
+                e = new CartaEntity();
                 if (string.IsNullOrEmpty(domicilio.dom_domicilio_importado))
                 {
                     string calleYNumero = domicilio.dom_calle + " " + domicilio.dom_numero;
