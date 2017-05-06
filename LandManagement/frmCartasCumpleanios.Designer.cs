@@ -38,6 +38,8 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dtpFechaCumpleanios = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnEditarCarta = new System.Windows.Forms.Button();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -55,6 +57,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnHelp);
+            this.groupBox1.Controls.Add(this.btnEditarCarta);
             this.groupBox1.Controls.Add(this.btnCancelar);
             this.groupBox1.Controls.Add(this.btnImprimirCartas);
             this.groupBox1.Controls.Add(this.btnImprimirEtiquetas);
@@ -87,6 +91,7 @@
             this.btnImprimirCartas.TabIndex = 6;
             this.btnImprimirCartas.Text = "Imprimir cartas";
             this.btnImprimirCartas.UseVisualStyleBackColor = true;
+            this.btnImprimirCartas.Click += new System.EventHandler(this.btnImprimirCartas_Click);
             // 
             // btnImprimirEtiquetas
             // 
@@ -116,7 +121,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(241, 23);
+            this.btnBuscar.Location = new System.Drawing.Point(241, 21);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(109, 23);
             this.btnBuscar.TabIndex = 2;
@@ -140,6 +145,27 @@
             this.label1.Size = new System.Drawing.Size(112, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Fecha de cumpleaños";
+            // 
+            // btnEditarCarta
+            // 
+            this.btnEditarCarta.Location = new System.Drawing.Point(241, 49);
+            this.btnEditarCarta.Name = "btnEditarCarta";
+            this.btnEditarCarta.Size = new System.Drawing.Size(109, 23);
+            this.btnEditarCarta.TabIndex = 8;
+            this.btnEditarCarta.Text = "Editar Carta";
+            this.btnEditarCarta.UseVisualStyleBackColor = true;
+            this.btnEditarCarta.Click += new System.EventHandler(this.btnEditarCarta_Click);
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHelp.Location = new System.Drawing.Point(356, 49);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(21, 23);
+            this.btnHelp.TabIndex = 9;
+            this.btnHelp.Text = "?";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // frmCartasCumpleanios
             // 
@@ -169,5 +195,7 @@
         private System.Windows.Forms.Button btnImprimirCartas;
         private System.Windows.Forms.Button btnImprimirEtiquetas;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnEditarCarta;
+        private System.Windows.Forms.Button btnHelp;
     }
 }

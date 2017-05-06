@@ -56,6 +56,30 @@ namespace LandManagement
             }
         }
 
+        private void btnEditarCarta_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string TemplateCarta = ConfigurationManager.AppSettings["TemplateCarta"].ToString();
+
+                ReemplazarCartasBusiness cartas = new ReemplazarCartasBusiness(TemplateCarta);
+                cartas.AbrirTemplateCarta();
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                if (ex.InnerException != null)
+                    log.Error(ex.InnerException.Message);
+                MessageBox.Show("Error editar carta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            string TemplateCarta = ConfigurationManager.AppSettings["TemplateCarta"].ToString();
+            System.Windows.Forms.Clipboard.SetText(TemplateCarta);
+        }
+
         private void btnImprimirEtiquetas_Click(object sender, EventArgs e)
         {
             try
@@ -77,6 +101,34 @@ namespace LandManagement
             }
         }
 
+        private void btnImprimirCartas_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string TemplateCarta = ConfigurationManager.AppSettings["TemplateCarta"].ToString();
+                string TemplateCarta300 = ConfigurationManager.AppSettings["TemplateCarta300"].ToString();
+                string TemplateCarta300Actualizado = ConfigurationManager.AppSettings["TemplateCarta300Actualizado"].ToString();
+
+                ReemplazarCartasBusiness reemplazarCartasBusiness = 
+                    new ReemplazarCartasBusiness(TemplateCarta, TemplateCarta300, TemplateCarta300Actualizado);
+
+                reemplazarCartasBusiness.ReemplazarImprimir300Cartas(this.listaEtiquetas);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                if (ex.InnerException != null)
+                    log.Error(ex.InnerException.Message);
+                MessageBox.Show("Error al imprimir Cartas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        /// <summary>
+        /// Obtiene los clientes que cumplen años en la fecha indicada y retorna la lista de clientes.
+        /// </summary>
+        /// <param name="fechaCumpleanios">Fecha de cumpleaños a buscar.</param>
+        /// <returns></returns>
         private List<tbcliente> ObtenerClientesCumplenAniosEl(DateTime fechaCumpleanios)
         {
             clienteBusiness = new ClienteBusiness();
