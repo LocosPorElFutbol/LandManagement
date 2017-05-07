@@ -101,6 +101,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFamiliares)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedades)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -479,7 +480,7 @@
             this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1015, 740);
+            this.groupBox1.Size = new System.Drawing.Size(1015, 858);
             this.groupBox1.TabIndex = 63;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Cliente";
@@ -503,7 +504,7 @@
             this.pnlControles.Controls.Add(this.dtpFechaAlta);
             this.pnlControles.Location = new System.Drawing.Point(6, 19);
             this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(1003, 715);
+            this.pnlControles.Size = new System.Drawing.Size(1003, 833);
             this.pnlControles.TabIndex = 47;
             this.pnlControles.TabStop = true;
             // 
@@ -836,12 +837,13 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.treeView1);
             this.groupBox6.Controls.Add(this.dgvFamiliares);
             this.groupBox6.Controls.Add(this.btnAddFamiliar);
             this.groupBox6.Controls.Add(this.btnRemoveFamiliar);
             this.groupBox6.Location = new System.Drawing.Point(12, 504);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(472, 173);
+            this.groupBox6.Size = new System.Drawing.Size(472, 310);
             this.groupBox6.TabIndex = 42;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Familiares";
@@ -854,12 +856,19 @@
             this.dtpFechaAlta.Size = new System.Drawing.Size(84, 20);
             this.dtpFechaAlta.TabIndex = 0;
             // 
+            // treeView1
+            // 
+            this.treeView1.Location = new System.Drawing.Point(6, 179);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(409, 125);
+            this.treeView1.TabIndex = 28;
+            // 
             // frmClienteABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(1039, 764);
+            this.ClientSize = new System.Drawing.Size(1039, 882);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmClienteABM";
             this.Text = "frmClienteABM";
@@ -962,5 +971,6 @@
         private System.Windows.Forms.CheckBox cbxImprimeCarta;
         private System.Windows.Forms.TextBox txbDomicilioImportado;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TreeView treeView1;
     }
 }

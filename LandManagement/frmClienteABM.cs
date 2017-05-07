@@ -86,7 +86,8 @@ namespace LandManagement
             InicializarGrillaFamiliares();
             InicializarGrillaPropiedades();
             InicializarGrillaCategorias();
-            
+
+            buscapadre(pCliente);
             //Carga grilla propiedades
             foreach (var prop in pCliente.tbpropiedad)
             {
@@ -827,6 +828,53 @@ namespace LandManagement
 
             errorProvider1.SetError(textBoxDni, "");
         }
+
+        private void buscapadre(tbcliente cliente)
+        {
+            tbcliente padre = new tbcliente();
+            List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetList();
+            tipoFamiliarBusiness = new TipoFamiliarBusiness();
+            if (cliente.cli_id_padre != null)
+            {
+                padre = (from item in listaClientes
+                         where item.cli_id.ToString().Equals(cliente.cli_id_padre.ToString())
+                         select item).First();
+                tbtipofamiliar tipoFamiliar = (tbtipofamiliar)tipoFamiliarBusiness.GetElement(new tbtipofamiliar() { tif_id = padre.tif_id });
+                TreeNode nodo1 = new TreeNode(padre.cli_nombre + " " + padre.cli_apellido + "(" + tipoFamiliar.tif_descripcion + ")");
+                treeView1.Nodes.Add(nodo1);
+                cargafam(padre, nodo1);
+            }
+            else
+            {
+                tbtipofamiliar tipoFamiliar = (tbtipofamiliar)tipoFamiliarBusiness.GetElement(new tbtipofamiliar() { tif_id = cliente.tif_id });
+                TreeNode nodo1 = new TreeNode(cliente.cli_nombre + " " + cliente.cli_apellido + "(" + tipoFamiliar.tif_descripcion + ")");
+                treeView1.Nodes.Add(nodo1);
+
+                cargafam(cliente, nodo1);
+            }
+
+        }
+        private void cargafam(tbcliente cliente, TreeNode nodePadre)
+        {
+            tipoFamiliarBusiness = new TipoFamiliarBusiness();
+            ClienteBusiness clienteBusiness = new ClienteBusiness();
+            List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetList();
+            foreach (var obj in listaClientes)
+            {
+                tbtipofamiliar tipoFamiliar = (tbtipofamiliar)tipoFamiliarBusiness.GetElement(new tbtipofamiliar() { tif_id = obj.tif_id });
+                TreeNode nuevoNodo = new TreeNode();
+                if (cliente.cli_id == obj.cli_id_padre)
+                {
+                    //agrego el hijo
+                    nuevoNodo.Text = (obj.cli_nombre + " " + obj.cli_apellido + "(" + tipoFamiliar.tif_descripcion + ")");
+                    nodePadre.Nodes.Add(nuevoNodo);
+                    cargafam(obj, nuevoNodo);
+                }
+
+            }
+
+        }
+
         private void ValidatingControlMaskedTextBox(object sender, CancelEventArgs e)
         {
             errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
