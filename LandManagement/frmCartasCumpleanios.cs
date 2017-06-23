@@ -32,6 +32,7 @@ namespace LandManagement
         private void frmCartasCumpleanios_Load(object sender, EventArgs e)
         {
             txbCantidadClientes.Enabled = false;
+            toolTip1.SetToolTip(btnHelp, "Guarda en clipboard la ruta donde se debe guardar la carta.");
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)

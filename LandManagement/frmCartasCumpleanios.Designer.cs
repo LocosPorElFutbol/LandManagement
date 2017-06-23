@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnHelp = new System.Windows.Forms.Button();
+            this.btnEditarCarta = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnImprimirCartas = new System.Windows.Forms.Button();
             this.btnImprimirEtiquetas = new System.Windows.Forms.Button();
@@ -38,8 +41,7 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dtpFechaCumpleanios = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnEditarCarta = new System.Windows.Forms.Button();
-            this.btnHelp = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -73,6 +75,27 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cumpleaños de clientes";
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHelp.Location = new System.Drawing.Point(356, 49);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(21, 23);
+            this.btnHelp.TabIndex = 9;
+            this.btnHelp.Text = "?";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
+            // btnEditarCarta
+            // 
+            this.btnEditarCarta.Location = new System.Drawing.Point(241, 49);
+            this.btnEditarCarta.Name = "btnEditarCarta";
+            this.btnEditarCarta.Size = new System.Drawing.Size(109, 23);
+            this.btnEditarCarta.TabIndex = 8;
+            this.btnEditarCarta.Text = "Editar Carta";
+            this.btnEditarCarta.UseVisualStyleBackColor = true;
+            this.btnEditarCarta.Click += new System.EventHandler(this.btnEditarCarta_Click);
             // 
             // btnCancelar
             // 
@@ -146,27 +169,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Fecha de cumpleaños";
             // 
-            // btnEditarCarta
-            // 
-            this.btnEditarCarta.Location = new System.Drawing.Point(241, 49);
-            this.btnEditarCarta.Name = "btnEditarCarta";
-            this.btnEditarCarta.Size = new System.Drawing.Size(109, 23);
-            this.btnEditarCarta.TabIndex = 8;
-            this.btnEditarCarta.Text = "Editar Carta";
-            this.btnEditarCarta.UseVisualStyleBackColor = true;
-            this.btnEditarCarta.Click += new System.EventHandler(this.btnEditarCarta_Click);
-            // 
-            // btnHelp
-            // 
-            this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHelp.Location = new System.Drawing.Point(356, 49);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(21, 23);
-            this.btnHelp.TabIndex = 9;
-            this.btnHelp.Text = "?";
-            this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
-            // 
             // frmCartasCumpleanios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -197,5 +199,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnEditarCarta;
         private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
