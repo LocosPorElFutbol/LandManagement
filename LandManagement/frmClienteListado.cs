@@ -61,7 +61,8 @@ namespace LandManagement
                                         "cli_tipo_documento",
                                         "cli_numero_documento",
                                         "cli_cuit_cuil",
-                                        "cli_como_llego"};
+                                        "cli_como_llego",
+                                        "cli_imprime_carta"};
 
             int i = 0;
             foreach (string s in columnasGrilla)
@@ -115,6 +116,10 @@ namespace LandManagement
                 dataGridViewRow.Cells["cli_numero_documento"].Value = obj.cli_numero_documento;
                 dataGridViewRow.Cells["cli_cuit_cuil"].Value = obj.cli_cuit_cuil;
                 dataGridViewRow.Cells["cli_como_llego"].Value = obj.cli_como_llego;
+                dataGridViewRow.Cells["cli_imprime_carta"].Value = obj.cli_imprime_carta;
+
+                if (obj.cli_imprime_carta != null && obj.cli_imprime_carta == false)
+                    dataGridViewRow.DefaultCellStyle.BackColor = Color.Red;
             }
         }
 
