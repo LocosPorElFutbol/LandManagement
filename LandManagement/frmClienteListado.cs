@@ -119,7 +119,7 @@ namespace LandManagement
                 dataGridViewRow.Cells["cli_imprime_carta"].Value = obj.cli_imprime_carta;
 
                 if (obj.cli_imprime_carta != null && obj.cli_imprime_carta == false)
-                    dataGridViewRow.DefaultCellStyle.BackColor = Color.Red;
+                    dataGridViewRow.DefaultCellStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#f66b6b");
             }
         }
 
