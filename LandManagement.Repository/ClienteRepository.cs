@@ -160,6 +160,10 @@ namespace LandManagement.Repository
             {
                 throw new ExcepcionRepository();
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public object ValidarExitenciaByDni(tbcliente entity)

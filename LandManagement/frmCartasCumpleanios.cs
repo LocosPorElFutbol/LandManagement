@@ -85,6 +85,7 @@ namespace LandManagement
         {
             try
             {
+                this.Cursor = Cursors.WaitCursor;
                 string TemplateEtiquetas300 = ConfigurationManager.AppSettings["TemplateEtiquetas300"].ToString();
                 string TemplateEtiquetas300Actualizado = ConfigurationManager.AppSettings["TemplateEtiquetas300Actualizado"].ToString();
 
@@ -92,6 +93,7 @@ namespace LandManagement
                     new ReemplazarEtiquetasBusiness(TemplateEtiquetas300, TemplateEtiquetas300Actualizado);
 
                 reemplazarEtiquetasBusiness.ReemplazarImprimir300Etiquetas(this.listaEtiquetas);
+                this.Cursor = Cursors.Default;
             }
             catch (Exception ex)
             {
@@ -106,6 +108,7 @@ namespace LandManagement
         {
             try
             {
+                this.Cursor = Cursors.WaitCursor;
                 string TemplateCarta = ConfigurationManager.AppSettings["TemplateCarta"].ToString();
                 string TemplateCarta300 = ConfigurationManager.AppSettings["TemplateCarta300"].ToString();
                 string TemplateCarta300Actualizado = ConfigurationManager.AppSettings["TemplateCarta300Actualizado"].ToString();
@@ -114,6 +117,7 @@ namespace LandManagement
                     new ReemplazarCartasBusiness(TemplateCarta, TemplateCarta300, TemplateCarta300Actualizado);
 
                 reemplazarCartasBusiness.ReemplazarImprimir300Cartas(this.listaEtiquetas);
+                this.Cursor = Cursors.Default;
             }
             catch (Exception ex)
             {
