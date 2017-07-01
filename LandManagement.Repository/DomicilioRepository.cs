@@ -93,6 +93,22 @@ namespace LandManagement.Repository
             }
         }
 
+        public object GetDomicilioPorCliente(tbcliente cliente)
+        {
+            try
+            {
+                var salida = (from d in Contexto.tbdomicilio
+                              where d.cli_id == cliente.cli_id
+                              select d).ToList<tbdomicilio>();
+
+                return salida;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public object GetList()
         {
             //return Contexto.CreateObjectSet<tbmenu>().ToList();

@@ -233,7 +233,7 @@ namespace LandManagement.Business
             //Selecciono los ids de los familiares
             List<int> listaIdsFamiliaresBD = familiaresDelCliente.Select(d => d.cli_id).ToList<int>();
 
-            //Actualizo propiedades existentes
+            //Actualizo familiar existentes
             foreach (var obj in cliente.tbcliente1)
                 if (obj.cli_id != 0)
                     familiarBusiness.Update(obj);
@@ -245,7 +245,7 @@ namespace LandManagement.Business
             //Selecciono id de los familiares que vienen del cliente
             List<int> listaIdsFamiliaresCliente = cliente.tbcliente1.Select(c => c.cli_id).ToList<int>();
 
-            //Obtengo las propiedades eliminadas
+            //Obtengo los familiares eliminados
             List<tbcliente> familiaresEliminados = familiaresDelCliente
                 .Where(p => !listaIdsFamiliaresCliente.Contains(p.cli_id) &&
                     p.cli_id != 0).ToList<tbcliente>();

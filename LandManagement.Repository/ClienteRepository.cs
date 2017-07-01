@@ -143,7 +143,102 @@ namespace LandManagement.Repository
             }
         }
 
+        public object GetElementNew(tbcliente entity)
+        {
+            try
+            {
+                tbcliente clienteSalida = new tbcliente();
+                clienteSalida = (from c in Contexto.tbcliente
+                                 where c.cli_id == entity.cli_id
+                                 select c).FirstOrDefault();
+
+                clienteSalida.tbpropiedad = new List<tbpropiedad>();
+                clienteSalida.tbdomicilio = new List<tbdomicilio>();
+                clienteSalida.tbcliente1 = new List<tbcliente>();
+                clienteSalida.tbcliente2 = new tbcliente();
+
+                //Cargo propiedades
+                PropiedadRepository propiedadRepository = new PropiedadRepository();
+                clienteSalida.tbpropiedad = 
+                    (List<tbpropiedad>)propiedadRepository.GetPropiedadesPorCliente(entity);
+
+                //Cargo domicilios
+                DomicilioRepository domicilioRepository = new DomicilioRepository();
+                clienteSalida.tbdomicilio
+                    = (List<tbdomicilio>)domicilioRepository.GetDomicilioPorCliente(entity);
+
+                //Cargo tipo familiar
+                TipoFamiliarRepository tipoFamiliarRepository = new TipoFamiliarRepository();
+                tbtipofamiliar familiar = new tbtipofamiliar(){tif_id = clienteSalida.tif_id};
+                clienteSalida.tbtipofamiliar = new tbtipofamiliar();
+                clienteSalida.tbtipofamiliar = (tbtipofamiliar)tipoFamiliarRepository.GetElement(familiar);
+
+                //Cargo lista de hijos
+                List<tbcliente> hijos = this.obtenerHijos(entity).ToList<tbcliente>();
+
+                if (hijos.Count() > 0)
+                    foreach (var obj in hijos)
+                        clienteSalida.tbcliente1.Add((tbcliente)this.GetElement(obj));
+                   
+                return clienteSalida;
+            }
+            catch (ObjectNotFoundException)
+            {
+                throw new ExcepcionRepository();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<tbcliente> obtenerHijos(tbcliente cliente)
+        {
+            List<tbcliente> listaHijos = new List<tbcliente>();
+
+            var hijos = (from c in Contexto.tbcliente
+                                 where c.cli_id_padre == cliente.cli_id
+                                 select c).ToList<tbcliente>();
+
+            foreach (var obj in hijos)
+                listaHijos.Add(obj);
+            
+            return listaHijos;
+        }
+
         public object GetElement(tbcliente entity)
+        {
+            try
+            {
+                tbcliente salida = (from c in Contexto.tbcliente.Include("tbpropiedad")
+                                                                .Include("tbdomicilio")
+                                                                .Include("tbtipofamiliar")
+                                    where c.cli_id == entity.cli_id
+                                    select c).FirstOrDefault();
+
+                //Cargo lista de hijos
+                List<tbcliente> hijos = this.obtenerHijos(entity).ToList<tbcliente>();
+
+                if (hijos.Count() > 0)
+                {
+                    salida.tbcliente1 = new List<tbcliente>();
+                    foreach (var obj in hijos)
+                        salida.tbcliente1.Add((tbcliente)this.GetElement(obj));
+                }
+
+                return salida;
+            }
+            catch (ObjectNotFoundException)
+            {
+                throw new ExcepcionRepository();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public object GetElementOLD(tbcliente entity)
         {
             try
             {

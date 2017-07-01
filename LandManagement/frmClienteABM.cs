@@ -87,7 +87,10 @@ namespace LandManagement
             InicializarGrillaPropiedades();
             InicializarGrillaCategorias();
 
-            buscapadre(pCliente);
+            TreeNode nodoSeleccionado = CargaArbolGenealogico(pCliente);
+            treeView1.Nodes.Add(nodoSeleccionado);
+            treeView1.SelectedNode = nodoSeleccionado;
+
             //Carga grilla propiedades
             foreach (var prop in pCliente.tbpropiedad)
             {
@@ -347,6 +350,33 @@ namespace LandManagement
         }
 
         private void CargaFamiliaresAlCliente()
+        {
+            tbcliente clienteFamiliar;
+            
+            //No elimino lista de familiares porque elimina la asosciacion con los existentes
+            //this.cliente.tbcliente1.Clear();
+
+            if (dgvFamiliares.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dgvFamiliares.Rows)
+                {
+                    clienteFamiliar = new tbcliente();
+                    clienteFamiliar.cli_fecha = dtpFechaAlta.Value;
+                    clienteFamiliar.cli_id = (int)row.Cells["cli_id"].Value;
+                    clienteFamiliar.tif_id = (int)row.Cells["tif_id"].Value;
+                    clienteFamiliar.cli_nombre = (string)row.Cells["cli_nombre"].Value;
+                    clienteFamiliar.cli_apellido = (string)row.Cells["cli_apellido"].Value;
+                    clienteFamiliar.cli_fecha_nacimiento = (DateTime)row.Cells["cli_fecha_nacimiento"].Value;
+                    clienteFamiliar.cli_tipo_documento = "DNI";
+                    clienteFamiliar.cli_numero_documento = "0";
+
+                    if (clienteFamiliar.cli_id == 0)
+                        this.cliente.tbcliente1.Add(clienteFamiliar);
+                }
+            }
+        }
+
+        private void CargaFamiliaresAlClienteOLD()
         {
             tbcliente clienteFamiliar;
             this.cliente.tbcliente1.Clear();
@@ -829,50 +859,14 @@ namespace LandManagement
             errorProvider1.SetError(textBoxDni, "");
         }
 
-        private void buscapadre(tbcliente cliente)
+        private TreeNode CargaArbolGenealogico(tbcliente cliente)
         {
-            tbcliente padre = new tbcliente();
-            List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetList();
-            tipoFamiliarBusiness = new TipoFamiliarBusiness();
-            if (cliente.cli_id_padre != null)
-            {
-                padre = (from item in listaClientes
-                         where item.cli_id.ToString().Equals(cliente.cli_id_padre.ToString())
-                         select item).First();
-                tbtipofamiliar tipoFamiliar = (tbtipofamiliar)tipoFamiliarBusiness.GetElement(new tbtipofamiliar() { tif_id = padre.tif_id });
-                TreeNode nodo1 = new TreeNode(padre.cli_nombre + " " + padre.cli_apellido + "(" + tipoFamiliar.tif_descripcion + ")");
-                treeView1.Nodes.Add(nodo1);
-                cargafam(padre, nodo1);
-            }
-            else
-            {
-                tbtipofamiliar tipoFamiliar = (tbtipofamiliar)tipoFamiliarBusiness.GetElement(new tbtipofamiliar() { tif_id = cliente.tif_id });
-                TreeNode nodo1 = new TreeNode(cliente.cli_nombre + " " + cliente.cli_apellido + "(" + tipoFamiliar.tif_descripcion + ")");
-                treeView1.Nodes.Add(nodo1);
+                TreeNode nodo = new TreeNode(cliente.cli_nombre + " " + cliente.cli_apellido + "(" + cliente.tbtipofamiliar.tif_descripcion + ")");
+                if (cliente.tbcliente1.Count() > 0)
+                    foreach (var obj in cliente.tbcliente1)
+                        nodo.Nodes.Add(CargaArbolGenealogico(obj));
 
-                cargafam(cliente, nodo1);
-            }
-
-        }
-        private void cargafam(tbcliente cliente, TreeNode nodePadre)
-        {
-            tipoFamiliarBusiness = new TipoFamiliarBusiness();
-            ClienteBusiness clienteBusiness = new ClienteBusiness();
-            List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetList();
-            foreach (var obj in listaClientes)
-            {
-                tbtipofamiliar tipoFamiliar = (tbtipofamiliar)tipoFamiliarBusiness.GetElement(new tbtipofamiliar() { tif_id = obj.tif_id });
-                TreeNode nuevoNodo = new TreeNode();
-                if (cliente.cli_id == obj.cli_id_padre)
-                {
-                    //agrego el hijo
-                    nuevoNodo.Text = (obj.cli_nombre + " " + obj.cli_apellido + "(" + tipoFamiliar.tif_descripcion + ")");
-                    nodePadre.Nodes.Add(nuevoNodo);
-                    cargafam(obj, nuevoNodo);
-                }
-
-            }
-
+                return nodo;
         }
 
         private void ValidatingControlMaskedTextBox(object sender, CancelEventArgs e)
