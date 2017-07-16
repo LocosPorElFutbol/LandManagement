@@ -192,11 +192,11 @@ namespace LandManagement.Repository
             }
         }
 
-        public IEnumerable<tbcliente> obtenerHijos(tbcliente cliente)
+        private IEnumerable<tbcliente> obtenerHijos(tbcliente cliente)
         {
             List<tbcliente> listaHijos = new List<tbcliente>();
 
-            var hijos = (from c in Contexto.tbcliente
+            var hijos = (from c in Contexto.tbcliente.Include("tbtipofamiliar")
                                  where c.cli_id_padre == cliente.cli_id
                                  select c).ToList<tbcliente>();
 
@@ -205,6 +205,76 @@ namespace LandManagement.Repository
             
             return listaHijos;
         }
+
+        private tbcliente obtenerPadre(tbcliente cliente)
+        {
+            tbcliente padre = new tbcliente();
+            
+            padre = (from c in Contexto.tbcliente
+                         where c.cli_id == cliente.cli_id_padre
+                         select c).FirstOrDefault();
+
+            //if (padre.cli_id_padre != null)
+            //    padre.tbcliente2 = obtenerPadre(padre);
+
+            return padre;
+        }
+
+        private tbcliente ArmarArbol(tbcliente entity)
+        {
+            List<tbcliente> listaHijos = obtenerHijos(entity) as List<tbcliente>;
+
+            if (listaHijos.Count() > 0)
+            {
+                entity.tbcliente1 = new List<tbcliente>();
+                
+                foreach (var obj in listaHijos)
+                {
+                    var l = this.obtenerHijos(obj) as List<tbcliente>;
+
+                    if (l.Count() > 0)
+                        ArmarArbol(obj);
+
+                    entity.tbcliente1.Add(obj);
+                }
+            }
+
+            return entity;
+        }
+
+        public tbcliente ArmarArbolGenealogico(tbcliente entity)
+        {
+            try
+            {
+                tbcliente raiz = new tbcliente();
+
+                if (entity.cli_id_padre != null)
+                    raiz = obtenerRaiz(entity);
+                else
+                    raiz = entity;
+
+                raiz = ArmarArbol(raiz);
+
+                return raiz;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private tbcliente obtenerRaiz(tbcliente entity)
+        {
+            tbcliente raiz = (from c in Contexto.tbcliente.Include("tbtipofamiliar")
+                                where c.cli_id == entity.cli_id_padre
+                                select c).FirstOrDefault();
+
+            if (raiz.cli_id_padre != null)
+                obtenerRaiz(raiz);
+                
+            return raiz;
+        }
+
 
         public object GetElement(tbcliente entity)
         {
@@ -225,6 +295,10 @@ namespace LandManagement.Repository
                     foreach (var obj in hijos)
                         salida.tbcliente1.Add((tbcliente)this.GetElement(obj));
                 }
+
+                //Cargo padre
+                if (salida.cli_id_padre != null)
+                    salida.tbcliente2 = obtenerPadre(salida);
 
                 return salida;
             }

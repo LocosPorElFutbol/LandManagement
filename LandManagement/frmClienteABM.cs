@@ -861,12 +861,26 @@ namespace LandManagement
 
         private TreeNode CargaArbolGenealogico(tbcliente cliente)
         {
-                TreeNode nodo = new TreeNode(cliente.cli_nombre + " " + cliente.cli_apellido + "(" + cliente.tbtipofamiliar.tif_descripcion + ")");
-                if (cliente.tbcliente1.Count() > 0)
-                    foreach (var obj in cliente.tbcliente1)
-                        nodo.Nodes.Add(CargaArbolGenealogico(obj));
+            clienteBusiness = new ClienteBusiness();
+            tbcliente raiz = clienteBusiness.ArmarArbolGenealogico(cliente) as tbcliente;
 
-                return nodo;
+            TreeNode nodo = this.ArmarNodos(raiz);
+
+            return nodo;
+        }
+
+
+        private TreeNode ArmarNodos(tbcliente cliente)
+        {
+            TreeNode nodo = new TreeNode(cliente.cli_nombre + " " + cliente.cli_apellido + "(" + cliente.tbtipofamiliar.tif_descripcion + ")");
+            
+            if (cliente.tbcliente1.Count() > 0)
+            {
+                foreach (var obj in cliente.tbcliente1)
+                    nodo.Nodes.Add(ArmarNodos(obj));
+            }
+
+            return nodo;
         }
 
         private void ValidatingControlMaskedTextBox(object sender, CancelEventArgs e)

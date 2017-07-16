@@ -275,5 +275,9 @@ namespace LandManagement.Business
             }
         }
 
+        public object ArmarArbolGenealogico(tbcliente entity)
+        {
+            return clienteRepository.ArmarArbolGenealogico(entity);
+        }
     }
 }
