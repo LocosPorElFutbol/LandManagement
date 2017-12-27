@@ -156,6 +156,12 @@ namespace LandManagement.Repository
             get { return _tbventa  ?? (_tbventa = CreateObjectSet<tbventa>("tbventa")); }
         }
         private ObjectSet<tbventa> _tbventa;
+    
+        public ObjectSet<tbversion> tbversion
+        {
+            get { return _tbversion  ?? (_tbversion = CreateObjectSet<tbversion>("tbversion")); }
+        }
+        private ObjectSet<tbversion> _tbversion;
 
         #endregion
 

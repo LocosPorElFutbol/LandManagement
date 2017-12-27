@@ -270,6 +270,14 @@
           <Property Name="ven_escribania" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ven_cobrado" Type="double" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbversion">
+          <Key>
+            <PropertyRef Name="ver_id" />
+          </Key>
+          <Property Name="ver_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ver_version" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ver_descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
         <Association Name="fk_tbCliente_tbCliente1">
           <End Role="tbcliente" Type="Self.tbcliente" Multiplicity="0..1" />
           <End Role="tbcliente1" Type="Self.tbcliente" Multiplicity="*" />
@@ -599,6 +607,7 @@
           <EntitySet Name="tbusuario" EntityType="Self.tbusuario" Schema="landmanagementbd" store:Type="Tables" />
           <EntitySet Name="tbusuariomenu" EntityType="Self.tbusuariomenu" Schema="landmanagementbd" store:Type="Tables" />
           <EntitySet Name="tbventa" EntityType="Self.tbventa" Schema="landmanagementbd" store:Type="Tables" />
+          <EntitySet Name="tbversion" EntityType="Self.tbversion" Schema="landmanagementbd" store:Type="Tables" />
           <AssociationSet Name="fk_tbCliente_tbCliente1" Association="Self.fk_tbCliente_tbCliente1">
             <End Role="tbcliente" EntitySet="tbcliente" />
             <End Role="tbcliente1" EntitySet="tbcliente" />
@@ -812,6 +821,7 @@
             <End Role="tbmenu" EntitySet="tbmenu" />
             <End Role="tbusuario" EntitySet="tbusuario" />
           </AssociationSet>
+          <EntitySet Name="tbversion" EntityType="landmanagementbdModel.tbversion" />
         </EntityContainer>
         <EntityType Name="tbalquilada">
           <Key>
@@ -1342,6 +1352,14 @@
           <End Type="landmanagementbdModel.tbmenu" Role="tbmenu" Multiplicity="*" />
           <End Type="landmanagementbdModel.tbusuario" Role="tbusuario" Multiplicity="*" />
         </Association>
+        <EntityType Name="tbversion">
+          <Key>
+            <PropertyRef Name="ver_id" />
+          </Key>
+          <Property Name="ver_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ver_version" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ver_descripcion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1630,6 +1648,15 @@
               <ScalarProperty Name="men_id" ColumnName="men_id" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="tbversion">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbversion">
+              <MappingFragment StoreEntitySet="tbversion">
+                <ScalarProperty Name="ver_descripcion" ColumnName="ver_descripcion" />
+                <ScalarProperty Name="ver_version" ColumnName="ver_version" />
+                <ScalarProperty Name="ver_id" ColumnName="ver_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1694,6 +1721,7 @@
         <AssociationConnector Association="landmanagementbdModel.tbclientepropiedad" />
         <AssociationConnector Association="landmanagementbdModel.tbserviciospropiedad" />
         <AssociationConnector Association="landmanagementbdModel.tbusuariomenu" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbversion" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </Diagrams>
   </Designer>

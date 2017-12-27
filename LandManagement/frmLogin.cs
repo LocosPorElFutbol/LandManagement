@@ -41,7 +41,9 @@ namespace LandManagement
             this.Icon = (Icon)Recursos.ResourceImages.ResourceManager.GetObject("Llave");
             this.Text = "Inicio de Sesión";
             pbxLogoCliente.Image = (Image)Recursos.ResourceImages.ResourceManager.GetObject("Logo");
-            this.Text += " - Land Management v" + ConfigurationManager.AppSettings["version"].ToString();
+            
+            VersionBusiness versionBusiness = new VersionBusiness();
+            this.Text += " - Land Management v" + versionBusiness.GetLastVersion().ver_version;
 
             if (Properties.Settings.Default.nombreUsuario != string.Empty)
             {

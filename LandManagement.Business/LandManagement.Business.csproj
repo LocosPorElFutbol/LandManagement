@@ -61,6 +61,7 @@
     <Compile Include="TipoPropiedadBusiness.cs" />
     <Compile Include="UsuarioBusiness.cs" />
     <Compile Include="VentaBusiness.cs" />
+    <Compile Include="VersionBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LandManagement.Entities\LandManagement.Entities.csproj">

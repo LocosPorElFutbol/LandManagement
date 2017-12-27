@@ -52,6 +52,5 @@ namespace LandManagement
             if (result == DialogResult.OK)
                 Application.Run(new frmPadre(listaMenu));
         }
-
     }
 }

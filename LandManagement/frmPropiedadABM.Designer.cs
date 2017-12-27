@@ -269,6 +269,7 @@
             this.dgvOperacionesPropiedad.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvOperacionesPropiedad.Size = new System.Drawing.Size(648, 418);
             this.dgvOperacionesPropiedad.TabIndex = 10;
+            this.dgvOperacionesPropiedad.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOperacionesPropiedad_CellDoubleClick);
             // 
             // groupBox2
             // 

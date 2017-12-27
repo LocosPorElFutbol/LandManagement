@@ -26,6 +26,8 @@ namespace LandManagement
         private tbpropiedad propiedad;
         private ListasDeElementos listasDeElementos;
         private Form formPadre;
+        private DataGridViewRow dataGridViewRow;
+        private Form formularioOperacion;
 
         public frmPropiedadABM()
         {
@@ -195,7 +197,92 @@ namespace LandManagement
                 oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERALQUIL"].ToString();
             if (oper.enc_id != null)
                 oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERENCUES"].ToString();
-        }        
+        }
+
+        #region Abrir operación
+        private void dgvOperacionesPropiedad_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                tboperaciones operacion = ObtenerOperacionSeleccionada();
+
+                operacionBusiness = new OperacionBusiness();
+                operacion = (tboperaciones)operacionBusiness.GetElement(operacion);
+
+                if (operacion != null)
+                {
+                    string nombreForm = ObtenerNombreFormulario(operacion);
+
+                    Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
+                    Type tipoDeFormulario = frmAssembly.GetTypes().Where(x => x.Name == nombreForm).SingleOrDefault();
+                    formularioOperacion = (Form)Activator.CreateInstance(tipoDeFormulario, new object[] { operacion, this });
+
+                    AbrirFormulario(formularioOperacion, "Operación");
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                if (ex.InnerException != null)
+                    log.Error(ex.InnerException.Message);
+                MessageBox.Show("Error al seleccionar Operación.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AbrirFormulario(Form formularioPopUp, string textFormulario)
+        {
+            Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
+            string frmCode = formularioPopUp.Name;
+            string frmNombre = textFormulario;
+
+            formularioPopUp.ShowIcon = true;
+            formularioPopUp.Text = frmNombre;
+            formularioPopUp.Icon = (Icon)Recursos.ResourceImages.ResourceManager.GetObject("Tool");
+
+            formularioPopUp.MdiParent = this.MdiParent;
+            formularioPopUp.WindowState = FormWindowState.Minimized;
+            formularioPopUp.Show();
+            formularioPopUp.WindowState = FormWindowState.Maximized;
+            formularioPopUp.Show();
+        }
+
+        private tboperaciones ObtenerOperacionSeleccionada()
+        {
+            dataGridViewRow = dgvOperacionesPropiedad.SelectedRows[0];
+            tboperaciones operacionSeleccionada = new tboperaciones();
+            operacionSeleccionada.ope_id = Convert.ToInt32(dataGridViewRow.Cells["ope_id"].Value);
+            return operacionSeleccionada;
+        }
+
+        private string ObtenerNombreFormulario(tboperaciones _operacion)
+        {
+            if (_operacion.tas_id != null)
+                return ConfigurationManager.AppSettings["tas_id"].ToString();
+
+            if (_operacion.env_id != null)
+                return ConfigurationManager.AppSettings["env_id"].ToString();
+
+            if (_operacion.rev_id != null)
+                return ConfigurationManager.AppSettings["rev_id"].ToString();
+
+            if (_operacion.ven_id != null)
+                return ConfigurationManager.AppSettings["ven_id"].ToString();
+
+            if (_operacion.ena_id != null)
+                return ConfigurationManager.AppSettings["ena_id"].ToString();
+
+            if (_operacion.rea_id != null)
+                return ConfigurationManager.AppSettings["rea_id"].ToString();
+
+            if (_operacion.alq_id != null)
+                return ConfigurationManager.AppSettings["alq_id"].ToString();
+
+            if (_operacion.enc_id != null)
+                return ConfigurationManager.AppSettings["enc_id"].ToString();
+
+            return string.Empty;
+        }
+        #endregion
         #endregion
 
         #region Carga de combos

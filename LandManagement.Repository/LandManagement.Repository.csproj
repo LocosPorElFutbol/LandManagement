@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlquiladaRepository.cs" />
+    <Compile Include="BaseRepository.cs" />
     <Compile Include="CategoriaRepository.cs" />
     <Compile Include="ClienteOperacionRepository.cs" />
     <Compile Include="ClienteRepository.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="TipoPropiedadRepository.cs" />
     <Compile Include="UsuarioRepository.cs" />
     <Compile Include="VentaRepository.cs" />
+    <Compile Include="VersionRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="LandManagementModel.edmx" />

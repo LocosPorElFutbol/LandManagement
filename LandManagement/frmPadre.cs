@@ -33,7 +33,8 @@ namespace LandManagement
 
         private void frmPadre_Load(object sender, EventArgs e)
         {
-            this.Text = "Land Management v" + ConfigurationManager.AppSettings["version"].ToString();
+            VersionBusiness versionBusiness = new VersionBusiness();
+            this.Text = "Land Management v" + versionBusiness.GetLastVersion().ver_version;
             this.Icon = (Icon)Recursos.ResourceImages.ResourceManager.GetObject("LogoLandManagement");
 
             //Controla entorno de prueba
