@@ -102,7 +102,7 @@ namespace LandManagement
                 if (this.ValidateChildren())
                 {
                     CargaObjeto();
-                    ((frmClienteABM)this.formPadre).ActualizarPropiedadSeleccionada(this.propiedad, this.indiceFila);
+                    //((frmClienteABM)this.formPadre).ActualizarPropiedadSeleccionada(this.propiedad, this.indiceFila);
                     this.Close();
                 }
             }
@@ -254,7 +254,7 @@ namespace LandManagement
 
         private void GuardaObjeto()
         {
-            ((frmClienteABM)this.formPadre).AgregaPropiedadAGrilla(this.propiedad);
+            //((frmClienteABM)this.formPadre).AgregaPropiedadAGrilla(this.propiedad);
         }
 
         private void InicializarControlesHabilitados(bool esNueva)

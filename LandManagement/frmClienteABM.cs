@@ -41,7 +41,6 @@ namespace LandManagement
             familiarBusiness = new FamiliarBusiness();
             propiedadBusiness = new PropiedadBusiness();
             InicializarGrillaFamiliares();
-            InicializarGrillaPropiedades();
         }
 
         public frmClienteABM(tbcliente pCliente, Form formularioPadre)
@@ -84,21 +83,11 @@ namespace LandManagement
             txbEstadoActual.Text = pCliente.cli_estado_actual;
 
             InicializarGrillaFamiliares();
-            InicializarGrillaPropiedades();
             InicializarGrillaCategorias();
 
             TreeNode nodoSeleccionado = CargaArbolGenealogico(pCliente);
             treeView1.Nodes.Add(nodoSeleccionado);
             treeView1.SelectedNode = nodoSeleccionado;
-
-            //Carga grilla propiedades
-            foreach (var prop in pCliente.tbpropiedad)
-            {
-                TipoPropiedadBusiness tipoPropiedadBussiness = new TipoPropiedadBusiness();
-                tbtipopropiedad tipoPropiedad = (tbtipopropiedad)tipoPropiedadBussiness.GetElement(new tbtipopropiedad() { tip_id = prop.tip_id });
-                prop.pro_tip_descripcion = tipoPropiedad.tip_descripcion;
-                AgregaPropiedadAGrilla(prop);
-            }
 
             //Carga Grilla familiares
             foreach (var cli1 in pCliente.tbcliente1)
@@ -251,7 +240,6 @@ namespace LandManagement
 
             CargaDomicilioAlCliente();
             CargaFamiliaresAlCliente();
-            CargaPropiedadesAlCliente();
         }
 
         private void GuardaObjeto()
@@ -400,109 +388,6 @@ namespace LandManagement
             }
         }
 
-        #endregion
-
-        #region Carga Propiedades a la Grilla de Propiedades
-        private void InicializarGrillaPropiedades()
-        {
-            dgvPropiedades.Rows.Clear();
-            dgvPropiedades.Columns.Clear();
-            string[] columnasGrilla = {
-                                        "pro_id",
-                                        "tip_id",
-                                        "pro_tip_descripcion",
-                                        "pro_calle",
-                                        "pro_numero",
-                                        "pro_piso",
-                                        "pro_departamento",
-                                        "pro_localidad",
-                                        "pro_codigo_postal",
-                                        "pro_caracteristica"
-                                      };
-
-            int i = 0;
-            foreach (string s in columnasGrilla)
-            {
-                PropertyInfo pi = typeof(tbpropiedad).GetProperty(s);
-                displayNameHelper = new DisplayNameHelper();
-                string columna = displayNameHelper.GetMetaDisplayName(pi);
-                dgvPropiedades.Columns.Add(s, columna);
-                i++;
-            }
-
-            dgvPropiedades.Columns[0].Visible = false;
-            dgvPropiedades.Columns[1].Visible = false;
-        }
-
-        public void AgregaPropiedadAGrilla(tbpropiedad prop)
-        {
-            int indice;
-            DataGridViewRow dataGridViewRow = new DataGridViewRow();
-            indice = dgvPropiedades.Rows.Add();
-            dataGridViewRow = dgvPropiedades.Rows[indice];
-            dataGridViewRow.Cells["pro_id"].Value = prop.pro_id;
-            dataGridViewRow.Cells["tip_id"].Value = prop.tip_id;
-            dataGridViewRow.Cells["pro_tip_descripcion"].Value = prop.pro_tip_descripcion;
-            dataGridViewRow.Cells["pro_calle"].Value = prop.pro_calle;
-            dataGridViewRow.Cells["pro_numero"].Value = prop.pro_numero;
-            dataGridViewRow.Cells["pro_piso"].Value = prop.pro_piso;
-            dataGridViewRow.Cells["pro_departamento"].Value = prop.pro_departamento;
-            dataGridViewRow.Cells["pro_localidad"].Value = prop.pro_localidad;
-            dataGridViewRow.Cells["pro_codigo_postal"].Value = prop.pro_codigo_postal;
-            dataGridViewRow.Cells["pro_caracteristica"].Value = prop.pro_caracteristica;
-        }
-
-        private void btnAddPropiedad_Click(object sender, EventArgs e)
-        {
-            formularioClientePropiedad = new frmClientePropiedad(this, ObtenerIdsDePropiedadesDeLaGrilla());
-            ControlarInstanciaAbierta(formularioClientePropiedad, "Alta de una Propiedad");
-        }
-
-        private int[] ObtenerIdsDePropiedadesDeLaGrilla()
-        {
-            int cantPropiedades = dgvPropiedades.Rows.Count;
-            int[] arregloIdsPropiedades = new int[cantPropiedades];
-            int i = 0;
-
-            foreach (DataGridViewRow dgvr in dgvPropiedades.Rows)
-            {
-                arregloIdsPropiedades[i] = Convert.ToInt32(dgvr.Cells["pro_id"].Value);
-                i++;
-            }
-            return arregloIdsPropiedades;
-        }
-
-        private void btnRemovePropiedad_Click(object sender, EventArgs e)
-        {
-            if (dgvPropiedades.Rows.Count > 0)
-                foreach (DataGridViewRow obj in dgvPropiedades.SelectedRows)
-                    dgvPropiedades.Rows.RemoveAt(obj.Index);
-        }
-
-        private void CargaPropiedadesAlCliente()
-        {
-            tbpropiedad clientePropiedad;
-            this.cliente.tbpropiedad.Clear();
-
-            if (dgvPropiedades.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow row in dgvPropiedades.Rows)
-                {
-                    clientePropiedad = new tbpropiedad();
-                    clientePropiedad.pro_id = (int)row.Cells["pro_id"].Value;
-                    clientePropiedad.tip_id = (int)row.Cells["tip_id"].Value;
-                    clientePropiedad.pro_calle = (string)row.Cells["pro_calle"].Value;
-                    clientePropiedad.pro_numero = (int)row.Cells["pro_numero"].Value;
-                    clientePropiedad.pro_piso = (int)row.Cells["pro_piso"].Value;
-                    clientePropiedad.pro_departamento = (string)row.Cells["pro_departamento"].Value;
-                    clientePropiedad.pro_localidad = (string)row.Cells["pro_localidad"].Value;
-                    clientePropiedad.pro_codigo_postal = (string)row.Cells["pro_codigo_postal"].Value;
-                    clientePropiedad.pro_caracteristica = (string)row.Cells["pro_caracteristica"].Value;
-
-                    this.cliente.tbpropiedad.Add(clientePropiedad);
-                }
-            }
-        }
         #endregion
 
         #region Carga Propiedades a la Grilla de Categorias
@@ -686,74 +571,6 @@ namespace LandManagement
             dataGridViewRow.Cells["cli_nombre"].Value = familiarActualizado.cli_nombre;
             dataGridViewRow.Cells["cli_apellido"].Value = familiarActualizado.cli_apellido;
             dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = familiarActualizado.cli_fecha_nacimiento;
-        }
-
-        #endregion
-
-        #region Abrir PopUp Propiedad Seleccionada
-
-        private void dgvPropiedades_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                tbpropiedad propiedad = ObtenerPropiedadSeleccionada();
-
-                if (propiedad != null)
-                {
-                    formularioClientePropiedad = new frmClientePropiedad(propiedad, e.RowIndex, this);
-                    ControlarInstanciaAbierta(formularioClientePropiedad, "PLanilla de un Familiar");
-                }
-            }
-            catch (Exception ex)
-            {
-                log.Error(ex.Message);
-                if (ex.InnerException != null)
-                    log.Error(ex.InnerException.Message);
-                MessageBox.Show("Error al seleccionar propiedad.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private tbpropiedad ObtenerPropiedadSeleccionada()
-        {
-            dataGridViewRow = dgvPropiedades.SelectedRows[0];
-            tbpropiedad propiedadSeleccionada = new tbpropiedad();
-
-            propiedadSeleccionada.pro_id = Convert.ToInt32(dataGridViewRow.Cells["pro_id"].Value);
-
-#if DEBUG
-#warning Mejorar se valida con pro_id == 0 porque no se admite modificación en memoria.
-#endif
-
-            if (propiedadSeleccionada.pro_id == 0)
-                return null;
-
-            propiedadSeleccionada.tip_id = Convert.ToInt32(dataGridViewRow.Cells["tip_id"].Value);
-            propiedadSeleccionada.pro_tip_descripcion = dataGridViewRow.Cells["pro_tip_descripcion"].Value.ToString();
-            propiedadSeleccionada.pro_calle = dataGridViewRow.Cells["pro_calle"].Value.ToString();
-            propiedadSeleccionada.pro_numero = Convert.ToInt32(dataGridViewRow.Cells["pro_numero"].Value);
-            propiedadSeleccionada.pro_piso = Convert.ToInt32(dataGridViewRow.Cells["pro_piso"].Value);
-            propiedadSeleccionada.pro_departamento = dataGridViewRow.Cells["pro_departamento"].Value.ToString();
-            propiedadSeleccionada.pro_localidad = dataGridViewRow.Cells["pro_localidad"].Value.ToString();
-            propiedadSeleccionada.pro_codigo_postal = dataGridViewRow.Cells["pro_codigo_postal"].Value.ToString();
-            propiedadSeleccionada.pro_caracteristica = dataGridViewRow.Cells["pro_caracteristica"].Value.ToString();
-
-            return propiedadSeleccionada;
-        }
-
-        public void ActualizarPropiedadSeleccionada(tbpropiedad propiedadActualizada, int indiceFilaActualizada)
-        {
-            DataGridViewRow dgvRowActualizada = dgvPropiedades.Rows[indiceFilaActualizada];
-
-            dataGridViewRow.Cells["pro_id"].Value = propiedadActualizada.pro_id;
-            dataGridViewRow.Cells["tip_id"].Value = propiedadActualizada.tip_id;
-            dataGridViewRow.Cells["pro_tip_descripcion"].Value = propiedadActualizada.pro_tip_descripcion;
-            dataGridViewRow.Cells["pro_calle"].Value = propiedadActualizada.pro_calle;
-            dataGridViewRow.Cells["pro_numero"].Value = propiedadActualizada.pro_numero;
-            dataGridViewRow.Cells["pro_piso"].Value = propiedadActualizada.pro_piso;
-            dataGridViewRow.Cells["pro_departamento"].Value = propiedadActualizada.pro_departamento;
-            dataGridViewRow.Cells["pro_localidad"].Value = propiedadActualizada.pro_localidad;
-            dataGridViewRow.Cells["pro_codigo_postal"].Value = propiedadActualizada.pro_codigo_postal;
-            dataGridViewRow.Cells["pro_caracteristica"].Value = propiedadActualizada.pro_caracteristica;
         }
 
         #endregion

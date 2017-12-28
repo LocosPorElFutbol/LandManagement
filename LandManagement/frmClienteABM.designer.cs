@@ -64,9 +64,6 @@
             this.dgvFamiliares = new System.Windows.Forms.DataGridView();
             this.btnAddFamiliar = new System.Windows.Forms.Button();
             this.btnRemoveFamiliar = new System.Windows.Forms.Button();
-            this.dgvPropiedades = new System.Windows.Forms.DataGridView();
-            this.btnAddPropiedad = new System.Windows.Forms.Button();
-            this.btnRemovePropiedad = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pnlControles = new System.Windows.Forms.Panel();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
@@ -78,7 +75,6 @@
             this.dgvCategorias = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.cmbTipoFamiliar = new System.Windows.Forms.ComboBox();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -103,14 +99,12 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFamiliares)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedades)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.pnlControles.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).BeginInit();
             this.groupBox5.SuspendLayout();
-            this.groupBox7.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -416,13 +410,13 @@
             this.dgvFamiliares.Name = "dgvFamiliares";
             this.dgvFamiliares.ReadOnly = true;
             this.dgvFamiliares.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvFamiliares.Size = new System.Drawing.Size(409, 148);
+            this.dgvFamiliares.Size = new System.Drawing.Size(592, 148);
             this.dgvFamiliares.TabIndex = 25;
             this.dgvFamiliares.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFamiliares_CellDoubleClick);
             // 
             // btnAddFamiliar
             // 
-            this.btnAddFamiliar.Location = new System.Drawing.Point(430, 19);
+            this.btnAddFamiliar.Location = new System.Drawing.Point(604, 20);
             this.btnAddFamiliar.Name = "btnAddFamiliar";
             this.btnAddFamiliar.Size = new System.Drawing.Size(27, 23);
             this.btnAddFamiliar.TabIndex = 26;
@@ -432,45 +426,13 @@
             // 
             // btnRemoveFamiliar
             // 
-            this.btnRemoveFamiliar.Location = new System.Drawing.Point(430, 48);
+            this.btnRemoveFamiliar.Location = new System.Drawing.Point(604, 49);
             this.btnRemoveFamiliar.Name = "btnRemoveFamiliar";
             this.btnRemoveFamiliar.Size = new System.Drawing.Size(27, 23);
             this.btnRemoveFamiliar.TabIndex = 27;
             this.btnRemoveFamiliar.Text = "-";
             this.btnRemoveFamiliar.UseVisualStyleBackColor = true;
             this.btnRemoveFamiliar.Click += new System.EventHandler(this.btnRemoveFamiliar_Click);
-            // 
-            // dgvPropiedades
-            // 
-            this.dgvPropiedades.AllowUserToAddRows = false;
-            this.dgvPropiedades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPropiedades.Location = new System.Drawing.Point(6, 19);
-            this.dgvPropiedades.Name = "dgvPropiedades";
-            this.dgvPropiedades.ReadOnly = true;
-            this.dgvPropiedades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPropiedades.Size = new System.Drawing.Size(433, 148);
-            this.dgvPropiedades.TabIndex = 28;
-            this.dgvPropiedades.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPropiedades_CellDoubleClick);
-            // 
-            // btnAddPropiedad
-            // 
-            this.btnAddPropiedad.Location = new System.Drawing.Point(455, 19);
-            this.btnAddPropiedad.Name = "btnAddPropiedad";
-            this.btnAddPropiedad.Size = new System.Drawing.Size(27, 23);
-            this.btnAddPropiedad.TabIndex = 29;
-            this.btnAddPropiedad.Text = "+";
-            this.btnAddPropiedad.UseVisualStyleBackColor = true;
-            this.btnAddPropiedad.Click += new System.EventHandler(this.btnAddPropiedad_Click);
-            // 
-            // btnRemovePropiedad
-            // 
-            this.btnRemovePropiedad.Location = new System.Drawing.Point(455, 48);
-            this.btnRemovePropiedad.Name = "btnRemovePropiedad";
-            this.btnRemovePropiedad.Size = new System.Drawing.Size(27, 23);
-            this.btnRemovePropiedad.TabIndex = 30;
-            this.btnRemovePropiedad.Text = "-";
-            this.btnRemovePropiedad.UseVisualStyleBackColor = true;
-            this.btnRemovePropiedad.Click += new System.EventHandler(this.btnRemovePropiedad_Click);
             // 
             // groupBox1
             // 
@@ -480,7 +442,7 @@
             this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1015, 717);
+            this.groupBox1.Size = new System.Drawing.Size(1015, 980);
             this.groupBox1.TabIndex = 63;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Cliente";
@@ -494,7 +456,6 @@
             this.pnlControles.Controls.Add(this.groupBox8);
             this.pnlControles.Controls.Add(this.label1);
             this.pnlControles.Controls.Add(this.groupBox5);
-            this.pnlControles.Controls.Add(this.groupBox7);
             this.pnlControles.Controls.Add(this.btnCancelar);
             this.pnlControles.Controls.Add(this.cmbTipoFamiliar);
             this.pnlControles.Controls.Add(this.btnGuardar);
@@ -504,7 +465,7 @@
             this.pnlControles.Controls.Add(this.dtpFechaAlta);
             this.pnlControles.Location = new System.Drawing.Point(6, 19);
             this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(1003, 692);
+            this.pnlControles.Size = new System.Drawing.Size(1003, 955);
             this.pnlControles.TabIndex = 47;
             this.pnlControles.TabStop = true;
             // 
@@ -596,18 +557,6 @@
             this.groupBox5.TabIndex = 41;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Como llego a nosotros";
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.dgvPropiedades);
-            this.groupBox7.Controls.Add(this.btnAddPropiedad);
-            this.groupBox7.Controls.Add(this.btnRemovePropiedad);
-            this.groupBox7.Location = new System.Drawing.Point(488, 504);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(497, 173);
-            this.groupBox7.TabIndex = 43;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Propiedades";
             // 
             // btnCancelar
             // 
@@ -843,16 +792,16 @@
             this.groupBox6.Controls.Add(this.btnRemoveFamiliar);
             this.groupBox6.Location = new System.Drawing.Point(12, 504);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(472, 310);
+            this.groupBox6.Size = new System.Drawing.Size(982, 175);
             this.groupBox6.TabIndex = 42;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Familiares";
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(6, 179);
+            this.treeView1.Location = new System.Drawing.Point(660, 19);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(409, 125);
+            this.treeView1.Size = new System.Drawing.Size(313, 148);
             this.treeView1.TabIndex = 28;
             // 
             // dtpFechaAlta
@@ -868,13 +817,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(1039, 741);
+            this.ClientSize = new System.Drawing.Size(1039, 1004);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmClienteABM";
             this.Text = "frmClienteABM";
             this.Load += new System.EventHandler(this.frmClienteABM_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFamiliares)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedades)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.pnlControles.ResumeLayout(false);
             this.pnlControles.PerformLayout();
@@ -884,7 +832,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -934,16 +881,12 @@
         private System.Windows.Forms.DataGridView dgvFamiliares;
         private System.Windows.Forms.Button btnAddFamiliar;
         private System.Windows.Forms.Button btnRemoveFamiliar;
-        private System.Windows.Forms.DataGridView dgvPropiedades;
-        private System.Windows.Forms.Button btnAddPropiedad;
-        private System.Windows.Forms.Button btnRemovePropiedad;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txbCuilCuit;
         private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
-        private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button btnCancelar;
