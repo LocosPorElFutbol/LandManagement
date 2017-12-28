@@ -28,7 +28,6 @@ namespace LandManagement
         private DisplayNameHelper displayNameHelper; 
         private Form formPadre;
         private frmClienteFamiliar formularioClienteFamiliar;
-        private frmClientePropiedad formularioClientePropiedad;
         private ListasDeElementos listasDeElementos;
         private DataGridViewRow dataGridViewRow;
         ValidarControles validarControles;

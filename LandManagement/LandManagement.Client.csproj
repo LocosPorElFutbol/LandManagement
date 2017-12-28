@@ -129,12 +129,6 @@
     <Compile Include="frmClienteListado.Designer.cs">
       <DependentUpon>frmClienteListado.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmClientePropiedad.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmClientePropiedad.Designer.cs">
-      <DependentUpon>frmClientePropiedad.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmCartasCumpleanios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -336,9 +330,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmClienteListado.resx">
       <DependentUpon>frmClienteListado.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmClientePropiedad.resx">
-      <DependentUpon>frmClientePropiedad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCartasCumpleanios.resx">
       <DependentUpon>frmCartasCumpleanios.cs</DependentUpon>

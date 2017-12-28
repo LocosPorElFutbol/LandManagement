@@ -22,8 +22,6 @@ namespace LandManagement
         private DataGridViewRow dataGridViewRow;
         private DisplayNameHelper displayNameHelper;
 
-        //No se va a dar de alta propiedades desde este formulario
-        //las propiedades se van a dar de alta desde el cliente
         public frmPropiedadListado()
         {
             InitializeComponent();
@@ -95,6 +93,13 @@ namespace LandManagement
             }
         }
 
+        #region Crear una nueva propiedad
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+ 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             try

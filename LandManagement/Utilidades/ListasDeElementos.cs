@@ -26,6 +26,7 @@ namespace LandManagement.Utilidades
                 new ComboBoxItem("Casado",2),
                 new ComboBoxItem("Concubino",3),
                 new ComboBoxItem("Viudo",4),
+                new ComboBoxItem("Divorciado",5),
             };
 
             return lista;

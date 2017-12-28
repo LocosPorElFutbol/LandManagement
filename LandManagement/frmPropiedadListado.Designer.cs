@@ -29,19 +29,20 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pnlControles = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnRecargar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txbBuscarPor = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvPropiedad = new System.Windows.Forms.DataGridView();
-            this.pnlControles = new System.Windows.Forms.Panel();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.pnlControles.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedad)).BeginInit();
-            this.pnlControles.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -56,6 +57,21 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Propiedades";
+            // 
+            // pnlControles
+            // 
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.btnAgregar);
+            this.pnlControles.Controls.Add(this.groupBox2);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Controls.Add(this.dgvPropiedad);
+            this.pnlControles.Controls.Add(this.btnEliminar);
+            this.pnlControles.Location = new System.Drawing.Point(6, 19);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(589, 337);
+            this.pnlControles.TabIndex = 6;
             // 
             // groupBox2
             // 
@@ -110,24 +126,13 @@
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(505, 102);
+            this.btnCancelar.Location = new System.Drawing.Point(505, 131);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEliminar.Location = new System.Drawing.Point(505, 73);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
-            this.btnEliminar.TabIndex = 2;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // dgvPropiedad
             // 
@@ -144,19 +149,26 @@
             this.dgvPropiedad.TabIndex = 0;
             this.dgvPropiedad.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPropiedad_CellDoubleClick);
             // 
-            // pnlControles
+            // btnEliminar
             // 
-            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlControles.Controls.Add(this.groupBox2);
-            this.pnlControles.Controls.Add(this.btnCancelar);
-            this.pnlControles.Controls.Add(this.dgvPropiedad);
-            this.pnlControles.Controls.Add(this.btnEliminar);
-            this.pnlControles.Location = new System.Drawing.Point(6, 19);
-            this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(589, 337);
-            this.pnlControles.TabIndex = 6;
+            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEliminar.Location = new System.Drawing.Point(505, 102);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.TabIndex = 2;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Location = new System.Drawing.Point(505, 73);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregar.TabIndex = 6;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // frmPropiedadListado
             // 
@@ -169,10 +181,10 @@
             this.Text = "frmPropiedadListado";
             this.Load += new System.EventHandler(this.frmPropiedadListado_Load);
             this.groupBox1.ResumeLayout(false);
+            this.pnlControles.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedad)).EndInit();
-            this.pnlControles.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -189,5 +201,6 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView dgvPropiedad;
         private System.Windows.Forms.Panel pnlControles;
+        private System.Windows.Forms.Button btnAgregar;
     }
 }

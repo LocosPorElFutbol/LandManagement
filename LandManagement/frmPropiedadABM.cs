@@ -231,19 +231,8 @@ namespace LandManagement
 
         private void AbrirFormulario(Form formularioPopUp, string textFormulario)
         {
-            Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
-            string frmCode = formularioPopUp.Name;
-            string frmNombre = textFormulario;
-
-            formularioPopUp.ShowIcon = true;
-            formularioPopUp.Text = frmNombre;
-            formularioPopUp.Icon = (Icon)Recursos.ResourceImages.ResourceManager.GetObject("Tool");
-
-            formularioPopUp.MdiParent = this.MdiParent;
-            formularioPopUp.WindowState = FormWindowState.Minimized;
-            formularioPopUp.Show();
-            formularioPopUp.WindowState = FormWindowState.Maximized;
-            formularioPopUp.Show();
+            Formularios formularios = new Formularios();
+            formularios.InstanciarFormulario(this.MdiParent, formularioPopUp, "Operación");
         }
 
         private tboperaciones ObtenerOperacionSeleccionada()
@@ -256,31 +245,8 @@ namespace LandManagement
 
         private string ObtenerNombreFormulario(tboperaciones _operacion)
         {
-            if (_operacion.tas_id != null)
-                return ConfigurationManager.AppSettings["tas_id"].ToString();
-
-            if (_operacion.env_id != null)
-                return ConfigurationManager.AppSettings["env_id"].ToString();
-
-            if (_operacion.rev_id != null)
-                return ConfigurationManager.AppSettings["rev_id"].ToString();
-
-            if (_operacion.ven_id != null)
-                return ConfigurationManager.AppSettings["ven_id"].ToString();
-
-            if (_operacion.ena_id != null)
-                return ConfigurationManager.AppSettings["ena_id"].ToString();
-
-            if (_operacion.rea_id != null)
-                return ConfigurationManager.AppSettings["rea_id"].ToString();
-
-            if (_operacion.alq_id != null)
-                return ConfigurationManager.AppSettings["alq_id"].ToString();
-
-            if (_operacion.enc_id != null)
-                return ConfigurationManager.AppSettings["enc_id"].ToString();
-
-            return string.Empty;
+            Formularios formularios = new Formularios();
+            return formularios.ObtenerNombreFormulario(_operacion);
         }
         #endregion
         #endregion
