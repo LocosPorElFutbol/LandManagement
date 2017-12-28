@@ -96,7 +96,8 @@ namespace LandManagement
         #region Crear una nueva propiedad
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-
+            formularioPropiedadABM = new frmPropiedadABM(this);
+            AbrirFormulario(formularioPropiedadABM, "Alta de una Propiedad");
         }
         #endregion
  
@@ -139,7 +140,7 @@ namespace LandManagement
                 tbpropiedad propiedad = ObtenerClienteSeleccionado();
 
                 formularioPropiedadABM = new frmPropiedadABM(propiedad, this);
-                ControlarInstanciaAbierta(formularioPropiedadABM, "Planilla de Propiedad");
+                AbrirFormulario(formularioPropiedadABM, "Planilla de Propiedad");
             }
             catch (Exception ex)
             {
@@ -214,43 +215,10 @@ namespace LandManagement
                 "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void ControlarInstanciaAbierta(Form formularioPopUp, string textFormulario)
+        private void AbrirFormulario(Form formularioPopUp, string textFormulario)
         {
-            Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
-            string frmCode = formularioPopUp.Name;
-            string frmNombre = textFormulario;
-
-            foreach (Type type in frmAssembly.GetTypes())
-            {
-                if (type.BaseType == typeof(Form))
-                {
-                    if (type.Name == frmCode)
-                    {
-                        if (Application.OpenForms.Cast<Form>().Any(form => form.Name == frmCode))
-                        {
-                            Form f = Application.OpenForms[frmCode];
-                            f.WindowState = FormWindowState.Normal;
-                            formularioPopUp.Text = frmNombre;
-                            f.Activate();
-                        }
-                        else
-                        {
-                            formularioPopUp.ShowIcon = true;
-                            formularioPopUp.Text = frmNombre;
-                            formularioPopUp.Icon = (Icon)Recursos.ResourceImages.ResourceManager.GetObject("Tool");
-
-                            formularioPopUp.MdiParent = this.MdiParent;
-                            formularioPopUp.WindowState = FormWindowState.Minimized;
-                            formularioPopUp.Show();
-                            formularioPopUp.WindowState = FormWindowState.Maximized;
-                            formularioPopUp.Show();
-                        }
-
-                    }
-
-                }
-            }
-
+            Formularios formularios = new Formularios();
+            formularios.InstanciarFormulario(this.MdiParent, formularioPopUp, textFormulario);
         }
 
     }

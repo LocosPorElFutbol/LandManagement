@@ -130,14 +130,17 @@
             this.txbCalle.Name = "txbCalle";
             this.txbCalle.Size = new System.Drawing.Size(192, 20);
             this.txbCalle.TabIndex = 2;
+            this.txbCalle.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // cmbTipoPropiedad
             // 
+            this.cmbTipoPropiedad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoPropiedad.FormattingEnabled = true;
             this.cmbTipoPropiedad.Location = new System.Drawing.Point(65, 19);
             this.cmbTipoPropiedad.Name = "cmbTipoPropiedad";
             this.cmbTipoPropiedad.Size = new System.Drawing.Size(192, 21);
             this.cmbTipoPropiedad.TabIndex = 8;
+            this.cmbTipoPropiedad.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // label3
             // 
@@ -190,6 +193,7 @@
             this.txbCodigoPostal.Name = "txbCodigoPostal";
             this.txbCodigoPostal.Size = new System.Drawing.Size(57, 20);
             this.txbCodigoPostal.TabIndex = 7;
+            this.txbCodigoPostal.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // txbNumero
             // 
@@ -197,6 +201,7 @@
             this.txbNumero.Name = "txbNumero";
             this.txbNumero.Size = new System.Drawing.Size(57, 20);
             this.txbNumero.TabIndex = 3;
+            this.txbNumero.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // label9
             // 
@@ -213,6 +218,8 @@
             this.txbLocalidad.Name = "txbLocalidad";
             this.txbLocalidad.Size = new System.Drawing.Size(192, 20);
             this.txbLocalidad.TabIndex = 6;
+            this.txbLocalidad.Text = "CABA";
+            this.txbLocalidad.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // label6
             // 
@@ -234,6 +241,7 @@
             // 
             // cmbPiso
             // 
+            this.cmbPiso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPiso.FormattingEnabled = true;
             this.cmbPiso.Location = new System.Drawing.Point(65, 73);
             this.cmbPiso.Name = "cmbPiso";
@@ -242,6 +250,7 @@
             // 
             // cmbDepartamento
             // 
+            this.cmbDepartamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDepartamento.FormattingEnabled = true;
             this.cmbDepartamento.Location = new System.Drawing.Point(327, 73);
             this.cmbDepartamento.Name = "cmbDepartamento";
@@ -301,7 +310,7 @@
             this.btnGuardar.TabIndex = 11;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Visible = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnCancelar
             // 

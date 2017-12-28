@@ -24,14 +24,21 @@ namespace LandManagement
         private OperacionBusiness operacionBusiness;
         DisplayNameHelper displayNameHelper;
         private tbpropiedad propiedad;
+        private int idPropiedad = 0;
         private ListasDeElementos listasDeElementos;
         private Form formPadre;
         private DataGridViewRow dataGridViewRow;
         private Form formularioOperacion;
+        ValidarControles validarControles;
+        private ErrorProvider errorProvider1 = new ErrorProvider();
 
-        public frmPropiedadABM()
+        public frmPropiedadABM(Form _formularioPadre)
         {
             InitializeComponent();
+            this.formPadre = _formularioPadre;
+
+            btnGuardar.Click += new EventHandler(btnGuardar_Click);
+            btnGuardar.Click -= new EventHandler(btnGuardarActualiza_Click);
         }
 
         public frmPropiedadABM(tbpropiedad prop, Form formularioPadre)
@@ -40,28 +47,127 @@ namespace LandManagement
             this.clienteBusiness = new ClienteBusiness();
             this.formPadre = formularioPadre;
             this.propiedad = prop;
+            this.idPropiedad = prop.pro_id;
 
             CargarGrillaPropietarios();
             CargarGrillaOperaciones();
 
+            btnGuardar.Click += new EventHandler(btnGuardarActualiza_Click);
+            btnGuardar.Click -= new EventHandler(btnGuardar_Click);
         }
 
         private void frmPropiedadABM_Load(object sender, EventArgs e)
         {
-            pnlControles.AutoScroll = true;
-            listasDeElementos = new ListasDeElementos();
-            this.CargarCombos();
+            try
+            {
+                pnlControles.AutoScroll = true;
+                listasDeElementos = new ListasDeElementos();
+                this.CargarCombos();
 
-            gbxDireccion.Enabled = false;
-            this.CargarControlesPropiedad(this.propiedad);
+                if (idPropiedad != 0)
+                    this.CargarControlesPropiedad(this.propiedad);
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
         }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.ValidateChildren())
+                {
+                    Cursor.Current = Cursors.WaitCursor;
+
+                    this.propiedad = new tbpropiedad();
+                    CargaObjeto();
+                    GuardaObjeto();
+                    MensajeOk();
+                    ((frmPropiedadListado)formPadre).CargarGrilla();
+                    this.Close();
+
+                    Cursor.Current = Cursors.Default;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                if (ex.InnerException != null)
+                    log.Error(ex.InnerException.Message);
+                MessageBox.Show("Error al guardar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnGuardarActualiza_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.ValidateChildren())
+                {
+                    Cursor.Current = Cursors.WaitCursor;
+
+                    CargaObjeto();
+                    GuardaObjeto();
+                    MensajeOk();
+                    ((frmPropiedadListado)formPadre).CargarGrilla();
+                    this.Close();
+
+                    Cursor.Current = Cursors.Default;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                if (ex.InnerException != null)
+                    log.Error(ex.InnerException.Message);
+                MessageBox.Show("Error al actualizar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            MensajeCancelar();
+        }
+
+        private void CargaObjeto()
+        {
+            this.propiedad.tip_id = ((tbtipopropiedad)cmbTipoPropiedad.SelectedItem).tip_id;
+
+            this.propiedad.pro_calle = txbCalle.Text;
+            this.propiedad.pro_numero = Convert.ToInt32(txbNumero.Text);
+            this.propiedad.pro_piso = ((ComboBoxItem)cmbPiso.SelectedItem).Value;
+            if (((ComboBoxItem)cmbDepartamento.SelectedItem) != null)
+                this.propiedad.pro_departamento = ((ComboBoxItem)cmbDepartamento.SelectedItem).Text;
+            else
+                this.propiedad.pro_departamento = string.Empty;
+            this.propiedad.pro_localidad = txbLocalidad.Text;
+            this.propiedad.pro_codigo_postal = txbCodigoPostal.Text;
+            this.propiedad.pro_caracteristica = txbCaracteristicas.Text;
+        }
+
+        private void GuardaObjeto()
+        {
+            PropiedadBusiness propiedadBusiness = new PropiedadBusiness();
+
+            if (this.idPropiedad != 0)
+                propiedadBusiness.Update(this.propiedad);
+            else
+                propiedadBusiness.Create(this.propiedad);
+        }
+
 
         private void CargarControlesPropiedad(tbpropiedad p)
         {
             cmbTipoPropiedad.Text = p.tbtipopropiedad.tip_descripcion;
             txbCalle.Text = p.pro_calle;
             txbNumero.Text = p.pro_numero.ToString();
-            cmbPiso.Text = p.pro_piso.ToString();
+            if (p.pro_piso == 0)
+                cmbPiso.Text = "PB";
+            else
+                cmbPiso.Text = p.pro_piso.ToString();
             cmbDepartamento.Text = p.pro_departamento;
             txbLocalidad.Text = p.pro_localidad;
             txbCodigoPostal.Text = p.pro_codigo_postal;
@@ -299,9 +405,47 @@ namespace LandManagement
 
         #endregion
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void ValidatingControl(object sender, CancelEventArgs e)
         {
-            this.Close();
+            errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            validarControles = new ValidarControles();
+            Control control = validarControles.ObtenerControl(sender);
+            string error = validarControles.ValidarControl(sender);
+
+            //Ingresa al if cuando error tiene un valor 
+            //(es el mensaje de error que se va a mostrar)
+            if (!string.IsNullOrEmpty(error))
+            {
+                errorProvider1.SetError(control, error);
+
+                //Me valida hasta ingresar el valor correcto
+                e.Cancel = true;
+                return;
+            }
+
+            //error es nulo
+            errorProvider1.SetError(control, error);
+        }
+
+
+        private void MensajeOk()
+        {
+            MessageBox.Show("El registro se guardo correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void MensajeCancelar()
+        {
+            DialogResult dialogResult = DialogResult.None;
+
+            dialogResult = MessageBox.Show("Se aplicaron cambios. Se perderán todos los datos que no hayan sido guardados. \n¿Desea cerrar la ventana?",
+                "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+            {
+                // Stop the validation of any controls so the form can close.
+                AutoValidate = AutoValidate.Disable;
+                this.Close();
+            }
         }
     }
 }

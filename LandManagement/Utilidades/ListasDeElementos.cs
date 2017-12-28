@@ -45,7 +45,7 @@ namespace LandManagement.Utilidades
         public List<ComboBoxItem> GetListaPiso()
         {
             List<ComboBoxItem> lista = new List<ComboBoxItem>(){
-                new ComboBoxItem("0",0),
+                new ComboBoxItem("PB",0),
                 new ComboBoxItem("1",1),
                 new ComboBoxItem("2",2),
                 new ComboBoxItem("3",3),
