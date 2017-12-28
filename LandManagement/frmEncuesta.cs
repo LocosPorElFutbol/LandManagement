@@ -289,7 +289,10 @@ namespace LandManagement
             cmbTipoPropiedad.Text = _propiedad.tbtipopropiedad.tip_descripcion;
             txbCalle.Text = _propiedad.pro_calle;
             txbNumero.Text = _propiedad.pro_numero.ToString();
-            cmbPiso.Text = _propiedad.pro_piso.ToString();
+            if (_propiedad.pro_piso == 0)
+                cmbPiso.Text = "PB";
+            else
+                cmbPiso.Text = _propiedad.pro_piso.ToString();
             cmbDepto.Text = _propiedad.pro_departamento;
             txbLocalidad.Text = _propiedad.pro_localidad;
             txbCodigoPostal.Text = _propiedad.pro_codigo_postal;
@@ -389,24 +392,14 @@ namespace LandManagement
                     cmbDireccion.Items.Add(obj);
         }
 
-        //private void CargarCliente()
-        //{
-        //    ClienteBusiness clienteBusiness = new ClienteBusiness();
-        //    List<tbcliente> listaNombresCompletos = (List<tbcliente>)clienteBusiness.GetListNombresCompletos();
-
-        //    if (listaNombresCompletos.Count != 0)
-        //        foreach (var obj in listaNombresCompletos)
-        //            cmbCliente.Items.Add(obj);
-        //}
-
         private void CargarCliente(tbpropiedad _propiedad)
         {
             ClienteBusiness clienteBusiness = new ClienteBusiness();
-            List<tbcliente> clientesDeUnaPropiedad = 
-                (List<tbcliente>)clienteBusiness.GetClientePorPropiedad(_propiedad);
+            List<tbcliente> clientes =
+                (List<tbcliente>)clienteBusiness.GetList();
 
-            if (clientesDeUnaPropiedad.Count != 0)
-                foreach (var obj in clientesDeUnaPropiedad)
+            if (clientes.Count != 0)
+                foreach (var obj in clientes)
                     cmbCliente.Items.Add(clienteBusiness.CargarNombreCompleto(obj));
         }
 

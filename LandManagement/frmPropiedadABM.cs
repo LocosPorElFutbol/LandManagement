@@ -36,9 +36,6 @@ namespace LandManagement
         {
             InitializeComponent();
             this.formPadre = _formularioPadre;
-
-            btnGuardar.Click += new EventHandler(btnGuardar_Click);
-            btnGuardar.Click -= new EventHandler(btnGuardarActualiza_Click);
         }
 
         public frmPropiedadABM(tbpropiedad prop, Form formularioPadre)
@@ -52,8 +49,8 @@ namespace LandManagement
             CargarGrillaPropietarios();
             CargarGrillaOperaciones();
 
-            btnGuardar.Click += new EventHandler(btnGuardarActualiza_Click);
             btnGuardar.Click -= new EventHandler(btnGuardar_Click);
+            btnGuardar.Click += new EventHandler(btnGuardarActualiza_Click);
         }
 
         private void frmPropiedadABM_Load(object sender, EventArgs e)
