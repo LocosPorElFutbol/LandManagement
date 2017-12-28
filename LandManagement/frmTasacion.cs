@@ -29,6 +29,7 @@ namespace LandManagement
         {
             InitializeComponent();
             this.operacionBusiness = new OperacionBusiness();
+            this.gbxCliente.Enabled = false;
         }
 
         public frmTasacion(tboperaciones _operacion, Form _formularioPadre)
@@ -52,12 +53,14 @@ namespace LandManagement
             listasDeElementos = new ListasDeElementos();
             this.CargarCombos();
 
+            cmbCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cmbCliente.AutoCompleteSource = AutoCompleteSource.ListItems;
+
             cmbDireccion.AutoCompleteMode = AutoCompleteMode.Suggest;
             cmbDireccion.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             if (this.operacion != null)
                 CargoFormulario();
-
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -132,7 +135,7 @@ namespace LandManagement
             //Asigno id de usuario a la operacion
             this.operacion.usu_id = Utilidades.VariablesDeSesion.UsuarioLogueado.usu_id;
 
-            CargoPropietariosALaOperacion();
+            CargoClienteALaOperacion();
             CargaObjetoActualizable();
         }
 
@@ -143,32 +146,40 @@ namespace LandManagement
 
         private void CargoDatosOperacionTasacion()
         {
-            this.operacion.tbtasacion.tas_apellido = txbApellidoTasador.Text;
-            this.operacion.tbtasacion.tas_nombre = txbNombreTasador.Text;
             this.operacion.tbtasacion.tas_tasacion = Convert.ToDouble(txbTasacion.Text);
             this.operacion.tbtasacion.tas_observaciones = txbObservaciones.Text;
         }
 
-        private void CargoPropietariosALaOperacion()
+        private void CargoClienteALaOperacion()
         {
             tbclienteoperacion clienteOperacion;
             this.operacion.tbclienteoperacion.Clear();
 
-            ClienteBusiness clienteBusiness = new ClienteBusiness();
-            List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetClientePorPropiedad(
-                new tbpropiedad() { pro_id = ((tbpropiedad)cmbDireccion.SelectedItem).pro_id });
+            tbcliente cliente = cmbCliente.SelectedItem as tbcliente;
 
-            if (listaClientes.Count > 0)
-            {
-                foreach (var obj in listaClientes)
-                {
-                    clienteOperacion = new tbclienteoperacion();
-                    clienteOperacion.cli_id = obj.cli_id;
-                    clienteOperacion.stc_id = (int)TipoOperador.PROPIETARI;
+            clienteOperacion = new tbclienteoperacion();
+            clienteOperacion.cli_id = cliente.cli_id;
+            clienteOperacion.stc_id = (int)TipoOperador.TASADO;
 
-                    this.operacion.tbclienteoperacion.Add(clienteOperacion);
-                }
-            }
+            this.operacion.tbclienteoperacion.Add(clienteOperacion);
+
+
+
+            //ClienteBusiness clienteBusiness = new ClienteBusiness();
+            //List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetClientePorPropiedad(
+            //    new tbpropiedad() { pro_id = ((tbpropiedad)cmbDireccion.SelectedItem).pro_id });
+
+            //if (listaClientes.Count > 0)
+            //{
+            //    foreach (var obj in listaClientes)
+            //    {
+            //        clienteOperacion = new tbclienteoperacion();
+            //        clienteOperacion.cli_id = obj.cli_id;
+            //        clienteOperacion.stc_id = (int)TipoOperador.TASADO;
+
+            //        this.operacion.tbclienteoperacion.Add(clienteOperacion);
+            //    }
+            //}
         }
 
         private void GuardaObjeto()
@@ -179,7 +190,7 @@ namespace LandManagement
                 operacionBusiness.Create(this.operacion);
         }
 
-        #region Carga de Combos Piso, Depto, Direcciones
+        #region Carga de Combos Piso, Depto, Direcciones y clientes
 
         private void CargarCombos()
         {
@@ -188,6 +199,7 @@ namespace LandManagement
             this.CargarPiso();
             this.CargarDepto();
             this.CargarDirecciones();
+            this.CargarClientes();
         }
 
         private void SetearDisplayValue()
@@ -203,6 +215,9 @@ namespace LandManagement
 
             cmbDireccion.ValueMember = "pro_id";
             cmbDireccion.DisplayMember = "pro_direccion";
+
+            cmbCliente.ValueMember = "cli_id";
+            cmbCliente.DisplayMember = "cli_nombre_completo";
         }
 
         private void CargarTipoPropiedad()
@@ -234,6 +249,17 @@ namespace LandManagement
                     cmbDireccion.Items.Add(obj);
         }
 
+        private void CargarClientes()
+        {
+            ClienteBusiness clienteBusiness = new ClienteBusiness();
+            List<tbcliente> clientes =
+                (List<tbcliente>)clienteBusiness.GetList();
+
+            if (clientes.Count != 0)
+                foreach (var obj in clientes)
+                    cmbCliente.Items.Add(clienteBusiness.CargarNombreCompleto(obj));
+        }
+
         private void CargarCombo(List<ComboBoxItem> lista, ComboBox combo)
         {
             foreach (var obj in lista)
@@ -253,10 +279,27 @@ namespace LandManagement
             cmbTipoPropiedad.Text = p.tbtipopropiedad.tip_descripcion;
             txbCalle.Text = p.pro_calle;
             txbNumero.Text = p.pro_numero.ToString();
-            cmbPiso.Text = p.pro_piso.ToString();
+            if (p.pro_piso == 0)
+                cmbPiso.Text = "PB";
+            else
+                cmbPiso.Text = p.pro_piso.ToString();
             cmbDepto.Text = p.pro_departamento;
             txbLocalidad.Text = p.pro_localidad;
             txbCodigoPostal.Text = p.pro_codigo_postal;
+        }
+        #endregion
+
+        #region Cargo controles de cliente seleccionado
+        private void cmbCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarControlesCliente(
+                (tbcliente)cmbCliente.SelectedItem, txbNombreCliente, txbApellidoCliente);
+        }
+
+        private void CargarControlesCliente(tbcliente c, TextBox _txbNom, TextBox _txbApe)
+        {
+            _txbNom.Text = c.cli_nombre;
+            _txbApe.Text = c.cli_apellido;
         }
         #endregion
 
@@ -267,8 +310,6 @@ namespace LandManagement
             dtpFecha.Value = this.operacion.ope_fecha.Value;
 
             CargarComboDireccion();
-            txbApellidoTasador.Text = this.operacion.tbtasacion.tas_apellido;
-            txbNombreTasador.Text = this.operacion.tbtasacion.tas_nombre;
             txbTasacion.Text = this.operacion.tbtasacion.tas_tasacion.ToString();
             txbObservaciones.Text = this.operacion.tbtasacion.tas_observaciones;
         }

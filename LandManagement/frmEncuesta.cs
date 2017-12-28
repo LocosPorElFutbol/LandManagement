@@ -281,7 +281,7 @@ namespace LandManagement
             txbApellidoEncuestado.Text = string.Empty;
 
             cmbCliente.Items.Clear();
-            this.CargarCliente(propiedad);
+            this.CargarComoClientes();
         }
 
         private void CargarControlesPropiedad(tbpropiedad _propiedad)
@@ -392,7 +392,7 @@ namespace LandManagement
                     cmbDireccion.Items.Add(obj);
         }
 
-        private void CargarCliente(tbpropiedad _propiedad)
+        private void CargarComoClientes()
         {
             ClienteBusiness clienteBusiness = new ClienteBusiness();
             List<tbcliente> clientes =

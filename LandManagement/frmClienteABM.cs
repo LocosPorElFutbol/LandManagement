@@ -685,7 +685,6 @@ namespace LandManagement
             return nodo;
         }
 
-
         private TreeNode ArmarNodos(tbcliente cliente)
         {
             TreeNode nodo = new TreeNode(cliente.cli_nombre + " " + cliente.cli_apellido + "(" + cliente.tbtipofamiliar.tif_descripcion + ")");

@@ -7,18 +7,19 @@ using System.Windows.Forms;
 using System.Drawing;
 using LandManagement.Entities;
 using System.Configuration;
+using LandManagement.Business;
 
 namespace LandManagement.Utilidades
 {
     public class Formularios
     {
-     /// <summary>
-     /// Instancia un formulario, abre un nuevo formulario dentro de la ventana principal que tiene
-     /// como padre.
-     /// </summary>
-     /// <param name="formularioPadre">Formulario padre, contenedor del formulario que se va a instanciar.</param>
-     /// <param name="formularioPopUp">Formulario a instanciar, popup que se abrira dentro del formulario padre.</param>
-     /// <param name="textFormulario">Encabezado del formulario a abrirse.</param>
+        /// <summary>
+        /// Instancia un formulario, abre un nuevo formulario dentro de la ventana principal que tiene
+        /// como padre.
+        /// </summary>
+        /// <param name="formularioPadre">Formulario padre, contenedor del formulario que se va a instanciar.</param>
+        /// <param name="formularioPopUp">Formulario a instanciar, popup que se abrira dentro del formulario padre.</param>
+        /// <param name="textFormulario">Encabezado del formulario a abrirse.</param>
         public void InstanciarFormulario(Form formularioPadre, Form formularioPopUp, string textFormulario)
         {
             Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
@@ -34,6 +35,61 @@ namespace LandManagement.Utilidades
             formularioPopUp.Show();
             formularioPopUp.WindowState = FormWindowState.Maximized;
             formularioPopUp.Show();
+        }
+
+        public string ObtenerNombreFormulario(tboperaciones _operacion)
+        {
+            if (_operacion.tas_id != null)
+                return ConfigurationManager.AppSettings["tas_id"].ToString();
+
+            if (_operacion.env_id != null)
+                return ConfigurationManager.AppSettings["env_id"].ToString();
+
+            if (_operacion.rev_id != null)
+                return ConfigurationManager.AppSettings["rev_id"].ToString();
+
+            if (_operacion.ven_id != null)
+                return ConfigurationManager.AppSettings["ven_id"].ToString();
+
+            if (_operacion.ena_id != null)
+                return ConfigurationManager.AppSettings["ena_id"].ToString();
+
+            if (_operacion.rea_id != null)
+                return ConfigurationManager.AppSettings["rea_id"].ToString();
+
+            if (_operacion.alq_id != null)
+                return ConfigurationManager.AppSettings["alq_id"].ToString();
+
+            if (_operacion.enc_id != null)
+                return ConfigurationManager.AppSettings["enc_id"].ToString();
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// TODAVÍA NO SE UTILIZA, ES DEMASIADO AVANZADO PARA LO QUE SE REQUIERE
+        /// </summary>
+        /// <returns></returns>
+        public ComboBox ObtenerComboClientes()
+        {
+            ComboBox comboClientes = new ComboBox();
+
+            comboClientes.ValueMember = "cli_id";
+            comboClientes.DisplayMember = "cli_nombre_completo";
+
+            comboClientes.AutoCompleteMode = AutoCompleteMode.Suggest;
+            comboClientes.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            ClienteBusiness clienteBusiness = new ClienteBusiness();
+            List<tbcliente> clientes =
+                (List<tbcliente>)clienteBusiness.GetList();
+
+            if (clientes.Count != 0)
+                foreach (var obj in clientes)
+                    comboClientes.Items.Add(clienteBusiness.CargarNombreCompleto(obj));
+
+
+            return comboClientes;
         }
 
         /// <summary>
@@ -81,34 +137,6 @@ namespace LandManagement.Utilidades
 
         }
 
-        public string ObtenerNombreFormulario(tboperaciones _operacion)
-        {
-            if (_operacion.tas_id != null)
-                return ConfigurationManager.AppSettings["tas_id"].ToString();
-
-            if (_operacion.env_id != null)
-                return ConfigurationManager.AppSettings["env_id"].ToString();
-
-            if (_operacion.rev_id != null)
-                return ConfigurationManager.AppSettings["rev_id"].ToString();
-
-            if (_operacion.ven_id != null)
-                return ConfigurationManager.AppSettings["ven_id"].ToString();
-
-            if (_operacion.ena_id != null)
-                return ConfigurationManager.AppSettings["ena_id"].ToString();
-
-            if (_operacion.rea_id != null)
-                return ConfigurationManager.AppSettings["rea_id"].ToString();
-
-            if (_operacion.alq_id != null)
-                return ConfigurationManager.AppSettings["alq_id"].ToString();
-
-            if (_operacion.enc_id != null)
-                return ConfigurationManager.AppSettings["enc_id"].ToString();
-
-            return string.Empty;
-        }
 
     }
 }

@@ -14,7 +14,8 @@ namespace LandManagement.Utilidades
         RESERALQUI = 5,
         LOCATARIO = 6,
         GARANALQUI = 7,
-        ENCUESTADO = 8
+        ENCUESTADO = 8,
+        TASADO = 9
     }
 
 }
