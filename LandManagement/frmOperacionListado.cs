@@ -33,10 +33,11 @@ namespace LandManagement
         private void frmOperacionListado_Load(object sender, EventArgs e)
         {
             pnlControles.AutoScroll = true;
-            CargarGrilla();
+            CargarGrillaOperaciones();
         }
 
-        public void CargarGrilla()
+
+        public void CargarGrillaOperaciones()
         {
             InicializarGrilla();
             CargarDataGridViewLista();
@@ -132,7 +133,7 @@ namespace LandManagement
                         operacionBusiness.Delete(
                             operacionBusiness.GetElement( 
                                 new tboperaciones() { ope_id = idOperacionSeleccionada }) as tboperaciones);
-                        this.CargarGrilla();
+                        this.CargarGrillaOperaciones();
                     }
                 }
                 else

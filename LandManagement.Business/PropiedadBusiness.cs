@@ -59,8 +59,9 @@ namespace LandManagement.Business
         public object GetListDirecciones()
         {
             List<tbpropiedad> listaDirecciones = (List<tbpropiedad>)this.GetList();
-            foreach (tbpropiedad obj in listaDirecciones)
-                this.GetDireccion(obj);
+
+            //foreach (tbpropiedad obj in listaDirecciones)
+            //    this.GetDireccion(obj);
 
             return listaDirecciones;
         }
@@ -68,19 +69,19 @@ namespace LandManagement.Business
         public object GetListDirecciones(int[] ids)
         {
             List<tbpropiedad> listaDirecciones = (List<tbpropiedad>)this.GetList(ids);
-            foreach (tbpropiedad obj in listaDirecciones)
-                this.GetDireccion(obj);
+            //foreach (tbpropiedad obj in listaDirecciones)
+            //    this.GetDireccion(obj);
 
             return listaDirecciones;
         }
 
-        public object GetDireccion(tbpropiedad propiedad)
-        {
-            propiedad.pro_direccion = propiedad.pro_calle + " " + propiedad.pro_numero +
-                                                ", " + propiedad.pro_piso.ToString() + ", " + propiedad.pro_departamento;
+        //public object GetDireccion(tbpropiedad propiedad)
+        //{
+        //    propiedad.pro_direccion = propiedad.pro_calle + " " + propiedad.pro_numero +
+        //                                        ", " + propiedad.pro_piso.ToString() + ", " + propiedad.pro_departamento;
 
-             return propiedad;
-        }
+        //     return propiedad;
+        //}
 
     }
 }

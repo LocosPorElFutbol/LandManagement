@@ -11,7 +11,15 @@ namespace LandManagement.Entities
     public partial class tbpropiedad
     {
         public string pro_tip_descripcion { get; set; }
-        public string pro_direccion { get; set; }
+        public string pro_direccion {
+            get 
+            {
+                if (pro_piso == 0)
+                    return pro_calle + " " + pro_numero + ", PB, " + pro_departamento;
+                else
+                    return pro_calle + " " + pro_numero + ", " + pro_piso.ToString() + ", " + pro_departamento;
+            }
+        }
     }
 
     public class tbpropiedad_metadata

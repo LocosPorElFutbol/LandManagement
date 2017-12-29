@@ -123,7 +123,7 @@ namespace LandManagement
                     GuardaObjeto();
 
                     MensajeOk();
-                    ((frmOperacionListado)formPadre).CargarGrilla();
+                    ((frmOperacionListado)formPadre).CargarGrillaOperaciones();
                     this.Close();
 
                     Cursor.Current = Cursors.Default;

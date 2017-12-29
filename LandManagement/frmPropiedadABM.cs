@@ -15,7 +15,7 @@ using System.Configuration;
 
 namespace LandManagement
 {
-    public partial class frmPropiedadABM : Form
+    public partial class frmPropiedadABM : frmBase
     {
         public static readonly ILog log = log4net.LogManager.GetLogger
             (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -227,7 +227,7 @@ namespace LandManagement
 
         #region Carga Grilla de Operaciones
 
-        public void CargarGrillaOperaciones()
+        public override void CargarGrillaOperaciones()
         {
             InicializarGrillaOperaciones();
             CargarDataGridViewLista();

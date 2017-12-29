@@ -29,7 +29,7 @@ namespace LandManagement
         {
             InitializeComponent();
             this.operacionBusiness = new OperacionBusiness();
-            this.gbxCliente.Enabled = false;
+            this.groupBox5.Enabled = false;
         }
 
         public frmTasacion(tboperaciones _operacion, Form _formularioPadre)
@@ -104,7 +104,7 @@ namespace LandManagement
                     GuardaObjeto();
 
                     MensajeOk();
-                    ((frmOperacionListado)formPadre).CargarGrilla();
+                    //((frmBase)formPadre).CargarGrillaOperaciones();
                     this.Close();
 
                     Cursor.Current = Cursors.Default;
@@ -146,6 +146,11 @@ namespace LandManagement
 
         private void CargoDatosOperacionTasacion()
         {
+            //LINEAS A ELIMINAR
+            this.operacion.tbtasacion.tas_nombre = "BLANCO";
+            this.operacion.tbtasacion.tas_apellido = "BLANCO";
+            //LINEAS A ELIMINAR
+            
             this.operacion.tbtasacion.tas_tasacion = Convert.ToDouble(txbTasacion.Text);
             this.operacion.tbtasacion.tas_observaciones = txbObservaciones.Text;
         }
@@ -162,24 +167,6 @@ namespace LandManagement
             clienteOperacion.stc_id = (int)TipoOperador.TASADO;
 
             this.operacion.tbclienteoperacion.Add(clienteOperacion);
-
-
-
-            //ClienteBusiness clienteBusiness = new ClienteBusiness();
-            //List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetClientePorPropiedad(
-            //    new tbpropiedad() { pro_id = ((tbpropiedad)cmbDireccion.SelectedItem).pro_id });
-
-            //if (listaClientes.Count > 0)
-            //{
-            //    foreach (var obj in listaClientes)
-            //    {
-            //        clienteOperacion = new tbclienteoperacion();
-            //        clienteOperacion.cli_id = obj.cli_id;
-            //        clienteOperacion.stc_id = (int)TipoOperador.TASADO;
-
-            //        this.operacion.tbclienteoperacion.Add(clienteOperacion);
-            //    }
-            //}
         }
 
         private void GuardaObjeto()
@@ -310,6 +297,7 @@ namespace LandManagement
             dtpFecha.Value = this.operacion.ope_fecha.Value;
 
             CargarComboDireccion();
+            CargarComboCliente();
             txbTasacion.Text = this.operacion.tbtasacion.tas_tasacion.ToString();
             txbObservaciones.Text = this.operacion.tbtasacion.tas_observaciones;
         }
@@ -331,6 +319,41 @@ namespace LandManagement
                 }
             }
             cmbDireccion.SelectedItem = propiedadSeleccionada;
+        }
+
+
+        /// <summary>
+        /// Cargo el combo del cliente mediante el id (que al mismo tiempo obtengo de tbclienteoperacion).
+        /// Es importante aclarar que solamente se tomara un cliente, ya que la operación de tasación 
+        /// involucra unicamente a un solo cliente.
+        /// </summary>
+        private void CargarComboCliente()
+        {
+            gbxCliente.Enabled = false;
+            tbclienteoperacion clienteOperacion = null;
+            tbcliente clienteSeleccionado = null;
+
+            //Busco id del cliente en la operación
+            foreach (tbcliente obj in cmbCliente.Items)
+            {
+                clienteOperacion =
+                    this.operacion.tbclienteoperacion.Where(x => x.cli_id == obj.cli_id).FirstOrDefault();
+
+                if (clienteOperacion != null)
+                {
+                    ClienteBusiness clienteBusiness = new ClienteBusiness();
+                    tbcliente cliente = clienteBusiness.GetElement(new tbcliente() { cli_id = clienteOperacion.cli_id }) as tbcliente;
+                    cmbDireccion.SelectedItem = cliente;
+                    break;
+                }
+            }
+
+            //Con el id del cliente obtengo el objeto para posteriormente setearlo
+            foreach (tbcliente obj in cmbCliente.Items)
+                if (obj.cli_id == clienteOperacion.cli_id)
+                    clienteSeleccionado = obj;
+
+            cmbCliente.SelectedItem = clienteSeleccionado;
         }
         #endregion
 
