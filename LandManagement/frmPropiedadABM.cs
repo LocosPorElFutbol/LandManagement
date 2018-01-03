@@ -29,6 +29,7 @@ namespace LandManagement
         private Form formPadre;
         private DataGridViewRow dataGridViewRow;
         private Form formularioOperacion;
+        private frmClienteABM formularioClienteABM;
         ValidarControles validarControles;
         private ErrorProvider errorProvider1 = new ErrorProvider();
 
@@ -155,7 +156,6 @@ namespace LandManagement
                 propiedadBusiness.Create(this.propiedad);
         }
 
-
         private void CargarControlesPropiedad(tbpropiedad p)
         {
             cmbTipoPropiedad.Text = p.tbtipopropiedad.tip_descripcion;
@@ -193,8 +193,8 @@ namespace LandManagement
 
         private void InicializarGrillaClientes()
         {
-            dgvPropietarios.Rows.Clear();
-            dgvPropietarios.Columns.Clear();
+            dgvClientes.Rows.Clear();
+            dgvClientes.Columns.Clear();
             string[] columnasGrilla = {
                                         "cli_id",
                                         "tif_id",
@@ -210,12 +210,12 @@ namespace LandManagement
                 PropertyInfo pi = typeof(tbcliente).GetProperty(s);
                 displayNameHelper = new DisplayNameHelper();
                 string columna = displayNameHelper.GetMetaDisplayName(pi);
-                dgvPropietarios.Columns.Add(s, columna);
+                dgvClientes.Columns.Add(s, columna);
                 i++;
             }
 
-            dgvPropietarios.Columns[0].Visible = false;
-            dgvPropietarios.Columns[1].Visible = false;
+            dgvClientes.Columns[0].Visible = false;
+            dgvClientes.Columns[1].Visible = false;
 
         }
 
@@ -223,8 +223,8 @@ namespace LandManagement
         {
             int indice;
             DataGridViewRow dataGridViewRow = new DataGridViewRow();
-            indice = dgvPropietarios.Rows.Add();
-            dataGridViewRow = dgvPropietarios.Rows[indice];
+            indice = dgvClientes.Rows.Add();
+            dataGridViewRow = dgvClientes.Rows[indice];
             dataGridViewRow.Cells["cli_id"].Value = familiar.cli_id;
             dataGridViewRow.Cells["tif_id"].Value = familiar.tif_id;
             dataGridViewRow.Cells["cli_nombre"].Value = familiar.cli_nombre;
@@ -233,6 +233,41 @@ namespace LandManagement
             dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = familiar.cli_fecha_nacimiento;
         }
 
+        #region Abrir cliente
+        private void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+
+                tbcliente cliente = new tbcliente();
+                cliente = ObtenerClienteSeleccionado();
+
+                formularioClienteABM = new frmClienteABM(cliente, this);
+                AbrirFormulario(formularioClienteABM, "Planilla de Cliente");
+
+                Cursor.Current = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                if (ex.InnerException != null)
+                    log.Error(ex.InnerException.Message);
+                MessageBox.Show("Error al seleccionar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private tbcliente ObtenerClienteSeleccionado()
+        {
+            dataGridViewRow = dgvClientes.SelectedRows[0];
+            int idClienteSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["cli_id"].Value);
+
+            ClienteBusiness clienteBusiness = new ClienteBusiness();
+            tbcliente cliente = (tbcliente)clienteBusiness.GetElement(
+                new tbcliente() { cli_id = idClienteSeleccionado });
+            return cliente;
+        }
+        #endregion
         #endregion
 
         #region Carga Grilla de Operaciones
@@ -434,7 +469,6 @@ namespace LandManagement
             errorProvider1.SetError(control, error);
         }
 
-
         private void MensajeOk()
         {
             MessageBox.Show("El registro se guardo correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -454,5 +488,6 @@ namespace LandManagement
                 this.Close();
             }
         }
+
     }
 }

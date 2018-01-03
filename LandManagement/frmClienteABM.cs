@@ -190,7 +190,8 @@ namespace LandManagement
                     CargaObjeto();
                     GuardaObjeto();
                     MensajeOk();
-                    ((frmClienteListado)formPadre).CargarGrilla();
+                    //Como puede ser invocado desde cualquier fomulario se recomienda no actualizar
+                    //((frmClienteListado)formPadre).CargarGrilla();
                     this.Close();
 
                     Cursor.Current = Cursors.Default;
