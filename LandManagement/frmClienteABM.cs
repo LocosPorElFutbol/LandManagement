@@ -40,6 +40,7 @@ namespace LandManagement
             familiarBusiness = new FamiliarBusiness();
             propiedadBusiness = new PropiedadBusiness();
             InicializarGrillaFamiliares();
+            InicializarGrillaPropiedades();
         }
 
         public frmClienteABM(tbcliente pCliente, Form formularioPadre)
@@ -50,7 +51,7 @@ namespace LandManagement
             this.cliente = pCliente;
 
             familiarBusiness = new FamiliarBusiness();
-            propiedadBusiness = new PropiedadBusiness();
+            //propiedadBusiness = new PropiedadBusiness();
             clienteBusiness = new ClienteBusiness();
             this.idCliente = pCliente.cli_id;
 
@@ -83,10 +84,13 @@ namespace LandManagement
 
             InicializarGrillaFamiliares();
             InicializarGrillaCategorias();
+            InicializarGrillaPropiedades();
 
             TreeNode nodoSeleccionado = CargaArbolGenealogico(pCliente);
             treeView1.Nodes.Add(nodoSeleccionado);
             treeView1.SelectedNode = nodoSeleccionado;
+
+            CargaGrillaDePropiedades(pCliente);
 
             //Carga Grilla familiares
             foreach (var cli1 in pCliente.tbcliente1)
@@ -423,6 +427,73 @@ namespace LandManagement
             dataGridViewRow.Cells["cat_id"].Value = _categoria.cat_id;
             dataGridViewRow.Cells["cat_descripcion"].Value = _categoria.cat_descripcion;
             dataGridViewRow.Cells["cat_fecha"].Value = _categoria.cat_fecha;
+        }
+        #endregion
+
+        #region Carga Propiedades a la Grilla de Propiedades
+        private void InicializarGrillaPropiedades()
+        {
+            dgvPropiedades.Rows.Clear();
+            dgvPropiedades.Columns.Clear();
+            string[] columnasGrilla = {
+                                        "pro_id",
+                                        "tip_id",
+                                        "pro_tip_descripcion",
+                                        "pro_calle",
+                                        "pro_numero",
+                                        "pro_piso",
+                                        "pro_departamento",
+                                        "pro_localidad",
+                                        "pro_codigo_postal",
+                                        "pro_caracteristica"
+                                      };
+
+            int i = 0;
+            foreach (string s in columnasGrilla)
+            {
+                PropertyInfo pi = typeof(tbpropiedad).GetProperty(s);
+                displayNameHelper = new DisplayNameHelper();
+                string columna = displayNameHelper.GetMetaDisplayName(pi);
+                dgvPropiedades.Columns.Add(s, columna);
+                i++;
+            }
+
+            dgvPropiedades.Columns[0].Visible = false;
+            dgvPropiedades.Columns[1].Visible = false;
+        }
+
+        public void AgregaPropiedadAGrilla(tbpropiedad prop)
+        {
+            int indice;
+            DataGridViewRow dataGridViewRow = new DataGridViewRow();
+            indice = dgvPropiedades.Rows.Add();
+            dataGridViewRow = dgvPropiedades.Rows[indice];
+            dataGridViewRow.Cells["pro_id"].Value = prop.pro_id;
+            dataGridViewRow.Cells["tip_id"].Value = prop.tip_id;
+            dataGridViewRow.Cells["pro_tip_descripcion"].Value = prop.pro_tip_descripcion;
+            dataGridViewRow.Cells["pro_calle"].Value = prop.pro_calle;
+            dataGridViewRow.Cells["pro_numero"].Value = prop.pro_numero;
+            dataGridViewRow.Cells["pro_piso"].Value = prop.pro_piso;
+            dataGridViewRow.Cells["pro_departamento"].Value = prop.pro_departamento;
+            dataGridViewRow.Cells["pro_localidad"].Value = prop.pro_localidad;
+            dataGridViewRow.Cells["pro_codigo_postal"].Value = prop.pro_codigo_postal;
+            dataGridViewRow.Cells["pro_caracteristica"].Value = prop.pro_caracteristica;
+        }
+
+        private void CargaGrillaDePropiedades(tbcliente pCliente)
+        {
+            propiedadBusiness = new PropiedadBusiness();
+            List<tbpropiedad> listaPropiedades =
+                propiedadBusiness.GetPropiedadesPorIdCliente(pCliente.cli_id)
+                    as List<tbpropiedad>;
+
+            foreach (var prop in listaPropiedades)
+            {
+                TipoPropiedadBusiness tipoPropiedadBussiness = new TipoPropiedadBusiness();
+                tbtipopropiedad tipoPropiedad = (tbtipopropiedad)tipoPropiedadBussiness.GetElement(new tbtipopropiedad() { tip_id = prop.tip_id });
+                prop.pro_tip_descripcion = tipoPropiedad.tip_descripcion;
+                AgregaPropiedadAGrilla(prop);
+            }
         }
         #endregion
 

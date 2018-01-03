@@ -46,5 +46,12 @@ namespace LandManagement.Business
             Func<tbclienteoperacion, bool> whereClausule = x => idsOperaciones.Contains(x.ope_id);
             return this.GetList(whereClausule);
         }
+
+        public object GetClienteOperacionesPorIdCliente(int idCliente)
+        {
+            Func<tbclienteoperacion, bool> whereClausule = x => x.cli_id == idCliente;
+            return this.GetList(whereClausule);
+        }
+
     }
 }

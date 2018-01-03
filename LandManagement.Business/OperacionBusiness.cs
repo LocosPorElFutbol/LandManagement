@@ -335,5 +335,13 @@ namespace LandManagement.Business
         }
 
         #endregion
+
+        #region Obtener ids de propiedades por ids de operacion
+        public object GetIdsPropiedadesPorIdsOperacion(List<int> idsOperacion)
+        {
+            Func<tboperaciones, bool> whereClausule = x => idsOperacion.Contains(x.ope_id);
+            return this.GetList(whereClausule);
+        }
+        #endregion
     }
 }

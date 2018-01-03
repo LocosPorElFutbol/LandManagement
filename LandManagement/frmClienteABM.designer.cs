@@ -98,6 +98,8 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.dgvPropiedades = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFamiliares)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.pnlControles.SuspendLayout();
@@ -109,6 +111,8 @@
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedades)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -452,6 +456,7 @@
             this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.groupBox7);
             this.pnlControles.Controls.Add(this.groupBox9);
             this.pnlControles.Controls.Add(this.groupBox8);
             this.pnlControles.Controls.Add(this.label1);
@@ -561,7 +566,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(895, 683);
+            this.btnCancelar.Location = new System.Drawing.Point(910, 929);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 32;
@@ -580,7 +585,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(814, 683);
+            this.btnGuardar.Location = new System.Drawing.Point(829, 929);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 31;
@@ -812,6 +817,27 @@
             this.dtpFechaAlta.Size = new System.Drawing.Size(84, 20);
             this.dtpFechaAlta.TabIndex = 0;
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.dgvPropiedades);
+            this.groupBox7.Location = new System.Drawing.Point(12, 685);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(982, 238);
+            this.groupBox7.TabIndex = 64;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Propiedades";
+            // 
+            // dgvPropiedades
+            // 
+            this.dgvPropiedades.AllowUserToAddRows = false;
+            this.dgvPropiedades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPropiedades.Location = new System.Drawing.Point(6, 19);
+            this.dgvPropiedades.Name = "dgvPropiedades";
+            this.dgvPropiedades.ReadOnly = true;
+            this.dgvPropiedades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPropiedades.Size = new System.Drawing.Size(967, 213);
+            this.dgvPropiedades.TabIndex = 28;
+            // 
             // frmClienteABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -839,6 +865,8 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox6.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedades)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -915,5 +943,7 @@
         private System.Windows.Forms.TextBox txbDomicilioImportado;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.DataGridView dgvPropiedades;
     }
 }

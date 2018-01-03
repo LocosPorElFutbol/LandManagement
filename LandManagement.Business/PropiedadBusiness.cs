@@ -46,6 +46,11 @@ namespace LandManagement.Business
             return propiedadRepository.GetList();
         }
 
+        public object GetList(Func<tbpropiedad, bool> _whereClausule)
+        {
+            return propiedadRepository.GetList(_whereClausule);
+        }
+
         public object GetList(int[] ids)
         {
             return propiedadRepository.GetList(ids);
@@ -75,13 +80,30 @@ namespace LandManagement.Business
             return listaDirecciones;
         }
 
-        //public object GetDireccion(tbpropiedad propiedad)
-        //{
-        //    propiedad.pro_direccion = propiedad.pro_calle + " " + propiedad.pro_numero +
-        //                                        ", " + propiedad.pro_piso.ToString() + ", " + propiedad.pro_departamento;
+        public object GetPropiedadesPorIdCliente(int idCliente)
+        {
+            //Obtengo los ids de la operacion de clienteoperacion mediante el id del cliente
+            ClienteOperacionBusiness clienteOperacionBusiness = new ClienteOperacionBusiness();
+            List<tbclienteoperacion> listaClienteOperacion =
+                clienteOperacionBusiness.GetClienteOperacionesPorIdCliente(idCliente)
+                    as List<tbclienteoperacion>;
 
-        //     return propiedad;
-        //}
+            //Armo una lista de ids de operaciones con el listado anterior
+            List<int> listaIdsOperaciones = listaClienteOperacion.Select(x => x.ope_id).ToList();
 
+            //Obtengo las operaciones con el id de operacion
+            OperacionBusiness operacionesBusiness = new OperacionBusiness();
+            List<tboperaciones> listaOperaciones =
+                operacionesBusiness.GetIdsPropiedadesPorIdsOperacion(listaIdsOperaciones)
+                    as List<tboperaciones>;
+
+            //Obtengo los ids de las propíedades con los ids de las operaciones
+            List<int> listaIdsPropiedades = 
+                listaOperaciones.Select(x => x.pro_id).Distinct().ToList();
+            
+            //Obtengo las propieaddes con los ids de las propiedades
+            Func<tbpropiedad, bool> whereClausule = x => listaIdsPropiedades.Contains(x.pro_id);
+            return this.GetList(whereClausule);
+        }
     }
 }

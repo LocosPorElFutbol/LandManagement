@@ -133,6 +133,18 @@ namespace LandManagement.Repository
                                         .Include("tbtipopropiedad").ToList();
         }
 
+        public object GetList(Func<tbpropiedad, bool> _whereClausule)
+        {
+            try
+            {
+                return Contexto.tbpropiedad.Where(_whereClausule).ToList<tbpropiedad>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public object GetList(int[] ids)
         {
             return Contexto.tbpropiedad.Include("tbcliente")
