@@ -137,7 +137,7 @@ namespace LandManagement
         {
             try
             {
-                tbpropiedad propiedad = ObtenerClienteSeleccionado();
+                tbpropiedad propiedad = ObtenerPropiedadSeleccionada();
 
                 formularioPropiedadABM = new frmPropiedadABM(propiedad, this);
                 AbrirFormulario(formularioPropiedadABM, "Planilla de Propiedad");
@@ -151,7 +151,7 @@ namespace LandManagement
             }
         }
 
-        private tbpropiedad ObtenerClienteSeleccionado()
+        private tbpropiedad ObtenerPropiedadSeleccionada()
         {
             dataGridViewRow = dgvPropiedad.SelectedRows[0];
             int idSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["pro_id"].Value);

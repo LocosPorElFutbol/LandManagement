@@ -28,6 +28,7 @@ namespace LandManagement
         private DisplayNameHelper displayNameHelper; 
         private Form formPadre;
         private frmClienteFamiliar formularioClienteFamiliar;
+        private frmPropiedadABM formularioPropiedadABM;
         private ListasDeElementos listasDeElementos;
         private DataGridViewRow dataGridViewRow;
         ValidarControles validarControles;
@@ -646,6 +647,37 @@ namespace LandManagement
 
         #endregion
 
+        #region Abrir PopUp Propiedad
+        private void dgvPropiedades_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                tbpropiedad propiedad = ObtenerPropiedadSeleccionada();
+
+                formularioPropiedadABM = new frmPropiedadABM(propiedad, this);
+                AbrirFormulario(formularioPropiedadABM, "Planilla de Propiedad");
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                if (ex.InnerException != null)
+                    log.Error(ex.InnerException.Message);
+                MessageBox.Show("Error al seleccionar propiedad.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private tbpropiedad ObtenerPropiedadSeleccionada()
+        {
+            dataGridViewRow = dgvPropiedades.SelectedRows[0];
+            int idSeleccionado = Convert.ToInt32(dataGridViewRow.Cells["pro_id"].Value);
+
+            PropiedadBusiness propiedadBusiness = new PropiedadBusiness();
+            tbpropiedad obj = (tbpropiedad)propiedadBusiness.GetElement(
+                new tbpropiedad() { pro_id = idSeleccionado });
+            return obj;
+        }
+        #endregion
+
         private void MensajeOk()
         {
             MessageBox.Show("El registro se guardo correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -861,5 +893,10 @@ namespace LandManagement
         }
         #endregion
 
+        private void AbrirFormulario(Form formularioPopUp, string textFormulario)
+        {
+            Formularios formularios = new Formularios();
+            formularios.InstanciarFormulario(this.MdiParent, formularioPopUp, textFormulario);
+        }
     }
 }

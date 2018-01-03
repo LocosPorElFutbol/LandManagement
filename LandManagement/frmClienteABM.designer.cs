@@ -66,6 +66,8 @@
             this.btnRemoveFamiliar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pnlControles = new System.Windows.Forms.Panel();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.dgvPropiedades = new System.Windows.Forms.DataGridView();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.txbEstadoActual = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -98,11 +100,11 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.dgvPropiedades = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFamiliares)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.pnlControles.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedades)).BeginInit();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).BeginInit();
@@ -111,8 +113,6 @@
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedades)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -474,6 +474,28 @@
             this.pnlControles.TabIndex = 47;
             this.pnlControles.TabStop = true;
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.dgvPropiedades);
+            this.groupBox7.Location = new System.Drawing.Point(12, 685);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(982, 238);
+            this.groupBox7.TabIndex = 64;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Propiedades";
+            // 
+            // dgvPropiedades
+            // 
+            this.dgvPropiedades.AllowUserToAddRows = false;
+            this.dgvPropiedades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPropiedades.Location = new System.Drawing.Point(6, 19);
+            this.dgvPropiedades.Name = "dgvPropiedades";
+            this.dgvPropiedades.ReadOnly = true;
+            this.dgvPropiedades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPropiedades.Size = new System.Drawing.Size(967, 213);
+            this.dgvPropiedades.TabIndex = 28;
+            this.dgvPropiedades.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPropiedades_CellDoubleClick);
+            // 
             // groupBox9
             // 
             this.groupBox9.Controls.Add(this.txbEstadoActual);
@@ -817,27 +839,6 @@
             this.dtpFechaAlta.Size = new System.Drawing.Size(84, 20);
             this.dtpFechaAlta.TabIndex = 0;
             // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.dgvPropiedades);
-            this.groupBox7.Location = new System.Drawing.Point(12, 685);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(982, 238);
-            this.groupBox7.TabIndex = 64;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Propiedades";
-            // 
-            // dgvPropiedades
-            // 
-            this.dgvPropiedades.AllowUserToAddRows = false;
-            this.dgvPropiedades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPropiedades.Location = new System.Drawing.Point(6, 19);
-            this.dgvPropiedades.Name = "dgvPropiedades";
-            this.dgvPropiedades.ReadOnly = true;
-            this.dgvPropiedades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPropiedades.Size = new System.Drawing.Size(967, 213);
-            this.dgvPropiedades.TabIndex = 28;
-            // 
             // frmClienteABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -852,6 +853,8 @@
             this.groupBox1.ResumeLayout(false);
             this.pnlControles.ResumeLayout(false);
             this.pnlControles.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedades)).EndInit();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.groupBox8.ResumeLayout(false);
@@ -865,8 +868,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox6.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedades)).EndInit();
             this.ResumeLayout(false);
 
         }
