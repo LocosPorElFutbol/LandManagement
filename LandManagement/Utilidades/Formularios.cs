@@ -31,6 +31,10 @@ namespace LandManagement.Utilidades
             formularioPopUp.Icon = (Icon)Recursos.ResourceImages.ResourceManager.GetObject("Tool");
 
             formularioPopUp.MdiParent = formularioPadre;
+
+            //Linea que soluciona error de minimzar y maximizar icono
+            // this.Icon = Icon.Clone() as Icon;
+
             formularioPopUp.WindowState = FormWindowState.Minimized;
             formularioPopUp.Show();
             formularioPopUp.WindowState = FormWindowState.Maximized;
