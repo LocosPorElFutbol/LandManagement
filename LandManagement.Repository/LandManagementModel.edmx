@@ -219,8 +219,6 @@
           <Property Name="tas_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="tas_tasacion" Type="double" Nullable="false" />
           <Property Name="tas_observaciones" Type="varchar" MaxLength="300" Nullable="false" />
-          <Property Name="tas_apellido" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="tas_nombre" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="tbtipofamiliar">
           <Key>
@@ -733,6 +731,7 @@
           <EntitySet Name="tbtipopropiedad" EntityType="landmanagementbdModel.tbtipopropiedad" />
           <EntitySet Name="tbusuario" EntityType="landmanagementbdModel.tbusuario" />
           <EntitySet Name="tbventa" EntityType="landmanagementbdModel.tbventa" />
+          <EntitySet Name="tbversion" EntityType="landmanagementbdModel.tbversion" />
           <AssociationSet Name="fk_tbOperaciones_tbAlquilada1" Association="landmanagementbdModel.fk_tbOperaciones_tbAlquilada1">
             <End Role="tbalquilada" EntitySet="tbalquilada" />
             <End Role="tboperaciones" EntitySet="tboperaciones" />
@@ -821,7 +820,6 @@
             <End Role="tbmenu" EntitySet="tbmenu" />
             <End Role="tbusuario" EntitySet="tbusuario" />
           </AssociationSet>
-          <EntitySet Name="tbversion" EntityType="landmanagementbdModel.tbversion" />
         </EntityContainer>
         <EntityType Name="tbalquilada">
           <Key>
@@ -865,19 +863,19 @@
           <Property Name="cli_tipo_documento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cli_numero_documento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cli_cuit_cuil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="cli_como_llego" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tbcliente1" Relationship="landmanagementbdModel.fk_tbCliente_tbCliente1" FromRole="tbcliente" ToRole="tbcliente1" />
-          <NavigationProperty Name="tbcliente2" Relationship="landmanagementbdModel.fk_tbCliente_tbCliente1" FromRole="tbcliente1" ToRole="tbcliente" />
-          <NavigationProperty Name="tbtipofamiliar" Relationship="landmanagementbdModel.fk_tbCliente_tbTipoFamiliar1" FromRole="tbcliente" ToRole="tbtipofamiliar" />
-          <NavigationProperty Name="tbclienteoperacion" Relationship="landmanagementbdModel.fk_tbClienteOperacion_tbCliente1" FromRole="tbcliente" ToRole="tbclienteoperacion" />
-          <NavigationProperty Name="tbdomicilio" Relationship="landmanagementbdModel.fk_tbDomicilio_tbCliente1" FromRole="tbcliente" ToRole="tbdomicilio" />
-          <NavigationProperty Name="tbpropiedad" Relationship="landmanagementbdModel.tbclientepropiedad" FromRole="tbcliente" ToRole="tbpropiedad" />
+          <Property Name="cli_como_llego" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="cli_actualizado" Type="DateTime" />
           <Property Name="cli_titulo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="cli_nombre_pila" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="cli_imprime_carta" Type="Boolean" />
           <Property Name="cli_estado_actual" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="cli_id_import" Type="Int32" />
+          <NavigationProperty Name="tbcliente1" Relationship="landmanagementbdModel.fk_tbCliente_tbCliente1" FromRole="tbcliente" ToRole="tbcliente1" />
+          <NavigationProperty Name="tbcliente2" Relationship="landmanagementbdModel.fk_tbCliente_tbCliente1" FromRole="tbcliente1" ToRole="tbcliente" />
+          <NavigationProperty Name="tbtipofamiliar" Relationship="landmanagementbdModel.fk_tbCliente_tbTipoFamiliar1" FromRole="tbcliente" ToRole="tbtipofamiliar" />
+          <NavigationProperty Name="tbclienteoperacion" Relationship="landmanagementbdModel.fk_tbClienteOperacion_tbCliente1" FromRole="tbcliente" ToRole="tbclienteoperacion" />
+          <NavigationProperty Name="tbdomicilio" Relationship="landmanagementbdModel.fk_tbDomicilio_tbCliente1" FromRole="tbcliente" ToRole="tbdomicilio" />
+          <NavigationProperty Name="tbpropiedad" Relationship="landmanagementbdModel.tbclientepropiedad" FromRole="tbcliente" ToRole="tbpropiedad" />
         </EntityType>
         <EntityType Name="tbclienteoperacion">
           <Key>
@@ -906,9 +904,9 @@
           <Property Name="dom_codigo_postal" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="dom_localidad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="dom_actual" Type="Boolean" Nullable="false" />
+          <Property Name="dom_domicilio_importado" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tbcliente" Relationship="landmanagementbdModel.fk_tbDomicilio_tbCliente1" FromRole="tbdomicilio" ToRole="tbcliente" />
           <NavigationProperty Name="tbtipopropiedad" Relationship="landmanagementbdModel.fk_tbDomicilio_tbtipoPropiedad1" FromRole="tbdomicilio" ToRole="tbtipopropiedad" />
-          <Property Name="dom_domicilio_importado" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tbenalquiler">
           <Key>
@@ -1058,8 +1056,6 @@
           <Property Name="tas_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tas_tasacion" Type="Double" Nullable="false" />
           <Property Name="tas_observaciones" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="tas_apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="tas_nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tboperaciones" Relationship="landmanagementbdModel.fk_tbOperaciones_tbTasacion1" FromRole="tbtasacion" ToRole="tboperaciones" />
         </EntityType>
         <EntityType Name="tbtipofamiliar">
@@ -1107,6 +1103,14 @@
           <Property Name="ven_escribania" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ven_cobrado" Type="Double" Nullable="false" />
           <NavigationProperty Name="tboperaciones" Relationship="landmanagementbdModel.fk_tbOperaciones_tbVenta1" FromRole="tbventa" ToRole="tboperaciones" />
+        </EntityType>
+        <EntityType Name="tbversion">
+          <Key>
+            <PropertyRef Name="ver_id" />
+          </Key>
+          <Property Name="ver_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ver_version" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ver_descripcion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="fk_tbOperaciones_tbAlquilada1">
           <End Type="landmanagementbdModel.tbalquilada" Role="tbalquilada" Multiplicity="0..1" />
@@ -1352,14 +1356,6 @@
           <End Type="landmanagementbdModel.tbmenu" Role="tbmenu" Multiplicity="*" />
           <End Type="landmanagementbdModel.tbusuario" Role="tbusuario" Multiplicity="*" />
         </Association>
-        <EntityType Name="tbversion">
-          <Key>
-            <PropertyRef Name="ver_id" />
-          </Key>
-          <Property Name="ver_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ver_version" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="ver_descripcion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1572,8 +1568,6 @@
           <EntitySetMapping Name="tbtasacion">
             <EntityTypeMapping TypeName="landmanagementbdModel.tbtasacion">
               <MappingFragment StoreEntitySet="tbtasacion">
-                <ScalarProperty Name="tas_nombre" ColumnName="tas_nombre" />
-                <ScalarProperty Name="tas_apellido" ColumnName="tas_apellido" />
                 <ScalarProperty Name="tas_observaciones" ColumnName="tas_observaciones" />
                 <ScalarProperty Name="tas_tasacion" ColumnName="tas_tasacion" />
                 <ScalarProperty Name="tas_id" ColumnName="tas_id" />
@@ -1624,6 +1618,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tbversion">
+            <EntityTypeMapping TypeName="landmanagementbdModel.tbversion">
+              <MappingFragment StoreEntitySet="tbversion">
+                <ScalarProperty Name="ver_descripcion" ColumnName="ver_descripcion" />
+                <ScalarProperty Name="ver_version" ColumnName="ver_version" />
+                <ScalarProperty Name="ver_id" ColumnName="ver_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <AssociationSetMapping Name="tbclientepropiedad" TypeName="landmanagementbdModel.tbclientepropiedad" StoreEntitySet="tbclientepropiedad">
             <EndProperty Name="tbpropiedad">
               <ScalarProperty Name="pro_id" ColumnName="pro_id" />
@@ -1648,15 +1651,6 @@
               <ScalarProperty Name="men_id" ColumnName="men_id" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="tbversion">
-            <EntityTypeMapping TypeName="landmanagementbdModel.tbversion">
-              <MappingFragment StoreEntitySet="tbversion">
-                <ScalarProperty Name="ver_descripcion" ColumnName="ver_descripcion" />
-                <ScalarProperty Name="ver_version" ColumnName="ver_version" />
-                <ScalarProperty Name="ver_id" ColumnName="ver_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1680,25 +1674,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="LandManagementModel" ZoomLevel="55">
-        <EntityTypeShape EntityType="landmanagementbdModel.tbalquilada" Width="1.5" PointX="9" PointY="38.125" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbalquilada" Width="1.5" PointX="9" PointY="17.125" />
         <EntityTypeShape EntityType="landmanagementbdModel.tbcliente" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbclienteoperacion" Width="1.5" PointX="13.75" PointY="4.25" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbdomicilio" Width="1.5" PointX="3" PointY="6.875" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbenalquiler" Width="1.5" PointX="9" PointY="14.375" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbencuesta" Width="1.5" PointX="9" PointY="22.625" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbenventa" Width="1.5" PointX="9" PointY="24.875" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbmenu" Width="1.5" PointX="6.75" PointY="19.125" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tboperaciones" Width="1.875" PointX="10.875" PointY="5.875" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbpropiedad" Width="1.5" PointX="6" PointY="6.75" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbreservaalquiler" Width="1.5" PointX="9" PointY="29.625" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbreservaventa" Width="1.5" PointX="9" PointY="35.625" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbservicios" Width="1.5" PointX="8.25" PointY="7.75" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbsystipocliente" Width="1.5" PointX="11.25" PointY="2.625" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbtasacion" Width="1.5" PointX="9" PointY="11.5" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbtipofamiliar" Width="1.5" PointX="1.5" PointY="11.75" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbtipopropiedad" Width="1.5" PointX="0.75" PointY="7.625" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbusuario" Width="1.5" PointX="9" PointY="18.875" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbventa" Width="1.5" PointX="9" PointY="32.125" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbclienteoperacion" Width="1.5" PointX="13.5" PointY="9" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbdomicilio" Width="1.5" PointX="3" PointY="8.375" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbenalquiler" Width="1.5" PointX="9" PointY="30.375" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbencuesta" Width="1.5" PointX="9" PointY="37.375" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbenventa" Width="1.5" PointX="9" PointY="25.625" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbmenu" Width="1.5" PointX="6.75" PointY="22.125" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tboperaciones" Width="1.5" PointX="11.25" PointY="7.375" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbpropiedad" Width="1.5" PointX="6" PointY="8.375" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbreservaalquiler" Width="1.5" PointX="9" PointY="39.625" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbreservaventa" Width="1.5" PointX="9" PointY="42.25" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbservicios" Width="1.5" PointX="8.25" PointY="9.375" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbsystipocliente" Width="1.5" PointX="11.25" PointY="4.25" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbtasacion" Width="1.5" PointX="9" PointY="34.75" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbtipofamiliar" Width="1.5" PointX="1.5" PointY="13.5" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbtipopropiedad" Width="1.5" PointX="0.75" PointY="9.25" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbusuario" Width="1.5" PointX="9" PointY="22" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbventa" Width="1.5" PointX="9" PointY="13.625" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbversion" Width="1.5" PointX="2.75" PointY="3.5" />
         <AssociationConnector Association="landmanagementbdModel.fk_tbOperaciones_tbAlquilada1" />
         <AssociationConnector Association="landmanagementbdModel.fk_tbCliente_tbCliente1" />
         <AssociationConnector Association="landmanagementbdModel.fk_tbCliente_tbTipoFamiliar1" />
@@ -1721,7 +1716,6 @@
         <AssociationConnector Association="landmanagementbdModel.tbclientepropiedad" />
         <AssociationConnector Association="landmanagementbdModel.tbserviciospropiedad" />
         <AssociationConnector Association="landmanagementbdModel.tbusuariomenu" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbversion" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </Diagrams>
   </Designer>

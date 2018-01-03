@@ -106,5 +106,17 @@ namespace LandManagement.Repository
                 throw ex;
             }
         }
+
+        public object GetList(Func<tbclienteoperacion, bool> _whereClausule)
+        {
+            try
+            {
+                return Contexto.tbclienteoperacion.Where(_whereClausule).ToList<tbclienteoperacion>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

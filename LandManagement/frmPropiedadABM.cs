@@ -46,7 +46,7 @@ namespace LandManagement
             this.propiedad = prop;
             this.idPropiedad = prop.pro_id;
 
-            CargarGrillaPropietarios();
+            CargarGrillaClientes();
             CargarGrillaOperaciones();
 
             btnGuardar.Click -= new EventHandler(btnGuardar_Click);
@@ -171,17 +171,27 @@ namespace LandManagement
             txbCaracteristicas.Text = p.pro_caracteristica;
         }
 
-        #region Carga Grilla de Propietarios
+        #region Carga Grilla de Clientes
 
-        public void CargarGrillaPropietarios()
+        public void CargarGrillaClientes()
         {
-            InicializarGrillaPropietarios();
+            InicializarGrillaClientes();
 
-            foreach (var obj in this.propiedad.tbcliente)
-                AgregaFamiliarAGrilla(obj);
+            //Busco los clientes por id
+            ClienteBusiness clienteBiz = new ClienteBusiness();
+            List<tbcliente> lc = 
+                clienteBiz.GetClientesPorIdPropiedad(this.propiedad.pro_id) as List<tbcliente>;
+
+            foreach (var obj in lc)
+                AgregaClienteAGrilla(obj);
+            //Busco los clientes por id
+
+            //OLD
+            //foreach (var obj in this.propiedad.tbcliente)
+            //    AgregaClienteAGrilla(obj);
         }
 
-        private void InicializarGrillaPropietarios()
+        private void InicializarGrillaClientes()
         {
             dgvPropietarios.Rows.Clear();
             dgvPropietarios.Columns.Clear();
@@ -209,7 +219,7 @@ namespace LandManagement
 
         }
 
-        public void AgregaFamiliarAGrilla(tbcliente familiar)
+        public void AgregaClienteAGrilla(tbcliente familiar)
         {
             int indice;
             DataGridViewRow dataGridViewRow = new DataGridViewRow();

@@ -133,5 +133,18 @@ namespace LandManagement.Repository
                                          .Where(x => x.tbpropiedad.pro_id == _idPropiedad)
                                          .ToList();
         }
+
+        public object GetList(Func<tboperaciones, bool> funcion)
+        {
+            try
+            {
+                return Contexto.tboperaciones.Where(funcion).ToList<tboperaciones>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        
+        }
     }
 }

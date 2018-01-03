@@ -321,5 +321,19 @@ namespace LandManagement.Business
             return operacionRepository.GetListByPropiedadId(_idPropidad);
         }
 
+        public object GetList(Func<tboperaciones, bool> funcion)
+        {
+            return operacionRepository.GetList(funcion);
+        }
+
+        #region Obtener operaciones por id de propiedad
+
+        public object GetOperacionesByIdPropiedad(int _idPropiedad)
+        {
+            Func<tboperaciones, bool> whereClausule = x => x.pro_id == _idPropiedad;
+            return operacionRepository.GetList(whereClausule) as List<tboperaciones>;
+        }
+
+        #endregion
     }
 }

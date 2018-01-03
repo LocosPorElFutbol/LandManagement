@@ -35,5 +35,16 @@ namespace LandManagement.Business
         {
             return clienteOperacionRepository.GetListByIdOperacion(_idOperacion);
         }
+
+        public object GetList(Func<tbclienteoperacion, bool> _whereClausule)
+        {
+            return clienteOperacionRepository.GetList(_whereClausule);
+        }
+
+        public object GetClienteOperacionPorIdsOperacion(List<int> idsOperaciones)
+        {
+            Func<tbclienteoperacion, bool> whereClausule = x => idsOperaciones.Contains(x.ope_id);
+            return this.GetList(whereClausule);
+        }
     }
 }

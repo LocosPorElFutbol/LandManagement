@@ -147,8 +147,10 @@ namespace LandManagement
         private void CargoDatosOperacionTasacion()
         {
             //LINEAS A ELIMINAR
-            this.operacion.tbtasacion.tas_nombre = "BLANCO";
-            this.operacion.tbtasacion.tas_apellido = "BLANCO";
+            //this.operacion.tbtasacion.tas_nombre = "BLANCO";
+            //this.operacion.tbtasacion.tas_apellido = "BLANCO";
+            //insert into tbsystipocliente(stc_codigo,stc_descripcion)
+            //values('TASADO','Cliente tasado');
             //LINEAS A ELIMINAR
             
             this.operacion.tbtasacion.tas_tasacion = Convert.ToDouble(txbTasacion.Text);

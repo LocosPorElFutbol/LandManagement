@@ -351,6 +351,18 @@ namespace LandManagement.Repository
                 .OrderBy(x => x.cli_nombre).ToList();
         }
 
+        public object GetList(Func<tbcliente, bool> _whereClausule)
+        {
+            try
+            {
+                return Contexto.tbcliente.Where(_whereClausule).ToList<tbcliente>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public object GetClientePorPropiedad(tbpropiedad propiedad)
         {
             try

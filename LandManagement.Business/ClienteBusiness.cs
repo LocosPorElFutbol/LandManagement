@@ -73,6 +73,11 @@ namespace LandManagement.Business
             return clienteRepository.GetList();
         }
 
+        public object GetList(Func<tbcliente, bool> _whereClausule)
+        {
+            return clienteRepository.GetList(_whereClausule);
+        }
+
         public object GetListCumpleanieros(DateTime fecha)
         {
             return ((List<tbcliente>)this.GetList())
@@ -278,6 +283,44 @@ namespace LandManagement.Business
         public object ArmarArbolGenealogico(tbcliente entity)
         {
             return clienteRepository.ArmarArbolGenealogico(entity);
+        }
+
+        public object GetClientesPorIdsClientes(List<int> idsClientes)
+        {
+            Func<tbcliente, bool> whereClausule = x => idsClientes.Contains(x.cli_id);
+            return clienteRepository.GetList(whereClausule);
+        }
+
+        /// <summary>
+        /// Obtiene todos los clientes que estan relacionados con una propiedad y una operación. 
+        /// La búsqueda se realiza mediante el Id de la propieadad.
+        /// </summary>
+        /// <param name="_idPropiedad">Id de la propiedad que se relaciona con los clientes</param>
+        /// <returns>Lista de clientes</returns>
+        public object GetClientesPorIdPropiedad(int _idPropiedad)
+        {
+            //Obtengo las operaciones por id de propiedad
+            OperacionBusiness operacionBusiness = new OperacionBusiness();
+            List<tboperaciones> listaOperaciones = 
+                operacionBusiness.GetOperacionesByIdPropiedad(_idPropiedad) as List<tboperaciones>;
+
+            List<int> idsOperaciones = new List<int>();
+            listaOperaciones.ForEach(x => idsOperaciones.Add(x.ope_id));
+        
+            //Obtengo los ids de cliente-operacion por id de operacion
+            ClienteOperacionBusiness clienteOperacionBusiness = new ClienteOperacionBusiness();
+            List<tbclienteoperacion> listaClienteOperacion =
+                clienteOperacionBusiness.GetClienteOperacionPorIdsOperacion(idsOperaciones)
+                    as List<tbclienteoperacion>;
+            
+            List<int> idsClientes = 
+                listaClienteOperacion.Select(x => x.cli_id).Distinct().ToList() as List<int>;
+
+            //Obtengo los clientes mediante el id de cliente
+            List<tbcliente> listaClientes = 
+                this.GetClientesPorIdsClientes(idsClientes) as List<tbcliente>;
+
+            return listaClientes;
         }
     }
 }

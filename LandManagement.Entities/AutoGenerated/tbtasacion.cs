@@ -36,18 +36,6 @@ namespace LandManagement.Entities
             get;
             set;
         }
-    
-        public virtual string tas_apellido
-        {
-            get;
-            set;
-        }
-    
-        public virtual string tas_nombre
-        {
-            get;
-            set;
-        }
 
         #endregion
 
