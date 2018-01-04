@@ -11,6 +11,7 @@ using LandManagement.Business;
 using LandManagement.Entities;
 using LandManagement.Utilidades;
 using System.Reflection;
+using LandManagement.Utilidades.UserControls;
 
 namespace LandManagement
 {
@@ -22,6 +23,7 @@ namespace LandManagement
         private Form formPadre;
         ValidarControles validarControles;
         private ErrorProvider errorProvider1 = new ErrorProvider();
+        UserControlPropietarios userControlPropietarios = null;
 
         public frmReservaVenta()
         {
@@ -43,6 +45,11 @@ namespace LandManagement
         {
             try
             {
+                //User control propietarios
+                userControlPropietarios = new UserControlPropietarios();
+                userControlPropietarios.Location = new Point(3, 313);
+                pnlControles.Controls.Add(userControlPropietarios);
+
                 pnlControles.AutoScroll = true;
                 cmbCliente.Sorted = true;
                 this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;

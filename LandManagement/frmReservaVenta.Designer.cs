@@ -122,7 +122,7 @@
             this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1038, 351);
+            this.groupBox1.Size = new System.Drawing.Size(1038, 539);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Reserva de Venta";
@@ -140,7 +140,7 @@
             this.pnlControles.Controls.Add(this.groupBox2);
             this.pnlControles.Location = new System.Drawing.Point(6, 19);
             this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(1026, 326);
+            this.pnlControles.Size = new System.Drawing.Size(1026, 514);
             this.pnlControles.TabIndex = 28;
             // 
             // groupBox3
@@ -450,7 +450,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(1062, 375);
+            this.ClientSize = new System.Drawing.Size(1062, 563);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmReservaVenta";
             this.Text = "formReservaVenta";
