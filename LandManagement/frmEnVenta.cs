@@ -361,7 +361,7 @@ namespace LandManagement
             if (this.operacion != null)
             {
                 var idsPropietarios = this.GetIdsPropietarios();
-                foreach (tbcliente obj in cmbCliente.Items)
+                foreach (tbcliente obj in cmbPropietario.Items)
                     if (idsPropietarios.Contains(obj.cli_id))
                         AgregaPropietarioGrilla(obj);
             }

@@ -47,7 +47,7 @@ namespace LandManagement
             {
                 //User control propietarios
                 userControlPropietarios = new UserControlPropietarios();
-                userControlPropietarios.Location = new Point(3, 313);
+                userControlPropietarios.Location = new Point(3, 310);
                 pnlControles.Controls.Add(userControlPropietarios);
 
                 pnlControles.AutoScroll = true;
@@ -192,24 +192,17 @@ namespace LandManagement
         private void CargoPropietariosALaOperacion(tboperaciones _operacion)
         {
             tbclienteoperacion clienteOperacion;
-            //this.operacion.tbclienteoperacion.Clear();
             _operacion.tbclienteoperacion.Clear();
 
-            ClienteBusiness clienteBusiness = new ClienteBusiness();
-            List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetClientePorPropiedad(
-                new tbpropiedad() { pro_id = ((tbpropiedad)cmbDireccion.SelectedItem).pro_id });
+            var listaClientes = userControlPropietarios.ObtenerPropietarios();
 
-            if (listaClientes.Count > 0)
+            foreach (var obj in listaClientes)
             {
-                foreach (var obj in listaClientes)
-                {
-                    clienteOperacion = new tbclienteoperacion();
-                    clienteOperacion.cli_id = obj.cli_id;
-                    clienteOperacion.stc_id = (int)TipoOperador.PROPIETARI;
+                clienteOperacion = new tbclienteoperacion();
+                clienteOperacion.cli_id = obj.cli_id;
+                clienteOperacion.stc_id = (int)TipoOperador.PROPIETARI;
 
-                    //this.operacion.tbclienteoperacion.Add(clienteOperacion);
-                    _operacion.tbclienteoperacion.Add(clienteOperacion);
-                }
+                _operacion.tbclienteoperacion.Add(clienteOperacion);
             }
         }
 
@@ -401,6 +394,10 @@ namespace LandManagement
             CargarGrillaReservante(_operacion);
             txbOferta.Text = _operacion.tbreservaventa.rev_oferta.ToString();
             txbObservaciones.Text = this.operacion.tbreservaventa.rev_observaciones;
+
+            //Cargo user control propietarios
+            userControlPropietarios.Enabled = false;
+            userControlPropietarios.CargarGrillaPropietariosOperacion(_operacion.ope_id);
         }
 
         /// <summary>

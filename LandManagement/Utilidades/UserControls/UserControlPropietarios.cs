@@ -193,5 +193,36 @@ namespace LandManagement.Utilidades.UserControls
 
             return listaClientes;
         }
+
+        #region Cargar grilla cuando se envia la operación como dato
+
+        public void CargarGrillaPropietariosOperacion(int idOperacion)
+        {
+            var idsPropietarios = this.GetIdsPropietarios(idOperacion);
+
+            foreach (tbcliente obj in cmbPropietario.Items)
+                if (idsPropietarios.Contains(obj.cli_id))
+                    AgregaPropietarioGrilla(obj);
+        }
+
+        private IEnumerable<int> GetIdsPropietarios(int idOperacion)
+        {
+            var idsPropietarios = GetClientesOperacion(idOperacion)
+                .Where(x => x.stc_id == (int)TipoOperador.PROPIETARI).Select(x => x.cli_id);
+            return idsPropietarios;
+        }
+
+        private IEnumerable<tbclienteoperacion> GetClientesOperacion(int idOperacion)
+        {
+            ClienteOperacionBusiness clienteOperacionBusiness = new ClienteOperacionBusiness();
+            Func<tbclienteoperacion, bool> whereClausule = x => x.ope_id == idOperacion;
+
+            var clientesOperacion = 
+                clienteOperacionBusiness.GetList(whereClausule) as List<tbclienteoperacion>;
+
+            return clientesOperacion;
+        }
+        
+        #endregion
     }
 }
