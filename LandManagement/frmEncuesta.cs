@@ -400,7 +400,7 @@ namespace LandManagement
 
             if (clientes.Count != 0)
                 foreach (var obj in clientes)
-                    cmbCliente.Items.Add(clienteBusiness.CargarNombreCompleto(obj));
+                    cmbCliente.Items.Add(obj);
         }
 
         private void CargarCombo(List<ComboBoxItem> lista, ComboBox combo)

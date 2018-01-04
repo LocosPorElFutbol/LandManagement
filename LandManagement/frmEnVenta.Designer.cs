@@ -42,17 +42,10 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pnlControles = new System.Windows.Forms.Panel();
             this.gbxDetalleEnVenta = new System.Windows.Forms.GroupBox();
             this.rdbVigenteNo = new System.Windows.Forms.RadioButton();
             this.rdbVigenteSi = new System.Windows.Forms.RadioButton();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnRemoveAutorizante = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.cmbCliente = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dgvAutorizantes = new System.Windows.Forms.DataGridView();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dgvPropietarios = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.cbxTelefono = new System.Windows.Forms.CheckBox();
@@ -81,17 +74,28 @@
             this.txbNumero = new System.Windows.Forms.TextBox();
             this.cmbDireccion = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.pnlControles = new System.Windows.Forms.Panel();
+            this.gbxPropietarios = new System.Windows.Forms.GroupBox();
+            this.btnRemovePropietario = new System.Windows.Forms.Button();
+            this.btnAgregarPropietario = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cmbPropietario = new System.Windows.Forms.ComboBox();
+            this.dgvPropietarios = new System.Windows.Forms.DataGridView();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnRemoveAutorizante = new System.Windows.Forms.Button();
+            this.btnAgregarAutorizante = new System.Windows.Forms.Button();
+            this.cmbCliente = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dgvAutorizantes = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
+            this.pnlControles.SuspendLayout();
             this.gbxDetalleEnVenta.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAutorizantes)).BeginInit();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPropietarios)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.gbxDetallePropiedad.SuspendLayout();
-            this.pnlControles.SuspendLayout();
+            this.gbxPropietarios.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPropietarios)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAutorizantes)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -185,12 +189,12 @@
             this.txbObservaciones.Location = new System.Drawing.Point(79, 128);
             this.txbObservaciones.Multiline = true;
             this.txbObservaciones.Name = "txbObservaciones";
-            this.txbObservaciones.Size = new System.Drawing.Size(274, 105);
+            this.txbObservaciones.Size = new System.Drawing.Size(274, 142);
             this.txbObservaciones.TabIndex = 23;
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(580, 531);
+            this.btnGuardar.Location = new System.Drawing.Point(573, 569);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 24;
@@ -201,7 +205,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(661, 531);
+            this.btnCancelar.Location = new System.Drawing.Point(654, 569);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 25;
@@ -217,10 +221,28 @@
             this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(753, 585);
+            this.groupBox1.Size = new System.Drawing.Size(753, 623);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Puesta en Venta de una Propiedad";
+            // 
+            // pnlControles
+            // 
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.label2);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Controls.Add(this.btnGuardar);
+            this.pnlControles.Controls.Add(this.dtpFechaEnVenta);
+            this.pnlControles.Controls.Add(this.gbxDetalleEnVenta);
+            this.pnlControles.Controls.Add(this.groupBox2);
+            this.pnlControles.Controls.Add(this.gbxPropietarios);
+            this.pnlControles.Controls.Add(this.groupBox4);
+            this.pnlControles.Location = new System.Drawing.Point(6, 19);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(741, 598);
+            this.pnlControles.TabIndex = 26;
             // 
             // gbxDetalleEnVenta
             // 
@@ -237,7 +259,7 @@
             this.gbxDetalleEnVenta.Controls.Add(this.label6);
             this.gbxDetalleEnVenta.Location = new System.Drawing.Point(377, 284);
             this.gbxDetalleEnVenta.Name = "gbxDetalleEnVenta";
-            this.gbxDetalleEnVenta.Size = new System.Drawing.Size(359, 241);
+            this.gbxDetalleEnVenta.Size = new System.Drawing.Size(359, 279);
             this.gbxDetalleEnVenta.TabIndex = 15;
             this.gbxDetalleEnVenta.TabStop = false;
             this.gbxDetalleEnVenta.Text = "Detalle";
@@ -263,91 +285,6 @@
             this.rdbVigenteSi.TabStop = true;
             this.rdbVigenteSi.Text = "Si";
             this.rdbVigenteSi.UseVisualStyleBackColor = true;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.btnRemoveAutorizante);
-            this.groupBox4.Controls.Add(this.btnAgregar);
-            this.groupBox4.Controls.Add(this.cmbCliente);
-            this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Controls.Add(this.dgvAutorizantes);
-            this.groupBox4.Location = new System.Drawing.Point(377, 39);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(359, 239);
-            this.groupBox4.TabIndex = 14;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Autorizantes";
-            // 
-            // btnRemoveAutorizante
-            // 
-            this.btnRemoveAutorizante.Location = new System.Drawing.Point(325, 58);
-            this.btnRemoveAutorizante.Name = "btnRemoveAutorizante";
-            this.btnRemoveAutorizante.Size = new System.Drawing.Size(27, 23);
-            this.btnRemoveAutorizante.TabIndex = 26;
-            this.btnRemoveAutorizante.Text = "-";
-            this.btnRemoveAutorizante.UseVisualStyleBackColor = true;
-            this.btnRemoveAutorizante.Click += new System.EventHandler(this.btnRemoveAutorizante_Click);
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Location = new System.Drawing.Point(249, 19);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(56, 23);
-            this.btnAgregar.TabIndex = 21;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // cmbCliente
-            // 
-            this.cmbCliente.FormattingEnabled = true;
-            this.cmbCliente.Location = new System.Drawing.Point(79, 21);
-            this.cmbCliente.Name = "cmbCliente";
-            this.cmbCliente.Size = new System.Drawing.Size(154, 21);
-            this.cmbCliente.TabIndex = 20;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(29, 24);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 13);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "Cliente";
-            // 
-            // dgvAutorizantes
-            // 
-            this.dgvAutorizantes.AllowUserToAddRows = false;
-            this.dgvAutorizantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAutorizantes.Location = new System.Drawing.Point(6, 58);
-            this.dgvAutorizantes.MultiSelect = false;
-            this.dgvAutorizantes.Name = "dgvAutorizantes";
-            this.dgvAutorizantes.ReadOnly = true;
-            this.dgvAutorizantes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAutorizantes.Size = new System.Drawing.Size(313, 175);
-            this.dgvAutorizantes.TabIndex = 18;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.dgvPropietarios);
-            this.groupBox3.Location = new System.Drawing.Point(3, 367);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(368, 158);
-            this.groupBox3.TabIndex = 8;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Propietarios";
-            // 
-            // dgvPropietarios
-            // 
-            this.dgvPropietarios.AllowUserToAddRows = false;
-            this.dgvPropietarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPropietarios.Location = new System.Drawing.Point(6, 19);
-            this.dgvPropietarios.MultiSelect = false;
-            this.dgvPropietarios.Name = "dgvPropietarios";
-            this.dgvPropietarios.ReadOnly = true;
-            this.dgvPropietarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPropietarios.Size = new System.Drawing.Size(356, 131);
-            this.dgvPropietarios.TabIndex = 17;
             // 
             // groupBox2
             // 
@@ -628,50 +565,159 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Dirección";
             // 
-            // pnlControles
+            // gbxPropietarios
             // 
-            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlControles.Controls.Add(this.label2);
-            this.pnlControles.Controls.Add(this.btnCancelar);
-            this.pnlControles.Controls.Add(this.btnGuardar);
-            this.pnlControles.Controls.Add(this.dtpFechaEnVenta);
-            this.pnlControles.Controls.Add(this.gbxDetalleEnVenta);
-            this.pnlControles.Controls.Add(this.groupBox2);
-            this.pnlControles.Controls.Add(this.groupBox3);
-            this.pnlControles.Controls.Add(this.groupBox4);
-            this.pnlControles.Location = new System.Drawing.Point(6, 19);
-            this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(741, 560);
-            this.pnlControles.TabIndex = 26;
+            this.gbxPropietarios.Controls.Add(this.btnRemovePropietario);
+            this.gbxPropietarios.Controls.Add(this.btnAgregarPropietario);
+            this.gbxPropietarios.Controls.Add(this.label16);
+            this.gbxPropietarios.Controls.Add(this.cmbPropietario);
+            this.gbxPropietarios.Controls.Add(this.dgvPropietarios);
+            this.gbxPropietarios.Location = new System.Drawing.Point(3, 367);
+            this.gbxPropietarios.Name = "gbxPropietarios";
+            this.gbxPropietarios.Size = new System.Drawing.Size(368, 196);
+            this.gbxPropietarios.TabIndex = 8;
+            this.gbxPropietarios.TabStop = false;
+            this.gbxPropietarios.Text = "Propietarios";
+            // 
+            // btnRemovePropietario
+            // 
+            this.btnRemovePropietario.Location = new System.Drawing.Point(335, 49);
+            this.btnRemovePropietario.Name = "btnRemovePropietario";
+            this.btnRemovePropietario.Size = new System.Drawing.Size(27, 23);
+            this.btnRemovePropietario.TabIndex = 21;
+            this.btnRemovePropietario.Text = "-";
+            this.btnRemovePropietario.UseVisualStyleBackColor = true;
+            this.btnRemovePropietario.Click += new System.EventHandler(this.btnRemovePropietario_Click);
+            // 
+            // btnAgregarPropietario
+            // 
+            this.btnAgregarPropietario.Location = new System.Drawing.Point(289, 19);
+            this.btnAgregarPropietario.Name = "btnAgregarPropietario";
+            this.btnAgregarPropietario.Size = new System.Drawing.Size(56, 23);
+            this.btnAgregarPropietario.TabIndex = 20;
+            this.btnAgregarPropietario.Text = "Agregar";
+            this.btnAgregarPropietario.UseVisualStyleBackColor = true;
+            this.btnAgregarPropietario.Click += new System.EventHandler(this.btnAgregarPropietario_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(12, 25);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(57, 13);
+            this.label16.TabIndex = 19;
+            this.label16.Text = "Propietario";
+            // 
+            // cmbPropietario
+            // 
+            this.cmbPropietario.FormattingEnabled = true;
+            this.cmbPropietario.Location = new System.Drawing.Point(74, 20);
+            this.cmbPropietario.Name = "cmbPropietario";
+            this.cmbPropietario.Size = new System.Drawing.Size(206, 21);
+            this.cmbPropietario.TabIndex = 18;
+            // 
+            // dgvPropietarios
+            // 
+            this.dgvPropietarios.AllowUserToAddRows = false;
+            this.dgvPropietarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPropietarios.Location = new System.Drawing.Point(6, 49);
+            this.dgvPropietarios.MultiSelect = false;
+            this.dgvPropietarios.Name = "dgvPropietarios";
+            this.dgvPropietarios.ReadOnly = true;
+            this.dgvPropietarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPropietarios.Size = new System.Drawing.Size(324, 138);
+            this.dgvPropietarios.TabIndex = 17;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnRemoveAutorizante);
+            this.groupBox4.Controls.Add(this.btnAgregarAutorizante);
+            this.groupBox4.Controls.Add(this.cmbCliente);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.dgvAutorizantes);
+            this.groupBox4.Location = new System.Drawing.Point(377, 39);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(359, 239);
+            this.groupBox4.TabIndex = 14;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Autorizantes";
+            // 
+            // btnRemoveAutorizante
+            // 
+            this.btnRemoveAutorizante.Location = new System.Drawing.Point(325, 58);
+            this.btnRemoveAutorizante.Name = "btnRemoveAutorizante";
+            this.btnRemoveAutorizante.Size = new System.Drawing.Size(27, 23);
+            this.btnRemoveAutorizante.TabIndex = 26;
+            this.btnRemoveAutorizante.Text = "-";
+            this.btnRemoveAutorizante.UseVisualStyleBackColor = true;
+            this.btnRemoveAutorizante.Click += new System.EventHandler(this.btnRemoveAutorizante_Click);
+            // 
+            // btnAgregarAutorizante
+            // 
+            this.btnAgregarAutorizante.Location = new System.Drawing.Point(249, 19);
+            this.btnAgregarAutorizante.Name = "btnAgregarAutorizante";
+            this.btnAgregarAutorizante.Size = new System.Drawing.Size(56, 23);
+            this.btnAgregarAutorizante.TabIndex = 21;
+            this.btnAgregarAutorizante.Text = "Agregar";
+            this.btnAgregarAutorizante.UseVisualStyleBackColor = true;
+            this.btnAgregarAutorizante.Click += new System.EventHandler(this.btnAgregarAutorizante_Click);
+            // 
+            // cmbCliente
+            // 
+            this.cmbCliente.FormattingEnabled = true;
+            this.cmbCliente.Location = new System.Drawing.Point(79, 21);
+            this.cmbCliente.Name = "cmbCliente";
+            this.cmbCliente.Size = new System.Drawing.Size(154, 21);
+            this.cmbCliente.TabIndex = 20;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(29, 24);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(39, 13);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Cliente";
+            // 
+            // dgvAutorizantes
+            // 
+            this.dgvAutorizantes.AllowUserToAddRows = false;
+            this.dgvAutorizantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAutorizantes.Location = new System.Drawing.Point(6, 58);
+            this.dgvAutorizantes.MultiSelect = false;
+            this.dgvAutorizantes.Name = "dgvAutorizantes";
+            this.dgvAutorizantes.ReadOnly = true;
+            this.dgvAutorizantes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAutorizantes.Size = new System.Drawing.Size(313, 175);
+            this.dgvAutorizantes.TabIndex = 18;
             // 
             // frmEnVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(777, 609);
+            this.ClientSize = new System.Drawing.Size(777, 647);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmEnVenta";
             this.Text = "frmEnVenta";
             this.Load += new System.EventHandler(this.frmEnVenta_Load);
             this.groupBox1.ResumeLayout(false);
+            this.pnlControles.ResumeLayout(false);
+            this.pnlControles.PerformLayout();
             this.gbxDetalleEnVenta.ResumeLayout(false);
             this.gbxDetalleEnVenta.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAutorizantes)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPropietarios)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.gbxDetallePropiedad.ResumeLayout(false);
             this.gbxDetallePropiedad.PerformLayout();
-            this.pnlControles.ResumeLayout(false);
-            this.pnlControles.PerformLayout();
+            this.gbxPropietarios.ResumeLayout(false);
+            this.gbxPropietarios.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPropietarios)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAutorizantes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -705,7 +751,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gbxPropietarios;
         private System.Windows.Forms.DataGridView dgvPropietarios;
         private System.Windows.Forms.GroupBox gbxDetalleEnVenta;
         private System.Windows.Forms.GroupBox groupBox4;
@@ -723,7 +769,7 @@
         private System.Windows.Forms.CheckBox cbxReglamento;
         private System.Windows.Forms.CheckBox cbxPlanos;
         private System.Windows.Forms.CheckBox cbxTituloPropiedad;
-        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnAgregarAutorizante;
         private System.Windows.Forms.ComboBox cmbCliente;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -732,5 +778,9 @@
         private System.Windows.Forms.RadioButton rdbVigenteNo;
         private System.Windows.Forms.RadioButton rdbVigenteSi;
         private System.Windows.Forms.Panel pnlControles;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox cmbPropietario;
+        private System.Windows.Forms.Button btnRemovePropietario;
+        private System.Windows.Forms.Button btnAgregarPropietario;
     }
 }

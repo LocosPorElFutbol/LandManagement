@@ -11,7 +11,14 @@ namespace LandManagement.Entities
     public partial class tbcliente
     {
         public string cli_parentezco { get; set; }
-        public string cli_nombre_completo { get; set; }
+        public string cli_nombre_completo
+        {
+            get
+            {
+                return this.cli_nombre + ", " + this.cli_apellido;
+            }
+        }
+         
     }
 
     public class tbcliente_metadata

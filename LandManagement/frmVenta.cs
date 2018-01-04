@@ -452,8 +452,6 @@ namespace LandManagement
             tbcliente cliente = (tbcliente)clienteBusiness.GetElement(
                 new tbcliente() { cli_id = idClienteSeleccionado });
 
-            cliente.cli_nombre_completo = cliente.cli_nombre + ", " + cliente.cli_apellido;
-
             return cliente;
         }
 
@@ -522,7 +520,7 @@ namespace LandManagement
         private void CargarCliente()
         {
             ClienteBusiness clienteBusiness = new ClienteBusiness();
-            List<tbcliente> listaNombresCompletos = (List<tbcliente>)clienteBusiness.GetListNombresCompletos();
+            List<tbcliente> listaNombresCompletos = (List<tbcliente>)clienteBusiness.GetList();
 
             if (listaNombresCompletos.Count != 0)
                 foreach (var obj in listaNombresCompletos)

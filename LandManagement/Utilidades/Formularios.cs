@@ -90,7 +90,7 @@ namespace LandManagement.Utilidades
 
             if (clientes.Count != 0)
                 foreach (var obj in clientes)
-                    comboClientes.Items.Add(clienteBusiness.CargarNombreCompleto(obj));
+                    comboClientes.Items.Add(obj);
 
 
             return comboClientes;

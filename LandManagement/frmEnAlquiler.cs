@@ -274,7 +274,7 @@ namespace LandManagement
         private List<tbcliente> ObtenerClientes()
         {
             ClienteBusiness clienteBusiness = new ClienteBusiness();
-            return (List<tbcliente>)clienteBusiness.GetListNombresCompletos();
+            return (List<tbcliente>)clienteBusiness.GetList();
         }
 
         /// <summary>

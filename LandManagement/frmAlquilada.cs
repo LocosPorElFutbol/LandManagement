@@ -549,7 +549,6 @@ namespace LandManagement
 
                 ClienteBusiness clienteBusiness = new ClienteBusiness();
                 tbcliente cliente = (tbcliente)clienteBusiness.GetElement(new tbcliente() { cli_id = idCliente });
-                cliente = (tbcliente)clienteBusiness.CargarNombreCompleto(cliente);
                 cmbCliente.Items.Add(cliente);
             }
         }
@@ -624,7 +623,6 @@ namespace LandManagement
 
                 ClienteBusiness clienteBusiness = new ClienteBusiness();
                 tbcliente cliente = (tbcliente)clienteBusiness.GetElement(new tbcliente() { cli_id = idCliente });
-                cliente = (tbcliente)clienteBusiness.CargarNombreCompleto(cliente);
                 cmbGarante.Items.Add(cliente);
             }
         }
@@ -737,7 +735,7 @@ namespace LandManagement
         private void CargarClienteYGarante()
         {
             ClienteBusiness clienteBusiness = new ClienteBusiness();
-            List<tbcliente> listaNombresCompletos = (List<tbcliente>)clienteBusiness.GetListNombresCompletos();
+            List<tbcliente> listaNombresCompletos = (List<tbcliente>)clienteBusiness.GetList();
 
             if (listaNombresCompletos.Count != 0)
                 foreach (var obj in listaNombresCompletos)
