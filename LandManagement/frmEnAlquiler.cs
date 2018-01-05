@@ -11,6 +11,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using LandManagement.Utilidades.UserControls;
 
 namespace LandManagement
 {
@@ -23,6 +24,8 @@ namespace LandManagement
         DisplayNameHelper displayNameHelper;
         ValidarControles validarControles;
         private ErrorProvider errorProvider1 = new ErrorProvider();
+        UserControlPropietarios userControlPropietarios = null;
+
 
         public frmEnAlquiler()
         {
@@ -44,10 +47,14 @@ namespace LandManagement
         {
             try
             {
+                //User control propietarios
+                userControlPropietarios = new UserControlPropietarios();
+                userControlPropietarios.Location = new Point(381, 30);
+                pnlControles.Controls.Add(userControlPropietarios);
+
                 pnlControles.AutoScroll = true;
                 this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
                 this.CargarCombos();
-                this.InicializarGrillaPropietarios();
                 gbxDetallePropiedad.Enabled = false;
 
                 cmbDireccion.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -134,11 +141,9 @@ namespace LandManagement
 
             //Asigno id de la propiedad a la operacion
             _operacion.pro_id = ((tbpropiedad)cmbDireccion.SelectedItem).pro_id;
-            //this.operacion.pro_id = ((tbpropiedad)cmbDireccion.SelectedItem).pro_id;
 
             //Asigno id de usuario a la operacion
             _operacion.usu_id = Utilidades.VariablesDeSesion.UsuarioLogueado.usu_id;
-            //this.operacion.usu_id = Utilidades.VariablesDeSesion.UsuarioLogueado.usu_id;
 
             CargoPropietariosALaOperacion(_operacion);
             CargaObjetoActualizable(_operacion);
@@ -149,18 +154,18 @@ namespace LandManagement
             tbclienteoperacion clienteOperacion;
             _operacion.tbclienteoperacion.Clear();
 
-            if (dgvPropietarios.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow row in dgvPropietarios.Rows)
-                {
-                    clienteOperacion = new tbclienteoperacion();
-                    clienteOperacion.cli_id = (int)row.Cells["cli_id"].Value;
-                    clienteOperacion.stc_id = (int)TipoOperador.PROPIETARI;
+            var listaPropietarios = userControlPropietarios.ObtenerPropietarios();
 
-                    _operacion.tbclienteoperacion.Add(clienteOperacion);
-                }
+            foreach (var obj in listaPropietarios)
+            {
+                clienteOperacion = new tbclienteoperacion();
+                clienteOperacion.cli_id = obj.cli_id;
+                clienteOperacion.stc_id = (int)TipoOperador.PROPIETARI;
+
+                _operacion.tbclienteoperacion.Add(clienteOperacion);
             }
         }
+
 
         private void CargaObjetoActualizable(tboperaciones _operacion)
         {
@@ -203,8 +208,7 @@ namespace LandManagement
             dtpFecha.Value = _operacion.ope_fecha.Value;
 
             CargarComboDireccion(_operacion);
-            //cargar grilla comprador
-            //CargoGrillaComprador(_operacion);
+            CargoGrillaPropietarios();
 
             txbPrecioPrimerAnio.Text = _operacion.tbenalquiler.ena_precio_primer_anio.ToString();
             txbPrecioSegundoAnio.Text = _operacion.tbenalquiler.ena_precio_segundo_anio.ToString();
@@ -217,6 +221,14 @@ namespace LandManagement
             txbLuz.Text = _operacion.tbenalquiler.ena_luz.ToString();
             txbGas.Text = _operacion.tbenalquiler.ena_gas.ToString();
             txbTelefono.Text = _operacion.tbenalquiler.ena_telefono.ToString();
+        }
+
+        private void CargoGrillaPropietarios()
+        {
+            //Cargo user control propietarios
+            userControlPropietarios.Enabled = false;
+            var oper = this.getOperacionExistente();
+            userControlPropietarios.CargarGrillaPropietariosOperacion(oper.ope_id);
         }
 
         private void CargarComboDireccion(tboperaciones _operacion)
@@ -235,7 +247,7 @@ namespace LandManagement
         }
         #endregion
 
-        #region Cargo controles de Dirección y Cliente seleccionado
+        #region Cargo controles de Dirección
         private void cmbDireccion_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarControlesPropiedad((tbpropiedad)cmbDireccion.SelectedItem);
@@ -250,56 +262,6 @@ namespace LandManagement
             cmbDepto.Text = _propiedad.pro_departamento;
             txbLocalidad.Text = _propiedad.pro_localidad;
             txbCodigoPostal.Text = _propiedad.pro_codigo_postal;
-
-            CargoPropietariosALaGrilla(_propiedad);
-        }
-
-        private void CargoPropietariosALaGrilla(tbpropiedad p)
-        {
-            dgvPropietarios.Rows.Clear();
-            dgvPropietarios.Refresh();
-
-            //Carga los propietarios al momento de generar la operación
-            if (this.getOperacionExistente() != null)
-            {
-                var idsPropietarios = this.GetIdsPropietarios(this.getOperacionExistente());
-                foreach (tbcliente obj in this.ObtenerClientes())
-                    if (idsPropietarios.Contains(obj.cli_id))
-                        AgregaPropietarioGrilla(obj);
-            }
-            else
-                AgregarPropietariosGrilla(p);
-        }
-
-        private List<tbcliente> ObtenerClientes()
-        {
-            ClienteBusiness clienteBusiness = new ClienteBusiness();
-            return (List<tbcliente>)clienteBusiness.GetList();
-        }
-
-        /// <summary>
-        /// Obtiene los ids de los propietarios de la tabla tbclienteoperacion
-        /// </summary>
-        /// <param name="_operacion">Operacion almacenada en bd</param>
-        /// <returns>ids de los propietarios</returns>
-        private IEnumerable<int> GetIdsPropietarios(tboperaciones _operacion)
-        {
-            var idsPropietarios = GetClientesOperacion(_operacion)
-                .Where(x => x.stc_id == (int)TipoOperador.PROPIETARI).Select(x => x.cli_id);
-            return idsPropietarios;
-        }
-
-        /// <summary>
-        /// Obtiene todos los registros de la tabla tbclienteoperacion por id de operación existente
-        /// </summary>
-        /// <param name="_operacion">Operacion almacenada en bd</param>
-        /// <returns>Registros correspondientes a la operación enviada por parametro</returns>
-        private IEnumerable<tbclienteoperacion> GetClientesOperacion(tboperaciones _operacion)
-        {
-            var clientesOperacion = _operacion.tbclienteoperacion
-                .Where(x => x.ope_id == this.operacion.ope_id);
-
-            return clientesOperacion;
         }
 
         /// <summary>
@@ -313,58 +275,6 @@ namespace LandManagement
                 return this.operacion;
             return null;
         }
-        #endregion
-
-        #region Carga Propietarios a la Grilla de Propietarios
-
-        private void InicializarGrillaPropietarios()
-        {
-            dgvPropietarios.Rows.Clear();
-            dgvPropietarios.Columns.Clear();
-            string[] columnasGrilla = {
-                                        "cli_id",
-                                        "tif_id",
-                                        "cli_nombre",
-                                        "cli_apellido",
-                                        "cli_numero_documento",
-                                        "cli_fecha_nacimiento"
-                                      };
-
-            int i = 0;
-            foreach (string s in columnasGrilla)
-            {
-                PropertyInfo pi = typeof(tbcliente).GetProperty(s);
-                displayNameHelper = new DisplayNameHelper();
-                string columna = displayNameHelper.GetMetaDisplayName(pi);
-                dgvPropietarios.Columns.Add(s, columna);
-                i++;
-            }
-
-            dgvPropietarios.Columns[0].Visible = false;
-            dgvPropietarios.Columns[1].Visible = false;
-
-        }
-
-        private void AgregarPropietariosGrilla(tbpropiedad prop)
-        {
-            foreach (tbcliente obj in prop.tbcliente)
-                AgregaPropietarioGrilla(obj);
-        }
-
-        public void AgregaPropietarioGrilla(tbcliente familiar)
-        {
-            int indice;
-            DataGridViewRow dataGridViewRow = new DataGridViewRow();
-            indice = dgvPropietarios.Rows.Add();
-            dataGridViewRow = dgvPropietarios.Rows[indice];
-            dataGridViewRow.Cells["cli_id"].Value = familiar.cli_id;
-            dataGridViewRow.Cells["tif_id"].Value = familiar.tif_id;
-            dataGridViewRow.Cells["cli_nombre"].Value = familiar.cli_nombre;
-            dataGridViewRow.Cells["cli_apellido"].Value = familiar.cli_apellido;
-            dataGridViewRow.Cells["cli_numero_documento"].Value = familiar.cli_numero_documento;
-            dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = familiar.cli_fecha_nacimiento;
-        }
-
         #endregion
 
         #region Carga de Combos TipoPropiedad, Piso, Depto, Direcciones
