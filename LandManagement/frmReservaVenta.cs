@@ -47,7 +47,7 @@ namespace LandManagement
             {
                 //User control propietarios
                 userControlPropietarios = new UserControlPropietarios();
-                userControlPropietarios.Location = new Point(3, 310);
+                userControlPropietarios.Location = new Point(3, 290);
                 pnlControles.Controls.Add(userControlPropietarios);
 
                 pnlControles.AutoScroll = true;
