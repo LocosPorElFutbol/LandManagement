@@ -11,6 +11,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using LandManagement.Utilidades.UserControls;
 
 namespace LandManagement
 {
@@ -22,6 +23,7 @@ namespace LandManagement
         private Form formPadre;
         ValidarControles validarControles;
         private ErrorProvider errorProvider1 = new ErrorProvider();
+        UserControlPropietarios userControlPropietarios = null;
 
         public frmReservaAlquiler()
         {
@@ -43,6 +45,11 @@ namespace LandManagement
         {
             try
             {
+                //User control propietarios
+                userControlPropietarios = new UserControlPropietarios();
+                userControlPropietarios.Location = new Point(8, 276);
+                pnlControles.Controls.Add(userControlPropietarios);
+
                 pnlControles.AutoScroll = true;
                 cmbCliente.Sorted = true;
                 this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
@@ -153,20 +160,15 @@ namespace LandManagement
             tbclienteoperacion clienteOperacion;
             _operacion.tbclienteoperacion.Clear();
 
-            ClienteBusiness clienteBusiness = new ClienteBusiness();
-            List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetClientePorPropiedad(
-                new tbpropiedad() { pro_id = ((tbpropiedad)cmbDireccion.SelectedItem).pro_id });
-
-            if (listaClientes.Count > 0)
+            var listaClientes = userControlPropietarios.ObtenerPropietarios();
+            
+            foreach (var obj in listaClientes)
             {
-                foreach (var obj in listaClientes)
-                {
-                    clienteOperacion = new tbclienteoperacion();
-                    clienteOperacion.cli_id = obj.cli_id;
-                    clienteOperacion.stc_id = (int)TipoOperador.PROPIETARI;
+                clienteOperacion = new tbclienteoperacion();
+                clienteOperacion.cli_id = obj.cli_id;
+                clienteOperacion.stc_id = (int)TipoOperador.PROPIETARI;
 
-                    _operacion.tbclienteoperacion.Add(clienteOperacion);
-                }
+                _operacion.tbclienteoperacion.Add(clienteOperacion);
             }
         }
 
@@ -220,6 +222,8 @@ namespace LandManagement
 
             CargarComboDireccion(_operacion);
             CargarGrillaReservante(_operacion);
+            CargoGrillaPropietarios(_operacion);
+
 
             txbOferta.Text = _operacion.tbreservaalquiler.rea_oferta.ToString();
             txbGarantia.Text = _operacion.tbreservaalquiler.rea_garantia;
@@ -262,6 +266,13 @@ namespace LandManagement
                 if (idsReservantes.Contains(obj.cli_id))
                     this.AgregaAutorizanteGrilla(obj);
             }
+        }
+
+        private void CargoGrillaPropietarios(tboperaciones _operacion)
+        {
+            //Cargo user control propietarios
+            userControlPropietarios.Enabled = false;
+            userControlPropietarios.CargarGrillaPropietariosOperacion(_operacion.ope_id);
         }
 
         private List<int> GetIdsReservante(tboperaciones _operacion)

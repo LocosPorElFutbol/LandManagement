@@ -36,14 +36,14 @@
             this.pnlControles = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.btnQuitar = new System.Windows.Forms.Button();
-            this.dgvReservantes = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.txbOferta = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txbGarantia = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnQuitar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.dgvReservantes = new System.Windows.Forms.DataGridView();
             this.cmbCliente = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -69,8 +69,8 @@
             this.pnlControles.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvReservantes)).BeginInit();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReservantes)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.gbxDetallePropiedad.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -96,7 +96,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(969, 317);
+            this.btnCancelar.Location = new System.Drawing.Point(683, 490);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 10;
@@ -106,7 +106,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(888, 317);
+            this.btnGuardar.Location = new System.Drawing.Point(602, 490);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 11;
@@ -122,7 +122,7 @@
             this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1062, 368);
+            this.groupBox1.Size = new System.Drawing.Size(795, 546);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Reserva de Alquiler";
@@ -140,7 +140,7 @@
             this.pnlControles.Controls.Add(this.groupBox2);
             this.pnlControles.Location = new System.Drawing.Point(6, 19);
             this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(1050, 343);
+            this.pnlControles.Size = new System.Drawing.Size(783, 521);
             this.pnlControles.TabIndex = 27;
             // 
             // groupBox3
@@ -149,7 +149,7 @@
             this.groupBox3.Controls.Add(this.groupBox4);
             this.groupBox3.Location = new System.Drawing.Point(392, 29);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(652, 282);
+            this.groupBox3.Size = new System.Drawing.Size(386, 455);
             this.groupBox3.TabIndex = 26;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Reservante";
@@ -160,35 +160,12 @@
             this.groupBox7.Controls.Add(this.txbOferta);
             this.groupBox7.Controls.Add(this.label8);
             this.groupBox7.Controls.Add(this.txbGarantia);
-            this.groupBox7.Location = new System.Drawing.Point(379, 24);
+            this.groupBox7.Location = new System.Drawing.Point(8, 273);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(267, 243);
+            this.groupBox7.Size = new System.Drawing.Size(365, 176);
             this.groupBox7.TabIndex = 15;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Datos de la reserva";
-            // 
-            // btnQuitar
-            // 
-            this.btnQuitar.Location = new System.Drawing.Point(328, 51);
-            this.btnQuitar.Name = "btnQuitar";
-            this.btnQuitar.Size = new System.Drawing.Size(30, 23);
-            this.btnQuitar.TabIndex = 15;
-            this.btnQuitar.Text = "-";
-            this.btnQuitar.UseVisualStyleBackColor = true;
-            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
-            // 
-            // dgvReservantes
-            // 
-            this.dgvReservantes.AllowUserToAddRows = false;
-            this.dgvReservantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReservantes.Location = new System.Drawing.Point(14, 51);
-            this.dgvReservantes.MultiSelect = false;
-            this.dgvReservantes.Name = "dgvReservantes";
-            this.dgvReservantes.ReadOnly = true;
-            this.dgvReservantes.RowHeadersVisible = false;
-            this.dgvReservantes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvReservantes.Size = new System.Drawing.Size(308, 186);
-            this.dgvReservantes.TabIndex = 14;
             // 
             // label7
             // 
@@ -221,7 +198,7 @@
             this.txbGarantia.Location = new System.Drawing.Point(61, 45);
             this.txbGarantia.Multiline = true;
             this.txbGarantia.Name = "txbGarantia";
-            this.txbGarantia.Size = new System.Drawing.Size(200, 192);
+            this.txbGarantia.Size = new System.Drawing.Size(297, 123);
             this.txbGarantia.TabIndex = 13;
             // 
             // groupBox4
@@ -231,12 +208,22 @@
             this.groupBox4.Controls.Add(this.dgvReservantes);
             this.groupBox4.Controls.Add(this.cmbCliente);
             this.groupBox4.Controls.Add(this.label5);
-            this.groupBox4.Location = new System.Drawing.Point(8, 24);
+            this.groupBox4.Location = new System.Drawing.Point(8, 19);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(365, 243);
             this.groupBox4.TabIndex = 14;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Buscar Cliente";
+            // 
+            // btnQuitar
+            // 
+            this.btnQuitar.Location = new System.Drawing.Point(328, 51);
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Size = new System.Drawing.Size(30, 23);
+            this.btnQuitar.TabIndex = 15;
+            this.btnQuitar.Text = "-";
+            this.btnQuitar.UseVisualStyleBackColor = true;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
             // 
             // btnAgregar
             // 
@@ -247,6 +234,19 @@
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // dgvReservantes
+            // 
+            this.dgvReservantes.AllowUserToAddRows = false;
+            this.dgvReservantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReservantes.Location = new System.Drawing.Point(14, 51);
+            this.dgvReservantes.MultiSelect = false;
+            this.dgvReservantes.Name = "dgvReservantes";
+            this.dgvReservantes.ReadOnly = true;
+            this.dgvReservantes.RowHeadersVisible = false;
+            this.dgvReservantes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvReservantes.Size = new System.Drawing.Size(308, 186);
+            this.dgvReservantes.TabIndex = 14;
             // 
             // cmbCliente
             // 
@@ -271,7 +271,7 @@
             this.groupBox2.Controls.Add(this.groupBox5);
             this.groupBox2.Location = new System.Drawing.Point(8, 29);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(378, 282);
+            this.groupBox2.Size = new System.Drawing.Size(378, 243);
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos de la Propiedad";
@@ -292,7 +292,7 @@
             this.gbxDetallePropiedad.Controls.Add(this.txbLocalidad);
             this.gbxDetallePropiedad.Controls.Add(this.label15);
             this.gbxDetallePropiedad.Controls.Add(this.txbNumero);
-            this.gbxDetallePropiedad.Location = new System.Drawing.Point(11, 96);
+            this.gbxDetallePropiedad.Location = new System.Drawing.Point(11, 91);
             this.gbxDetallePropiedad.Name = "gbxDetallePropiedad";
             this.gbxDetallePropiedad.Size = new System.Drawing.Size(351, 137);
             this.gbxDetallePropiedad.TabIndex = 20;
@@ -450,7 +450,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(1086, 392);
+            this.ClientSize = new System.Drawing.Size(819, 570);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmReservaAlquiler";
             this.Text = "frmReservaAlquiler";
@@ -461,9 +461,9 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvReservantes)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReservantes)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.gbxDetallePropiedad.ResumeLayout(false);
             this.gbxDetallePropiedad.PerformLayout();
