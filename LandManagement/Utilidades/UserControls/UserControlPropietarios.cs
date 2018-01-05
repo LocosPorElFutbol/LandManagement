@@ -224,5 +224,10 @@ namespace LandManagement.Utilidades.UserControls
         }
         
         #endregion
+
+        public void SetearNombreGroupBox(string nombreGroupBox)
+        {
+            this.gbxPropietarios.Text = nombreGroupBox;
+        }
     }
 }

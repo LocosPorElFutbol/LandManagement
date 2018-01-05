@@ -392,9 +392,15 @@ namespace LandManagement
 
             CargarComboDireccion(_operacion);
             CargarGrillaReservante(_operacion);
+            CargarGrillaPropietarios(_operacion);
+
             txbOferta.Text = _operacion.tbreservaventa.rev_oferta.ToString();
             txbObservaciones.Text = this.operacion.tbreservaventa.rev_observaciones;
 
+        }
+
+        private void CargarGrillaPropietarios(tboperaciones _operacion)
+        {
             //Cargo user control propietarios
             userControlPropietarios.Enabled = false;
             userControlPropietarios.CargarGrillaPropietariosOperacion(_operacion.ope_id);
