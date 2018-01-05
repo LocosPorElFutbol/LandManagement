@@ -74,12 +74,6 @@
             this.txbNumero = new System.Windows.Forms.TextBox();
             this.cmbDireccion = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.gbxPropietarios = new System.Windows.Forms.GroupBox();
-            this.btnRemovePropietario = new System.Windows.Forms.Button();
-            this.btnAgregarPropietario = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
-            this.cmbPropietario = new System.Windows.Forms.ComboBox();
-            this.dgvPropietarios = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnRemoveAutorizante = new System.Windows.Forms.Button();
             this.btnAgregarAutorizante = new System.Windows.Forms.Button();
@@ -92,8 +86,6 @@
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.gbxDetallePropiedad.SuspendLayout();
-            this.gbxPropietarios.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPropietarios)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAutorizantes)).BeginInit();
             this.SuspendLayout();
@@ -237,7 +229,6 @@
             this.pnlControles.Controls.Add(this.dtpFechaEnVenta);
             this.pnlControles.Controls.Add(this.gbxDetalleEnVenta);
             this.pnlControles.Controls.Add(this.groupBox2);
-            this.pnlControles.Controls.Add(this.gbxPropietarios);
             this.pnlControles.Controls.Add(this.groupBox4);
             this.pnlControles.Location = new System.Drawing.Point(6, 19);
             this.pnlControles.Name = "pnlControles";
@@ -565,69 +556,6 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Dirección";
             // 
-            // gbxPropietarios
-            // 
-            this.gbxPropietarios.Controls.Add(this.btnRemovePropietario);
-            this.gbxPropietarios.Controls.Add(this.btnAgregarPropietario);
-            this.gbxPropietarios.Controls.Add(this.label16);
-            this.gbxPropietarios.Controls.Add(this.cmbPropietario);
-            this.gbxPropietarios.Controls.Add(this.dgvPropietarios);
-            this.gbxPropietarios.Location = new System.Drawing.Point(3, 367);
-            this.gbxPropietarios.Name = "gbxPropietarios";
-            this.gbxPropietarios.Size = new System.Drawing.Size(368, 196);
-            this.gbxPropietarios.TabIndex = 8;
-            this.gbxPropietarios.TabStop = false;
-            this.gbxPropietarios.Text = "Propietarios";
-            // 
-            // btnRemovePropietario
-            // 
-            this.btnRemovePropietario.Location = new System.Drawing.Point(335, 49);
-            this.btnRemovePropietario.Name = "btnRemovePropietario";
-            this.btnRemovePropietario.Size = new System.Drawing.Size(27, 23);
-            this.btnRemovePropietario.TabIndex = 21;
-            this.btnRemovePropietario.Text = "-";
-            this.btnRemovePropietario.UseVisualStyleBackColor = true;
-            this.btnRemovePropietario.Click += new System.EventHandler(this.btnRemovePropietario_Click);
-            // 
-            // btnAgregarPropietario
-            // 
-            this.btnAgregarPropietario.Location = new System.Drawing.Point(289, 19);
-            this.btnAgregarPropietario.Name = "btnAgregarPropietario";
-            this.btnAgregarPropietario.Size = new System.Drawing.Size(56, 23);
-            this.btnAgregarPropietario.TabIndex = 20;
-            this.btnAgregarPropietario.Text = "Agregar";
-            this.btnAgregarPropietario.UseVisualStyleBackColor = true;
-            this.btnAgregarPropietario.Click += new System.EventHandler(this.btnAgregarPropietario_Click);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(12, 25);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(57, 13);
-            this.label16.TabIndex = 19;
-            this.label16.Text = "Propietario";
-            // 
-            // cmbPropietario
-            // 
-            this.cmbPropietario.FormattingEnabled = true;
-            this.cmbPropietario.Location = new System.Drawing.Point(74, 20);
-            this.cmbPropietario.Name = "cmbPropietario";
-            this.cmbPropietario.Size = new System.Drawing.Size(206, 21);
-            this.cmbPropietario.TabIndex = 18;
-            // 
-            // dgvPropietarios
-            // 
-            this.dgvPropietarios.AllowUserToAddRows = false;
-            this.dgvPropietarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPropietarios.Location = new System.Drawing.Point(6, 49);
-            this.dgvPropietarios.MultiSelect = false;
-            this.dgvPropietarios.Name = "dgvPropietarios";
-            this.dgvPropietarios.ReadOnly = true;
-            this.dgvPropietarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPropietarios.Size = new System.Drawing.Size(324, 138);
-            this.dgvPropietarios.TabIndex = 17;
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btnRemoveAutorizante);
@@ -712,9 +640,6 @@
             this.groupBox6.PerformLayout();
             this.gbxDetallePropiedad.ResumeLayout(false);
             this.gbxDetallePropiedad.PerformLayout();
-            this.gbxPropietarios.ResumeLayout(false);
-            this.gbxPropietarios.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPropietarios)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAutorizantes)).EndInit();
@@ -751,8 +676,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox gbxPropietarios;
-        private System.Windows.Forms.DataGridView dgvPropietarios;
         private System.Windows.Forms.GroupBox gbxDetalleEnVenta;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DataGridView dgvAutorizantes;
@@ -778,9 +701,5 @@
         private System.Windows.Forms.RadioButton rdbVigenteNo;
         private System.Windows.Forms.RadioButton rdbVigenteSi;
         private System.Windows.Forms.Panel pnlControles;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.ComboBox cmbPropietario;
-        private System.Windows.Forms.Button btnRemovePropietario;
-        private System.Windows.Forms.Button btnAgregarPropietario;
     }
 }
