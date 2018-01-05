@@ -40,6 +40,10 @@
             // 
             // gbxPropietarios
             // 
+            this.gbxPropietarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbxPropietarios.AutoSize = true;
             this.gbxPropietarios.Controls.Add(this.btnRemovePropietario);
             this.gbxPropietarios.Controls.Add(this.btnAgregarPropietario);
             this.gbxPropietarios.Controls.Add(this.label16);
@@ -47,14 +51,14 @@
             this.gbxPropietarios.Controls.Add(this.dgvPropietarios);
             this.gbxPropietarios.Location = new System.Drawing.Point(3, 3);
             this.gbxPropietarios.Name = "gbxPropietarios";
-            this.gbxPropietarios.Size = new System.Drawing.Size(368, 196);
+            this.gbxPropietarios.Size = new System.Drawing.Size(376, 206);
             this.gbxPropietarios.TabIndex = 9;
             this.gbxPropietarios.TabStop = false;
             this.gbxPropietarios.Text = "Propietarios";
             // 
             // btnRemovePropietario
             // 
-            this.btnRemovePropietario.Location = new System.Drawing.Point(335, 49);
+            this.btnRemovePropietario.Location = new System.Drawing.Point(343, 49);
             this.btnRemovePropietario.Name = "btnRemovePropietario";
             this.btnRemovePropietario.Size = new System.Drawing.Size(27, 23);
             this.btnRemovePropietario.TabIndex = 21;
@@ -64,7 +68,7 @@
             // 
             // btnAgregarPropietario
             // 
-            this.btnAgregarPropietario.Location = new System.Drawing.Point(289, 19);
+            this.btnAgregarPropietario.Location = new System.Drawing.Point(281, 19);
             this.btnAgregarPropietario.Name = "btnAgregarPropietario";
             this.btnAgregarPropietario.Size = new System.Drawing.Size(56, 23);
             this.btnAgregarPropietario.TabIndex = 20;
@@ -75,7 +79,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(12, 25);
+            this.label16.Location = new System.Drawing.Point(6, 24);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(57, 13);
             this.label16.TabIndex = 19;
@@ -84,7 +88,7 @@
             // cmbPropietario
             // 
             this.cmbPropietario.FormattingEnabled = true;
-            this.cmbPropietario.Location = new System.Drawing.Point(74, 20);
+            this.cmbPropietario.Location = new System.Drawing.Point(69, 19);
             this.cmbPropietario.Name = "cmbPropietario";
             this.cmbPropietario.Size = new System.Drawing.Size(206, 21);
             this.cmbPropietario.TabIndex = 18;
@@ -98,21 +102,23 @@
             this.dgvPropietarios.Name = "dgvPropietarios";
             this.dgvPropietarios.ReadOnly = true;
             this.dgvPropietarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPropietarios.Size = new System.Drawing.Size(324, 138);
+            this.dgvPropietarios.Size = new System.Drawing.Size(331, 138);
             this.dgvPropietarios.TabIndex = 17;
             // 
-            // ucPropietarios
+            // UserControlPropietarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.Controls.Add(this.gbxPropietarios);
-            this.Name = "ucPropietarios";
-            this.Size = new System.Drawing.Size(377, 203);
+            this.Name = "UserControlPropietarios";
+            this.Size = new System.Drawing.Size(384, 213);
             this.Load += new System.EventHandler(this.ucPropietarios_Load);
             this.gbxPropietarios.ResumeLayout(false);
             this.gbxPropietarios.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropietarios)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

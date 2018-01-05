@@ -11,6 +11,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using LandManagement.Utilidades.UserControls;
 
 namespace LandManagement
 {
@@ -23,6 +24,7 @@ namespace LandManagement
         DisplayNameHelper displayNameHelper;
         ValidarControles validarControles;
         private ErrorProvider errorProvider1 = new ErrorProvider();
+        UserControlPropietarios userControlPropietarios = null;
 
         public frmVenta()
         {
@@ -44,10 +46,15 @@ namespace LandManagement
         {
             try
             {
+                //User control propietarios
+                userControlPropietarios = new UserControlPropietarios();
+                userControlPropietarios.Location = new Point(3, 233);
+                userControlPropietarios.TabIndex = 2;
+                pnlControles.Controls.Add(userControlPropietarios);
+
                 pnlControles.AutoScroll = true;
                 this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
                 this.CargarCombos();
-                this.InicializarGrillaPropietarios();
                 InicializarGrillaCompradores();
                 gbxDetallePropiedad.Enabled = false;
 
@@ -151,17 +158,15 @@ namespace LandManagement
         {
             tbclienteoperacion clienteOperacion;
             _operacion.tbclienteoperacion.Clear();
+            var listaPropietarios = userControlPropietarios.ObtenerPropietarios();
 
-            if (dgvPropietarios.Rows.Count > 0)
+            foreach (var obj in listaPropietarios)
             {
-                foreach (DataGridViewRow row in dgvPropietarios.Rows)
-                {
-                    clienteOperacion = new tbclienteoperacion();
-                    clienteOperacion.cli_id = (int)row.Cells["cli_id"].Value;
-                    clienteOperacion.stc_id = (int)TipoOperador.PROPIETARI;
+                clienteOperacion = new tbclienteoperacion();
+                clienteOperacion.cli_id = obj.cli_id;
+                clienteOperacion.stc_id = (int)TipoOperador.PROPIETARI;
 
-                    _operacion.tbclienteoperacion.Add(clienteOperacion);
-                }
+                _operacion.tbclienteoperacion.Add(clienteOperacion);
             }
         }
 
@@ -221,7 +226,6 @@ namespace LandManagement
             try
             {
                 AgregaCompradorGrilla((tbcliente)cmbCliente.SelectedItem);
-                AgregaCompradorListBox((tbcliente)cmbCliente.SelectedItem);
                 cmbCliente.Items.Remove((tbcliente)cmbCliente.SelectedItem);
             }
             catch (Exception ex)
@@ -258,12 +262,11 @@ namespace LandManagement
             this.MensajeCancelar();
         }
 
-        #region Cargo controles de Dirección y Cliente seleccionado
+        #region Cargo controles de Dirección
         private void cmbDireccion_SelectedIndexChanged(object sender, EventArgs e)
         {
             tbpropiedad propiedad = (tbpropiedad)cmbDireccion.SelectedItem;
             CargarControlesPropiedad(propiedad);
-            CargoPropietariosALaGrilla(propiedad);
         }
 
         private void CargarControlesPropiedad(tbpropiedad p)
@@ -277,106 +280,6 @@ namespace LandManagement
             txbCodigoPostal.Text = p.pro_codigo_postal;
         }
         
-        private void CargoPropietariosALaGrilla(tbpropiedad p)
-        {
-            dgvPropietarios.Rows.Clear();
-            dgvPropietarios.Refresh();
-            lbxParteVendedora.Items.Clear();
-
-            if (this.getOperacionExistente() != null)
-            {
-                var idsPropietarios = this.GetIdsPropietarios(this.getOperacionExistente());
-                foreach (tbcliente obj in cmbCliente.Items)
-                {
-                    if (idsPropietarios.Contains(obj.cli_id))
-                    {
-                        AgregaPropietarioGrilla(obj);
-                        AgregaPropietarioListBox(obj);
-                    }
-                }
-            }
-            else
-            {
-                AgregarPropietariosGrilla(p);
-                AgregarPropietariosListBox(p);
-            }
-        }
-        #endregion
-
-        #region Carga Propietarios a la Grilla de Propietarios
-
-        private void InicializarGrillaPropietarios()
-        {
-            dgvPropietarios.Rows.Clear();
-            dgvPropietarios.Columns.Clear();
-            string[] columnasGrilla = {
-                                        "cli_id",
-                                        "tif_id",
-                                        "cli_nombre",
-                                        "cli_apellido",
-                                        "cli_numero_documento",
-                                        "cli_fecha_nacimiento"
-                                      };
-
-            int i = 0;
-            foreach (string s in columnasGrilla)
-            {
-                PropertyInfo pi = typeof(tbcliente).GetProperty(s);
-                displayNameHelper = new DisplayNameHelper();
-                string columna = displayNameHelper.GetMetaDisplayName(pi);
-                dgvPropietarios.Columns.Add(s, columna);
-                i++;
-            }
-
-            dgvPropietarios.Columns[0].Visible = false;
-            dgvPropietarios.Columns[1].Visible = false;
-
-        }
-
-        private void AgregarPropietariosGrilla(tbpropiedad prop)
-        {
-            foreach (tbcliente obj in prop.tbcliente)
-                AgregaPropietarioGrilla(obj);
-        }
-
-        public void AgregaPropietarioGrilla(tbcliente familiar)
-        {
-            int indice;
-            DataGridViewRow dataGridViewRow = new DataGridViewRow();
-            indice = dgvPropietarios.Rows.Add();
-            dataGridViewRow = dgvPropietarios.Rows[indice];
-            dataGridViewRow.Cells["cli_id"].Value = familiar.cli_id;
-            dataGridViewRow.Cells["tif_id"].Value = familiar.tif_id;
-            dataGridViewRow.Cells["cli_nombre"].Value = familiar.cli_nombre;
-            dataGridViewRow.Cells["cli_apellido"].Value = familiar.cli_apellido;
-            dataGridViewRow.Cells["cli_numero_documento"].Value = familiar.cli_numero_documento;
-            dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = familiar.cli_fecha_nacimiento;
-        }
-
-        #endregion
-
-        #region Carga propietarios a ListBox
-        private void AgregaPropietarioListBox(tbcliente _propietario)
-        {
-            lbxParteVendedora.Items.Add(_propietario.cli_nombre + " " + _propietario.cli_apellido);
-        }
-
-        private void AgregarPropietariosListBox(tbpropiedad prop)
-        {
-            foreach (tbcliente obj in prop.tbcliente)
-                AgregaPropietarioListBox(obj);
-        }
-
-        private void AgregaCompradorListBox(tbcliente _comprador)
-        {
-            lbxParteCompradora.Items.Add(_comprador.cli_nombre + " " + _comprador.cli_apellido);
-        }
-
-        private void EliminarCompradorListBox(tbcliente _comprador)
-        {
-            lbxParteCompradora.Items.Remove(_comprador.cli_nombre + " " + _comprador.cli_apellido);
-        }
-
         #endregion
 
         #region Carga/Elimina Compradores a la Grilla
@@ -434,7 +337,6 @@ namespace LandManagement
             tbcliente cliente = ObtenerClienteSeleccionado();
 
             listaTemporal.Add(cliente);
-            EliminarCompradorListBox(cliente);
 
             cmbCliente.Items.Clear();
             cmbCliente.Refresh();
@@ -457,7 +359,7 @@ namespace LandManagement
 
         #endregion
 
-        #region Carga de Combos TipoPropiedad, Piso, Depto, Direcciones y Clientes
+        #region Carga de Combos TipoPropiedad, Piso, Depto, Direcciones y Compradores
         private void CargarCombos()
         {
             this.SetearDisplayValue();
@@ -537,17 +439,17 @@ namespace LandManagement
         #region Cargo Controles con los Datos de la Operacion Almacenada
         private void CargoFormulario(tboperaciones _operacion)
         {
+            userControlPropietarios.Enabled = false;
             dtpFecha.Enabled = false;
             dtpFecha.Value = _operacion.ope_fecha.Value;
 
             CargarComboDireccion(_operacion);
-            //cargar grilla comprador
             CargoGrillaComprador(_operacion);
+            CargoGrillaPropietarios(_operacion);
 
             dtpFechaBoleto.Value = _operacion.tbventa.ven_fecha_boleto;
             dtpFechaEscritura.Value = _operacion.tbventa.ven_fecha_escritura;
             txbPrecio.Text = _operacion.tbventa.ven_precio.ToString();
-            //txbEmpleado.Text = _operacion.tbventa.ven
             txbEscribano.Text = _operacion.tbventa.ven_escribano;
             txbPresupuesto.Text = _operacion.tbventa.ven_presupuesto.ToString();
             txbEscribania.Text = _operacion.tbventa.ven_escribania;
@@ -568,13 +470,17 @@ namespace LandManagement
                 if (idsCompradores.Contains(obj.cli_id))
                 {
                     AgregaCompradorGrilla(obj);
-                    AgregaCompradorListBox(obj);
                     listaCompradoresARemover.Add(obj);
                 }
             }
 
             foreach (var obj in listaCompradoresARemover)
                 cmbCliente.Items.Remove(obj);
+        }
+
+        private void CargoGrillaPropietarios(tboperaciones _operacion)
+        {
+            userControlPropietarios.CargarGrillaPropietariosOperacion(_operacion.ope_id);
         }
 
         private IEnumerable<int> GetIdsCompradores(tboperaciones _operacion)
@@ -590,13 +496,6 @@ namespace LandManagement
                 .Where(x => x.ope_id == this.operacion.ope_id);
 
             return clientesOperacion;
-        }
-
-        private IEnumerable<int> GetIdsPropietarios(tboperaciones _operacion)
-        {
-            var idsPropietarios = GetClientesOperacion(_operacion)
-                .Where(x => x.stc_id == (int)TipoOperador.PROPIETARI).Select(x => x.cli_id);
-            return idsPropietarios;
         }
 
         /// <summary>
@@ -662,13 +561,6 @@ namespace LandManagement
             errorProvider1.SetError(control, error);
         }
         #endregion
-
-        private tboperaciones getOperacionExistente()
-        {
-            if (this.operacion != null)
-                return this.operacion;
-            return null;
-        }
 
     }
 }
