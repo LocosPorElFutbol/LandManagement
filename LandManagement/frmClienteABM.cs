@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using LandManagement.Utilidades.UserControls;
 
 namespace LandManagement
 {
@@ -33,6 +34,7 @@ namespace LandManagement
         private DataGridViewRow dataGridViewRow;
         ValidarControles validarControles;
         private ErrorProvider errorProvider1 = new ErrorProvider();
+        UserControlOperaciones userControlOperaciones = null;
 
         public frmClienteABM(Form formularioPadre)
         {
@@ -115,6 +117,11 @@ namespace LandManagement
 
         private void frmClienteABM_Load(object sender, EventArgs e)
         {
+            //Usercontrol operaciones
+            userControlOperaciones = new UserControlOperaciones();
+            userControlOperaciones.Location = new Point(14, 929);
+            pnlControles.Controls.Add(userControlOperaciones);
+
             txbDomicilioImportado.Enabled = false;
             pnlControles.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
@@ -132,7 +139,13 @@ namespace LandManagement
                 cmbTitulo.Text = string.IsNullOrEmpty(this.cliente.cli_titulo) ? "Sr." : this.cliente.cli_titulo;
 
                 CargaDatosDelDomicilio();
+                CargaGrillaOperaciones();
             }
+        }
+
+        private void CargaGrillaOperaciones()
+        {
+            userControlOperaciones.CargarGrillaOperacionesPorIdCliente(this.cliente.cli_id);
         }
 
         private void CargaDatosDelDomicilio()

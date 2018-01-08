@@ -323,6 +323,12 @@
     <Compile Include="Utilidades\Formularios.cs" />
     <Compile Include="Utilidades\ListasDeElementos.cs" />
     <Compile Include="Utilidades\TipoOperador.cs" />
+    <Compile Include="Utilidades\UserControls\UserControlOperaciones.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Utilidades\UserControls\UserControlOperaciones.Designer.cs">
+      <DependentUpon>UserControlOperaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilidades\UserControls\UserControlPropietarios.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -443,6 +449,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceImages.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilidades\UserControls\UserControlOperaciones.resx">
+      <DependentUpon>UserControlOperaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilidades\UserControls\UserControlPropietarios.resx">
       <DependentUpon>UserControlPropietarios.cs</DependentUpon>

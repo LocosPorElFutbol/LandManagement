@@ -343,5 +343,28 @@ namespace LandManagement.Business
             return this.GetList(whereClausule);
         }
         #endregion
+
+        #region Obtener operaciones por id de cliente
+        public List<tboperaciones> GetOperacionesPorIdCliente(int idCliente)
+        {
+            //Obtengo ClienteOperacion por idCliente
+            ClienteOperacionBusiness clienteOperacionBusiness = new ClienteOperacionBusiness();
+            Func<tbclienteoperacion, bool> whereClausule = x => x.cli_id == idCliente;
+
+            var listaClienteOperacion = 
+                clienteOperacionBusiness.GetList(whereClausule) as List<tbclienteoperacion>;
+
+            var idsOperaciones = listaClienteOperacion.Select(x => x.ope_id).Distinct().ToList();
+
+            OperacionBusiness operacionesBusiness = new OperacionBusiness();
+            Func<tboperaciones, bool> whereClausuleOperaciones = 
+                x => idsOperaciones.Contains(x.ope_id);
+
+            var listaOperaciones =
+                operacionesBusiness.GetList(whereClausuleOperaciones) as List<tboperaciones>;
+
+            return listaOperaciones;
+        }
+        #endregion
     }
 }

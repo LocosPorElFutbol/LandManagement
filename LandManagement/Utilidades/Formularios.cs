@@ -41,6 +41,29 @@ namespace LandManagement.Utilidades
             formularioPopUp.Show();
         }
 
+        //public void InstanciarFormulario(Form formularioPopUp, string textFormulario)
+        //{
+        //    Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
+        //    string frmCode = formularioPopUp.Name;
+        //    string frmNombre = textFormulario;
+
+        //    formularioPopUp.ShowIcon = true;
+        //    formularioPopUp.Text = frmNombre;
+        //    formularioPopUp.Icon = (Icon)Recursos.ResourceImages.ResourceManager.GetObject("Tool");
+
+        //    //Se sobrecarga para evitar formulario padre
+        //    //CORROBORAR SI SE VA A USAR EL FORMULARIO PADRE!!!!!!!!!
+        //    //formularioPopUp.MdiParent = formularioPadre;
+
+        //    //Linea que soluciona error de minimzar y maximizar icono
+        //    // this.Icon = Icon.Clone() as Icon;
+
+        //    formularioPopUp.WindowState = FormWindowState.Minimized;
+        //    formularioPopUp.Show();
+        //    formularioPopUp.WindowState = FormWindowState.Maximized;
+        //    formularioPopUp.Show();
+        //}
+
         public string ObtenerNombreFormulario(tboperaciones _operacion)
         {
             if (_operacion.tas_id != null)
