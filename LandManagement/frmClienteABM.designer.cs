@@ -89,9 +89,9 @@
             this.cmbEstadoCivil = new System.Windows.Forms.ComboBox();
             this.txbCuilCuit = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.mtbTelefonoLaboral = new System.Windows.Forms.MaskedTextBox();
-            this.mtbTelefonoParticular = new System.Windows.Forms.MaskedTextBox();
-            this.mtbTelefonoCelular = new System.Windows.Forms.MaskedTextBox();
+            this.txbTelefonoLaboral = new System.Windows.Forms.TextBox();
+            this.txbTelefonoParticular = new System.Windows.Forms.TextBox();
+            this.txbTelefonoCelular = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txbDomicilioImportado = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
@@ -265,6 +265,7 @@
             this.txbNumeroDocumento.TabIndex = 7;
             this.txbNumeroDocumento.TextChanged += new System.EventHandler(this.txbNumeroDocumento_TextChanged);
             this.txbNumeroDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEnteros);
+            this.txbNumeroDocumento.Leave += new System.EventHandler(this.txbNumeroDocumento_Leave);
             this.txbNumeroDocumento.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControlDni);
             // 
             // txbNacionalidad
@@ -712,9 +713,9 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.mtbTelefonoLaboral);
-            this.groupBox4.Controls.Add(this.mtbTelefonoParticular);
-            this.groupBox4.Controls.Add(this.mtbTelefonoCelular);
+            this.groupBox4.Controls.Add(this.txbTelefonoLaboral);
+            this.groupBox4.Controls.Add(this.txbTelefonoParticular);
+            this.groupBox4.Controls.Add(this.txbTelefonoCelular);
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.txbEmail);
@@ -727,32 +728,29 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Datos de Contacto";
             // 
-            // mtbTelefonoLaboral
+            // txbTelefonoLaboral
             // 
-            this.mtbTelefonoLaboral.Location = new System.Drawing.Point(69, 103);
-            this.mtbTelefonoLaboral.Mask = "0000-0000";
-            this.mtbTelefonoLaboral.Name = "mtbTelefonoLaboral";
-            this.mtbTelefonoLaboral.Size = new System.Drawing.Size(77, 20);
-            this.mtbTelefonoLaboral.TabIndex = 21;
-            this.mtbTelefonoLaboral.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControlMaskedTextBox);
+            this.txbTelefonoLaboral.Location = new System.Drawing.Point(69, 102);
+            this.txbTelefonoLaboral.Name = "txbTelefonoLaboral";
+            this.txbTelefonoLaboral.Size = new System.Drawing.Size(100, 20);
+            this.txbTelefonoLaboral.TabIndex = 24;
+            this.txbTelefonoLaboral.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbTelefono_KeyPress);
             // 
-            // mtbTelefonoParticular
+            // txbTelefonoParticular
             // 
-            this.mtbTelefonoParticular.Location = new System.Drawing.Point(69, 61);
-            this.mtbTelefonoParticular.Mask = "0000-0000";
-            this.mtbTelefonoParticular.Name = "mtbTelefonoParticular";
-            this.mtbTelefonoParticular.Size = new System.Drawing.Size(77, 20);
-            this.mtbTelefonoParticular.TabIndex = 20;
-            this.mtbTelefonoParticular.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControlMaskedTextBox);
+            this.txbTelefonoParticular.Location = new System.Drawing.Point(69, 60);
+            this.txbTelefonoParticular.Name = "txbTelefonoParticular";
+            this.txbTelefonoParticular.Size = new System.Drawing.Size(100, 20);
+            this.txbTelefonoParticular.TabIndex = 23;
+            this.txbTelefonoParticular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbTelefono_KeyPress);
             // 
-            // mtbTelefonoCelular
+            // txbTelefonoCelular
             // 
-            this.mtbTelefonoCelular.Location = new System.Drawing.Point(69, 27);
-            this.mtbTelefonoCelular.Mask = "00-0000-0000";
-            this.mtbTelefonoCelular.Name = "mtbTelefonoCelular";
-            this.mtbTelefonoCelular.Size = new System.Drawing.Size(77, 20);
-            this.mtbTelefonoCelular.TabIndex = 19;
-            this.mtbTelefonoCelular.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
+            this.txbTelefonoCelular.Location = new System.Drawing.Point(69, 29);
+            this.txbTelefonoCelular.Name = "txbTelefonoCelular";
+            this.txbTelefonoCelular.Size = new System.Drawing.Size(100, 20);
+            this.txbTelefonoCelular.TabIndex = 22;
+            this.txbTelefonoCelular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbTelefono_KeyPress);
             // 
             // groupBox3
             // 
@@ -928,9 +926,6 @@
         private System.Windows.Forms.Panel pnlControles;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.DataGridView dgvCategorias;
-        private System.Windows.Forms.MaskedTextBox mtbTelefonoCelular;
-        private System.Windows.Forms.MaskedTextBox mtbTelefonoParticular;
-        private System.Windows.Forms.MaskedTextBox mtbTelefonoLaboral;
         private System.Windows.Forms.DateTimePicker dtpActualizado;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txbNombreDePila;
@@ -946,5 +941,8 @@
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.DataGridView dgvPropiedades;
+        private System.Windows.Forms.TextBox txbTelefonoCelular;
+        private System.Windows.Forms.TextBox txbTelefonoParticular;
+        private System.Windows.Forms.TextBox txbTelefonoLaboral;
     }
 }

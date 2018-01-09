@@ -59,9 +59,9 @@ namespace LandManagement
 
             txbNombre.Text = pCliente.cli_nombre;
             txbApellido.Text = pCliente.cli_apellido;
-            mtbTelefonoCelular.Text = pCliente.cli_telefono_celular;
-            mtbTelefonoParticular.Text = pCliente.cli_telefono_particular;
-            mtbTelefonoLaboral.Text = pCliente.cli_telefono_laboral;
+            txbTelefonoCelular.Text = pCliente.cli_telefono_celular;
+            txbTelefonoParticular.Text = pCliente.cli_telefono_particular;
+            txbTelefonoLaboral.Text = pCliente.cli_telefono_laboral;
             txbEmail.Text = pCliente.cli_email;
             cmbSexo.Text = pCliente.cli_sexo;
             dtpFechaNacimiento.Value = pCliente.cli_fecha_nacimiento;
@@ -235,9 +235,9 @@ namespace LandManagement
             this.cliente.tif_id = ((tbtipofamiliar)cmbTipoFamiliar.SelectedItem).tif_id;
             this.cliente.cli_nombre = string.IsNullOrEmpty(txbNombre.Text) ? null : txbNombre.Text;
             this.cliente.cli_apellido = string.IsNullOrEmpty(txbApellido.Text) ? null : txbApellido.Text;
-            this.cliente.cli_telefono_celular = MaskedTextboxNulo(mtbTelefonoCelular) ? null : mtbTelefonoCelular.Text;
-            this.cliente.cli_telefono_particular = MaskedTextboxNulo(mtbTelefonoParticular) ? null : mtbTelefonoParticular.Text;
-            this.cliente.cli_telefono_laboral = MaskedTextboxNulo(mtbTelefonoLaboral) ? null : mtbTelefonoLaboral.Text;
+            this.cliente.cli_telefono_celular = string.IsNullOrEmpty(txbTelefonoCelular.Text) ? null : txbTelefonoCelular.Text;
+            this.cliente.cli_telefono_particular = string.IsNullOrEmpty(txbTelefonoParticular.Text) ? null : txbTelefonoParticular.Text;
+            this.cliente.cli_telefono_laboral = string.IsNullOrEmpty(txbTelefonoLaboral.Text) ? null : txbTelefonoLaboral.Text;
             this.cliente.cli_email = string.IsNullOrEmpty(txbEmail.Text) ? null : txbEmail.Text;
             this.cliente.cli_sexo = string.IsNullOrEmpty(cmbSexo.Text) ? null : cmbSexo.Text;
             this.cliente.cli_fecha_nacimiento = dtpFechaNacimiento.Value;
@@ -814,22 +814,22 @@ namespace LandManagement
             return nodo;
         }
 
-        private void ValidatingControlMaskedTextBox(object sender, CancelEventArgs e)
-        {
-            errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
-            MaskedTextBox maskedTextBox = sender as MaskedTextBox;
+        //private void ValidatingControlMaskedTextBox(object sender, CancelEventArgs e)
+        //{
+        //    errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+        //    MaskedTextBox maskedTextBox = sender as MaskedTextBox;
 
-            if (!this.MaskedTextboxNulo(maskedTextBox))
-                if (!maskedTextBox.MaskCompleted)
-                {
-                    errorProvider1.SetError(maskedTextBox, "Error en validación.");
+        //    if (!this.MaskedTextboxNulo(maskedTextBox))
+        //        if (!maskedTextBox.MaskCompleted)
+        //        {
+        //            errorProvider1.SetError(maskedTextBox, "Error en validación.");
 
-                    e.Cancel = true;
-                    return;
-                }
+        //            e.Cancel = true;
+        //            return;
+        //        }
 
-            errorProvider1.SetError(maskedTextBox, "");
-        }
+        //    errorProvider1.SetError(maskedTextBox, "");
+        //}
 
         #region Validacion de controles
         private void ValidarEnteros(object sender, KeyPressEventArgs e)
@@ -897,18 +897,29 @@ namespace LandManagement
             }
         }
 
-        private bool MaskedTextboxNulo(MaskedTextBox _maskedTextBox)
-        {
-            if (_maskedTextBox.Text.Replace("-", "").Replace(" ", "").Length == 0)
-                return true;
-            return false;
-        }
+        //private bool MaskedTextboxNulo(MaskedTextBox _maskedTextBox)
+        //{
+        //    if (_maskedTextBox.Text.Replace("-", "").Replace(" ", "").Length == 0)
+        //        return true;
+        //    return false;
+        //}
         #endregion
 
         private void AbrirFormulario(Form formularioPopUp, string textFormulario)
         {
             Formularios formularios = new Formularios();
             formularios.InstanciarFormulario(this.MdiParent, formularioPopUp, textFormulario);
+        }
+
+        private void txbNumeroDocumento_Leave(object sender, EventArgs e)
+        {
+            txbCuilCuit.Text = "-" + txbNumeroDocumento.Text + "-";
+        }
+
+        private void txbTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '-'))
+                e.Handled = true;
         }
     }
 }
