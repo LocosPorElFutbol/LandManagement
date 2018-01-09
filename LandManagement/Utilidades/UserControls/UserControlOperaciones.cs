@@ -88,15 +88,6 @@ namespace LandManagement.Utilidades.UserControls
 
         #endregion
 
-        public void CargarGrillaOperacionesPorIdCliente(int idCliente)
-        {
-            OperacionBusiness operacionBusiness = new OperacionBusiness();
-            var listaOperaciones =
-                operacionBusiness.GetOperacionesPorIdCliente(idCliente) as List<tboperaciones>;
-
-            this.CargarDataGridView(listaOperaciones);
-        }
-
         #region Abrir operación
         private void dgvOperaciones_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -148,5 +139,22 @@ namespace LandManagement.Utilidades.UserControls
         }
         #endregion
 
+        public void CargarGrillaOperacionesPorIdCliente(int idCliente)
+        {
+            OperacionBusiness operacionBusiness = new OperacionBusiness();
+            var listaOperaciones =
+                operacionBusiness.GetOperacionesPorIdCliente(idCliente) as List<tboperaciones>;
+
+            this.CargarDataGridView(listaOperaciones);
+        }
+
+        public void CargarGrillaOperacionesPorIdPropiedad(int idPropiedad)
+        {
+            OperacionBusiness operacionBusiness = new OperacionBusiness();
+            var listaOperaciones = 
+                (List<tboperaciones>)operacionBusiness.GetListByPropiedadId(idPropiedad);
+
+            this.CargarDataGridView(listaOperaciones);
+        }
     }
 }

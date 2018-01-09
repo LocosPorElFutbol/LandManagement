@@ -12,6 +12,7 @@ using LandManagement.Utilidades;
 using System.Reflection;
 using log4net;
 using System.Configuration;
+using LandManagement.Utilidades.UserControls;
 
 namespace LandManagement
 {
@@ -32,11 +33,14 @@ namespace LandManagement
         private frmClienteABM formularioClienteABM;
         ValidarControles validarControles;
         private ErrorProvider errorProvider1 = new ErrorProvider();
+        UserControlOperaciones userControlOperaciones = null;
 
         public frmPropiedadABM(Form _formularioPadre)
         {
             InitializeComponent();
             this.formPadre = _formularioPadre;
+
+            InicializarGrillaClientes();
         }
 
         public frmPropiedadABM(tbpropiedad prop, Form formularioPadre)
@@ -47,9 +51,6 @@ namespace LandManagement
             this.propiedad = prop;
             this.idPropiedad = prop.pro_id;
 
-            CargarGrillaClientes();
-            CargarGrillaOperaciones();
-
             btnGuardar.Click -= new EventHandler(btnGuardar_Click);
             btnGuardar.Click += new EventHandler(btnGuardarActualiza_Click);
         }
@@ -58,6 +59,12 @@ namespace LandManagement
         {
             try
             {
+                //Usercontrol operaciones
+                userControlOperaciones = new UserControlOperaciones();
+                userControlOperaciones.Location = new Point(411, 0);
+                userControlOperaciones.Height = 688;
+                pnlControles.Controls.Add(userControlOperaciones);
+
                 pnlControles.AutoScroll = true;
                 listasDeElementos = new ListasDeElementos();
                 this.CargarCombos();
@@ -67,7 +74,6 @@ namespace LandManagement
             }
             catch (Exception ex)
             {
-                
                 throw ex;
             }
         }
@@ -169,6 +175,9 @@ namespace LandManagement
             txbLocalidad.Text = p.pro_localidad;
             txbCodigoPostal.Text = p.pro_codigo_postal;
             txbCaracteristicas.Text = p.pro_caracteristica;
+
+            CargarGrillaClientes();
+            CargarGrillaOperaciones();
         }
 
         #region Carga Grilla de Clientes
@@ -270,134 +279,10 @@ namespace LandManagement
         #endregion
         #endregion
 
-        #region Carga Grilla de Operaciones
-
         public override void CargarGrillaOperaciones()
         {
-            InicializarGrillaOperaciones();
-            CargarDataGridViewLista();
+            userControlOperaciones.CargarGrillaOperacionesPorIdPropiedad(this.idPropiedad);
         }
-
-        private void InicializarGrillaOperaciones()
-        {
-            dgvOperacionesPropiedad.Rows.Clear();
-            dgvOperacionesPropiedad.Columns.Clear();
-            string[] columnasGrilla = {
-                                        "ope_id",
-                                        "ope_tipo_operacion",
-                                        "ope_fecha",
-                                        "pro_tip_descripcion"
-                                      };
-
-            int i = 0;
-            foreach (string s in columnasGrilla)
-            {
-                PropertyInfo pi = typeof(tboperaciones).GetProperty(s);
-                displayNameHelper = new DisplayNameHelper();
-                string columna = displayNameHelper.GetMetaDisplayName(pi);
-                dgvOperacionesPropiedad.Columns.Add(s, columna);
-                i++;
-            }
-
-            //dgvPropietarios.Columns[0].Visible = false;
-            //dgvPropietarios.Columns[1].Visible = false;
-        }
-
-        private void CargarDataGridViewLista()
-        {
-            operacionBusiness = new OperacionBusiness();
-            List<tboperaciones> listaOperaciones = (List<tboperaciones>)operacionBusiness.GetListByPropiedadId(this.propiedad.pro_id);
-            CargarDataGridView(listaOperaciones);
-        }
-
-        private void CargarDataGridView(List<tboperaciones> listaOperaciones)
-        {
-            dgvOperacionesPropiedad.Rows.Clear();
-            DataGridViewRow dataGridViewRow;
-            int indice;
-            foreach (var obj in listaOperaciones)
-            {
-                indice = dgvOperacionesPropiedad.Rows.Add();
-                dataGridViewRow = dgvOperacionesPropiedad.Rows[indice];
-                dataGridViewRow.Cells["ope_id"].Value = obj.ope_id;
-                CargarTipoOperacion(obj);
-                dataGridViewRow.Cells["ope_tipo_operacion"].Value = obj.ope_tipo_operacion;
-                dataGridViewRow.Cells["ope_fecha"].Value = obj.ope_fecha;//.ToString("dd/MM/yyyy");
-                dataGridViewRow.Cells["pro_tip_descripcion"].Value = obj.tbpropiedad.tbtipopropiedad.tip_descripcion;
-            }
-        }
-
-        private void CargarTipoOperacion(tboperaciones oper)
-        {
-            if (oper.tas_id != null)
-                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERTASACI"].ToString();
-            if (oper.env_id != null)
-                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERENVENT"].ToString();
-            if (oper.rev_id != null)
-                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERRESVEN"].ToString();
-            if (oper.ven_id != null)
-                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERVENTA"].ToString();
-            if (oper.ena_id != null)
-                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERENALQU"].ToString();
-            if (oper.rea_id != null)
-                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERRESALQ"].ToString();
-            if (oper.alq_id != null)
-                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERALQUIL"].ToString();
-            if (oper.enc_id != null)
-                oper.ope_tipo_operacion = ConfigurationManager.AppSettings["OPERENCUES"].ToString();
-        }
-
-        #region Abrir operación
-        private void dgvOperacionesPropiedad_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                tboperaciones operacion = ObtenerOperacionSeleccionada();
-
-                operacionBusiness = new OperacionBusiness();
-                operacion = (tboperaciones)operacionBusiness.GetElement(operacion);
-
-                if (operacion != null)
-                {
-                    string nombreForm = ObtenerNombreFormulario(operacion);
-
-                    Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
-                    Type tipoDeFormulario = frmAssembly.GetTypes().Where(x => x.Name == nombreForm).SingleOrDefault();
-                    formularioOperacion = (Form)Activator.CreateInstance(tipoDeFormulario, new object[] { operacion, this });
-
-                    AbrirFormulario(formularioOperacion, "Operación");
-                }
-            }
-            catch (Exception ex)
-            {
-                log.Error(ex.Message);
-                if (ex.InnerException != null)
-                    log.Error(ex.InnerException.Message);
-                MessageBox.Show("Error al seleccionar Operación.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void AbrirFormulario(Form formularioPopUp, string textFormulario)
-        {
-            Formularios formularios = new Formularios();
-            formularios.InstanciarFormulario(this.MdiParent, formularioPopUp, "Operación");
-        }
-
-        private tboperaciones ObtenerOperacionSeleccionada()
-        {
-            dataGridViewRow = dgvOperacionesPropiedad.SelectedRows[0];
-            tboperaciones operacionSeleccionada = new tboperaciones();
-            operacionSeleccionada.ope_id = Convert.ToInt32(dataGridViewRow.Cells["ope_id"].Value);
-            return operacionSeleccionada;
-        }
-
-        private string ObtenerNombreFormulario(tboperaciones _operacion)
-        {
-            Formularios formularios = new Formularios();
-            return formularios.ObtenerNombreFormulario(_operacion);
-        }
-        #endregion
-        #endregion
 
         #region Carga de combos
         private void CargarCombos()
@@ -489,5 +374,10 @@ namespace LandManagement
             }
         }
 
+        private void AbrirFormulario(Form formularioPopUp, string textFormulario)
+        {
+            Formularios formularios = new Formularios();
+            formularios.InstanciarFormulario(this.MdiParent, formularioPopUp, "Operación");
+        }
     }
 }

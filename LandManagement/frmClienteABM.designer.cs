@@ -479,7 +479,7 @@
             this.groupBox7.Controls.Add(this.dgvPropiedades);
             this.groupBox7.Location = new System.Drawing.Point(12, 685);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(982, 238);
+            this.groupBox7.Size = new System.Drawing.Size(610, 238);
             this.groupBox7.TabIndex = 64;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Propiedades";
@@ -492,7 +492,7 @@
             this.dgvPropiedades.Name = "dgvPropiedades";
             this.dgvPropiedades.ReadOnly = true;
             this.dgvPropiedades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPropiedades.Size = new System.Drawing.Size(967, 213);
+            this.dgvPropiedades.Size = new System.Drawing.Size(592, 213);
             this.dgvPropiedades.TabIndex = 28;
             this.dgvPropiedades.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPropiedades_CellDoubleClick);
             // 
@@ -722,7 +722,7 @@
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Location = new System.Drawing.Point(285, 233);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(351, 187);
+            this.groupBox4.Size = new System.Drawing.Size(332, 187);
             this.groupBox4.TabIndex = 40;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Datos de Contacto";
@@ -772,7 +772,7 @@
             this.groupBox3.Controls.Add(this.txbLocalidad);
             this.groupBox3.Location = new System.Drawing.Point(285, 19);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(351, 208);
+            this.groupBox3.Size = new System.Drawing.Size(332, 208);
             this.groupBox3.TabIndex = 39;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Domicilio";
@@ -826,9 +826,9 @@
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(660, 19);
+            this.treeView1.Location = new System.Drawing.Point(666, 19);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(313, 148);
+            this.treeView1.Size = new System.Drawing.Size(307, 148);
             this.treeView1.TabIndex = 28;
             // 
             // dtpFechaAlta

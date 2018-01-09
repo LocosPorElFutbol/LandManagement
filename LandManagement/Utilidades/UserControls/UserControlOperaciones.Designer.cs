@@ -39,7 +39,7 @@
             this.groupBox5.Controls.Add(this.dgvOperaciones);
             this.groupBox5.Location = new System.Drawing.Point(3, 3);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(660, 282);
+            this.groupBox5.Size = new System.Drawing.Size(321, 238);
             this.groupBox5.TabIndex = 40;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Operaciones";
@@ -51,12 +51,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvOperaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOperaciones.Location = new System.Drawing.Point(6, 23);
+            this.dgvOperaciones.Location = new System.Drawing.Point(6, 19);
             this.dgvOperaciones.MultiSelect = false;
             this.dgvOperaciones.Name = "dgvOperaciones";
             this.dgvOperaciones.ReadOnly = true;
             this.dgvOperaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOperaciones.Size = new System.Drawing.Size(648, 253);
+            this.dgvOperaciones.Size = new System.Drawing.Size(309, 213);
             this.dgvOperaciones.TabIndex = 10;
             this.dgvOperaciones.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOperaciones_CellDoubleClick);
             // 
@@ -67,7 +67,7 @@
             this.AutoSize = true;
             this.Controls.Add(this.groupBox5);
             this.Name = "UserControlOperaciones";
-            this.Size = new System.Drawing.Size(667, 289);
+            this.Size = new System.Drawing.Size(327, 244);
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOperaciones)).EndInit();
             this.ResumeLayout(false);

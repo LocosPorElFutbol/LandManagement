@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pnlControles = new System.Windows.Forms.Panel();
             this.gbxDireccion = new System.Windows.Forms.GroupBox();
@@ -47,8 +48,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cmbPiso = new System.Windows.Forms.ComboBox();
             this.cmbDepartamento = new System.Windows.Forms.ComboBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.dgvOperacionesPropiedad = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvClientes = new System.Windows.Forms.DataGridView();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -57,8 +56,6 @@
             this.pnlControles.SuspendLayout();
             this.gbxDireccion.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOperacionesPropiedad)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
@@ -71,7 +68,7 @@
             this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1086, 507);
+            this.groupBox1.Size = new System.Drawing.Size(759, 507);
             this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información de la Propiedad";
@@ -82,13 +79,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlControles.Controls.Add(this.gbxDireccion);
-            this.pnlControles.Controls.Add(this.groupBox5);
             this.pnlControles.Controls.Add(this.groupBox2);
             this.pnlControles.Controls.Add(this.btnGuardar);
             this.pnlControles.Controls.Add(this.btnCancelar);
             this.pnlControles.Location = new System.Drawing.Point(6, 19);
             this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(1074, 482);
+            this.pnlControles.Size = new System.Drawing.Size(747, 482);
             this.pnlControles.TabIndex = 41;
             // 
             // gbxDireccion
@@ -110,7 +106,7 @@
             this.gbxDireccion.Controls.Add(this.cmbDepartamento);
             this.gbxDireccion.Location = new System.Drawing.Point(3, 3);
             this.gbxDireccion.Name = "gbxDireccion";
-            this.gbxDireccion.Size = new System.Drawing.Size(402, 250);
+            this.gbxDireccion.Size = new System.Drawing.Size(402, 236);
             this.gbxDireccion.TabIndex = 28;
             this.gbxDireccion.TabStop = false;
             this.gbxDireccion.Text = "Dirección";
@@ -156,7 +152,7 @@
             this.groupBox4.Controls.Add(this.txbCaracteristicas);
             this.groupBox4.Location = new System.Drawing.Point(9, 125);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(387, 115);
+            this.groupBox4.Size = new System.Drawing.Size(387, 102);
             this.groupBox4.TabIndex = 38;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Caracteristicas de la propiedad";
@@ -166,7 +162,7 @@
             this.txbCaracteristicas.Location = new System.Drawing.Point(6, 19);
             this.txbCaracteristicas.Multiline = true;
             this.txbCaracteristicas.Name = "txbCaracteristicas";
-            this.txbCaracteristicas.Size = new System.Drawing.Size(368, 85);
+            this.txbCaracteristicas.Size = new System.Drawing.Size(368, 75);
             this.txbCaracteristicas.TabIndex = 9;
             // 
             // label7
@@ -257,35 +253,12 @@
             this.cmbDepartamento.Size = new System.Drawing.Size(56, 21);
             this.cmbDepartamento.TabIndex = 5;
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.dgvOperacionesPropiedad);
-            this.groupBox5.Location = new System.Drawing.Point(411, 3);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(660, 447);
-            this.groupBox5.TabIndex = 39;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Operaciones de la Propiedad";
-            // 
-            // dgvOperacionesPropiedad
-            // 
-            this.dgvOperacionesPropiedad.AllowUserToAddRows = false;
-            this.dgvOperacionesPropiedad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOperacionesPropiedad.Location = new System.Drawing.Point(6, 23);
-            this.dgvOperacionesPropiedad.MultiSelect = false;
-            this.dgvOperacionesPropiedad.Name = "dgvOperacionesPropiedad";
-            this.dgvOperacionesPropiedad.ReadOnly = true;
-            this.dgvOperacionesPropiedad.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOperacionesPropiedad.Size = new System.Drawing.Size(648, 418);
-            this.dgvOperacionesPropiedad.TabIndex = 10;
-            this.dgvOperacionesPropiedad.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOperacionesPropiedad_CellDoubleClick);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dgvClientes);
-            this.groupBox2.Location = new System.Drawing.Point(3, 259);
+            this.groupBox2.Location = new System.Drawing.Point(3, 245);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(402, 191);
+            this.groupBox2.Size = new System.Drawing.Size(728, 191);
             this.groupBox2.TabIndex = 40;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Clientes";
@@ -293,19 +266,27 @@
             // dgvClientes
             // 
             this.dgvClientes.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvClientes.Location = new System.Drawing.Point(6, 19);
             this.dgvClientes.MultiSelect = false;
             this.dgvClientes.Name = "dgvClientes";
             this.dgvClientes.ReadOnly = true;
             this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClientes.Size = new System.Drawing.Size(377, 166);
+            this.dgvClientes.Size = new System.Drawing.Size(714, 166);
             this.dgvClientes.TabIndex = 0;
             this.dgvClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellDoubleClick);
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(909, 456);
+            this.btnGuardar.Location = new System.Drawing.Point(567, 445);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 11;
@@ -316,7 +297,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(990, 456);
+            this.btnCancelar.Location = new System.Drawing.Point(648, 445);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 12;
@@ -329,7 +310,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(1110, 531);
+            this.ClientSize = new System.Drawing.Size(783, 531);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmPropiedadABM";
             this.Text = "frmPropiedadABM";
@@ -340,8 +321,6 @@
             this.gbxDireccion.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOperacionesPropiedad)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             this.ResumeLayout(false);
@@ -352,8 +331,6 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.DataGridView dgvOperacionesPropiedad;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox txbCaracteristicas;

@@ -54,7 +54,6 @@ namespace LandManagement
             this.cliente = pCliente;
 
             familiarBusiness = new FamiliarBusiness();
-            //propiedadBusiness = new PropiedadBusiness();
             clienteBusiness = new ClienteBusiness();
             this.idCliente = pCliente.cli_id;
 
@@ -119,7 +118,7 @@ namespace LandManagement
         {
             //Usercontrol operaciones
             userControlOperaciones = new UserControlOperaciones();
-            userControlOperaciones.Location = new Point(14, 929);
+            userControlOperaciones.Location = new Point(672, 682);
             pnlControles.Controls.Add(userControlOperaciones);
 
             txbDomicilioImportado.Enabled = false;
