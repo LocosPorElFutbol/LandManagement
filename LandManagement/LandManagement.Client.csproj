@@ -485,6 +485,7 @@
     <Content Include="Utilidades\Librerias\Excel\BusinessExcel.dll" />
     <Content Include="Utilidades\Librerias\Excel\EntititesExcel.dll" />
     <Content Include="Utilidades\Librerias\Excel\RepositoriesExcel.dll" />
+    <Content Include="Utilidades\Librerias\Word\itextsharp.dll" />
     <Content Include="Utilidades\Librerias\Word\LoadWordTemplate.Business.dll" />
     <Content Include="Utilidades\Librerias\Word\LoadWordTemplate.Entities.dll" />
     <Content Include="Utilidades\Librerias\Word\LoadWordTemplate.Repositories.dll" />

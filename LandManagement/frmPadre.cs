@@ -33,6 +33,8 @@ namespace LandManagement
 
         private void frmPadre_Load(object sender, EventArgs e)
         {
+            this.FormClosing += frmPadre_FormClosing;    
+
             VersionBusiness versionBusiness = new VersionBusiness();
             this.Text = "Land Management v" + versionBusiness.GetLastVersion().ver_version;
             this.Icon = (Icon)Recursos.ResourceImages.ResourceManager.GetObject("LogoLandManagement");
@@ -159,5 +161,38 @@ namespace LandManagement
 
         }
 
+        void frmPadre_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Desea cerrar la aplicación?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            
+            if (result == DialogResult.Yes)
+            {
+                MessageBox.Show("libera licencia y cierra");
+            }
+            else if (result == DialogResult.No)
+                e.Cancel = true;
+            
+            //else
+            //{
+            //    //...
+            //} 
+            //In case windows is trying to shut down, don't hold the process up
+            //if (e.CloseReason == CloseReason.WindowsShutDown) return;
+
+            //if (this.DialogResult == DialogResult.Cancel)
+            //{
+            //    // Assume that X has been clicked and act accordingly.
+            //    // Confirm user wants to close
+            //    switch (MessageBox.Show(this, "Are you sure?", "Do you still want ... ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            //    {
+            //        //Stay on this form
+            //        case DialogResult.No:
+            //            e.Cancel = true;
+            //            break;
+            //        default:
+            //            break;
+            //    }
+            //}
+        }
     }
 }

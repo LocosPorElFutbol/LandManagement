@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnHelp = new System.Windows.Forms.Button();
-            this.btnEditarCarta = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txbCuerpoCarta = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnImprimirCartas = new System.Windows.Forms.Button();
             this.btnImprimirEtiquetas = new System.Windows.Forms.Button();
@@ -42,8 +42,10 @@
             this.dtpFechaCumpleanios = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnGuardarCarta = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -54,13 +56,16 @@
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(390, 145);
+            this.panel1.Size = new System.Drawing.Size(429, 321);
             this.panel1.TabIndex = 0;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnHelp);
-            this.groupBox1.Controls.Add(this.btnEditarCarta);
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.btnGuardarCarta);
+            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.btnCancelar);
             this.groupBox1.Controls.Add(this.btnImprimirCartas);
             this.groupBox1.Controls.Add(this.btnImprimirEtiquetas);
@@ -71,46 +76,45 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(384, 139);
+            this.groupBox1.Size = new System.Drawing.Size(423, 315);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cumpleaños de clientes";
             // 
-            // btnHelp
+            // groupBox2
             // 
-            this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHelp.Location = new System.Drawing.Point(356, 49);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(21, 23);
-            this.btnHelp.TabIndex = 9;
-            this.btnHelp.Text = "?";
-            this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            this.groupBox2.Controls.Add(this.txbCuerpoCarta);
+            this.groupBox2.Location = new System.Drawing.Point(10, 56);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(405, 170);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Carta";
             // 
-            // btnEditarCarta
+            // txbCuerpoCarta
             // 
-            this.btnEditarCarta.Location = new System.Drawing.Point(241, 49);
-            this.btnEditarCarta.Name = "btnEditarCarta";
-            this.btnEditarCarta.Size = new System.Drawing.Size(109, 23);
-            this.btnEditarCarta.TabIndex = 8;
-            this.btnEditarCarta.Text = "Editar Carta";
-            this.btnEditarCarta.UseVisualStyleBackColor = true;
-            this.btnEditarCarta.Click += new System.EventHandler(this.btnEditarCarta_Click);
+            this.txbCuerpoCarta.AcceptsTab = true;
+            this.txbCuerpoCarta.Location = new System.Drawing.Point(7, 19);
+            this.txbCuerpoCarta.Multiline = true;
+            this.txbCuerpoCarta.Name = "txbCuerpoCarta";
+            this.txbCuerpoCarta.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txbCuerpoCarta.Size = new System.Drawing.Size(392, 145);
+            this.txbCuerpoCarta.TabIndex = 10;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(241, 99);
+            this.btnCancelar.Location = new System.Drawing.Point(284, 284);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(109, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(125, 23);
             this.btnCancelar.TabIndex = 7;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
             // btnImprimirCartas
             // 
-            this.btnImprimirCartas.Location = new System.Drawing.Point(126, 99);
+            this.btnImprimirCartas.Location = new System.Drawing.Point(149, 284);
             this.btnImprimirCartas.Name = "btnImprimirCartas";
-            this.btnImprimirCartas.Size = new System.Drawing.Size(109, 23);
+            this.btnImprimirCartas.Size = new System.Drawing.Size(125, 23);
             this.btnImprimirCartas.TabIndex = 6;
             this.btnImprimirCartas.Text = "Imprimir cartas";
             this.btnImprimirCartas.UseVisualStyleBackColor = true;
@@ -118,9 +122,9 @@
             // 
             // btnImprimirEtiquetas
             // 
-            this.btnImprimirEtiquetas.Location = new System.Drawing.Point(10, 99);
+            this.btnImprimirEtiquetas.Location = new System.Drawing.Point(10, 284);
             this.btnImprimirEtiquetas.Name = "btnImprimirEtiquetas";
-            this.btnImprimirEtiquetas.Size = new System.Drawing.Size(109, 23);
+            this.btnImprimirEtiquetas.Size = new System.Drawing.Size(125, 23);
             this.btnImprimirEtiquetas.TabIndex = 5;
             this.btnImprimirEtiquetas.Text = "Imprimir etiquetas";
             this.btnImprimirEtiquetas.UseVisualStyleBackColor = true;
@@ -128,15 +132,15 @@
             // 
             // txbCantidadClientes
             // 
-            this.txbCantidadClientes.Location = new System.Drawing.Point(126, 50);
+            this.txbCantidadClientes.Location = new System.Drawing.Point(316, 22);
             this.txbCantidadClientes.Name = "txbCantidadClientes";
-            this.txbCantidadClientes.Size = new System.Drawing.Size(86, 20);
+            this.txbCantidadClientes.Size = new System.Drawing.Size(34, 20);
             this.txbCantidadClientes.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 53);
+            this.label2.Location = new System.Drawing.Point(221, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(88, 13);
             this.label2.TabIndex = 3;
@@ -144,9 +148,9 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(241, 21);
+            this.btnBuscar.Location = new System.Drawing.Point(359, 20);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(109, 23);
+            this.btnBuscar.Size = new System.Drawing.Size(50, 23);
             this.btnBuscar.TabIndex = 2;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -169,11 +173,21 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Fecha de cumpleaños";
             // 
+            // btnGuardarCarta
+            // 
+            this.btnGuardarCarta.Location = new System.Drawing.Point(316, 232);
+            this.btnGuardarCarta.Name = "btnGuardarCarta";
+            this.btnGuardarCarta.Size = new System.Drawing.Size(93, 23);
+            this.btnGuardarCarta.TabIndex = 12;
+            this.btnGuardarCarta.Text = "Guardar carta";
+            this.btnGuardarCarta.UseVisualStyleBackColor = true;
+            this.btnGuardarCarta.Click += new System.EventHandler(this.btnGuardarCarta_Click);
+            // 
             // frmCartasCumpleanios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 169);
+            this.ClientSize = new System.Drawing.Size(453, 345);
             this.Controls.Add(this.panel1);
             this.Name = "frmCartasCumpleanios";
             this.Text = "frmCartasCumpleanios";
@@ -181,6 +195,8 @@
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -197,8 +213,9 @@
         private System.Windows.Forms.Button btnImprimirCartas;
         private System.Windows.Forms.Button btnImprimirEtiquetas;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnEditarCarta;
-        private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox txbCuerpoCarta;
+        private System.Windows.Forms.Button btnGuardarCarta;
     }
 }
