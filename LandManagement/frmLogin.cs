@@ -13,6 +13,7 @@ using LandManagement.Entities;
 using LandManagement.Utilidades;
 using log4net;
 using System.Configuration;
+using System.Net.NetworkInformation;
 
 namespace LandManagement
 {
@@ -33,11 +34,16 @@ namespace LandManagement
             timerParpadeo.Interval = 300;
             timerParpadeo.Enabled = false;
             timerParpadeo.Tick += new EventHandler(timerParpadeo_Tick);
+            VariablesDeSesion.MACADDRESS_ETHERNET = GetMacAddressEthernet();
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            pnlControles.AutoScroll = true;
+            if (!this.LicenciaActivada())
+                gbxLogin.Enabled = false;
+            else 
+                lkbActivarProducto.Visible = false;
+
             this.Icon = (Icon)Recursos.ResourceImages.ResourceManager.GetObject("Llave");
             this.Text = "Inicio de Sesión";
             pbxLogoCliente.Image = (Image)Recursos.ResourceImages.ResourceManager.GetObject("Logo");
@@ -81,6 +87,12 @@ namespace LandManagement
                 MessageBox.Show(ex.InnerException.Message);
             }
             log.Info("salio");
+        }
+
+        private void lkbActivarProducto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmLicencia formularioLicencia = new frmLicencia();
+            formularioLicencia.Show();
         }
 
         private void RecordarDatosDeUsuario()
@@ -146,6 +158,41 @@ namespace LandManagement
         {
            if (e.KeyChar == Convert.ToChar(Keys.Enter))
                 btnAceptar.PerformClick();
+        }
+
+        private bool LicenciaActivada()
+        {
+            //return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Obtiene la mac address de la placa de red del equipo. No importa si esta en uso o no.
+        /// </summary>
+        /// <returns></returns>
+        private string GetMacAddressEthernet()
+        {
+            string macAddresses = string.Empty;
+            foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                // Only consider Ethernet network interfaces, thereby ignoring any
+                // loopback devices etc.
+                if (nic.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+                {
+                    macAddresses += nic.GetPhysicalAddress().ToString();
+                    break;
+                }
+
+                //STATUS UP, LAN CONECTADA
+                //if (nic.NetworkInterfaceType != NetworkInterfaceType.Ethernet) continue;
+                //if (nic.OperationalStatus == OperationalStatus.Up)
+                //{
+                //    macAddresses += nic.GetPhysicalAddress().ToString();
+                //    break;
+                //}
+            }
+
+            return macAddresses;
         }
 
     }

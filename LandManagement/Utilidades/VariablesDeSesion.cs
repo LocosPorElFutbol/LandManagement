@@ -9,5 +9,6 @@ namespace LandManagement.Utilidades
     public static class VariablesDeSesion
     {
         public static tbusuario UsuarioLogueado;
+        public static string MACADDRESS_ETHERNET;
     }
 }
