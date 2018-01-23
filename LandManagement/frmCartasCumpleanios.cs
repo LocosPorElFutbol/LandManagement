@@ -33,6 +33,7 @@ namespace LandManagement
         private void frmCartasCumpleanios_Load(object sender, EventArgs e)
         {
             txbCantidadClientes.Enabled = false;
+            CargarCuerpoCarta();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -106,30 +107,28 @@ namespace LandManagement
 
         private void btnGuardarCarta_Click(object sender, EventArgs e)
         {
-            //string cuerpoCarta = "\tEs bueno observar la actitud de los pájaros ante la adversidad, pasan días y días haciendo su nido y recogiendo materiales, muchos de estos traídos desde largas distancias, y cuando ya está terminado y listo para poner los huevos, las inclemencias del tiempo, la mano del hombre o la obra de algún animal, destruye y tira por el suelo lo que con tanto esfuerzo se logró.  ¿Qué hace el pájaro?  ¿Se lamenta, se paraliza, abandona la tarea?  … De ninguna manera!!!  VUELVE A EMPEZAR, una y otra vez hasta que en el nido aparecen los primeros huevos.  A veces, muchas veces, antes de que nazcan los pichones, algún animal o una tormenta vuelve a destruir el nido, pero esta vez con su precioso contenido. Aún así el pájaro jamás retrocede, sigue construyendo, y nunca deja de cantar.\r\n\r\n\tHoy empieza un nuevo año en tu vida ¿Sentiste alguna vez que tu vida, tu trabajo, tu familia, tus amigos no son lo que soñaste?  ¿Te dieron ganas de decir ¡Basta!, no vale la pena el esfuerzo, esto es demasiado para mí?  ¿Muchas veces te cansaste de volver a empezar, del desgaste de la lucha diaria, de la confianza traicionada, de las metas no alcanzadas cuando estabas a punto de lograrlo?\r\n\r\n\tPor más que la vida te golpee, no te entregues nunca.  No te preocupes si en la batalla sufrís alguna herida, es de esperar que algo así suceda.  Junta los pedazos de tu esperanza, ármala de nuevo y volvé a empezar.  No importa lo que pase, no aflojes, dale para adelante.  La vida es un desafío constante, pero vale la pena aceptarlo y sobre todo NUNCA DEJES DE CANTAR.";
-            //cartaEntity.CuerpoCarta = new[] { cuerpoCarta };
-
-            string macAddresses = "";
-            foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
+            try
             {
-                // Only consider Ethernet network interfaces, thereby ignoring any
-                // loopback devices etc.
-                if (nic.NetworkInterfaceType == NetworkInterfaceType.Ethernet) 
+                //string cuerpoCarta = "\tEs bueno observar la actitud de los pájaros ante la adversidad, pasan días y días haciendo su nido y recogiendo materiales, muchos de estos traídos desde largas distancias, y cuando ya está terminado y listo para poner los huevos, las inclemencias del tiempo, la mano del hombre o la obra de algún animal, destruye y tira por el suelo lo que con tanto esfuerzo se logró.  ¿Qué hace el pájaro?  ¿Se lamenta, se paraliza, abandona la tarea?  … De ninguna manera!!!  VUELVE A EMPEZAR, una y otra vez hasta que en el nido aparecen los primeros huevos.  A veces, muchas veces, antes de que nazcan los pichones, algún animal o una tormenta vuelve a destruir el nido, pero esta vez con su precioso contenido. Aún así el pájaro jamás retrocede, sigue construyendo, y nunca deja de cantar.\r\n\r\n\tHoy empieza un nuevo año en tu vida ¿Sentiste alguna vez que tu vida, tu trabajo, tu familia, tus amigos no son lo que soñaste?  ¿Te dieron ganas de decir ¡Basta!, no vale la pena el esfuerzo, esto es demasiado para mí?  ¿Muchas veces te cansaste de volver a empezar, del desgaste de la lucha diaria, de la confianza traicionada, de las metas no alcanzadas cuando estabas a punto de lograrlo?\r\n\r\n\tPor más que la vida te golpee, no te entregues nunca.  No te preocupes si en la batalla sufrís alguna herida, es de esperar que algo así suceda.  Junta los pedazos de tu esperanza, ármala de nuevo y volvé a empezar.  No importa lo que pase, no aflojes, dale para adelante.  La vida es un desafío constante, pero vale la pena aceptarlo y sobre todo NUNCA DEJES DE CANTAR.";
+
+                CartaBusiness cartaBusiness = new CartaBusiness();
+                tbcarta carta = new tbcarta()
                 {
-                    macAddresses += nic.GetPhysicalAddress().ToString();
-                    break;
-                }
+                    car_id = 1,
+                    car_cuerpo = txbCuerpoCarta.Text,
+                    car_pie = "pie carta"
+                };
+                cartaBusiness.Update(carta);
+                MessageBox.Show("Carta guardada correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                //STATUS UP, LAN CONECTADA
-                //if (nic.NetworkInterfaceType != NetworkInterfaceType.Ethernet) continue;
-                //if (nic.OperationalStatus == OperationalStatus.Up)
-                //{
-                //    macAddresses += nic.GetPhysicalAddress().ToString();
-                //    break;
-                //}
             }
-
-            MessageBox.Show(macAddresses);
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                if (ex.InnerException != null)
+                    log.Error(ex.InnerException.Message);
+                MessageBox.Show("Error al actualizar carta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -246,5 +245,13 @@ namespace LandManagement
             return e;
         }
         #endregion
+
+        private void CargarCuerpoCarta()
+        {
+            CartaBusiness cartaBusiness = new CartaBusiness();
+            tbcarta carta = cartaBusiness.GetElement(new tbcarta() { car_id = 1 }) as tbcarta;
+            txbCuerpoCarta.Text = carta.car_cuerpo;
+        }
+
     }
 }
