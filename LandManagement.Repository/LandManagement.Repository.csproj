@@ -49,6 +49,7 @@
     <Compile Include="CategoriaRepository.cs" />
     <Compile Include="ClienteOperacionRepository.cs" />
     <Compile Include="ClienteRepository.cs" />
+    <Compile Include="ClienteSystemRepository.cs" />
     <Compile Include="DomicilioRepository.cs" />
     <Compile Include="EnAlquilerRepository.cs" />
     <Compile Include="EncuestaRepository.cs" />
@@ -60,6 +61,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LandManagementModel.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="LicenciaRepository.cs" />
     <Compile Include="MenuRepository.cs" />
     <Compile Include="OperacionRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

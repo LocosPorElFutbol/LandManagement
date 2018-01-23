@@ -15,23 +15,23 @@ using System.Collections.Specialized;
 
 namespace LandManagement.Entities
 {
-    public partial class tbversion
+    public partial class tbcarta
     {
         #region Primitive Properties
     
-        public virtual int ver_id
+        public virtual int car_id
         {
             get;
             set;
         }
     
-        public virtual string ver_version
+        public virtual string car_cuerpo
         {
             get;
             set;
         }
     
-        public virtual string ver_descripcion
+        public virtual string car_pie
         {
             get;
             set;

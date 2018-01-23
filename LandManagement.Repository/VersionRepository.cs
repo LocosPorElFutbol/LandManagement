@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LandManagement.Repository
 {
-    public class VersionRepository : IBaseRepository<tbversion>
+    public class VersionRepository : IBaseRepository<tbsysversion>
     {
         private static VersionRepository instancia = null;
         private landmanagementbdEntities Contexto = null;
@@ -23,36 +23,36 @@ namespace LandManagement.Repository
         {
             Contexto = new landmanagementbdEntities();
         }
-        public void Create(tbversion entity)
+        public void Create(tbsysversion entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(tbversion entity)
+        public void Update(tbsysversion entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(tbversion entity)
+        public void Delete(tbsysversion entity)
         {
             throw new NotImplementedException();
         }
 
-        public object GetElement(tbversion entity)
+        public object GetElement(tbsysversion entity)
         {
             throw new NotImplementedException();
         }
 
         public object GetList()
         {
-            return Contexto.tbversion.ToList<tbversion>();
+            return Contexto.tbsysversion.ToList<tbsysversion>();
         }
 
-        public object GetList(Func<tbversion, bool> funcion)
+        public object GetList(Func<tbsysversion, bool> funcion)
         {
             try
             {
-                return Contexto.tbversion.Where(funcion).ToList<tbversion>();
+                return Contexto.tbsysversion.Where(funcion).ToList<tbsysversion>();
             }
             catch (Exception ex)
             {

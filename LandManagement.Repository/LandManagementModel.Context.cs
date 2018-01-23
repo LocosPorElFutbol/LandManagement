@@ -49,6 +49,12 @@ namespace LandManagement.Repository
         }
         private ObjectSet<tbalquilada> _tbalquilada;
     
+        public ObjectSet<tbcarta> tbcarta
+        {
+            get { return _tbcarta  ?? (_tbcarta = CreateObjectSet<tbcarta>("tbcarta")); }
+        }
+        private ObjectSet<tbcarta> _tbcarta;
+    
         public ObjectSet<tbcliente> tbcliente
         {
             get { return _tbcliente  ?? (_tbcliente = CreateObjectSet<tbcliente>("tbcliente")); }
@@ -121,11 +127,29 @@ namespace LandManagement.Repository
         }
         private ObjectSet<tbservicios> _tbservicios;
     
+        public ObjectSet<tbsyscliente> tbsyscliente
+        {
+            get { return _tbsyscliente  ?? (_tbsyscliente = CreateObjectSet<tbsyscliente>("tbsyscliente")); }
+        }
+        private ObjectSet<tbsyscliente> _tbsyscliente;
+    
+        public ObjectSet<tbsyslicencia> tbsyslicencia
+        {
+            get { return _tbsyslicencia  ?? (_tbsyslicencia = CreateObjectSet<tbsyslicencia>("tbsyslicencia")); }
+        }
+        private ObjectSet<tbsyslicencia> _tbsyslicencia;
+    
         public ObjectSet<tbsystipocliente> tbsystipocliente
         {
             get { return _tbsystipocliente  ?? (_tbsystipocliente = CreateObjectSet<tbsystipocliente>("tbsystipocliente")); }
         }
         private ObjectSet<tbsystipocliente> _tbsystipocliente;
+    
+        public ObjectSet<tbsysversion> tbsysversion
+        {
+            get { return _tbsysversion  ?? (_tbsysversion = CreateObjectSet<tbsysversion>("tbsysversion")); }
+        }
+        private ObjectSet<tbsysversion> _tbsysversion;
     
         public ObjectSet<tbtasacion> tbtasacion
         {
@@ -156,12 +180,6 @@ namespace LandManagement.Repository
             get { return _tbventa  ?? (_tbventa = CreateObjectSet<tbventa>("tbventa")); }
         }
         private ObjectSet<tbventa> _tbventa;
-    
-        public ObjectSet<tbversion> tbversion
-        {
-            get { return _tbversion  ?? (_tbversion = CreateObjectSet<tbversion>("tbversion")); }
-        }
-        private ObjectSet<tbversion> _tbversion;
 
         #endregion
 

@@ -10,6 +10,7 @@ using System.Reflection;
 using LandManagement.Business;
 using LandManagement.Entities;
 using System.Configuration;
+using LandManagement.Utilidades;
 
 namespace LandManagement
 {
@@ -167,7 +168,12 @@ namespace LandManagement
             
             if (result == DialogResult.Yes)
             {
-                MessageBox.Show("libera licencia y cierra");
+                LicenciaBusiness licenciaBusiness = new LicenciaBusiness();
+                var licenciaSalida =
+                    licenciaBusiness.GetLicenciaByMacEthernet(
+                        new tbsyslicencia() { sli_mac_ethernet = VariablesDeSesion.MACADDRESS_ETHERNET });
+
+                licenciaBusiness.LiberarLicencia(licenciaSalida);
             }
             else if (result == DialogResult.No)
                 e.Cancel = true;

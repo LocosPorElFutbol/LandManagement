@@ -56,6 +56,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Utilidades\Librerias\Excel\BusinessExcel.dll</HintPath>
     </Reference>
+    <Reference Include="EncriptarDatos.Library, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Utilidades\Librerias\Seguridad\EncriptarDatos.Library.dll</HintPath>
+    </Reference>
     <Reference Include="EntititesExcel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Utilidades\Librerias\Excel\EntititesExcel.dll</HintPath>
@@ -494,6 +498,7 @@
     <Content Include="Utilidades\Librerias\Excel\BusinessExcel.dll" />
     <Content Include="Utilidades\Librerias\Excel\EntititesExcel.dll" />
     <Content Include="Utilidades\Librerias\Excel\RepositoriesExcel.dll" />
+    <Content Include="Utilidades\Librerias\Seguridad\EncriptarDatos.Library.dll" />
     <Content Include="Utilidades\Librerias\Word\itextsharp.dll" />
     <Content Include="Utilidades\Librerias\Word\LoadWordTemplate.Business.dll" />
     <Content Include="Utilidades\Librerias\Word\LoadWordTemplate.Entities.dll" />

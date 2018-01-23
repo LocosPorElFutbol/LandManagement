@@ -91,7 +91,7 @@ namespace LandManagement
 
         private void lkbActivarProducto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            frmLicencia formularioLicencia = new frmLicencia();
+            frmLicencia formularioLicencia = new frmLicencia(this);
             formularioLicencia.Show();
         }
 
@@ -162,7 +162,31 @@ namespace LandManagement
 
         private bool LicenciaActivada()
         {
-            //return true;
+            tbsyslicencia licencia = new tbsyslicencia() 
+                { sli_mac_ethernet = VariablesDeSesion.MACADDRESS_ETHERNET };
+
+            LicenciaBusiness licenciaBusiness = new LicenciaBusiness();
+            tbsyslicencia licenciaSalida = licenciaBusiness.GetLicenciaByMacEthernet(licencia);
+            
+            if (licenciaSalida != null)
+            {
+                EncriptarDatos.Library.EncriptarDatos encriptarDatos = new EncriptarDatos.Library.EncriptarDatos();
+                string hash = encriptarDatos.EncriptarTexto(VariablesDeSesion.MACADDRESS_ETHERNET);
+
+                if (licenciaSalida.sli_hash_access.Equals(hash))
+                {
+                    if (licenciaBusiness.LicenciasDisponibles() > 0)
+                    {
+                        licenciaBusiness.TomarLicencia(licenciaSalida);
+                        return true;
+                    }
+                    else
+                    {
+                        MensajeSinLicenciasDisponibles();
+                    }
+                }
+            }
+            
             return false;
         }
 
@@ -193,6 +217,12 @@ namespace LandManagement
             }
 
             return macAddresses;
+        }
+
+        private void MensajeSinLicenciasDisponibles()
+        {
+            MessageBox.Show("Supero la cantidad de licencias disponibles, libere alguna y vuelva a intentarlo.", "Aviso", 
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
     }

@@ -15,12 +15,12 @@ namespace LandManagement.Business
             versionRepository = VersionRepository.GetInstancia();
         }
 
-        public tbversion GetLastVersion()
+        public tbsysversion GetLastVersion()
         {
             try
             {
-                List<tbversion> listaVersiones = versionRepository.GetList() as List<tbversion>;
-                var salida = listaVersiones.OrderByDescending(x => x.ver_id).First<tbversion>();
+                List<tbsysversion> listaVersiones = versionRepository.GetList() as List<tbsysversion>;
+                var salida = listaVersiones.OrderByDescending(x => x.ver_id).First<tbsysversion>();
                 return salida;   
             }
             catch (Exception ex)

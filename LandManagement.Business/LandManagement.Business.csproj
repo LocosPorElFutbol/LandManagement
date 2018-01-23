@@ -44,11 +44,13 @@
     <Compile Include="CategoriaBusiness.cs" />
     <Compile Include="ClienteBusiness.cs" />
     <Compile Include="ClienteOperacionBusiness.cs" />
+    <Compile Include="ClienteSystemBusiness.cs" />
     <Compile Include="DomicilioBusiness.cs" />
     <Compile Include="EnAlquilerBusiness.cs" />
     <Compile Include="EncuestaBusiness.cs" />
     <Compile Include="EnVentaBusiness.cs" />
     <Compile Include="FamiliarBusiness.cs" />
+    <Compile Include="LicenciaBusiness.cs" />
     <Compile Include="MenuBusiness.cs" />
     <Compile Include="OperacionBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
