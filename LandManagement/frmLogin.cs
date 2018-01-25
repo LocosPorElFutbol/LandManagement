@@ -183,6 +183,7 @@ namespace LandManagement
                     else
                     {
                         MensajeSinLicenciasDisponibles();
+                        this.Close();
                     }
                 }
             }

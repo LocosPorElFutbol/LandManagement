@@ -723,7 +723,7 @@
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Location = new System.Drawing.Point(285, 233);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(332, 187);
+            this.groupBox4.Size = new System.Drawing.Size(353, 187);
             this.groupBox4.TabIndex = 40;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Datos de Contacto";
@@ -770,7 +770,7 @@
             this.groupBox3.Controls.Add(this.txbLocalidad);
             this.groupBox3.Location = new System.Drawing.Point(285, 19);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(332, 208);
+            this.groupBox3.Size = new System.Drawing.Size(353, 208);
             this.groupBox3.TabIndex = 39;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Domicilio";

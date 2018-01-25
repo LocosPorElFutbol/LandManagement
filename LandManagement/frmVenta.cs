@@ -122,7 +122,7 @@ namespace LandManagement
                     GuardaObjeto(operacionLocal);
 
                     MensajeOk();
-                    ((frmOperacionListado)formPadre).CargarGrillaOperaciones();
+                    //((frmOperacionListado)formPadre).CargarGrillaOperaciones();
                     this.Close();
 
                     Cursor.Current = Cursors.Default;
