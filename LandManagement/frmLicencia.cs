@@ -52,7 +52,7 @@ namespace LandManagement
                     MensajeActivacion();
                 }
                 else
-                    MessageBox.Show("Código de activación erroneo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Código de activación incorrecto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
             catch (Exception ex)
