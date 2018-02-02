@@ -80,10 +80,13 @@ namespace LandManagement.Business
 
         public object GetListCumpleanieros(DateTime fecha)
         {
+            DateTime fechanula = new DateTime(1900, 01, 01);
+
             return ((List<tbcliente>)this.GetList())
                 .Where(m => m.cli_fecha_nacimiento.Day == fecha.Day && 
                     m.cli_fecha_nacimiento.Month == fecha.Month &&
-                    m.cli_imprime_carta == true)
+                    m.cli_imprime_carta == true &&
+                    !DateTime.Equals(m.cli_fecha_nacimiento, fechanula))
                     .ToList();
         }
 

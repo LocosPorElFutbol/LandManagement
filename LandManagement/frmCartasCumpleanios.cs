@@ -66,8 +66,11 @@ namespace LandManagement
 
                 if (ValidarCumpleanieros())
                 {
+                    List<CartaEntity> listaAuxiliarEtiquetas = new List<CartaEntity>();
+                    this.listaEtiquetas.ForEach(x => listaAuxiliarEtiquetas.Add(x));
+
                     CumpleaniosEtiquetaBusiness cumpleaniosEtiquetaBusiness = new CumpleaniosEtiquetaBusiness("C:\\Etiquetas.pdf");
-                    cumpleaniosEtiquetaBusiness.CrearEtiquetas(this.listaEtiquetas);
+                    cumpleaniosEtiquetaBusiness.CrearEtiquetas(listaAuxiliarEtiquetas);
                 }
 
                 this.Cursor = Cursors.Default;
