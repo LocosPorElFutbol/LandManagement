@@ -52,21 +52,21 @@
     <ApplicationIcon>Imagenes\Cliente\LogoLandManagement.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BusinessExcel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Utilidades\Librerias\Excel\BusinessExcel.dll</HintPath>
-    </Reference>
     <Reference Include="EncriptarDatos.Library, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Utilidades\Librerias\Seguridad\EncriptarDatos.Library.dll</HintPath>
     </Reference>
-    <Reference Include="EntititesExcel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Utilidades\Librerias\Excel\EntititesExcel.dll</HintPath>
-    </Reference>
     <Reference Include="LinqToExcel, Version=1.10.1.0, Culture=neutral, PublicKeyToken=9c8ea65a58f03f1f, processorArchitecture=x86">
       <HintPath>..\packages\LinqToExcel.1.10.1\lib\LinqToExcel.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="LoadExcel.Business, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Utilidades\Librerias\Excel\LoadExcel.Business.dll</HintPath>
+    </Reference>
+    <Reference Include="LoadExcel.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Utilidades\Librerias\Excel\LoadExcel.Entities.dll</HintPath>
     </Reference>
     <Reference Include="LoadWordTemplate.Business, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -495,9 +495,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Imagenes\Cliente\Tool.ico" />
-    <Content Include="Utilidades\Librerias\Excel\BusinessExcel.dll" />
-    <Content Include="Utilidades\Librerias\Excel\EntititesExcel.dll" />
-    <Content Include="Utilidades\Librerias\Excel\RepositoriesExcel.dll" />
+    <Content Include="Utilidades\Librerias\Excel\LoadExcel.Business.dll" />
+    <Content Include="Utilidades\Librerias\Excel\LoadExcel.Entities.dll" />
+    <Content Include="Utilidades\Librerias\Excel\LoadExcel.Repositories.dll" />
     <Content Include="Utilidades\Librerias\Seguridad\EncriptarDatos.Library.dll" />
     <Content Include="Utilidades\Librerias\Word\itextsharp.dll" />
     <Content Include="Utilidades\Librerias\Word\LoadWordTemplate.Business.dll" />
