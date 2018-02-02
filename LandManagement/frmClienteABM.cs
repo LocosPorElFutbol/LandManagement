@@ -125,7 +125,6 @@ namespace LandManagement
             pnlControles.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             listasDeElementos = new ListasDeElementos();
-            SetearDisplayValueCombos();
             CargarCombos();
 
             if (this.cliente != null)
@@ -534,10 +533,14 @@ namespace LandManagement
 
             cmbTitulo.DisplayMember = ComboBoxItem.DisplayMember;
             cmbTitulo.ValueMember = ComboBoxItem.ValueMember;
+
+            cmbProvincia.DisplayMember = ComboBoxItem.DisplayMember;
+            cmbProvincia.ValueMember = ComboBoxItem.ValueMember;
         }
 
         private void CargarCombos()
         {
+            this.SetearDisplayValueCombos();
             this.CargarTipoFamiliar();
             this.CargarTipoDocumento();
             this.CargarEstadoCivil();
@@ -545,6 +548,7 @@ namespace LandManagement
             this.CargarPiso();
             this.CargarDepto();
             this.CargarTitulo();
+            this.CargarProvincias();
             SetearIndiceCombo();
         }
 
@@ -596,6 +600,11 @@ namespace LandManagement
         private void CargarTitulo()
         {
             this.CargarCombo(listasDeElementos.GetListaTitulo(), cmbTitulo);
+        }
+
+        private void CargarProvincias()
+        {
+            this.CargarCombo(listasDeElementos.GetListaProvincias(), cmbProvincia);
         }
 
         private void CargarCombo(List<ComboBoxItem> lista, ComboBox combo)

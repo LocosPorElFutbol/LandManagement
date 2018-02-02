@@ -62,7 +62,7 @@ namespace LandManagement
                 //Usercontrol operaciones
                 userControlOperaciones = new UserControlOperaciones();
                 userControlOperaciones.Location = new Point(411, 0);
-                userControlOperaciones.Height = 688;
+                userControlOperaciones.Height = 800;
                 pnlControles.Controls.Add(userControlOperaciones);
 
                 pnlControles.AutoScroll = true;
@@ -291,6 +291,7 @@ namespace LandManagement
             this.CargarTipoPropiedad();
             this.CargarPiso();
             this.CargarDepto();
+            this.CargarProvincias();
         }
 
         private void SetearDisplayValue()
@@ -303,6 +304,9 @@ namespace LandManagement
 
             cmbDepartamento.ValueMember = ComboBoxItem.ValueMember;
             cmbDepartamento.DisplayMember = ComboBoxItem.DisplayMember;
+
+            cmbProvincia.ValueMember = ComboBoxItem.ValueMember;
+            cmbProvincia.DisplayMember = ComboBoxItem.DisplayMember;
         }
 
         private void CargarTipoPropiedad()
@@ -322,6 +326,11 @@ namespace LandManagement
         private void CargarDepto()
         {
             this.CargarCombo(listasDeElementos.GetListaDepto(), cmbDepartamento);
+        }
+
+        private void CargarProvincias()
+        {
+            this.CargarCombo(listasDeElementos.GetListaProvincias(), cmbProvincia);
         }
 
         private void CargarCombo(List<ComboBoxItem> lista, ComboBox combo)

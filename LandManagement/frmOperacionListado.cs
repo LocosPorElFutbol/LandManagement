@@ -36,7 +36,6 @@ namespace LandManagement
             CargarGrillaOperaciones();
         }
 
-
         public void CargarGrillaOperaciones()
         {
             InicializarGrilla();
@@ -95,6 +94,7 @@ namespace LandManagement
                 dataGridViewRow.Cells["pro_codigo_postal"].Value = obj.tbpropiedad.pro_codigo_postal;
                 dataGridViewRow.Cells["pro_localidad"].Value = obj.tbpropiedad.pro_localidad;
             }
+            txbTotalRegistros.Text = listaOperaciones.Count().ToString();
         }
 
         private void CargarTipoOperacion(List<tboperaciones> _listaOperaciones)
@@ -228,8 +228,10 @@ namespace LandManagement
                 Cursor.Current = Cursors.WaitCursor;
 
                 BuscarEnDataGridView buscar = new BuscarEnDataGridView();
-                dgvOperaciones = buscar.FiltrarDataGridView(dgvOperaciones, txbBuscarPor.Text);
-                
+                dgvOperaciones = 
+                    buscar.FiltrarDataGridView(dgvOperaciones, txbBuscarPor.Text, dtpDesde.Value, dtpHasta.Value);
+
+                txbTotalRegistros.Text = dgvOperaciones.Rows.Count.ToString();
                 Cursor.Current = Cursors.Default;
             }
             catch (Exception ex)

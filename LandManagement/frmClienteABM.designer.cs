@@ -100,6 +100,8 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
+            this.cmbProvincia = new System.Windows.Forms.ComboBox();
+            this.label27 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFamiliares)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.pnlControles.SuspendLayout();
@@ -313,7 +315,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(36, 61);
+            this.label22.Location = new System.Drawing.Point(36, 53);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(27, 13);
             this.label22.TabIndex = 38;
@@ -322,7 +324,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(222, 61);
+            this.label23.Location = new System.Drawing.Point(222, 52);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(36, 13);
             this.label23.TabIndex = 39;
@@ -331,7 +333,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(10, 98);
+            this.label24.Location = new System.Drawing.Point(10, 79);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(53, 13);
             this.label24.TabIndex = 40;
@@ -340,7 +342,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(237, 98);
+            this.label25.Location = new System.Drawing.Point(237, 78);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(21, 13);
             this.label25.TabIndex = 41;
@@ -358,7 +360,7 @@
             // 
             this.cmbPiso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPiso.FormattingEnabled = true;
-            this.cmbPiso.Location = new System.Drawing.Point(69, 56);
+            this.cmbPiso.Location = new System.Drawing.Point(69, 49);
             this.cmbPiso.Name = "cmbPiso";
             this.cmbPiso.Size = new System.Drawing.Size(56, 21);
             this.cmbPiso.TabIndex = 15;
@@ -367,7 +369,7 @@
             // 
             this.cmbDepto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDepto.FormattingEnabled = true;
-            this.cmbDepto.Location = new System.Drawing.Point(264, 56);
+            this.cmbDepto.Location = new System.Drawing.Point(264, 48);
             this.cmbDepto.Name = "cmbDepto";
             this.cmbDepto.Size = new System.Drawing.Size(56, 21);
             this.cmbDepto.TabIndex = 16;
@@ -383,7 +385,7 @@
             // 
             // txbLocalidad
             // 
-            this.txbLocalidad.Location = new System.Drawing.Point(69, 94);
+            this.txbLocalidad.Location = new System.Drawing.Point(69, 76);
             this.txbLocalidad.Name = "txbLocalidad";
             this.txbLocalidad.Size = new System.Drawing.Size(131, 20);
             this.txbLocalidad.TabIndex = 17;
@@ -392,7 +394,7 @@
             // 
             // txbCodigoPostal
             // 
-            this.txbCodigoPostal.Location = new System.Drawing.Point(264, 94);
+            this.txbCodigoPostal.Location = new System.Drawing.Point(263, 75);
             this.txbCodigoPostal.Name = "txbCodigoPostal";
             this.txbCodigoPostal.Size = new System.Drawing.Size(56, 20);
             this.txbCodigoPostal.TabIndex = 18;
@@ -754,6 +756,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label27);
+            this.groupBox3.Controls.Add(this.cmbProvincia);
             this.groupBox3.Controls.Add(this.txbDomicilioImportado);
             this.groupBox3.Controls.Add(this.label26);
             this.groupBox3.Controls.Add(this.txbCalle);
@@ -777,16 +781,16 @@
             // 
             // txbDomicilioImportado
             // 
-            this.txbDomicilioImportado.Location = new System.Drawing.Point(110, 127);
+            this.txbDomicilioImportado.Location = new System.Drawing.Point(69, 156);
             this.txbDomicilioImportado.Multiline = true;
             this.txbDomicilioImportado.Name = "txbDomicilioImportado";
-            this.txbDomicilioImportado.Size = new System.Drawing.Size(210, 67);
+            this.txbDomicilioImportado.Size = new System.Drawing.Size(210, 41);
             this.txbDomicilioImportado.TabIndex = 43;
             // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(6, 130);
+            this.label26.Location = new System.Drawing.Point(5, 133);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(98, 13);
             this.label26.TabIndex = 42;
@@ -836,6 +840,24 @@
             this.dtpFechaAlta.Name = "dtpFechaAlta";
             this.dtpFechaAlta.Size = new System.Drawing.Size(84, 20);
             this.dtpFechaAlta.TabIndex = 0;
+            // 
+            // cmbProvincia
+            // 
+            this.cmbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProvincia.FormattingEnabled = true;
+            this.cmbProvincia.Location = new System.Drawing.Point(69, 103);
+            this.cmbProvincia.Name = "cmbProvincia";
+            this.cmbProvincia.Size = new System.Drawing.Size(172, 21);
+            this.cmbProvincia.TabIndex = 44;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(12, 107);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(51, 13);
+            this.label27.TabIndex = 45;
+            this.label27.Text = "Provincia";
             // 
             // frmClienteABM
             // 
@@ -944,5 +966,7 @@
         private System.Windows.Forms.TextBox txbTelefonoCelular;
         private System.Windows.Forms.TextBox txbTelefonoParticular;
         private System.Windows.Forms.TextBox txbTelefonoLaboral;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.ComboBox cmbProvincia;
     }
 }
