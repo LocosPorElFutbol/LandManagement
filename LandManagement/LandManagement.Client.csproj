@@ -469,6 +469,9 @@
       <LastGenOutput>ResourceImages.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Utilidades\UserControls\UserControlDatosPropiedad.resx">
+      <DependentUpon>UserControlDatosPropiedad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Utilidades\UserControls\UserControlOperaciones.resx">
       <DependentUpon>UserControlOperaciones.cs</DependentUpon>
     </EmbeddedResource>

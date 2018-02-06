@@ -10,6 +10,7 @@ using log4net;
 using LandManagement.Entities;
 using LandManagement.Business;
 using LandManagement.Utilidades;
+using LandManagement.Utilidades.UserControls;
 
 namespace LandManagement
 {
@@ -24,6 +25,7 @@ namespace LandManagement
         private Form formPadre;
         ValidarControles validarControles;
         private ErrorProvider errorProvider1 = new ErrorProvider();
+        private UserControlDatosPropiedad userControlDatosPropiedad = null;
 
         public frmTasacion()
         {
@@ -42,22 +44,22 @@ namespace LandManagement
 
             btnGuardar.Click -= new EventHandler(btnGuardar_Click);
             btnGuardar.Click += new EventHandler(btnGuardarActualiza_Click);
-
         }
 
         private void frmTasacion_Load(object sender, EventArgs e)
         {
+            //Cargo user control datos propiedad
+            userControlDatosPropiedad = new UserControlDatosPropiedad();
+            userControlDatosPropiedad.Location = new Point(3, 36);
+            pnlControles.Controls.Add(userControlDatosPropiedad);
+
             pnlControles.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.gbxDetalleDireccion.Enabled = false;
             listasDeElementos = new ListasDeElementos();
             this.CargarCombos();
 
             cmbCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
             cmbCliente.AutoCompleteSource = AutoCompleteSource.ListItems;
-
-            cmbDireccion.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbDireccion.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             if (this.operacion != null)
                 CargoFormulario();
@@ -89,7 +91,6 @@ namespace LandManagement
                     log.Error(ex.InnerException.Message);
                 MessageBox.Show("Error al guardar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void btnGuardarActualiza_Click(object sender, EventArgs e)
@@ -104,7 +105,6 @@ namespace LandManagement
                     GuardaObjeto();
 
                     MensajeOk();
-                    //((frmBase)formPadre).CargarGrillaOperaciones();
                     this.Close();
 
                     Cursor.Current = Cursors.Default;
@@ -130,7 +130,7 @@ namespace LandManagement
             this.operacion.ope_fecha = dtpFecha.Value;
 
             //Asigno id de la propiedad a la operacion
-            this.operacion.pro_id = ((tbpropiedad)cmbDireccion.SelectedItem).pro_id;
+            this.operacion.pro_id = userControlDatosPropiedad.GetPropiedadSeleccionada().pro_id;
 
             //Asigno id de usuario a la operacion
             this.operacion.usu_id = Utilidades.VariablesDeSesion.UsuarioLogueado.usu_id;
@@ -146,13 +146,6 @@ namespace LandManagement
 
         private void CargoDatosOperacionTasacion()
         {
-            //LINEAS A ELIMINAR
-            //this.operacion.tbtasacion.tas_nombre = "BLANCO";
-            //this.operacion.tbtasacion.tas_apellido = "BLANCO";
-            //insert into tbsystipocliente(stc_codigo,stc_descripcion)
-            //values('TASADO','Cliente tasado');
-            //LINEAS A ELIMINAR
-            
             this.operacion.tbtasacion.tas_tasacion = Convert.ToDouble(txbTasacion.Text);
             this.operacion.tbtasacion.tas_observaciones = txbObservaciones.Text;
         }
@@ -179,63 +172,18 @@ namespace LandManagement
                 operacionBusiness.Create(this.operacion);
         }
 
-        #region Carga de Combos Piso, Depto, Direcciones y clientes
+        #region Carga de Combo clientes
 
         private void CargarCombos()
         {
             this.SetearDisplayValue();
-            this.CargarTipoPropiedad();
-            this.CargarPiso();
-            this.CargarDepto();
-            this.CargarDirecciones();
             this.CargarClientes();
         }
 
         private void SetearDisplayValue()
         {
-            cmbTipoPropiedad.ValueMember = "tip_id";
-            cmbTipoPropiedad.DisplayMember = "tip_descripcion";
-
-            cmbPiso.ValueMember = ComboBoxItem.ValueMember;
-            cmbPiso.DisplayMember = ComboBoxItem.DisplayMember;
-
-            cmbDepto.ValueMember = ComboBoxItem.ValueMember;
-            cmbDepto.DisplayMember = ComboBoxItem.DisplayMember;
-
-            cmbDireccion.ValueMember = "pro_id";
-            cmbDireccion.DisplayMember = "pro_direccion";
-
             cmbCliente.ValueMember = "cli_id";
             cmbCliente.DisplayMember = "cli_nombre_completo";
-        }
-
-        private void CargarTipoPropiedad()
-        {
-            TipoPropiedadBusiness tipoPropiedadBusiness = new TipoPropiedadBusiness();
-            List<tbtipopropiedad> listaTipoPropiedades = (List<tbtipopropiedad>)tipoPropiedadBusiness.GetList();
-
-            foreach (var obj in listaTipoPropiedades)
-                cmbTipoPropiedad.Items.Add(obj);
-        }
-
-        private void CargarPiso()
-        {
-            this.CargarCombo(listasDeElementos.GetListaPiso(), cmbPiso);
-        }
-
-        private void CargarDepto()
-        {
-            this.CargarCombo(listasDeElementos.GetListaDepto(), cmbDepto);
-        }
-
-        private void CargarDirecciones()
-        {
-            PropiedadBusiness propiedadBusiness = new PropiedadBusiness();
-            List<tbpropiedad> listaDirecciones = (List<tbpropiedad>)propiedadBusiness.GetListDirecciones();
-
-            if (listaDirecciones.Count != 0)
-                foreach (var obj in listaDirecciones)
-                    cmbDireccion.Items.Add(obj);
         }
 
         private void CargarClientes()
@@ -249,33 +197,6 @@ namespace LandManagement
                     cmbCliente.Items.Add(obj);
         }
 
-        private void CargarCombo(List<ComboBoxItem> lista, ComboBox combo)
-        {
-            foreach (var obj in lista)
-                combo.Items.Add(obj);
-        }
-
-        #endregion
-
-        #region Cargo controles de dirección seleccionada
-        private void cmbDireccion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CargarControlesPropiedad((tbpropiedad)cmbDireccion.SelectedItem);
-        }
-
-        private void CargarControlesPropiedad(tbpropiedad p)
-        {
-            cmbTipoPropiedad.Text = p.tbtipopropiedad.tip_descripcion;
-            txbCalle.Text = p.pro_calle;
-            txbNumero.Text = p.pro_numero.ToString();
-            if (p.pro_piso == 0)
-                cmbPiso.Text = "PB";
-            else
-                cmbPiso.Text = p.pro_piso.ToString();
-            cmbDepto.Text = p.pro_departamento;
-            txbLocalidad.Text = p.pro_localidad;
-            txbCodigoPostal.Text = p.pro_codigo_postal;
-        }
         #endregion
 
         #region Cargo controles de cliente seleccionado
@@ -305,57 +226,31 @@ namespace LandManagement
         }
 
         /// <summary>
-        /// Carga el combo de direcciones, tener en cuenta que tambien carga los propietarios. Ya que, al realizar la seleccion
-        /// del item, se dispara el itemChange del combo y se cargan automaticamente.
+        /// Se envia solo el id de la propiedad para que se carguen los controles correspondientes
+        /// en el user control
         /// </summary>
         private void CargarComboDireccion()
         {
-            cmbDireccion.Enabled = false;
-            tbpropiedad propiedadSeleccionada = null;
-            foreach (tbpropiedad obj in cmbDireccion.Items)
-            {
-                if (obj.pro_id == this.operacion.pro_id)
-                {
-                    propiedadSeleccionada = obj;
-                    break;
-                }
-            }
-            cmbDireccion.SelectedItem = propiedadSeleccionada;
+            userControlDatosPropiedad.SeleccionarPropiedad(this.operacion.pro_id);
         }
 
-
         /// <summary>
-        /// Cargo el combo del cliente mediante el id (que al mismo tiempo obtengo de tbclienteoperacion).
-        /// Es importante aclarar que solamente se tomara un cliente, ya que la operación de tasación 
-        /// involucra unicamente a un solo cliente.
+        /// Selecciono el cliente correspondiente del combo de clientes.
         /// </summary>
         private void CargarComboCliente()
         {
             gbxCliente.Enabled = false;
-            tbclienteoperacion clienteOperacion = null;
-            tbcliente clienteSeleccionado = null;
-
-            //Busco id del cliente en la operación
-            foreach (tbcliente obj in cmbCliente.Items)
-            {
-                clienteOperacion =
-                    this.operacion.tbclienteoperacion.Where(x => x.cli_id == obj.cli_id).FirstOrDefault();
-
-                if (clienteOperacion != null)
-                {
-                    ClienteBusiness clienteBusiness = new ClienteBusiness();
-                    tbcliente cliente = clienteBusiness.GetElement(new tbcliente() { cli_id = clienteOperacion.cli_id }) as tbcliente;
-                    cmbDireccion.SelectedItem = cliente;
-                    break;
-                }
-            }
+            tbclienteoperacion clienteOperacion = this.operacion.tbclienteoperacion.FirstOrDefault();
 
             //Con el id del cliente obtengo el objeto para posteriormente setearlo
             foreach (tbcliente obj in cmbCliente.Items)
+            {
                 if (obj.cli_id == clienteOperacion.cli_id)
-                    clienteSeleccionado = obj;
-
-            cmbCliente.SelectedItem = clienteSeleccionado;
+                {
+                    cmbCliente.SelectedItem = obj;
+                    break;
+                }
+            }
         }
         #endregion
 
@@ -400,6 +295,13 @@ namespace LandManagement
 
             errorProvider1.SetError(control, error);
         }
+
+        private void ValidarEnteros(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
+        }
+
         #endregion
+
     }
 }

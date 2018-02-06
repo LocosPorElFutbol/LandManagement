@@ -151,7 +151,8 @@ namespace LandManagement.Business
                     dom_numero = datosDomicilio.dom_numero,
                     dom_piso = datosDomicilio.dom_piso,
                     tip_id = datosDomicilio.tip_id,
-                    dom_domicilio_importado = datosDomicilio.dom_domicilio_importado //dom importado
+                    dom_domicilio_importado = datosDomicilio.dom_domicilio_importado, //dom importado
+                    prv_id = datosDomicilio.prv_id
                 };
                 
                 domicilioBusiness.Create(domicilio);

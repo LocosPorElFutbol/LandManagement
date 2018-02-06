@@ -163,6 +163,13 @@ namespace LandManagement
                 txbLocalidad.Text = domicilioActual.dom_localidad;
                 txbCodigoPostal.Text = domicilioActual.dom_codigo_postal;
 
+                //Cargo provincia de la propiedad
+                ProvinciaBusiness provinciaBusiness = new ProvinciaBusiness();
+                tbprovincia provincia =
+                    provinciaBusiness.GetElement(new tbprovincia() { prv_id = domicilioActual.prv_id }) as tbprovincia;
+                cmbProvincia.Text = provincia.prv_descripcion;
+
+
                 //Cargo domicilio importado
                 txbDomicilioImportado.Text = domicilioActual.dom_domicilio_importado;
             }
@@ -286,6 +293,9 @@ namespace LandManagement
 
                 //Guardo siempre el domicilio importado, sino se pierde
                 domicilio.dom_domicilio_importado = txbDomicilioImportado.Text;
+
+                //Cargo provincia al domicilio
+                domicilio.prv_id = ((tbprovincia)cmbProvincia.SelectedItem).prv_id;
                 
                 this.cliente.tbdomicilio.Add(domicilio);
             }
@@ -511,6 +521,20 @@ namespace LandManagement
 
         #region CARGA DE COMBOS
 
+        private void CargarCombos()
+        {
+            this.SetearDisplayValueCombos();
+            this.CargarTipoFamiliar();
+            this.CargarTipoDocumento();
+            this.CargarEstadoCivil();
+            this.CargarSexo();
+            this.CargarPiso();
+            this.CargarDepto();
+            this.CargarTitulo();
+            this.CargarProvincias();
+            SetearIndiceCombo();
+        }
+
         private void SetearDisplayValueCombos()
         {
             cmbTipoFamiliar.DisplayMember = "tif_descripcion";
@@ -534,22 +558,8 @@ namespace LandManagement
             cmbTitulo.DisplayMember = ComboBoxItem.DisplayMember;
             cmbTitulo.ValueMember = ComboBoxItem.ValueMember;
 
-            cmbProvincia.DisplayMember = ComboBoxItem.DisplayMember;
-            cmbProvincia.ValueMember = ComboBoxItem.ValueMember;
-        }
-
-        private void CargarCombos()
-        {
-            this.SetearDisplayValueCombos();
-            this.CargarTipoFamiliar();
-            this.CargarTipoDocumento();
-            this.CargarEstadoCivil();
-            this.CargarSexo();
-            this.CargarPiso();
-            this.CargarDepto();
-            this.CargarTitulo();
-            this.CargarProvincias();
-            SetearIndiceCombo();
+            cmbProvincia.ValueMember = "prv_id";
+            cmbProvincia.DisplayMember = "prv_descripcion";
         }
 
         private void SetearIndiceCombo()
@@ -561,6 +571,7 @@ namespace LandManagement
             cmbPiso.SelectedIndex = 0;
             cmbDepto.SelectedIndex = 0;
             cmbTitulo.SelectedIndex = 0;
+            cmbProvincia.SelectedIndex = 3;
         }
 
         private void CargarTipoFamiliar()
@@ -604,7 +615,11 @@ namespace LandManagement
 
         private void CargarProvincias()
         {
-            this.CargarCombo(listasDeElementos.GetListaProvincias(), cmbProvincia);
+            ProvinciaBusiness provinciaBusiness = new ProvinciaBusiness();
+            List<tbprovincia> listaProvincias = (List<tbprovincia>)provinciaBusiness.GetList();
+
+            foreach (var obj in listaProvincias)
+                cmbProvincia.Items.Add(obj);
         }
 
         private void CargarCombo(List<ComboBoxItem> lista, ComboBox combo)
