@@ -42,6 +42,23 @@ namespace LandManagement.Entities
         }
         private int _tip_id;
     
+        public virtual int prv_id
+        {
+            get { return _prv_id; }
+            set
+            {
+                if (_prv_id != value)
+                {
+                    if (tbprovincia != null && tbprovincia.prv_id != value)
+                    {
+                        tbprovincia = null;
+                    }
+                    _prv_id = value;
+                }
+            }
+        }
+        private int _prv_id;
+    
         public virtual string pro_calle
         {
             get;
@@ -119,6 +136,21 @@ namespace LandManagement.Entities
             }
         }
         private ICollection<tboperaciones> _tboperaciones;
+    
+        public virtual tbprovincia tbprovincia
+        {
+            get { return _tbprovincia; }
+            set
+            {
+                if (!ReferenceEquals(_tbprovincia, value))
+                {
+                    var previousValue = _tbprovincia;
+                    _tbprovincia = value;
+                    Fixuptbprovincia(previousValue);
+                }
+            }
+        }
+        private tbprovincia _tbprovincia;
     
         public virtual tbtipopropiedad tbtipopropiedad
         {
@@ -202,6 +234,26 @@ namespace LandManagement.Entities
         #endregion
 
         #region Association Fixup
+    
+        private void Fixuptbprovincia(tbprovincia previousValue)
+        {
+            if (previousValue != null && previousValue.tbpropiedad.Contains(this))
+            {
+                previousValue.tbpropiedad.Remove(this);
+            }
+    
+            if (tbprovincia != null)
+            {
+                if (!tbprovincia.tbpropiedad.Contains(this))
+                {
+                    tbprovincia.tbpropiedad.Add(this);
+                }
+                if (prv_id != tbprovincia.prv_id)
+                {
+                    prv_id = tbprovincia.prv_id;
+                }
+            }
+        }
     
         private void Fixuptbtipopropiedad(tbtipopropiedad previousValue)
         {

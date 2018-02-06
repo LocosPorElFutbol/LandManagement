@@ -109,6 +109,12 @@ namespace LandManagement.Repository
         }
         private ObjectSet<tbpropiedad> _tbpropiedad;
     
+        public ObjectSet<tbprovincia> tbprovincia
+        {
+            get { return _tbprovincia  ?? (_tbprovincia = CreateObjectSet<tbprovincia>("tbprovincia")); }
+        }
+        private ObjectSet<tbprovincia> _tbprovincia;
+    
         public ObjectSet<tbreservaalquiler> tbreservaalquiler
         {
             get { return _tbreservaalquiler  ?? (_tbreservaalquiler = CreateObjectSet<tbreservaalquiler>("tbreservaalquiler")); }
@@ -180,6 +186,12 @@ namespace LandManagement.Repository
             get { return _tbventa  ?? (_tbventa = CreateObjectSet<tbventa>("tbventa")); }
         }
         private ObjectSet<tbventa> _tbventa;
+    
+        public ObjectSet<tbversion> tbversion
+        {
+            get { return _tbversion  ?? (_tbversion = CreateObjectSet<tbversion>("tbversion")); }
+        }
+        private ObjectSet<tbversion> _tbversion;
 
         #endregion
 

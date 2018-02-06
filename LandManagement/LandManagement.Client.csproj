@@ -333,6 +333,12 @@
     <Compile Include="Utilidades\Formularios.cs" />
     <Compile Include="Utilidades\ListasDeElementos.cs" />
     <Compile Include="Utilidades\TipoOperador.cs" />
+    <Compile Include="Utilidades\UserControls\UserControlDatosPropiedad.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Utilidades\UserControls\UserControlDatosPropiedad.Designer.cs">
+      <DependentUpon>UserControlDatosPropiedad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilidades\UserControls\UserControlOperaciones.cs">
       <SubType>UserControl</SubType>
     </Compile>

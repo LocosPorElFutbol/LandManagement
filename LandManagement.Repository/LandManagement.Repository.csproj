@@ -67,6 +67,7 @@
     <Compile Include="OperacionRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropiedadRepository.cs" />
+    <Compile Include="ProvinciaRepository.cs" />
     <Compile Include="ReservaAlquilerRepository.cs" />
     <Compile Include="ReservaVentaRepository.cs" />
     <Compile Include="ServiciosRepository.cs" />

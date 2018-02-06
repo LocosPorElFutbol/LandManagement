@@ -148,6 +148,7 @@ namespace LandManagement
             else
                 this.propiedad.pro_departamento = string.Empty;
             this.propiedad.pro_localidad = txbLocalidad.Text;
+            this.propiedad.prv_id = ((tbprovincia)cmbProvincia.SelectedItem).prv_id;
             this.propiedad.pro_codigo_postal = txbCodigoPostal.Text;
             this.propiedad.pro_caracteristica = txbCaracteristicas.Text;
         }
@@ -175,6 +176,12 @@ namespace LandManagement
             txbLocalidad.Text = p.pro_localidad;
             txbCodigoPostal.Text = p.pro_codigo_postal;
             txbCaracteristicas.Text = p.pro_caracteristica;
+
+            //Cargo provincia de la propiedad
+            ProvinciaBusiness provinciaBusiness = new ProvinciaBusiness();
+            tbprovincia provincia =
+                provinciaBusiness.GetElement(new tbprovincia() { prv_id = p.prv_id }) as tbprovincia;
+            cmbProvincia.Text = provincia.prv_descripcion;
 
             CargarGrillaClientes();
             CargarGrillaOperaciones();
@@ -305,8 +312,8 @@ namespace LandManagement
             cmbDepartamento.ValueMember = ComboBoxItem.ValueMember;
             cmbDepartamento.DisplayMember = ComboBoxItem.DisplayMember;
 
-            cmbProvincia.ValueMember = ComboBoxItem.ValueMember;
-            cmbProvincia.DisplayMember = ComboBoxItem.DisplayMember;
+            cmbProvincia.ValueMember = "prv_id";
+            cmbProvincia.DisplayMember = "prv_descripcion";
         }
 
         private void CargarTipoPropiedad()
@@ -330,7 +337,13 @@ namespace LandManagement
 
         private void CargarProvincias()
         {
-            this.CargarCombo(listasDeElementos.GetListaProvincias(), cmbProvincia);
+            ProvinciaBusiness provinciaBusiness = new ProvinciaBusiness();
+            List<tbprovincia> listaProvincias = (List<tbprovincia>)provinciaBusiness.GetList();
+
+            foreach (var obj in listaProvincias)
+                cmbProvincia.Items.Add(obj);
+
+            cmbProvincia.SelectedIndex = 3;
         }
 
         private void CargarCombo(List<ComboBoxItem> lista, ComboBox combo)

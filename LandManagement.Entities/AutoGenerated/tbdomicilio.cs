@@ -59,6 +59,23 @@ namespace LandManagement.Entities
         }
         private int _tip_id;
     
+        public virtual int prv_id
+        {
+            get { return _prv_id; }
+            set
+            {
+                if (_prv_id != value)
+                {
+                    if (tbprovincia != null && tbprovincia.prv_id != value)
+                    {
+                        tbprovincia = null;
+                    }
+                    _prv_id = value;
+                }
+            }
+        }
+        private int _prv_id;
+    
         public virtual string dom_calle
         {
             get;
@@ -126,6 +143,21 @@ namespace LandManagement.Entities
         }
         private tbcliente _tbcliente;
     
+        public virtual tbprovincia tbprovincia
+        {
+            get { return _tbprovincia; }
+            set
+            {
+                if (!ReferenceEquals(_tbprovincia, value))
+                {
+                    var previousValue = _tbprovincia;
+                    _tbprovincia = value;
+                    Fixuptbprovincia(previousValue);
+                }
+            }
+        }
+        private tbprovincia _tbprovincia;
+    
         public virtual tbtipopropiedad tbtipopropiedad
         {
             get { return _tbtipopropiedad; }
@@ -161,6 +193,26 @@ namespace LandManagement.Entities
                 if (cli_id != tbcliente.cli_id)
                 {
                     cli_id = tbcliente.cli_id;
+                }
+            }
+        }
+    
+        private void Fixuptbprovincia(tbprovincia previousValue)
+        {
+            if (previousValue != null && previousValue.tbdomicilio.Contains(this))
+            {
+                previousValue.tbdomicilio.Remove(this);
+            }
+    
+            if (tbprovincia != null)
+            {
+                if (!tbprovincia.tbdomicilio.Contains(this))
+                {
+                    tbprovincia.tbdomicilio.Add(this);
+                }
+                if (prv_id != tbprovincia.prv_id)
+                {
+                    prv_id = tbprovincia.prv_id;
                 }
             }
         }
