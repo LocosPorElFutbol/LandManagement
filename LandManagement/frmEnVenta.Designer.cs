@@ -46,7 +46,6 @@
             this.gbxDetalleEnVenta = new System.Windows.Forms.GroupBox();
             this.rdbVigenteNo = new System.Windows.Forms.RadioButton();
             this.rdbVigenteSi = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.cbxTelefono = new System.Windows.Forms.CheckBox();
             this.cbxGas = new System.Windows.Forms.CheckBox();
@@ -57,23 +56,6 @@
             this.cbxReglamento = new System.Windows.Forms.CheckBox();
             this.cbxPlanos = new System.Windows.Forms.CheckBox();
             this.cbxTituloPropiedad = new System.Windows.Forms.CheckBox();
-            this.gbxDetallePropiedad = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cmbTipoPropiedad = new System.Windows.Forms.ComboBox();
-            this.txbCalle = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.cmbDepto = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.cmbPiso = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txbCodigoPostal = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txbLocalidad = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txbNumero = new System.Windows.Forms.TextBox();
-            this.cmbDireccion = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnRemoveAutorizante = new System.Windows.Forms.Button();
             this.btnAgregarAutorizante = new System.Windows.Forms.Button();
@@ -83,9 +65,7 @@
             this.groupBox1.SuspendLayout();
             this.pnlControles.SuspendLayout();
             this.gbxDetalleEnVenta.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.gbxDetallePropiedad.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAutorizantes)).BeginInit();
             this.SuspendLayout();
@@ -186,7 +166,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(573, 569);
+            this.btnGuardar.Location = new System.Drawing.Point(573, 591);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 24;
@@ -197,7 +177,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(654, 569);
+            this.btnCancelar.Location = new System.Drawing.Point(654, 591);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 25;
@@ -213,7 +193,7 @@
             this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(753, 623);
+            this.groupBox1.Size = new System.Drawing.Size(1096, 639);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Puesta en Venta de una Propiedad";
@@ -223,16 +203,16 @@
             this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.groupBox6);
             this.pnlControles.Controls.Add(this.label2);
             this.pnlControles.Controls.Add(this.btnCancelar);
             this.pnlControles.Controls.Add(this.btnGuardar);
             this.pnlControles.Controls.Add(this.dtpFechaEnVenta);
             this.pnlControles.Controls.Add(this.gbxDetalleEnVenta);
-            this.pnlControles.Controls.Add(this.groupBox2);
             this.pnlControles.Controls.Add(this.groupBox4);
             this.pnlControles.Location = new System.Drawing.Point(6, 19);
             this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(741, 598);
+            this.pnlControles.Size = new System.Drawing.Size(1084, 620);
             this.pnlControles.TabIndex = 26;
             // 
             // gbxDetalleEnVenta
@@ -248,9 +228,9 @@
             this.gbxDetalleEnVenta.Controls.Add(this.label9);
             this.gbxDetalleEnVenta.Controls.Add(this.dtpFechaVencimiento);
             this.gbxDetalleEnVenta.Controls.Add(this.label6);
-            this.gbxDetalleEnVenta.Location = new System.Drawing.Point(377, 284);
+            this.gbxDetalleEnVenta.Location = new System.Drawing.Point(399, 292);
             this.gbxDetalleEnVenta.Name = "gbxDetalleEnVenta";
-            this.gbxDetalleEnVenta.Size = new System.Drawing.Size(359, 279);
+            this.gbxDetalleEnVenta.Size = new System.Drawing.Size(359, 293);
             this.gbxDetalleEnVenta.TabIndex = 15;
             this.gbxDetalleEnVenta.TabStop = false;
             this.gbxDetalleEnVenta.Text = "Detalle";
@@ -277,19 +257,6 @@
             this.rdbVigenteSi.Text = "Si";
             this.rdbVigenteSi.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.groupBox6);
-            this.groupBox2.Controls.Add(this.gbxDetallePropiedad);
-            this.groupBox2.Controls.Add(this.cmbDireccion);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(3, 39);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(368, 322);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Datos de la Propiedad";
-            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.cbxTelefono);
@@ -301,9 +268,9 @@
             this.groupBox6.Controls.Add(this.cbxReglamento);
             this.groupBox6.Controls.Add(this.cbxPlanos);
             this.groupBox6.Controls.Add(this.cbxTituloPropiedad);
-            this.groupBox6.Location = new System.Drawing.Point(11, 201);
+            this.groupBox6.Location = new System.Drawing.Point(15, 269);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(351, 110);
+            this.groupBox6.Size = new System.Drawing.Size(378, 110);
             this.groupBox6.TabIndex = 12;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Datos Adicionales";
@@ -398,164 +365,6 @@
             this.cbxTituloPropiedad.Text = "Titulo de Propiedad";
             this.cbxTituloPropiedad.UseVisualStyleBackColor = true;
             // 
-            // gbxDetallePropiedad
-            // 
-            this.gbxDetallePropiedad.Controls.Add(this.label5);
-            this.gbxDetallePropiedad.Controls.Add(this.cmbTipoPropiedad);
-            this.gbxDetallePropiedad.Controls.Add(this.txbCalle);
-            this.gbxDetallePropiedad.Controls.Add(this.label1);
-            this.gbxDetallePropiedad.Controls.Add(this.label11);
-            this.gbxDetallePropiedad.Controls.Add(this.cmbDepto);
-            this.gbxDetallePropiedad.Controls.Add(this.label12);
-            this.gbxDetallePropiedad.Controls.Add(this.cmbPiso);
-            this.gbxDetallePropiedad.Controls.Add(this.label13);
-            this.gbxDetallePropiedad.Controls.Add(this.txbCodigoPostal);
-            this.gbxDetallePropiedad.Controls.Add(this.label14);
-            this.gbxDetallePropiedad.Controls.Add(this.txbLocalidad);
-            this.gbxDetallePropiedad.Controls.Add(this.label15);
-            this.gbxDetallePropiedad.Controls.Add(this.txbNumero);
-            this.gbxDetallePropiedad.Location = new System.Drawing.Point(11, 58);
-            this.gbxDetallePropiedad.Name = "gbxDetallePropiedad";
-            this.gbxDetallePropiedad.Size = new System.Drawing.Size(351, 137);
-            this.gbxDetallePropiedad.TabIndex = 10;
-            this.gbxDetallePropiedad.TabStop = false;
-            this.gbxDetallePropiedad.Text = "Detalle";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(30, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(28, 13);
-            this.label5.TabIndex = 45;
-            this.label5.Text = "Tipo";
-            // 
-            // cmbTipoPropiedad
-            // 
-            this.cmbTipoPropiedad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipoPropiedad.FormattingEnabled = true;
-            this.cmbTipoPropiedad.Location = new System.Drawing.Point(65, 24);
-            this.cmbTipoPropiedad.Name = "cmbTipoPropiedad";
-            this.cmbTipoPropiedad.Size = new System.Drawing.Size(154, 21);
-            this.cmbTipoPropiedad.TabIndex = 44;
-            // 
-            // txbCalle
-            // 
-            this.txbCalle.Location = new System.Drawing.Point(65, 51);
-            this.txbCalle.Name = "txbCalle";
-            this.txbCalle.Size = new System.Drawing.Size(154, 20);
-            this.txbCalle.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 54);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Calle";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(32, 81);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(27, 13);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Piso";
-            // 
-            // cmbDepto
-            // 
-            this.cmbDepto.FormattingEnabled = true;
-            this.cmbDepto.Location = new System.Drawing.Point(275, 77);
-            this.cmbDepto.Name = "cmbDepto";
-            this.cmbDepto.Size = new System.Drawing.Size(59, 21);
-            this.cmbDepto.TabIndex = 5;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 108);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(53, 13);
-            this.label12.TabIndex = 2;
-            this.label12.Text = "Localidad";
-            // 
-            // cmbPiso
-            // 
-            this.cmbPiso.FormattingEnabled = true;
-            this.cmbPiso.Location = new System.Drawing.Point(65, 77);
-            this.cmbPiso.Name = "cmbPiso";
-            this.cmbPiso.Size = new System.Drawing.Size(51, 21);
-            this.cmbPiso.TabIndex = 4;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(225, 54);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(44, 13);
-            this.label13.TabIndex = 3;
-            this.label13.Text = "Número";
-            // 
-            // txbCodigoPostal
-            // 
-            this.txbCodigoPostal.Location = new System.Drawing.Point(275, 104);
-            this.txbCodigoPostal.Name = "txbCodigoPostal";
-            this.txbCodigoPostal.Size = new System.Drawing.Size(59, 20);
-            this.txbCodigoPostal.TabIndex = 7;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(233, 80);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(36, 13);
-            this.label14.TabIndex = 4;
-            this.label14.Text = "Depto";
-            // 
-            // txbLocalidad
-            // 
-            this.txbLocalidad.Location = new System.Drawing.Point(65, 104);
-            this.txbLocalidad.Name = "txbLocalidad";
-            this.txbLocalidad.Size = new System.Drawing.Size(145, 20);
-            this.txbLocalidad.TabIndex = 6;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(248, 108);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(21, 13);
-            this.label15.TabIndex = 5;
-            this.label15.Text = "CP";
-            // 
-            // txbNumero
-            // 
-            this.txbNumero.Location = new System.Drawing.Point(275, 51);
-            this.txbNumero.Name = "txbNumero";
-            this.txbNumero.Size = new System.Drawing.Size(59, 20);
-            this.txbNumero.TabIndex = 3;
-            // 
-            // cmbDireccion
-            // 
-            this.cmbDireccion.FormattingEnabled = true;
-            this.cmbDireccion.Location = new System.Drawing.Point(76, 24);
-            this.cmbDireccion.Name = "cmbDireccion";
-            this.cmbDireccion.Size = new System.Drawing.Size(154, 21);
-            this.cmbDireccion.TabIndex = 9;
-            this.cmbDireccion.SelectedIndexChanged += new System.EventHandler(this.cmbDireccion_SelectedIndexChanged);
-            this.cmbDireccion.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 27);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Dirección";
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btnRemoveAutorizante);
@@ -563,9 +372,9 @@
             this.groupBox4.Controls.Add(this.cmbCliente);
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.dgvAutorizantes);
-            this.groupBox4.Location = new System.Drawing.Point(377, 39);
+            this.groupBox4.Location = new System.Drawing.Point(399, 41);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(359, 239);
+            this.groupBox4.Size = new System.Drawing.Size(359, 245);
             this.groupBox4.TabIndex = 14;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Autorizantes";
@@ -616,7 +425,7 @@
             this.dgvAutorizantes.Name = "dgvAutorizantes";
             this.dgvAutorizantes.ReadOnly = true;
             this.dgvAutorizantes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAutorizantes.Size = new System.Drawing.Size(313, 175);
+            this.dgvAutorizantes.Size = new System.Drawing.Size(313, 181);
             this.dgvAutorizantes.TabIndex = 18;
             // 
             // frmEnVenta
@@ -624,7 +433,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(777, 647);
+            this.ClientSize = new System.Drawing.Size(1120, 663);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmEnVenta";
             this.Text = "frmEnVenta";
@@ -634,12 +443,8 @@
             this.pnlControles.PerformLayout();
             this.gbxDetalleEnVenta.ResumeLayout(false);
             this.gbxDetalleEnVenta.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            this.gbxDetallePropiedad.ResumeLayout(false);
-            this.gbxDetallePropiedad.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAutorizantes)).EndInit();
@@ -663,25 +468,9 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ComboBox cmbDepto;
-        private System.Windows.Forms.ComboBox cmbPiso;
-        private System.Windows.Forms.TextBox txbCodigoPostal;
-        private System.Windows.Forms.TextBox txbLocalidad;
-        private System.Windows.Forms.TextBox txbNumero;
-        private System.Windows.Forms.TextBox txbCalle;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox gbxDetalleEnVenta;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DataGridView dgvAutorizantes;
-        private System.Windows.Forms.ComboBox cmbDireccion;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox gbxDetallePropiedad;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.CheckBox cbxTelefono;
         private System.Windows.Forms.CheckBox cbxGas;
@@ -695,8 +484,6 @@
         private System.Windows.Forms.Button btnAgregarAutorizante;
         private System.Windows.Forms.ComboBox cmbCliente;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cmbTipoPropiedad;
         private System.Windows.Forms.Button btnRemoveAutorizante;
         private System.Windows.Forms.RadioButton rdbVigenteNo;
         private System.Windows.Forms.RadioButton rdbVigenteSi;
