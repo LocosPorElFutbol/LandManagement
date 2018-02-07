@@ -47,39 +47,19 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pnlControles = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnRemoveComprador = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.cmbCliente = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dgvComprador = new System.Windows.Forms.DataGridView();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.gbxDetallePropiedad = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.cmbTipoPropiedad = new System.Windows.Forms.ComboBox();
-            this.txbCodigoPostal = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txbLocalidad = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.cmbDepto = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.cmbPiso = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txbNumero = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txbCalle = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.cmbDireccion = new System.Windows.Forms.ComboBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.pnlControles.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComprador)).BeginInit();
-            this.groupBox6.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.gbxDetallePropiedad.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -200,7 +180,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(633, 448);
+            this.btnGuardar.Location = new System.Drawing.Point(633, 490);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 21;
@@ -211,7 +191,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(714, 448);
+            this.btnCancelar.Location = new System.Drawing.Point(714, 490);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 22;
@@ -227,7 +207,7 @@
             this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(812, 501);
+            this.groupBox1.Size = new System.Drawing.Size(812, 541);
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Venta de una Propiedad";
@@ -242,10 +222,9 @@
             this.pnlControles.Controls.Add(this.btnGuardar);
             this.pnlControles.Controls.Add(this.groupBox6);
             this.pnlControles.Controls.Add(this.dtpFecha);
-            this.pnlControles.Controls.Add(this.groupBox2);
             this.pnlControles.Location = new System.Drawing.Point(6, 19);
             this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(800, 476);
+            this.pnlControles.Size = new System.Drawing.Size(800, 516);
             this.pnlControles.TabIndex = 29;
             // 
             // label4
@@ -257,6 +236,30 @@
             this.label4.TabIndex = 27;
             this.label4.Text = "Fecha";
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.txbPrecio);
+            this.groupBox6.Controls.Add(this.label12);
+            this.groupBox6.Controls.Add(this.groupBox5);
+            this.groupBox6.Controls.Add(this.label13);
+            this.groupBox6.Controls.Add(this.dtpFechaEscritura);
+            this.groupBox6.Controls.Add(this.txbCobrado);
+            this.groupBox6.Controls.Add(this.label3);
+            this.groupBox6.Controls.Add(this.label9);
+            this.groupBox6.Controls.Add(this.label2);
+            this.groupBox6.Controls.Add(this.label8);
+            this.groupBox6.Controls.Add(this.dtpFechaBoleto);
+            this.groupBox6.Controls.Add(this.txbEscribania);
+            this.groupBox6.Controls.Add(this.label6);
+            this.groupBox6.Controls.Add(this.txbEscribano);
+            this.groupBox6.Controls.Add(this.txbPresupuesto);
+            this.groupBox6.Location = new System.Drawing.Point(388, 31);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(401, 453);
+            this.groupBox6.TabIndex = 26;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Detalle de Venta";
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.btnRemoveComprador);
@@ -264,7 +267,7 @@
             this.groupBox5.Controls.Add(this.cmbCliente);
             this.groupBox5.Controls.Add(this.label5);
             this.groupBox5.Controls.Add(this.dgvComprador);
-            this.groupBox5.Location = new System.Drawing.Point(16, 207);
+            this.groupBox5.Location = new System.Drawing.Point(16, 232);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(379, 195);
             this.groupBox5.TabIndex = 25;
@@ -320,30 +323,6 @@
             this.dgvComprador.Size = new System.Drawing.Size(330, 139);
             this.dgvComprador.TabIndex = 12;
             // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.txbPrecio);
-            this.groupBox6.Controls.Add(this.label12);
-            this.groupBox6.Controls.Add(this.groupBox5);
-            this.groupBox6.Controls.Add(this.label13);
-            this.groupBox6.Controls.Add(this.dtpFechaEscritura);
-            this.groupBox6.Controls.Add(this.txbCobrado);
-            this.groupBox6.Controls.Add(this.label3);
-            this.groupBox6.Controls.Add(this.label9);
-            this.groupBox6.Controls.Add(this.label2);
-            this.groupBox6.Controls.Add(this.label8);
-            this.groupBox6.Controls.Add(this.dtpFechaBoleto);
-            this.groupBox6.Controls.Add(this.txbEscribania);
-            this.groupBox6.Controls.Add(this.label6);
-            this.groupBox6.Controls.Add(this.txbEscribano);
-            this.groupBox6.Controls.Add(this.txbPresupuesto);
-            this.groupBox6.Location = new System.Drawing.Point(388, 31);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(401, 411);
-            this.groupBox6.TabIndex = 26;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Detalle de Venta";
-            // 
             // dtpFecha
             // 
             this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -352,182 +331,12 @@
             this.dtpFecha.Size = new System.Drawing.Size(121, 20);
             this.dtpFecha.TabIndex = 28;
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.gbxDetallePropiedad);
-            this.groupBox2.Controls.Add(this.cmbDireccion);
-            this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Location = new System.Drawing.Point(3, 31);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(379, 196);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Datos de la Propiedad";
-            // 
-            // gbxDetallePropiedad
-            // 
-            this.gbxDetallePropiedad.Controls.Add(this.label10);
-            this.gbxDetallePropiedad.Controls.Add(this.cmbTipoPropiedad);
-            this.gbxDetallePropiedad.Controls.Add(this.txbCodigoPostal);
-            this.gbxDetallePropiedad.Controls.Add(this.label1);
-            this.gbxDetallePropiedad.Controls.Add(this.txbLocalidad);
-            this.gbxDetallePropiedad.Controls.Add(this.label14);
-            this.gbxDetallePropiedad.Controls.Add(this.cmbDepto);
-            this.gbxDetallePropiedad.Controls.Add(this.label15);
-            this.gbxDetallePropiedad.Controls.Add(this.cmbPiso);
-            this.gbxDetallePropiedad.Controls.Add(this.label16);
-            this.gbxDetallePropiedad.Controls.Add(this.txbNumero);
-            this.gbxDetallePropiedad.Controls.Add(this.label17);
-            this.gbxDetallePropiedad.Controls.Add(this.txbCalle);
-            this.gbxDetallePropiedad.Controls.Add(this.label18);
-            this.gbxDetallePropiedad.Location = new System.Drawing.Point(6, 52);
-            this.gbxDetallePropiedad.Name = "gbxDetallePropiedad";
-            this.gbxDetallePropiedad.Size = new System.Drawing.Size(363, 136);
-            this.gbxDetallePropiedad.TabIndex = 2;
-            this.gbxDetallePropiedad.TabStop = false;
-            this.gbxDetallePropiedad.Text = "Datos de la propiedad";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(30, 26);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(28, 13);
-            this.label10.TabIndex = 47;
-            this.label10.Text = "Tipo";
-            // 
-            // cmbTipoPropiedad
-            // 
-            this.cmbTipoPropiedad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipoPropiedad.FormattingEnabled = true;
-            this.cmbTipoPropiedad.Location = new System.Drawing.Point(65, 23);
-            this.cmbTipoPropiedad.Name = "cmbTipoPropiedad";
-            this.cmbTipoPropiedad.Size = new System.Drawing.Size(198, 21);
-            this.cmbTipoPropiedad.TabIndex = 46;
-            // 
-            // txbCodigoPostal
-            // 
-            this.txbCodigoPostal.Location = new System.Drawing.Point(288, 106);
-            this.txbCodigoPostal.Name = "txbCodigoPostal";
-            this.txbCodigoPostal.Size = new System.Drawing.Size(53, 20);
-            this.txbCodigoPostal.TabIndex = 10;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(261, 109);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(21, 13);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "CP";
-            // 
-            // txbLocalidad
-            // 
-            this.txbLocalidad.Location = new System.Drawing.Point(65, 105);
-            this.txbLocalidad.Name = "txbLocalidad";
-            this.txbLocalidad.Size = new System.Drawing.Size(129, 20);
-            this.txbLocalidad.TabIndex = 9;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 109);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(53, 13);
-            this.label14.TabIndex = 20;
-            this.label14.Text = "Localidad";
-            // 
-            // cmbDepto
-            // 
-            this.cmbDepto.FormattingEnabled = true;
-            this.cmbDepto.Location = new System.Drawing.Point(288, 79);
-            this.cmbDepto.Name = "cmbDepto";
-            this.cmbDepto.Size = new System.Drawing.Size(53, 21);
-            this.cmbDepto.TabIndex = 8;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(246, 82);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(36, 13);
-            this.label15.TabIndex = 18;
-            this.label15.Text = "Depto";
-            // 
-            // cmbPiso
-            // 
-            this.cmbPiso.FormattingEnabled = true;
-            this.cmbPiso.Location = new System.Drawing.Point(65, 78);
-            this.cmbPiso.Name = "cmbPiso";
-            this.cmbPiso.Size = new System.Drawing.Size(60, 21);
-            this.cmbPiso.TabIndex = 7;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(32, 86);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(27, 13);
-            this.label16.TabIndex = 16;
-            this.label16.Text = "Piso";
-            // 
-            // txbNumero
-            // 
-            this.txbNumero.Location = new System.Drawing.Point(288, 53);
-            this.txbNumero.Name = "txbNumero";
-            this.txbNumero.Size = new System.Drawing.Size(53, 20);
-            this.txbNumero.TabIndex = 6;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(238, 56);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(44, 13);
-            this.label17.TabIndex = 2;
-            this.label17.Text = "Número";
-            // 
-            // txbCalle
-            // 
-            this.txbCalle.Location = new System.Drawing.Point(65, 53);
-            this.txbCalle.Name = "txbCalle";
-            this.txbCalle.Size = new System.Drawing.Size(129, 20);
-            this.txbCalle.TabIndex = 5;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(29, 56);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(30, 13);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "Calle";
-            // 
-            // cmbDireccion
-            // 
-            this.cmbDireccion.FormattingEnabled = true;
-            this.cmbDireccion.Location = new System.Drawing.Point(71, 24);
-            this.cmbDireccion.Name = "cmbDireccion";
-            this.cmbDireccion.Size = new System.Drawing.Size(198, 21);
-            this.cmbDireccion.TabIndex = 3;
-            this.cmbDireccion.SelectedIndexChanged += new System.EventHandler(this.cmbDireccion_SelectedIndexChanged);
-            this.cmbDireccion.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(13, 28);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(52, 13);
-            this.label19.TabIndex = 0;
-            this.label19.Text = "Dirección";
-            // 
             // frmVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(836, 525);
+            this.ClientSize = new System.Drawing.Size(836, 565);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmVenta";
             this.Text = "frmVenta";
@@ -535,15 +344,11 @@
             this.groupBox1.ResumeLayout(false);
             this.pnlControles.ResumeLayout(false);
             this.pnlControles.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComprador)).EndInit();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.gbxDetallePropiedad.ResumeLayout(false);
-            this.gbxDetallePropiedad.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -567,22 +372,6 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox gbxDetallePropiedad;
-        private System.Windows.Forms.TextBox txbCodigoPostal;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txbLocalidad;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox cmbDepto;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox cmbPiso;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txbNumero;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txbCalle;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ComboBox cmbDireccion;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.DataGridView dgvComprador;
         private System.Windows.Forms.GroupBox groupBox6;
@@ -592,8 +381,6 @@
         private System.Windows.Forms.ComboBox cmbCliente;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnRemoveComprador;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox cmbTipoPropiedad;
         private System.Windows.Forms.Panel pnlControles;
     }
 }
