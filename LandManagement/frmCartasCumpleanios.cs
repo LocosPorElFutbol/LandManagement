@@ -195,8 +195,9 @@ namespace LandManagement
                     cartaEntity.Nombre = obj.cli_nombre;
                     cartaEntity.Apellido = obj.cli_apellido;
                     cartaEntity.Direccion = cartaEntityTemp.Direccion;
-                    cartaEntity.Localidad = cartaEntityTemp.Localidad;
                     cartaEntity.CodigoPostal = cartaEntityTemp.CodigoPostal;
+                    cartaEntity.Localidad = cartaEntityTemp.Localidad;
+                    cartaEntity.Provincia = cartaEntityTemp.Provincia;
                     cartaEntity.FechaCumpleanios = obj.cli_fecha_nacimiento;
                     cartaEntity.CuerpoCarta = txbCuerpoCarta.Lines;
 
@@ -243,6 +244,12 @@ namespace LandManagement
                 e.Direccion = direccion;
                 e.Localidad = domicilio.dom_localidad;
                 e.CodigoPostal = domicilio.dom_codigo_postal;
+
+                //Cargo provincia
+                ProvinciaBusiness provinciaBusiness = new ProvinciaBusiness();
+                tbprovincia provincia = 
+                    (tbprovincia)provinciaBusiness.GetElement(new tbprovincia(){prv_id = domicilio.prv_id});
+                e.Provincia = provincia.prv_descripcion;
             }
 
             return e;

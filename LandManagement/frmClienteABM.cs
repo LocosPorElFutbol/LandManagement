@@ -261,7 +261,7 @@ namespace LandManagement
             this.cliente.cli_imprime_carta = cbxImprimeCarta.Checked;
             this.cliente.cli_estado_actual = txbEstadoActual.Text;
 
-            CargaDomicilioAlCliente();
+            CargaDomicilioAlCliente(this.cliente);
             CargaFamiliaresAlCliente();
         }
 
@@ -277,7 +277,7 @@ namespace LandManagement
 
         #region Carga domicilio al Cliente
 
-        private void CargaDomicilioAlCliente()
+        private void CargaDomicilioAlCliente(tbcliente clienteAAsignarDomicilio)
         {
             try
             {
@@ -296,8 +296,8 @@ namespace LandManagement
 
                 //Cargo provincia al domicilio
                 domicilio.prv_id = ((tbprovincia)cmbProvincia.SelectedItem).prv_id;
-                
-                this.cliente.tbdomicilio.Add(domicilio);
+
+                clienteAAsignarDomicilio.tbdomicilio.Add(domicilio);
             }
             catch (Exception ex)
             {
@@ -317,6 +317,7 @@ namespace LandManagement
                                         "cli_id",
                                         "tif_id",
                                         "cli_parentezco",
+                                        "cli_titulo",
                                         "cli_nombre",
                                         "cli_apellido",
                                         "cli_fecha_nacimiento"
@@ -345,6 +346,7 @@ namespace LandManagement
             dataGridViewRow.Cells["cli_id"].Value = familiar.cli_id;
             dataGridViewRow.Cells["tif_id"].Value = familiar.tif_id;
             dataGridViewRow.Cells["cli_parentezco"].Value = familiar.cli_parentezco;
+            dataGridViewRow.Cells["cli_titulo"].Value = familiar.cli_titulo;
             dataGridViewRow.Cells["cli_nombre"].Value = familiar.cli_nombre;
             dataGridViewRow.Cells["cli_apellido"].Value = familiar.cli_apellido;
             dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = familiar.cli_fecha_nacimiento;
@@ -367,9 +369,6 @@ namespace LandManagement
         {
             tbcliente clienteFamiliar;
             
-            //No elimino lista de familiares porque elimina la asosciacion con los existentes
-            //this.cliente.tbcliente1.Clear();
-
             if (dgvFamiliares.Rows.Count > 0)
             {
                 foreach (DataGridViewRow row in dgvFamiliares.Rows)
@@ -378,38 +377,20 @@ namespace LandManagement
                     clienteFamiliar.cli_fecha = dtpFechaAlta.Value;
                     clienteFamiliar.cli_id = (int)row.Cells["cli_id"].Value;
                     clienteFamiliar.tif_id = (int)row.Cells["tif_id"].Value;
+                    clienteFamiliar.cli_titulo = (string)row.Cells["cli_titulo"].Value;
                     clienteFamiliar.cli_nombre = (string)row.Cells["cli_nombre"].Value;
+                    clienteFamiliar.cli_nombre_pila = (string)row.Cells["cli_nombre"].Value;
                     clienteFamiliar.cli_apellido = (string)row.Cells["cli_apellido"].Value;
                     clienteFamiliar.cli_fecha_nacimiento = (DateTime)row.Cells["cli_fecha_nacimiento"].Value;
                     clienteFamiliar.cli_tipo_documento = "DNI";
                     clienteFamiliar.cli_numero_documento = "0";
+                    clienteFamiliar.cli_imprime_carta = true;
 
                     if (clienteFamiliar.cli_id == 0)
+                    {
+                        this.CargaDomicilioAlCliente(clienteFamiliar);
                         this.cliente.tbcliente1.Add(clienteFamiliar);
-                }
-            }
-        }
-
-        private void CargaFamiliaresAlClienteOLD()
-        {
-            tbcliente clienteFamiliar;
-            this.cliente.tbcliente1.Clear();
-
-            if (dgvFamiliares.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow row in dgvFamiliares.Rows)
-                {
-                    clienteFamiliar = new tbcliente();
-                    clienteFamiliar.cli_fecha = dtpFechaAlta.Value;
-                    clienteFamiliar.cli_id = (int)row.Cells["cli_id"].Value;
-                    clienteFamiliar.tif_id = (int)row.Cells["tif_id"].Value;
-                    clienteFamiliar.cli_nombre = (string)row.Cells["cli_nombre"].Value;
-                    clienteFamiliar.cli_apellido = (string)row.Cells["cli_apellido"].Value;
-                    clienteFamiliar.cli_fecha_nacimiento = (DateTime)row.Cells["cli_fecha_nacimiento"].Value;
-                    clienteFamiliar.cli_tipo_documento = "DNI";
-                    clienteFamiliar.cli_numero_documento = "0";
-
-                    this.cliente.tbcliente1.Add(clienteFamiliar);
+                    }
                 }
             }
         }
@@ -837,23 +818,6 @@ namespace LandManagement
 
             return nodo;
         }
-
-        //private void ValidatingControlMaskedTextBox(object sender, CancelEventArgs e)
-        //{
-        //    errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
-        //    MaskedTextBox maskedTextBox = sender as MaskedTextBox;
-
-        //    if (!this.MaskedTextboxNulo(maskedTextBox))
-        //        if (!maskedTextBox.MaskCompleted)
-        //        {
-        //            errorProvider1.SetError(maskedTextBox, "Error en validación.");
-
-        //            e.Cancel = true;
-        //            return;
-        //        }
-
-        //    errorProvider1.SetError(maskedTextBox, "");
-        //}
 
         #region Validacion de controles
         private void ValidarEnteros(object sender, KeyPressEventArgs e)

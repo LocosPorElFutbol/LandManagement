@@ -44,6 +44,9 @@ namespace LandManagement.Entities
         [DisplayName("Nombre")]
         public int cli_nombre{get;set;}
 
+        [DisplayName("Título")]
+        public string cli_titulo { get; set; }
+
         [DisplayName("Apellido")]
         public string cli_apellido{get;set;}
 

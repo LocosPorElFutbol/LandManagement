@@ -115,13 +115,29 @@ namespace LandManagement
         private void CargarCombos()
         {
             this.SetearDisplayValue();
+            this.CargarTitulo();
             this.CargarTipoFamiliar();
+            SetearIndiceCombo();
         }
 
         private void SetearDisplayValue()
         {
+            cmbTitulo.DisplayMember = ComboBoxItem.DisplayMember;
+            cmbTitulo.ValueMember = ComboBoxItem.ValueMember;
+
             cmbTipoFamiliar.DisplayMember = "tif_descripcion";
             cmbTipoFamiliar.ValueMember = "tif_id";
+        }
+
+        private void SetearIndiceCombo()
+        {
+            cmbTitulo.SelectedIndex = 0;
+        }
+
+        private void CargarTitulo()
+        {
+            ListasDeElementos listasDeElementos = new ListasDeElementos();
+            this.CargarCombo(listasDeElementos.GetListaTitulo(), cmbTitulo);
         }
 
         private void CargarTipoFamiliar()
@@ -133,12 +149,19 @@ namespace LandManagement
                 cmbTipoFamiliar.Items.Add(obj);
         }
 
+        private void CargarCombo(List<ComboBoxItem> lista, ComboBox combo)
+        {
+            foreach (var obj in lista)
+                combo.Items.Add(obj);
+        }
+
         #endregion
 
         private void CargaObjeto()
         {
             this.familiar.cli_id = this.idFamiliar;
             this.familiar.tif_id = ((tbtipofamiliar)cmbTipoFamiliar.SelectedItem).tif_id;
+            this.familiar.cli_titulo = cmbTitulo.Text;            
             this.familiar.cli_parentezco = ((tbtipofamiliar)cmbTipoFamiliar.SelectedItem).tif_descripcion;
             this.familiar.cli_nombre = txbNombre.Text;
             this.familiar.cli_apellido = txbApellido.Text;

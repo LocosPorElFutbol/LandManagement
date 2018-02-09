@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.gbxDatosDelFamiliar = new System.Windows.Forms.GroupBox();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
+            this.pnlControles = new System.Windows.Forms.Panel();
             this.cmbTipoFamiliar = new System.Windows.Forms.ComboBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txbApellido = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,10 +41,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
-            this.pnlControles = new System.Windows.Forms.Panel();
+            this.cmbTitulo = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.gbxDatosDelFamiliar.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.pnlControles.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbxDatosDelFamiliar
@@ -54,116 +56,10 @@
             this.gbxDatosDelFamiliar.Controls.Add(this.pnlControles);
             this.gbxDatosDelFamiliar.Location = new System.Drawing.Point(12, 12);
             this.gbxDatosDelFamiliar.Name = "gbxDatosDelFamiliar";
-            this.gbxDatosDelFamiliar.Size = new System.Drawing.Size(309, 235);
+            this.gbxDatosDelFamiliar.Size = new System.Drawing.Size(309, 255);
             this.gbxDatosDelFamiliar.TabIndex = 0;
             this.gbxDatosDelFamiliar.TabStop = false;
             this.gbxDatosDelFamiliar.Text = "Datos del Familiar";
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(211, 180);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 6;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Location = new System.Drawing.Point(130, 180);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.TabIndex = 5;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // cmbTipoFamiliar
-            // 
-            this.cmbTipoFamiliar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipoFamiliar.FormattingEnabled = true;
-            this.cmbTipoFamiliar.Location = new System.Drawing.Point(87, 6);
-            this.cmbTipoFamiliar.Name = "cmbTipoFamiliar";
-            this.cmbTipoFamiliar.Size = new System.Drawing.Size(166, 21);
-            this.cmbTipoFamiliar.TabIndex = 1;
-            this.cmbTipoFamiliar.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 13);
-            this.label4.TabIndex = 49;
-            this.label4.Text = "Tipo Familiar";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.txbApellido);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.txbNombre);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.dtpFechaNacimiento);
-            this.groupBox2.Location = new System.Drawing.Point(7, 39);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(279, 135);
-            this.groupBox2.TabIndex = 48;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Datos Personales";
-            // 
-            // txbApellido
-            // 
-            this.txbApellido.Location = new System.Drawing.Point(80, 61);
-            this.txbApellido.Name = "txbApellido";
-            this.txbApellido.Size = new System.Drawing.Size(166, 20);
-            this.txbApellido.TabIndex = 3;
-            this.txbApellido.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 65);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Apellido";
-            // 
-            // txbNombre
-            // 
-            this.txbNombre.Location = new System.Drawing.Point(80, 25);
-            this.txbNombre.Name = "txbNombre";
-            this.txbNombre.Size = new System.Drawing.Size(166, 20);
-            this.txbNombre.TabIndex = 2;
-            this.txbNombre.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 28);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Nombre";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 102);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(57, 13);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "F. de Nac.";
-            // 
-            // dtpFechaNacimiento
-            // 
-            this.dtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaNacimiento.Location = new System.Drawing.Point(80, 97);
-            this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
-            this.dtpFechaNacimiento.Size = new System.Drawing.Size(84, 20);
-            this.dtpFechaNacimiento.TabIndex = 4;
             // 
             // pnlControles
             // 
@@ -177,24 +73,150 @@
             this.pnlControles.Controls.Add(this.groupBox2);
             this.pnlControles.Location = new System.Drawing.Point(6, 19);
             this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(297, 210);
+            this.pnlControles.Size = new System.Drawing.Size(297, 230);
             this.pnlControles.TabIndex = 7;
+            // 
+            // cmbTipoFamiliar
+            // 
+            this.cmbTipoFamiliar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoFamiliar.FormattingEnabled = true;
+            this.cmbTipoFamiliar.Location = new System.Drawing.Point(87, 6);
+            this.cmbTipoFamiliar.Name = "cmbTipoFamiliar";
+            this.cmbTipoFamiliar.Size = new System.Drawing.Size(166, 21);
+            this.cmbTipoFamiliar.TabIndex = 1;
+            this.cmbTipoFamiliar.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(211, 201);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 6;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 13);
+            this.label4.TabIndex = 49;
+            this.label4.Text = "Tipo Familiar";
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(130, 201);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.TabIndex = 5;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.cmbTitulo);
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.txbApellido);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.txbNombre);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.dtpFechaNacimiento);
+            this.groupBox2.Location = new System.Drawing.Point(7, 39);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(279, 156);
+            this.groupBox2.TabIndex = 48;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Datos Personales";
+            // 
+            // txbApellido
+            // 
+            this.txbApellido.Location = new System.Drawing.Point(80, 89);
+            this.txbApellido.Name = "txbApellido";
+            this.txbApellido.Size = new System.Drawing.Size(166, 20);
+            this.txbApellido.TabIndex = 3;
+            this.txbApellido.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 93);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Apellido";
+            // 
+            // txbNombre
+            // 
+            this.txbNombre.Location = new System.Drawing.Point(80, 53);
+            this.txbNombre.Name = "txbNombre";
+            this.txbNombre.Size = new System.Drawing.Size(166, 20);
+            this.txbNombre.TabIndex = 2;
+            this.txbNombre.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 56);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Nombre";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 130);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(57, 13);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "F. de Nac.";
+            // 
+            // dtpFechaNacimiento
+            // 
+            this.dtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaNacimiento.Location = new System.Drawing.Point(80, 125);
+            this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
+            this.dtpFechaNacimiento.Size = new System.Drawing.Size(84, 20);
+            this.dtpFechaNacimiento.TabIndex = 4;
+            // 
+            // cmbTitulo
+            // 
+            this.cmbTitulo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTitulo.FormattingEnabled = true;
+            this.cmbTitulo.Location = new System.Drawing.Point(80, 19);
+            this.cmbTitulo.Name = "cmbTitulo";
+            this.cmbTitulo.Size = new System.Drawing.Size(83, 21);
+            this.cmbTitulo.TabIndex = 19;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(40, 24);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(33, 13);
+            this.label17.TabIndex = 18;
+            this.label17.Text = "Titulo";
             // 
             // frmClienteFamiliar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(333, 259);
+            this.ClientSize = new System.Drawing.Size(333, 279);
             this.Controls.Add(this.gbxDatosDelFamiliar);
             this.Name = "frmClienteFamiliar";
             this.Text = "frmClienteFamiliar";
             this.Load += new System.EventHandler(this.frmClienteFamiliar_Load);
             this.gbxDatosDelFamiliar.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.pnlControles.ResumeLayout(false);
             this.pnlControles.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -214,5 +236,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
         private System.Windows.Forms.Panel pnlControles;
+        private System.Windows.Forms.ComboBox cmbTitulo;
+        private System.Windows.Forms.Label label17;
     }
 }

@@ -252,20 +252,8 @@ namespace LandManagement.Business
             cliente.tbcliente1.Clear();
             foreach (var obj in familiaresNuevos)
             {
-                //Inserta nueva propiedad a cliente existente.
                 familiarBusiness = new FamiliarBusiness();
-                tbcliente familiar = new tbcliente()
-                {
-                    cli_fecha = obj.cli_fecha,
-                    tif_id = obj.tif_id,
-                    cli_nombre = obj.cli_nombre,
-                    cli_apellido = obj.cli_apellido,
-                    cli_fecha_nacimiento = obj.cli_fecha_nacimiento,
-                    cli_tipo_documento = obj.cli_tipo_documento,
-                    cli_numero_documento = "0"
-                };
-
-                familiarBusiness.Create(familiar, cliente);
+                familiarBusiness.Create(obj, cliente);
             }
         }
 

@@ -93,6 +93,8 @@
             this.txbTelefonoParticular = new System.Windows.Forms.TextBox();
             this.txbTelefonoCelular = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.cmbProvincia = new System.Windows.Forms.ComboBox();
             this.txbDomicilioImportado = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
@@ -100,8 +102,6 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
-            this.cmbProvincia = new System.Windows.Forms.ComboBox();
-            this.label27 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFamiliares)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.pnlControles.SuspendLayout();
@@ -276,6 +276,7 @@
             this.txbNacionalidad.Name = "txbNacionalidad";
             this.txbNacionalidad.Size = new System.Drawing.Size(168, 20);
             this.txbNacionalidad.TabIndex = 9;
+            this.txbNacionalidad.Text = "Argentina";
             // 
             // txbEmail
             // 
@@ -655,6 +656,8 @@
             // cbxImprimeCarta
             // 
             this.cbxImprimeCarta.AutoSize = true;
+            this.cbxImprimeCarta.Checked = true;
+            this.cbxImprimeCarta.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbxImprimeCarta.Location = new System.Drawing.Point(91, 403);
             this.cbxImprimeCarta.Name = "cbxImprimeCarta";
             this.cbxImprimeCarta.Size = new System.Drawing.Size(89, 17);
@@ -779,6 +782,24 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Domicilio";
             // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(12, 107);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(51, 13);
+            this.label27.TabIndex = 45;
+            this.label27.Text = "Provincia";
+            // 
+            // cmbProvincia
+            // 
+            this.cmbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProvincia.FormattingEnabled = true;
+            this.cmbProvincia.Location = new System.Drawing.Point(69, 103);
+            this.cmbProvincia.Name = "cmbProvincia";
+            this.cmbProvincia.Size = new System.Drawing.Size(172, 21);
+            this.cmbProvincia.TabIndex = 44;
+            // 
             // txbDomicilioImportado
             // 
             this.txbDomicilioImportado.Location = new System.Drawing.Point(69, 156);
@@ -840,24 +861,6 @@
             this.dtpFechaAlta.Name = "dtpFechaAlta";
             this.dtpFechaAlta.Size = new System.Drawing.Size(84, 20);
             this.dtpFechaAlta.TabIndex = 0;
-            // 
-            // cmbProvincia
-            // 
-            this.cmbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbProvincia.FormattingEnabled = true;
-            this.cmbProvincia.Location = new System.Drawing.Point(69, 103);
-            this.cmbProvincia.Name = "cmbProvincia";
-            this.cmbProvincia.Size = new System.Drawing.Size(172, 21);
-            this.cmbProvincia.TabIndex = 44;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(12, 107);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(51, 13);
-            this.label27.TabIndex = 45;
-            this.label27.Text = "Provincia";
             // 
             // frmClienteABM
             // 
