@@ -177,12 +177,10 @@ namespace LandManagement
             //Esto se realiza por pedido del cliente.
             _listaClientes.OrderBy(e => e.cli_fecha_nacimiento.Day);
 
-            CartaEntity cartaEntity;
             CartaEntity cartaEntityTemp;
 
             foreach (var obj in _listaClientes)
             {
-                cartaEntity = new CartaEntity();
                 cartaEntityTemp = new CartaEntity();
 
                 //Cargo los datos del domicilio en etiqueta auxiliar
@@ -190,18 +188,18 @@ namespace LandManagement
 
                 if (cartaEntityTemp != null)
                 {
-                    cartaEntity.Titulo = obj.cli_titulo;
-                    cartaEntity.NombrePila = obj.cli_nombre_pila;
-                    cartaEntity.Nombre = obj.cli_nombre;
-                    cartaEntity.Apellido = obj.cli_apellido;
-                    cartaEntity.Direccion = cartaEntityTemp.Direccion;
-                    cartaEntity.CodigoPostal = cartaEntityTemp.CodigoPostal;
-                    cartaEntity.Localidad = cartaEntityTemp.Localidad;
-                    cartaEntity.Provincia = cartaEntityTemp.Provincia;
-                    cartaEntity.FechaCumpleanios = obj.cli_fecha_nacimiento;
-                    cartaEntity.CuerpoCarta = txbCuerpoCarta.Lines;
-
-                    listaEtiquetas.Add(cartaEntity);
+                    listaEtiquetas.Add(new CartaEntity(
+                        obj.cli_titulo,
+                        obj.cli_nombre_pila,
+                        obj.cli_nombre,
+                        obj.cli_apellido,
+                        cartaEntityTemp.Direccion,
+                        cartaEntityTemp.Localidad,
+                        cartaEntityTemp.Provincia,
+                        cartaEntityTemp.CodigoPostal,
+                        obj.cli_fecha_nacimiento,
+                        txbCuerpoCarta.Lines
+                 ));
                 }
             }
         }
