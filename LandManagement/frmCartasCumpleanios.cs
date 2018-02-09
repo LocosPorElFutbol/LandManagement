@@ -226,15 +226,18 @@ namespace LandManagement
                 {
                     string calleYNumero = domicilio.dom_calle + " " + domicilio.dom_numero;
 
-                    string piso = string.Empty;
-                    if (domicilio.dom_piso != 0)
-                        piso = domicilio.dom_piso.ToString();
+                    //string piso = string.Empty;
+                    //if (domicilio.dom_piso != 0)
+                    //    piso = domicilio.dom_piso.ToString();
 
                     string depto = string.Empty;
                     if (domicilio.dom_departamento != "-")
-                        depto = domicilio.dom_departamento;
+                        depto = " " + domicilio.dom_departamento;
 
-                    direccion = calleYNumero + " " + piso + depto;
+                    if (domicilio.dom_piso == 0)
+                        direccion = calleYNumero + " PB " + depto;
+                    else
+                        direccion = calleYNumero + " " + domicilio.dom_piso.ToString() + depto;
                 }
                 else
                     direccion = domicilio.dom_domicilio_importado;
