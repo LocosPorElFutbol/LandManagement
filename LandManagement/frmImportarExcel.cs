@@ -62,7 +62,6 @@ namespace LandManagement
                     List<tbcliente> listaClientes = ImportarFilas(listaPersonas);
                     configuroProgressBar(listaClientes.Count);
                     persistirListaClientes(listaClientes);
-                    ImportacionOK();
                 }
             }
             catch (Exception ex)
@@ -121,6 +120,7 @@ namespace LandManagement
                     clienteBusiness.Create(obj);
                     prbImportarExcel.Value++;
                 }
+                ImportacionOK();
             }
             catch (Exception ex)
             {
@@ -167,13 +167,10 @@ namespace LandManagement
 
                 CargarDomicilio(persona, cliente);
 
-                DateTime fechaNula = new DateTime(1900,01,01);
-
                 //Los conyuges que se importarán unicamente seran los que tengan los siguientes datos
                 if (!string.IsNullOrEmpty(persona.apellidoConyuge) &&
                    !string.IsNullOrEmpty(persona.nombrePilaConyuge) &&
-                   !string.IsNullOrEmpty(persona.nombreCompleto) &&
-                   !DateTime.Equals(persona.nacimientoConyuge.Value.Date,  fechaNula))
+                   !string.IsNullOrEmpty(persona.nombreCompleto))
                     CargarConyuge(persona, cliente);
             }
             catch (Exception ex)
@@ -193,6 +190,7 @@ namespace LandManagement
             tbdomicilio domicilio = new tbdomicilio()
             {
                 tip_id = 4, //dato obligatorio importado
+                prv_id = 4, //id de provincia 5 es capital federal
                 dom_calle = "Domicilio importado excel", //dato obligatorio
                 dom_numero = 0, //dato obligatorio
                 dom_piso = 0, // se carga el dato para sincronizar con alta de nuevo cliente
@@ -223,7 +221,8 @@ namespace LandManagement
                 cli_telefono_celular = persona.celularConyuge,
                 cli_actualizado = persona.actualizado, //Asigno fecha actualizado para no generar error.
                 cli_email = persona.mailConyuge,
-                cli_imprime_carta = persona.imprimeCarta
+                cli_imprime_carta = persona.imprimeCarta,
+                cli_titulo = "Sr."
             };
             CargarDomicilio(persona, conyuje);
             cliente.tbcliente1.Add(conyuje);

@@ -134,6 +134,11 @@ namespace LandManagement
             }
         }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.MensajeCancelar();
+        }
+        
         /// <summary>
         /// Obtiene los clientes que cumplen años en la fecha indicada y retorna la lista de clientes.
         /// </summary>
@@ -262,6 +267,20 @@ namespace LandManagement
             CartaBusiness cartaBusiness = new CartaBusiness();
             tbcarta carta = cartaBusiness.GetElement(new tbcarta() { car_id = 1 }) as tbcarta;
             txbCuerpoCarta.Text = carta.car_cuerpo;
+        }
+
+        private void MensajeCancelar()
+        {
+            DialogResult dialogResult = DialogResult.None;
+
+            dialogResult = MessageBox.Show("¿Desea cerrar la ventana?", "Aviso", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+            {
+                AutoValidate = AutoValidate.Disable;
+                this.Close();
+            }
         }
 
     }

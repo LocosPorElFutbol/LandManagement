@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnGuardarCarta = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txbCuerpoCarta = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@
             this.dtpFechaCumpleanios = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnGuardarCarta = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -81,6 +81,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cumpleaños de clientes";
             // 
+            // btnGuardarCarta
+            // 
+            this.btnGuardarCarta.Location = new System.Drawing.Point(316, 232);
+            this.btnGuardarCarta.Name = "btnGuardarCarta";
+            this.btnGuardarCarta.Size = new System.Drawing.Size(93, 23);
+            this.btnGuardarCarta.TabIndex = 12;
+            this.btnGuardarCarta.Text = "Guardar carta";
+            this.btnGuardarCarta.UseVisualStyleBackColor = true;
+            this.btnGuardarCarta.Click += new System.EventHandler(this.btnGuardarCarta_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txbCuerpoCarta);
@@ -109,6 +119,7 @@
             this.btnCancelar.TabIndex = 7;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnImprimirCartas
             // 
@@ -172,16 +183,6 @@
             this.label1.Size = new System.Drawing.Size(112, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Fecha de cumpleaños";
-            // 
-            // btnGuardarCarta
-            // 
-            this.btnGuardarCarta.Location = new System.Drawing.Point(316, 232);
-            this.btnGuardarCarta.Name = "btnGuardarCarta";
-            this.btnGuardarCarta.Size = new System.Drawing.Size(93, 23);
-            this.btnGuardarCarta.TabIndex = 12;
-            this.btnGuardarCarta.Text = "Guardar carta";
-            this.btnGuardarCarta.UseVisualStyleBackColor = true;
-            this.btnGuardarCarta.Click += new System.EventHandler(this.btnGuardarCarta_Click);
             // 
             // frmCartasCumpleanios
             // 
