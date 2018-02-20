@@ -13,6 +13,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using LandManagement.Utilidades.UserControls;
+using System.Globalization;
 
 namespace LandManagement
 {
@@ -349,7 +350,7 @@ namespace LandManagement
             dataGridViewRow.Cells["cli_titulo"].Value = familiar.cli_titulo;
             dataGridViewRow.Cells["cli_nombre"].Value = familiar.cli_nombre;
             dataGridViewRow.Cells["cli_apellido"].Value = familiar.cli_apellido;
-            dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = familiar.cli_fecha_nacimiento;
+            dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = familiar.cli_fecha_nacimiento.Date.ToShortDateString();
         }
 
         private void btnAddFamiliar_Click(object sender, EventArgs e)
@@ -374,22 +375,37 @@ namespace LandManagement
                 foreach (DataGridViewRow row in dgvFamiliares.Rows)
                 {
                     clienteFamiliar = new tbcliente();
-                    clienteFamiliar.cli_fecha = dtpFechaAlta.Value;
+                    //Datos actualizables y datos para familiares nuevos
                     clienteFamiliar.cli_id = (int)row.Cells["cli_id"].Value;
                     clienteFamiliar.tif_id = (int)row.Cells["tif_id"].Value;
                     clienteFamiliar.cli_titulo = (string)row.Cells["cli_titulo"].Value;
                     clienteFamiliar.cli_nombre = (string)row.Cells["cli_nombre"].Value;
-                    clienteFamiliar.cli_nombre_pila = (string)row.Cells["cli_nombre"].Value;
                     clienteFamiliar.cli_apellido = (string)row.Cells["cli_apellido"].Value;
-                    clienteFamiliar.cli_fecha_nacimiento = (DateTime)row.Cells["cli_fecha_nacimiento"].Value;
-                    clienteFamiliar.cli_tipo_documento = "DNI";
-                    clienteFamiliar.cli_numero_documento = "0";
-                    clienteFamiliar.cli_imprime_carta = true;
+                    clienteFamiliar.cli_fecha_nacimiento = DateTime.ParseExact(row.Cells["cli_fecha_nacimiento"].Value.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
                     if (clienteFamiliar.cli_id == 0)
                     {
+                        //Datos complementarios para familiares nuevos
+                        clienteFamiliar.cli_fecha = dtpFechaAlta.Value;
+                        clienteFamiliar.cli_nombre_pila = (string)row.Cells["cli_nombre"].Value;
+                        clienteFamiliar.cli_tipo_documento = "DNI";
+                        clienteFamiliar.cli_numero_documento = "0";
+                        clienteFamiliar.cli_imprime_carta = true;
+
                         this.CargaDomicilioAlCliente(clienteFamiliar);
                         this.cliente.tbcliente1.Add(clienteFamiliar);
+                    }
+                    else
+                    {
+                        tbcliente familiarExistente =
+                            this.cliente.tbcliente1.Where(x => x.cli_id == clienteFamiliar.cli_id)
+                                .FirstOrDefault();
+
+                        familiarExistente.tif_id = clienteFamiliar.tif_id;
+                        familiarExistente.cli_titulo = clienteFamiliar.cli_titulo;
+                        familiarExistente.cli_nombre = clienteFamiliar.cli_nombre;
+                        familiarExistente.cli_apellido = clienteFamiliar.cli_apellido;
+                        familiarExistente.cli_fecha_nacimiento = clienteFamiliar.cli_fecha_nacimiento;
                     }
                 }
             }
@@ -657,9 +673,10 @@ namespace LandManagement
             dataGridViewRow.Cells["cli_id"].Value = familiarActualizado.cli_id;
             dataGridViewRow.Cells["tif_id"].Value = familiarActualizado.tif_id;
             dataGridViewRow.Cells["cli_parentezco"].Value = familiarActualizado.cli_parentezco;
+            dataGridViewRow.Cells["cli_titulo"].Value = familiarActualizado.cli_titulo;
             dataGridViewRow.Cells["cli_nombre"].Value = familiarActualizado.cli_nombre;
             dataGridViewRow.Cells["cli_apellido"].Value = familiarActualizado.cli_apellido;
-            dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = familiarActualizado.cli_fecha_nacimiento;
+            dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = familiarActualizado.cli_fecha_nacimiento.Date.ToShortDateString();
         }
 
         #endregion

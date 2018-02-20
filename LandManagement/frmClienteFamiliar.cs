@@ -59,6 +59,7 @@ namespace LandManagement
             if(this.familiar != null)
             {
                 cmbTipoFamiliar.Text = this.familiar.tbtipofamiliar.tif_descripcion;
+                cmbTitulo.Text = this.familiar.cli_titulo;
             }
         }
 
