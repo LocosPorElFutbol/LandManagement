@@ -239,7 +239,7 @@
             this.txbNombre.Location = new System.Drawing.Point(91, 101);
             this.txbNombre.Name = "txbNombre";
             this.txbNombre.Size = new System.Drawing.Size(168, 20);
-            this.txbNombre.TabIndex = 3;
+            this.txbNombre.TabIndex = 4;
             this.txbNombre.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // txbApellido
@@ -247,7 +247,7 @@
             this.txbApellido.Location = new System.Drawing.Point(91, 138);
             this.txbApellido.Name = "txbApellido";
             this.txbApellido.Size = new System.Drawing.Size(168, 20);
-            this.txbApellido.TabIndex = 4;
+            this.txbApellido.TabIndex = 5;
             this.txbApellido.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // cmbTipoDocumento
@@ -257,14 +257,14 @@
             this.cmbTipoDocumento.Location = new System.Drawing.Point(91, 212);
             this.cmbTipoDocumento.Name = "cmbTipoDocumento";
             this.cmbTipoDocumento.Size = new System.Drawing.Size(48, 21);
-            this.cmbTipoDocumento.TabIndex = 6;
+            this.cmbTipoDocumento.TabIndex = 7;
             // 
             // txbNumeroDocumento
             // 
             this.txbNumeroDocumento.Location = new System.Drawing.Point(178, 213);
             this.txbNumeroDocumento.Name = "txbNumeroDocumento";
             this.txbNumeroDocumento.Size = new System.Drawing.Size(81, 20);
-            this.txbNumeroDocumento.TabIndex = 7;
+            this.txbNumeroDocumento.TabIndex = 8;
             this.txbNumeroDocumento.TextChanged += new System.EventHandler(this.txbNumeroDocumento_TextChanged);
             this.txbNumeroDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEnteros);
             this.txbNumeroDocumento.Leave += new System.EventHandler(this.txbNumeroDocumento_Leave);
@@ -275,7 +275,7 @@
             this.txbNacionalidad.Location = new System.Drawing.Point(91, 287);
             this.txbNacionalidad.Name = "txbNacionalidad";
             this.txbNacionalidad.Size = new System.Drawing.Size(168, 20);
-            this.txbNacionalidad.TabIndex = 9;
+            this.txbNacionalidad.TabIndex = 10;
             this.txbNacionalidad.Text = "Argentina";
             // 
             // txbEmail
@@ -283,7 +283,7 @@
             this.txbEmail.Location = new System.Drawing.Point(69, 143);
             this.txbEmail.Name = "txbEmail";
             this.txbEmail.Size = new System.Drawing.Size(251, 20);
-            this.txbEmail.TabIndex = 0;
+            this.txbEmail.TabIndex = 25;
             this.txbEmail.Leave += new System.EventHandler(this.txbEmail_Leave);
             // 
             // cmbSexo
@@ -293,7 +293,7 @@
             this.cmbSexo.Location = new System.Drawing.Point(91, 364);
             this.cmbSexo.Name = "cmbSexo";
             this.cmbSexo.Size = new System.Drawing.Size(168, 21);
-            this.cmbSexo.TabIndex = 11;
+            this.cmbSexo.TabIndex = 12;
             // 
             // label20
             // 
@@ -354,7 +354,7 @@
             this.txbCalle.Location = new System.Drawing.Point(69, 23);
             this.txbCalle.Name = "txbCalle";
             this.txbCalle.Size = new System.Drawing.Size(131, 20);
-            this.txbCalle.TabIndex = 12;
+            this.txbCalle.TabIndex = 14;
             this.txbCalle.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
             // cmbPiso
@@ -364,7 +364,7 @@
             this.cmbPiso.Location = new System.Drawing.Point(69, 49);
             this.cmbPiso.Name = "cmbPiso";
             this.cmbPiso.Size = new System.Drawing.Size(56, 21);
-            this.cmbPiso.TabIndex = 15;
+            this.cmbPiso.TabIndex = 16;
             // 
             // cmbDepto
             // 
@@ -373,14 +373,14 @@
             this.cmbDepto.Location = new System.Drawing.Point(264, 48);
             this.cmbDepto.Name = "cmbDepto";
             this.cmbDepto.Size = new System.Drawing.Size(56, 21);
-            this.cmbDepto.TabIndex = 16;
+            this.cmbDepto.TabIndex = 17;
             // 
             // txbNumero
             // 
             this.txbNumero.Location = new System.Drawing.Point(263, 22);
             this.txbNumero.Name = "txbNumero";
             this.txbNumero.Size = new System.Drawing.Size(57, 20);
-            this.txbNumero.TabIndex = 13;
+            this.txbNumero.TabIndex = 15;
             this.txbNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEnteros);
             this.txbNumero.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
@@ -389,7 +389,7 @@
             this.txbLocalidad.Location = new System.Drawing.Point(69, 76);
             this.txbLocalidad.Name = "txbLocalidad";
             this.txbLocalidad.Size = new System.Drawing.Size(131, 20);
-            this.txbLocalidad.TabIndex = 17;
+            this.txbLocalidad.TabIndex = 18;
             this.txbLocalidad.Text = "CABA";
             this.txbLocalidad.Validating += new System.ComponentModel.CancelEventHandler(this.ValidatingControl);
             // 
@@ -398,7 +398,7 @@
             this.txbCodigoPostal.Location = new System.Drawing.Point(263, 75);
             this.txbCodigoPostal.Name = "txbCodigoPostal";
             this.txbCodigoPostal.Size = new System.Drawing.Size(56, 20);
-            this.txbCodigoPostal.TabIndex = 18;
+            this.txbCodigoPostal.TabIndex = 19;
             this.txbCodigoPostal.Text = "0";
             // 
             // txbComoLlego
@@ -407,7 +407,7 @@
             this.txbComoLlego.Multiline = true;
             this.txbComoLlego.Name = "txbComoLlego";
             this.txbComoLlego.Size = new System.Drawing.Size(316, 98);
-            this.txbComoLlego.TabIndex = 23;
+            this.txbComoLlego.TabIndex = 26;
             // 
             // dgvFamiliares
             // 
@@ -419,7 +419,7 @@
             this.dgvFamiliares.ReadOnly = true;
             this.dgvFamiliares.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvFamiliares.Size = new System.Drawing.Size(592, 148);
-            this.dgvFamiliares.TabIndex = 25;
+            this.dgvFamiliares.TabIndex = 30;
             this.dgvFamiliares.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFamiliares_CellDoubleClick);
             // 
             // btnAddFamiliar
@@ -427,7 +427,7 @@
             this.btnAddFamiliar.Location = new System.Drawing.Point(604, 20);
             this.btnAddFamiliar.Name = "btnAddFamiliar";
             this.btnAddFamiliar.Size = new System.Drawing.Size(27, 23);
-            this.btnAddFamiliar.TabIndex = 26;
+            this.btnAddFamiliar.TabIndex = 31;
             this.btnAddFamiliar.Text = "+";
             this.btnAddFamiliar.UseVisualStyleBackColor = true;
             this.btnAddFamiliar.Click += new System.EventHandler(this.btnAddFamiliar_Click);
@@ -437,7 +437,7 @@
             this.btnRemoveFamiliar.Location = new System.Drawing.Point(604, 49);
             this.btnRemoveFamiliar.Name = "btnRemoveFamiliar";
             this.btnRemoveFamiliar.Size = new System.Drawing.Size(27, 23);
-            this.btnRemoveFamiliar.TabIndex = 27;
+            this.btnRemoveFamiliar.TabIndex = 32;
             this.btnRemoveFamiliar.Text = "-";
             this.btnRemoveFamiliar.UseVisualStyleBackColor = true;
             this.btnRemoveFamiliar.Click += new System.EventHandler(this.btnRemoveFamiliar_Click);
@@ -450,8 +450,8 @@
             this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1015, 980);
-            this.groupBox1.TabIndex = 63;
+            this.groupBox1.Size = new System.Drawing.Size(1015, 974);
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Cliente";
             // 
@@ -474,8 +474,8 @@
             this.pnlControles.Controls.Add(this.dtpFechaAlta);
             this.pnlControles.Location = new System.Drawing.Point(6, 19);
             this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(1003, 955);
-            this.pnlControles.TabIndex = 47;
+            this.pnlControles.Size = new System.Drawing.Size(1003, 949);
+            this.pnlControles.TabIndex = 1;
             this.pnlControles.TabStop = true;
             // 
             // groupBox7
@@ -497,7 +497,7 @@
             this.dgvPropiedades.ReadOnly = true;
             this.dgvPropiedades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPropiedades.Size = new System.Drawing.Size(592, 213);
-            this.dgvPropiedades.TabIndex = 28;
+            this.dgvPropiedades.TabIndex = 34;
             this.dgvPropiedades.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPropiedades_CellDoubleClick);
             // 
             // groupBox9
@@ -519,7 +519,7 @@
             this.txbEstadoActual.Multiline = true;
             this.txbEstadoActual.Name = "txbEstadoActual";
             this.txbEstadoActual.Size = new System.Drawing.Size(230, 55);
-            this.txbEstadoActual.TabIndex = 51;
+            this.txbEstadoActual.TabIndex = 29;
             // 
             // label19
             // 
@@ -545,7 +545,7 @@
             this.dtpActualizado.Location = new System.Drawing.Point(83, 13);
             this.dtpActualizado.Name = "dtpActualizado";
             this.dtpActualizado.Size = new System.Drawing.Size(84, 20);
-            this.dtpActualizado.TabIndex = 49;
+            this.dtpActualizado.TabIndex = 28;
             // 
             // groupBox8
             // 
@@ -568,7 +568,7 @@
             this.dgvCategorias.RowHeadersVisible = false;
             this.dgvCategorias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCategorias.Size = new System.Drawing.Size(307, 152);
-            this.dgvCategorias.TabIndex = 24;
+            this.dgvCategorias.TabIndex = 27;
             // 
             // label1
             // 
@@ -595,7 +595,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(910, 929);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 32;
+            this.btnCancelar.TabIndex = 36;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -607,14 +607,14 @@
             this.cmbTipoFamiliar.Location = new System.Drawing.Point(85, 32);
             this.cmbTipoFamiliar.Name = "cmbTipoFamiliar";
             this.cmbTipoFamiliar.Size = new System.Drawing.Size(179, 21);
-            this.cmbTipoFamiliar.TabIndex = 2;
+            this.cmbTipoFamiliar.TabIndex = 1;
             // 
             // btnGuardar
             // 
             this.btnGuardar.Location = new System.Drawing.Point(829, 929);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.TabIndex = 31;
+            this.btnGuardar.TabIndex = 35;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -661,7 +661,7 @@
             this.cbxImprimeCarta.Location = new System.Drawing.Point(91, 403);
             this.cbxImprimeCarta.Name = "cbxImprimeCarta";
             this.cbxImprimeCarta.Size = new System.Drawing.Size(89, 17);
-            this.cbxImprimeCarta.TabIndex = 41;
+            this.cbxImprimeCarta.TabIndex = 13;
             this.cbxImprimeCarta.Text = "Imprime carta";
             this.cbxImprimeCarta.UseVisualStyleBackColor = true;
             // 
@@ -670,7 +670,7 @@
             this.txbNombreDePila.Location = new System.Drawing.Point(91, 64);
             this.txbNombreDePila.Name = "txbNombreDePila";
             this.txbNombreDePila.Size = new System.Drawing.Size(168, 20);
-            this.txbNombreDePila.TabIndex = 19;
+            this.txbNombreDePila.TabIndex = 3;
             // 
             // label18
             // 
@@ -688,7 +688,7 @@
             this.cmbTitulo.Location = new System.Drawing.Point(91, 26);
             this.cmbTitulo.Name = "cmbTitulo";
             this.cmbTitulo.Size = new System.Drawing.Size(83, 21);
-            this.cmbTitulo.TabIndex = 17;
+            this.cmbTitulo.TabIndex = 2;
             // 
             // label17
             // 
@@ -706,14 +706,14 @@
             this.cmbEstadoCivil.Location = new System.Drawing.Point(91, 325);
             this.cmbEstadoCivil.Name = "cmbEstadoCivil";
             this.cmbEstadoCivil.Size = new System.Drawing.Size(168, 21);
-            this.cmbEstadoCivil.TabIndex = 10;
+            this.cmbEstadoCivil.TabIndex = 11;
             // 
             // txbCuilCuit
             // 
             this.txbCuilCuit.Location = new System.Drawing.Point(91, 250);
             this.txbCuilCuit.Name = "txbCuilCuit";
             this.txbCuilCuit.Size = new System.Drawing.Size(168, 20);
-            this.txbCuilCuit.TabIndex = 8;
+            this.txbCuilCuit.TabIndex = 9;
             this.txbCuilCuit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEnteros);
             // 
             // groupBox4
@@ -798,7 +798,7 @@
             this.cmbProvincia.Location = new System.Drawing.Point(69, 103);
             this.cmbProvincia.Name = "cmbProvincia";
             this.cmbProvincia.Size = new System.Drawing.Size(172, 21);
-            this.cmbProvincia.TabIndex = 44;
+            this.cmbProvincia.TabIndex = 20;
             // 
             // txbDomicilioImportado
             // 
@@ -806,7 +806,7 @@
             this.txbDomicilioImportado.Multiline = true;
             this.txbDomicilioImportado.Name = "txbDomicilioImportado";
             this.txbDomicilioImportado.Size = new System.Drawing.Size(210, 41);
-            this.txbDomicilioImportado.TabIndex = 43;
+            this.txbDomicilioImportado.TabIndex = 21;
             // 
             // label26
             // 
@@ -823,7 +823,7 @@
             this.dtpFechaNacimiento.Location = new System.Drawing.Point(91, 175);
             this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(83, 20);
-            this.dtpFechaNacimiento.TabIndex = 5;
+            this.dtpFechaNacimiento.TabIndex = 6;
             // 
             // label4
             // 
@@ -852,7 +852,7 @@
             this.treeView1.Location = new System.Drawing.Point(666, 19);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(307, 148);
-            this.treeView1.TabIndex = 28;
+            this.treeView1.TabIndex = 33;
             // 
             // dtpFechaAlta
             // 
@@ -867,7 +867,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(1039, 1004);
+            this.ClientSize = new System.Drawing.Size(1039, 998);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmClienteABM";
             this.Text = "frmClienteABM";
