@@ -381,7 +381,7 @@ namespace LandManagement
                     clienteFamiliar.cli_titulo = (string)row.Cells["cli_titulo"].Value;
                     clienteFamiliar.cli_nombre = (string)row.Cells["cli_nombre"].Value;
                     clienteFamiliar.cli_apellido = (string)row.Cells["cli_apellido"].Value;
-                    clienteFamiliar.cli_fecha_nacimiento = DateTime.ParseExact(row.Cells["cli_fecha_nacimiento"].Value.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    clienteFamiliar.cli_fecha_nacimiento = DateTime.Parse(row.Cells["cli_fecha_nacimiento"].Value.ToString());
 
                     if (clienteFamiliar.cli_id == 0)
                     {
