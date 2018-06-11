@@ -69,7 +69,9 @@ namespace LandManagement
                 log.Error(ex.Message);
                 if (ex.InnerException != null)
                     log.Error(ex.InnerException.Message);
-                ImportacionError("Error al cargar archivo excel, corrobore no tener el archivo abierto y \nque los datos en las columnas sean los correctos.");
+
+                if (!lblResultado.Text.Contains("Error"))
+                    ImportacionError("Error al cargar archivo excel, corrobore no tener el archivo abierto y \nque los datos en las columnas sean los correctos.");
             }
             finally
             {
@@ -104,7 +106,10 @@ namespace LandManagement
                 log.Error(ex.Message);
                 if (ex.InnerException != null)
                     log.Error(ex.InnerException.Message);
-                ImportacionError("Error al crear los objetos cliente. \nControle las columnas del archivo excel");
+
+                if (!lblResultado.Text.Contains("Error"))
+                    ImportacionError("Error al crear los objetos cliente. \nControle las columnas del archivo excel");
+                throw ex;
             }
             return listaClientes;
         }
@@ -127,7 +132,11 @@ namespace LandManagement
                 log.Error(ex.Message);
                 if (ex.InnerException != null)
                     log.Error(ex.InnerException.Message);
-                ImportacionError("Error al persistir lista de clientes.");
+                
+                if(!lblResultado.Text.Contains("Error"))
+                    ImportacionError("Error al persistir lista de clientes.");
+                
+                throw ex;
             }
         }
 
@@ -178,7 +187,8 @@ namespace LandManagement
                 log.Error(ex.Message);
                 if (ex.InnerException != null)
                     log.Error(ex.InnerException.Message);
-                ImportacionError("Error al crear objeto cliente. \nCorrobore los datos y tipos de datos en las columnas");
+                ImportacionError("Error al crear objeto cliente. \nCorrobore los datos y tipos de datos en las columnas (cliente id "+ persona.id.ToString() +").");
+                throw ex;
             }
 
             return cliente;
