@@ -78,16 +78,27 @@ namespace LandManagement.Business
             return clienteRepository.GetList(_whereClausule);
         }
 
-        public object GetListCumpleanieros(DateTime fecha)
+        public object GetListCumpleanieros(DateTime fechaDesde, DateTime fechaHasta)
         {
             DateTime fechanula = new DateTime(1900, 01, 01);
 
             return ((List<tbcliente>)this.GetList())
-                .Where(m => m.cli_fecha_nacimiento.Day == fecha.Day && 
-                    m.cli_fecha_nacimiento.Month == fecha.Month &&
+                .Where(m => m.cli_fecha_nacimiento.Day >= fechaDesde.Day &&
+                    m.cli_fecha_nacimiento.Month >= fechaDesde.Month &&
+                    m.cli_fecha_nacimiento.Day <= fechaHasta.Day &&
+                    m.cli_fecha_nacimiento.Month <= fechaHasta.Month &&
                     m.cli_imprime_carta == true &&
                     !DateTime.Equals(m.cli_fecha_nacimiento, fechanula))
                     .ToList();
+
+            //return ((List<tbcliente>)this.GetList())
+            //    .Where(m => m.cli_fecha_nacimiento.Day >= fechaDesde.Day &&
+            //        m.cli_fecha_nacimiento.Month == fechaDesde.Month &&
+            //        m.cli_fecha_nacimiento.Day <= fechaHasta.Day &&
+            //        m.cli_fecha_nacimiento.Month <= fechaHasta.Month &&
+            //        m.cli_imprime_carta == true &&
+            //        !DateTime.Equals(m.cli_fecha_nacimiento, fechanula))
+            //        .ToList();
         }
 
         public object GetClientesByIdCategoria(List<int> _idsCategoria)

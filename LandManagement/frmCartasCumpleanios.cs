@@ -41,7 +41,7 @@ namespace LandManagement
             try
             {
                 List<tbcliente> listaClientes = new List<tbcliente>();
-                listaClientes = ObtenerClientesCumplenAniosEl(dtpFechaCumpleanios.Value);
+                listaClientes = ObtenerClientesCumplenAniosEl(dtpFechaCumpleaniosDesde.Value, dtpFechaCumpleaniosHasta.Value);
 
                 //Creo el listado de etiquetas
                 CargarListaEtiquetas(listaClientes);
@@ -114,8 +114,6 @@ namespace LandManagement
         {
             try
             {
-                //string cuerpoCarta = "\tEs bueno observar la actitud de los pájaros ante la adversidad, pasan días y días haciendo su nido y recogiendo materiales, muchos de estos traídos desde largas distancias, y cuando ya está terminado y listo para poner los huevos, las inclemencias del tiempo, la mano del hombre o la obra de algún animal, destruye y tira por el suelo lo que con tanto esfuerzo se logró.  ¿Qué hace el pájaro?  ¿Se lamenta, se paraliza, abandona la tarea?  … De ninguna manera!!!  VUELVE A EMPEZAR, una y otra vez hasta que en el nido aparecen los primeros huevos.  A veces, muchas veces, antes de que nazcan los pichones, algún animal o una tormenta vuelve a destruir el nido, pero esta vez con su precioso contenido. Aún así el pájaro jamás retrocede, sigue construyendo, y nunca deja de cantar.\r\n\r\n\tHoy empieza un nuevo año en tu vida ¿Sentiste alguna vez que tu vida, tu trabajo, tu familia, tus amigos no son lo que soñaste?  ¿Te dieron ganas de decir ¡Basta!, no vale la pena el esfuerzo, esto es demasiado para mí?  ¿Muchas veces te cansaste de volver a empezar, del desgaste de la lucha diaria, de la confianza traicionada, de las metas no alcanzadas cuando estabas a punto de lograrlo?\r\n\r\n\tPor más que la vida te golpee, no te entregues nunca.  No te preocupes si en la batalla sufrís alguna herida, es de esperar que algo así suceda.  Junta los pedazos de tu esperanza, ármala de nuevo y volvé a empezar.  No importa lo que pase, no aflojes, dale para adelante.  La vida es un desafío constante, pero vale la pena aceptarlo y sobre todo NUNCA DEJES DE CANTAR.";
-
                 CartaBusiness cartaBusiness = new CartaBusiness();
                 tbcarta carta = new tbcarta()
                 {
@@ -134,6 +132,11 @@ namespace LandManagement
                     log.Error(ex.InnerException.Message);
                 MessageBox.Show("Error al actualizar carta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally 
+            {
+                txbCantidadClientes.Text = string.Empty;
+                this.listaEtiquetas = null;
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -146,11 +149,11 @@ namespace LandManagement
         /// </summary>
         /// <param name="fechaCumpleanios">Fecha de cumpleaños a buscar.</param>
         /// <returns></returns>
-        private List<tbcliente> ObtenerClientesCumplenAniosEl(DateTime fechaCumpleanios)
+        private List<tbcliente> ObtenerClientesCumplenAniosEl(DateTime fechaCumpleaniosDesde, DateTime fechaCumpleaniosHasta)
         {
             clienteBusiness = new ClienteBusiness();
             List<tbcliente> listaCumpleanieros = 
-                (List<tbcliente>)clienteBusiness.GetListCumpleanieros(fechaCumpleanios);
+                (List<tbcliente>)clienteBusiness.GetListCumpleanieros(fechaCumpleaniosDesde, fechaCumpleaniosHasta);
 
             return listaCumpleanieros;
         }
