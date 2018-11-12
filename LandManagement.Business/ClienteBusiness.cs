@@ -81,24 +81,39 @@ namespace LandManagement.Business
         public object GetListCumpleanieros(DateTime fechaDesde, DateTime fechaHasta)
         {
             DateTime fechanula = new DateTime(1900, 01, 01);
+            List<tbcliente> clientesSalida = new List<tbcliente>();
 
-            return ((List<tbcliente>)this.GetList())
-                .Where(m => m.cli_fecha_nacimiento.Day >= fechaDesde.Day &&
-                    m.cli_fecha_nacimiento.Month >= fechaDesde.Month &&
-                    m.cli_fecha_nacimiento.Day <= fechaHasta.Day &&
-                    m.cli_fecha_nacimiento.Month <= fechaHasta.Month &&
-                    m.cli_imprime_carta == true &&
-                    !DateTime.Equals(m.cli_fecha_nacimiento, fechanula))
-                    .ToList();
+            List<DateTime> listaFechas = this.GetListaFechasCumpleanios(fechaDesde, fechaHasta);
+            List<tbcliente> clientes = ((List<tbcliente>)this.GetList())
+                .Where(m => m.cli_imprime_carta == true && !DateTime.Equals(m.cli_fecha_nacimiento, fechanula)).ToList();
 
-            //return ((List<tbcliente>)this.GetList())
-            //    .Where(m => m.cli_fecha_nacimiento.Day >= fechaDesde.Day &&
-            //        m.cli_fecha_nacimiento.Month == fechaDesde.Month &&
-            //        m.cli_fecha_nacimiento.Day <= fechaHasta.Day &&
-            //        m.cli_fecha_nacimiento.Month <= fechaHasta.Month &&
-            //        m.cli_imprime_carta == true &&
-            //        !DateTime.Equals(m.cli_fecha_nacimiento, fechanula))
-            //        .ToList();
+            clientesSalida = (from cliente in clientes
+                              from fecha in listaFechas
+                              where cliente.cli_fecha_nacimiento.Day == fecha.Day
+                              && cliente.cli_fecha_nacimiento.Month == fecha.Month
+                              select cliente).ToList();
+
+            return clientesSalida;
+        }
+
+        /// <summary>
+        /// Incorporo todas las fechas que se encuentran en la fecha desde y hasta la fecha hasta, para obtener los cumpleañerps
+        /// </summary>
+        /// <param name="fechaDesde">Fecha desde la cual se buscará los cumpleañeros.</param>
+        /// <param name="fechaHasta">Fecha hasta donde se buscarán los cumpleañeros.</param>
+        /// <returns>Listado de fechas en las cuales se buscara los cumpleañeros.</returns>
+        private List<DateTime> GetListaFechasCumpleanios(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            DateTime fechaDesdeLocal = new DateTime(DateTime.Now.Year, fechaDesde.Month, fechaDesde.Day);
+            DateTime fechaHastaLocal = new DateTime(DateTime.Now.Year, fechaHasta.Month, fechaHasta.Day);
+
+            List<DateTime> listaFechas = new List<DateTime>();
+
+            for (DateTime fecha = fechaDesde; fecha <= fechaHasta; fecha = fecha.AddDays(1))
+            {
+                listaFechas.Add(fecha);
+            }
+            return listaFechas;
         }
 
         public object GetClientesByIdCategoria(List<int> _idsCategoria)

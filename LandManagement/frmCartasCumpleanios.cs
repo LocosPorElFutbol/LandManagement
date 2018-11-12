@@ -69,7 +69,6 @@ namespace LandManagement
                     List<CartaEntity> listaAuxiliarEtiquetas = new List<CartaEntity>();
                     this.listaEtiquetas.ForEach(x => listaAuxiliarEtiquetas.Add(x));
 
-                    //CumpleaniosEtiquetaBusiness cumpleaniosEtiquetaBusiness = new CumpleaniosEtiquetaBusiness("C:\\Etiquetas.pdf");
                     CumpleaniosEtiquetaBusiness cumpleaniosEtiquetaBusiness = new CumpleaniosEtiquetaBusiness(ConfigurationManager.AppSettings["ArchivoEtiquetas"]);
                     cumpleaniosEtiquetaBusiness.CrearEtiquetas(listaAuxiliarEtiquetas);
                 }
