@@ -83,6 +83,9 @@ namespace LandManagement.Business
             DateTime fechanula = new DateTime(1900, 01, 01);
             List<tbcliente> clientesSalida = new List<tbcliente>();
 
+            fechaDesde = new DateTime(DateTime.Now.Year, fechaDesde.Month, fechaDesde.Day);
+            fechaHasta = new DateTime(DateTime.Now.Year, fechaHasta.Month, fechaHasta.Day);
+
             List<DateTime> listaFechas = this.GetListaFechasCumpleanios(fechaDesde, fechaHasta);
             List<tbcliente> clientes = ((List<tbcliente>)this.GetList())
                 .Where(m => m.cli_imprime_carta == true && !DateTime.Equals(m.cli_fecha_nacimiento, fechanula)).ToList();
@@ -91,7 +94,7 @@ namespace LandManagement.Business
                               from fecha in listaFechas
                               where cliente.cli_fecha_nacimiento.Day == fecha.Day
                               && cliente.cli_fecha_nacimiento.Month == fecha.Month
-                              select cliente).ToList();
+                              select cliente).OrderBy(x => x.cli_fecha_nacimiento.Day).ThenBy(x => x.cli_fecha_nacimiento.Month).ToList();
 
             return clientesSalida;
         }
