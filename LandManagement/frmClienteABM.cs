@@ -58,6 +58,7 @@ namespace LandManagement
             clienteBusiness = new ClienteBusiness();
             this.idCliente = pCliente.cli_id;
 
+            dtpFechaAlta.Value = pCliente.cli_fecha;
             txbNombre.Text = pCliente.cli_nombre;
             txbApellido.Text = pCliente.cli_apellido;
             txbTelefonoCelular.Text = pCliente.cli_telefono_celular;
@@ -72,6 +73,8 @@ namespace LandManagement
             txbNumeroDocumento.Text = pCliente.cli_numero_documento;
             txbCuilCuit.Text = pCliente.cli_cuit_cuil;
             txbComoLlego.Text = pCliente.cli_como_llego;
+            txbObservaciones.Text = pCliente.cli_observaciones;
+            lblCaracteresObservaciones.Text = (txbObservaciones.MaxLength - pCliente.cli_observaciones.Length).ToString();
 
             //Cargo datos de Propiedades importadas
             if (pCliente.cli_actualizado != null)
@@ -83,7 +86,6 @@ namespace LandManagement
                 cbxImprimeCarta.Checked = false;
             else
                 cbxImprimeCarta.Checked = (bool)pCliente.cli_imprime_carta;
-            txbEstadoActual.Text = pCliente.cli_estado_actual;
 
             InicializarGrillaFamiliares();
             InicializarGrillaCategorias();
@@ -117,28 +119,35 @@ namespace LandManagement
 
         private void frmClienteABM_Load(object sender, EventArgs e)
         {
-            //Usercontrol operaciones
-            userControlOperaciones = new UserControlOperaciones();
-            userControlOperaciones.Location = new Point(672, 682);
-            pnlControles.Controls.Add(userControlOperaciones);
-
-            txbDomicilioImportado.Enabled = false;
-            pnlControles.AutoScroll = true;
-            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            listasDeElementos = new ListasDeElementos();
-            CargarCombos();
-
-            if (this.cliente != null)
+            try
             {
-                cmbTipoFamiliar.Text = this.cliente.tbtipofamiliar.tif_descripcion;
-                cmbTipoDocumento.Text = this.cliente.cli_tipo_documento;
-                cmbEstadoCivil.Text = this.cliente.cli_estado_civil;
-                cmbSexo.Text = this.cliente.cli_sexo;
-                //El titulo se carga aca porque tiene que tener cargado el combo
-                cmbTitulo.Text = string.IsNullOrEmpty(this.cliente.cli_titulo) ? "Sr." : this.cliente.cli_titulo;
+                //Usercontrol operaciones
+                userControlOperaciones = new UserControlOperaciones();
+                userControlOperaciones.Location = new Point(672, 682);
+                pnlControles.Controls.Add(userControlOperaciones);
 
-                CargaDatosDelDomicilio();
-                CargaGrillaOperaciones();
+                txbDomicilioImportado.Enabled = false;
+                pnlControles.AutoScroll = true;
+                this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+                listasDeElementos = new ListasDeElementos();
+                CargarCombos();
+
+                if (this.cliente != null)
+                {
+                    cmbTipoFamiliar.Text = this.cliente.tbtipofamiliar.tif_descripcion;
+                    cmbTipoDocumento.Text = this.cliente.cli_tipo_documento;
+                    cmbEstadoCivil.Text = this.cliente.cli_estado_civil;
+                    cmbSexo.Text = this.cliente.cli_sexo;
+                    cmbTitulo.Text = this.cliente.tbtitulocliente.tcl_descripcion;
+                    cmbCategoriaCliente.Text = this.cliente.tbcategoriacliente.ccl_descripcion;
+
+                    CargaDatosDelDomicilio();
+                    CargaGrillaOperaciones();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -257,10 +266,11 @@ namespace LandManagement
 
             //Cargo campos importados
             this.cliente.cli_actualizado = dtpActualizado.Value;
-            this.cliente.cli_titulo = cmbTitulo.Text;
+            this.cliente.tcl_id = ((tbtitulocliente)cmbTitulo.SelectedItem).tcl_id;
             this.cliente.cli_nombre_pila = txbNombreDePila.Text;
             this.cliente.cli_imprime_carta = cbxImprimeCarta.Checked;
-            this.cliente.cli_estado_actual = txbEstadoActual.Text;
+            this.cliente.cli_observaciones = txbObservaciones.Text;
+            this.cliente.ccl_id = ((tbcategoriacliente)cmbCategoriaCliente.SelectedItem).ccl_id;
 
             CargaDomicilioAlCliente(this.cliente);
             CargaFamiliaresAlCliente();
@@ -318,7 +328,7 @@ namespace LandManagement
                                         "cli_id",
                                         "tif_id",
                                         "cli_parentezco",
-                                        "cli_titulo",
+                                        "tcl_id",
                                         "cli_nombre",
                                         "cli_apellido",
                                         "cli_fecha_nacimiento"
@@ -347,7 +357,7 @@ namespace LandManagement
             dataGridViewRow.Cells["cli_id"].Value = familiar.cli_id;
             dataGridViewRow.Cells["tif_id"].Value = familiar.tif_id;
             dataGridViewRow.Cells["cli_parentezco"].Value = familiar.cli_parentezco;
-            dataGridViewRow.Cells["cli_titulo"].Value = familiar.cli_titulo;
+            dataGridViewRow.Cells["tcl_id"].Value = familiar.tcl_id;
             dataGridViewRow.Cells["cli_nombre"].Value = familiar.cli_nombre;
             dataGridViewRow.Cells["cli_apellido"].Value = familiar.cli_apellido;
             dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = familiar.cli_fecha_nacimiento.Date.ToShortDateString();
@@ -378,10 +388,11 @@ namespace LandManagement
                     //Datos actualizables y datos para familiares nuevos
                     clienteFamiliar.cli_id = (int)row.Cells["cli_id"].Value;
                     clienteFamiliar.tif_id = (int)row.Cells["tif_id"].Value;
-                    clienteFamiliar.cli_titulo = (string)row.Cells["cli_titulo"].Value;
+                    clienteFamiliar.tcl_id = (int)row.Cells["tcl_id"].Value;
                     clienteFamiliar.cli_nombre = (string)row.Cells["cli_nombre"].Value;
                     clienteFamiliar.cli_apellido = (string)row.Cells["cli_apellido"].Value;
                     clienteFamiliar.cli_fecha_nacimiento = DateTime.Parse(row.Cells["cli_fecha_nacimiento"].Value.ToString());
+                    clienteFamiliar.ccl_id = 1; //seteo categoria cliente al familiara como NINGUNA
 
                     if (clienteFamiliar.cli_id == 0)
                     {
@@ -402,7 +413,7 @@ namespace LandManagement
                                 .FirstOrDefault();
 
                         familiarExistente.tif_id = clienteFamiliar.tif_id;
-                        familiarExistente.cli_titulo = clienteFamiliar.cli_titulo;
+                        familiarExistente.tcl_id = clienteFamiliar.tcl_id;
                         familiarExistente.cli_nombre = clienteFamiliar.cli_nombre;
                         familiarExistente.cli_apellido = clienteFamiliar.cli_apellido;
                         familiarExistente.cli_fecha_nacimiento = clienteFamiliar.cli_fecha_nacimiento;
@@ -529,6 +540,7 @@ namespace LandManagement
             this.CargarDepto();
             this.CargarTitulo();
             this.CargarProvincias();
+            this.CargarCategoriasCliente();
             SetearIndiceCombo();
         }
 
@@ -552,11 +564,14 @@ namespace LandManagement
             cmbDepto.DisplayMember = ComboBoxItem.DisplayMember;
             cmbDepto.ValueMember = ComboBoxItem.ValueMember;
 
-            cmbTitulo.DisplayMember = ComboBoxItem.DisplayMember;
-            cmbTitulo.ValueMember = ComboBoxItem.ValueMember;
+            cmbTitulo.DisplayMember = "tcl_descripcion";
+            cmbTitulo.ValueMember = "tcl_id";
 
             cmbProvincia.ValueMember = "prv_id";
             cmbProvincia.DisplayMember = "prv_descripcion";
+
+            cmbCategoriaCliente.ValueMember = "ccl_id";
+            cmbCategoriaCliente.DisplayMember = "ccl_descripcion";
         }
 
         private void SetearIndiceCombo()
@@ -569,6 +584,7 @@ namespace LandManagement
             cmbDepto.SelectedIndex = 0;
             cmbTitulo.SelectedIndex = 0;
             cmbProvincia.SelectedIndex = 3;
+            cmbCategoriaCliente.SelectedIndex = 0;
         }
 
         private void CargarTipoFamiliar()
@@ -607,7 +623,11 @@ namespace LandManagement
 
         private void CargarTitulo()
         {
-            this.CargarCombo(listasDeElementos.GetListaTitulo(), cmbTitulo);
+            TituloClienteBusiness tituloClienteBusiness = new TituloClienteBusiness();
+            List<tbtitulocliente> listaTituloCliente = (List<tbtitulocliente>)tituloClienteBusiness.GetList();
+
+            foreach (var obj in listaTituloCliente)
+                cmbTitulo.Items.Add(obj);
         }
 
         private void CargarProvincias()
@@ -617,6 +637,15 @@ namespace LandManagement
 
             foreach (var obj in listaProvincias)
                 cmbProvincia.Items.Add(obj);
+        }
+
+        private void CargarCategoriasCliente()
+        {
+            CategoriaClienteBusiness categoriaClienteBusiness = new CategoriaClienteBusiness();
+            List<tbcategoriacliente> listaCategoriaCliente = (List<tbcategoriacliente>)categoriaClienteBusiness.GetList();
+
+            foreach (var obj in listaCategoriaCliente)
+                cmbCategoriaCliente.Items.Add(obj);
         }
 
         private void CargarCombo(List<ComboBoxItem> lista, ComboBox combo)
@@ -673,7 +702,7 @@ namespace LandManagement
             dataGridViewRow.Cells["cli_id"].Value = familiarActualizado.cli_id;
             dataGridViewRow.Cells["tif_id"].Value = familiarActualizado.tif_id;
             dataGridViewRow.Cells["cli_parentezco"].Value = familiarActualizado.cli_parentezco;
-            dataGridViewRow.Cells["cli_titulo"].Value = familiarActualizado.cli_titulo;
+            dataGridViewRow.Cells["tcl_id"].Value = familiarActualizado.tcl_id;
             dataGridViewRow.Cells["cli_nombre"].Value = familiarActualizado.cli_nombre;
             dataGridViewRow.Cells["cli_apellido"].Value = familiarActualizado.cli_apellido;
             dataGridViewRow.Cells["cli_fecha_nacimiento"].Value = familiarActualizado.cli_fecha_nacimiento.Date.ToShortDateString();
@@ -846,10 +875,7 @@ namespace LandManagement
         {
             try
             {
-                string pattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|"
-                    + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)"
-                    + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
-
+                string pattern = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
                 Regex regEx = new Regex(pattern);
                 Match match = regEx.Match(email);
 
@@ -926,5 +952,11 @@ namespace LandManagement
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '-'))
                 e.Handled = true;
         }
+
+        private void txbObservaciones_KeyUp(object sender, KeyEventArgs e)
+        {
+            lblCaracteresObservaciones.Text = (txbObservaciones.MaxLength - txbObservaciones.TextLength).ToString();
+        }
+
     }
 }

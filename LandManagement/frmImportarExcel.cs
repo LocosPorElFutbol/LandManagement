@@ -153,12 +153,12 @@ namespace LandManagement
                     cli_id_import = persona.id, //Asigno el id existente al campo id_import
                     cli_fecha = DateTime.Parse(persona.fechaDeIngreso.ToString()),
                     cli_actualizado = DateTime.Parse(persona.actualizado.ToString()),
-                    cli_titulo = persona.titulo,
+                    tcl_id = 1, //cli_titulo = persona.titulo, //se hardcodea en 1 porque el titulo es variable y el excel no es uniforme
                     cli_apellido = CargarDatoNulo(persona.apellido),
                     cli_nombre_pila = persona.nombreDePila,
                     cli_nombre = CargarDatoNulo(persona.nombreCompleto),
                     cli_imprime_carta = persona.imprimeCarta,
-                    cli_estado_actual = persona.estadoActual,
+                    cli_observaciones = persona.estadoActual,
                     cli_telefono_celular = persona.celular,
                     cli_telefono_particular = persona.telParticular,
                     cli_email = persona.email,
@@ -167,7 +167,8 @@ namespace LandManagement
                     cli_numero_documento = CargarDatoNulo(persona.dniTitular),
                     cli_cuit_cuil = persona.cuitCuilTitular,
                     cli_estado_civil = persona.estadoCivil,
-                    cli_como_llego = persona.observaciones
+                    cli_como_llego = persona.observaciones,
+                    ccl_id = 1 //Se setea como cateoria ninguna en la importación
                 };
 
                 //Agrego campo obligatorio cli_tipo_documento
@@ -232,7 +233,7 @@ namespace LandManagement
                 cli_actualizado = persona.actualizado, //Asigno fecha actualizado para no generar error.
                 cli_email = persona.mailConyuge,
                 cli_imprime_carta = persona.imprimeCarta,
-                cli_titulo = "Sr."
+                tcl_id = 1  //cli_titulo = "Sr."
             };
             CargarDomicilio(persona, conyuje);
             cliente.tbcliente1.Add(conyuje);

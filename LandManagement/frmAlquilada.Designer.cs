@@ -32,7 +32,7 @@
             this.pnlControles = new System.Windows.Forms.Panel();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.dtpFecha = new LandManagement.Utilidades.PangeaDateTimePicker();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.btnQuitarLocatario = new System.Windows.Forms.Button();
             this.btnAgregarLocatario = new System.Windows.Forms.Button();
@@ -69,9 +69,9 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.rdbServiciosCargoLocatario = new System.Windows.Forms.RadioButton();
             this.rdbServiciosCargoLocador = new System.Windows.Forms.RadioButton();
-            this.dtpFechaDesocupacion = new System.Windows.Forms.DateTimePicker();
-            this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
-            this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaDesocupacion = new LandManagement.Utilidades.PangeaDateTimePicker();
+            this.dtpFechaFin = new LandManagement.Utilidades.PangeaDateTimePicker();
+            this.dtpFechaInicio = new LandManagement.Utilidades.PangeaDateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -619,12 +619,12 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DateTimePicker dtpFecha;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpFecha;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.DateTimePicker dtpFechaDesocupacion;
-        private System.Windows.Forms.DateTimePicker dtpFechaFin;
-        private System.Windows.Forms.DateTimePicker dtpFechaInicio;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpFechaDesocupacion;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpFechaFin;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpFechaInicio;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label16;

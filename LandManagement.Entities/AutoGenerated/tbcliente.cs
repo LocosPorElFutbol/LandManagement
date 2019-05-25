@@ -75,6 +75,56 @@ namespace LandManagement.Entities
         }
         private int _tif_id;
     
+        public virtual Nullable<int> ccl_id
+        {
+            get { return _ccl_id; }
+            set
+            {
+                try
+                {
+                    _settingFK = true;
+                    if (_ccl_id != value)
+                    {
+                        if (tbcategoriacliente != null && tbcategoriacliente.ccl_id != value)
+                        {
+                            tbcategoriacliente = null;
+                        }
+                        _ccl_id = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
+            }
+        }
+        private Nullable<int> _ccl_id;
+    
+        public virtual int tcl_id
+        {
+            get { return _tcl_id; }
+            set
+            {
+                try
+                {
+                    _settingFK = true;
+                    if (_tcl_id != value)
+                    {
+                        if (tbtitulocliente != null && tbtitulocliente.tcl_id != value)
+                        {
+                            tbtitulocliente = null;
+                        }
+                        _tcl_id = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
+            }
+        }
+        private int _tcl_id;
+    
         public virtual System.DateTime cli_fecha
         {
             get;
@@ -171,12 +221,6 @@ namespace LandManagement.Entities
             set;
         }
     
-        public virtual string cli_titulo
-        {
-            get;
-            set;
-        }
-    
         public virtual string cli_nombre_pila
         {
             get;
@@ -189,7 +233,7 @@ namespace LandManagement.Entities
             set;
         }
     
-        public virtual string cli_estado_actual
+        public virtual string cli_observaciones
         {
             get;
             set;
@@ -204,6 +248,21 @@ namespace LandManagement.Entities
         #endregion
 
         #region Navigation Properties
+    
+        public virtual tbcategoriacliente tbcategoriacliente
+        {
+            get { return _tbcategoriacliente; }
+            set
+            {
+                if (!ReferenceEquals(_tbcategoriacliente, value))
+                {
+                    var previousValue = _tbcategoriacliente;
+                    _tbcategoriacliente = value;
+                    Fixuptbcategoriacliente(previousValue);
+                }
+            }
+        }
+        private tbcategoriacliente _tbcategoriacliente;
     
         public virtual ICollection<tbcliente> tbcliente1
         {
@@ -266,6 +325,21 @@ namespace LandManagement.Entities
             }
         }
         private tbtipofamiliar _tbtipofamiliar;
+    
+        public virtual tbtitulocliente tbtitulocliente
+        {
+            get { return _tbtitulocliente; }
+            set
+            {
+                if (!ReferenceEquals(_tbtitulocliente, value))
+                {
+                    var previousValue = _tbtitulocliente;
+                    _tbtitulocliente = value;
+                    Fixuptbtitulocliente(previousValue);
+                }
+            }
+        }
+        private tbtitulocliente _tbtitulocliente;
     
         public virtual ICollection<tbclienteoperacion> tbclienteoperacion
         {
@@ -369,6 +443,30 @@ namespace LandManagement.Entities
     
         private bool _settingFK = false;
     
+        private void Fixuptbcategoriacliente(tbcategoriacliente previousValue)
+        {
+            if (previousValue != null && previousValue.tbcliente.Contains(this))
+            {
+                previousValue.tbcliente.Remove(this);
+            }
+    
+            if (tbcategoriacliente != null)
+            {
+                if (!tbcategoriacliente.tbcliente.Contains(this))
+                {
+                    tbcategoriacliente.tbcliente.Add(this);
+                }
+                if (ccl_id != tbcategoriacliente.ccl_id)
+                {
+                    ccl_id = tbcategoriacliente.ccl_id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                ccl_id = null;
+            }
+        }
+    
         private void Fixuptbcliente2(tbcliente previousValue)
         {
             if (previousValue != null && previousValue.tbcliente1.Contains(this))
@@ -409,6 +507,26 @@ namespace LandManagement.Entities
                 if (tif_id != tbtipofamiliar.tif_id)
                 {
                     tif_id = tbtipofamiliar.tif_id;
+                }
+            }
+        }
+    
+        private void Fixuptbtitulocliente(tbtitulocliente previousValue)
+        {
+            if (previousValue != null && previousValue.tbcliente.Contains(this))
+            {
+                previousValue.tbcliente.Remove(this);
+            }
+    
+            if (tbtitulocliente != null)
+            {
+                if (!tbtitulocliente.tbcliente.Contains(this))
+                {
+                    tbtitulocliente.tbcliente.Add(this);
+                }
+                if (tcl_id != tbtitulocliente.tcl_id)
+                {
+                    tcl_id = tbtitulocliente.tcl_id;
                 }
             }
         }

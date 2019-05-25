@@ -22,7 +22,7 @@ namespace LandManagement
         private Timer timerParpadeo;
         private int cantParpadeos = 0;
         private UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
-        public List<tbmenu> listaMenuDelUsuario;
+        public List<tbmenu> listaMenuDelUsuario = new List<tbmenu>();
         public static readonly ILog log = log4net.LogManager.GetLogger
             (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -43,6 +43,8 @@ namespace LandManagement
                 gbxLogin.Enabled = false;
             else 
                 lkbActivarProducto.Visible = false;
+
+            btnAceptar.Select();
 
             this.Icon = (Icon)Recursos.ResourceImages.ResourceManager.GetObject("Llave");
             this.Text = "Inicio de Sesión";
@@ -128,24 +130,19 @@ namespace LandManagement
 
         private bool ValidacionCredenciales()
         {
-            tbusuario usuario = new tbusuario() { usu_nombre_login = txbUsuario.Text };
-            usuario = usuarioBusiness.ValidacionUsuarioPassword(usuario, txbPassword.Text);
-
+            tbusuario usuario = usuarioBusiness.ValidacionUsuarioPassword(txbUsuario.Text, txbPassword.Text);
             if (usuario != null)
             {
                 VariablesDeSesion.UsuarioLogueado = usuario;
                 cargarListaMenuDelUsuario(usuario);
                 return true;
             }
-            
             return false;
         }
 
         private void cargarListaMenuDelUsuario(tbusuario usuario)
         {
-            this.listaMenuDelUsuario = new List<tbmenu>();
-            // Intento de levantarlo desde el repositorio
-            //this.listaMenuDelUsuario = usuario.tbmenu.ToList();
+            //CODIGO VIEJO DE ACA A ABAJO
             this.listaMenuDelUsuario = usuarioBusiness.CargarMenuAsignadoAUsuario(usuario);
 
             //Ordeno alfabeticamente el menu

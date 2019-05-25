@@ -198,7 +198,7 @@ namespace LandManagement
                 if (cartaEntityTemp != null)
                 {
                     listaEtiquetas.Add(new CartaEntity(
-                        obj.cli_titulo,
+                        obj.tbtitulocliente.tcl_descripcion,
                         obj.cli_nombre_pila,
                         obj.cli_nombre,
                         obj.cli_apellido,

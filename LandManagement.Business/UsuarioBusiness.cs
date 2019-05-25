@@ -43,139 +43,82 @@ namespace LandManagement.Business
             return _UsuarioRepository.GetElement(tbUsuario);
         }
 
-        public object GetElementByLoginName(tbusuario pUsuario)
-        {
-            return _UsuarioRepository.GetElementByLoginName(pUsuario);
-        }
-
         public object GetList()
         {
             return _UsuarioRepository.GetList();
         }
 
-        public tbusuario ValidacionUsuarioPassword(tbusuario usuario, string password)
+        public object GetList(Func<tbusuario, bool> funcion)
         {
-            tbusuario usuarioObtenido = new tbusuario();
-            usuarioObtenido = (tbusuario)this.GetElementByLoginName(usuario);
-
-            if (usuarioObtenido != null)
-                if (usuarioObtenido.usu_password == password)
-                    return usuarioObtenido;
-
-            return null;
+            return _UsuarioRepository.GetList(funcion);
         }
 
+        public tbusuario ValidacionUsuarioPassword(string userName, string password)
+        {
+            //Obtengo usuario si coinciden loginName y pass
+            Func<tbusuario, bool> funcion = x => x.usu_nombre_login == userName && x.usu_password == password;
+            tbusuario usuario = ((List<tbusuario>)this.GetList(funcion)).FirstOrDefault();
+            return usuario;
+        }
+
+        //REFACTORING ARMADO DE MENU
+        //FALTA REFACTORIZAR CLIENTE
+        //FUNCIONO PARA LOS DOS USUARIOS; FALTA REFACTORIZAR EL ARMADO DEL MENU STRIP DEL CLIENTE
         public List<tbmenu> CargarMenuAsignadoAUsuario(tbusuario usuario)
         {
-            List<tbmenu> listaMenu = new List<tbmenu>();
+            //Filtro para obtener el menu asignado a un usuario
+            Func<tbmenu, bool> funcionBusqueda = x => x.tbusuario.Any(u => u.usu_id == usuario.usu_id);
             
-            if (usuario.tbmenu.Count > 0)
-            {
-                foreach (var m in usuario.tbmenu)
-                {
-                    tbmenu menuCompleto = CargoPadre(m);
-
-                    if (listaMenu.Count > 0)
-                    {
-                        listaMenu = EsHermano(menuCompleto, listaMenu);
-                            //if (this.EsHermano(menuCompleto, listaMenu))
-                            //    listaMenu.Add(menuCompleto);
-                    }
-                    else
-                        listaMenu.Add(menuCompleto);
-                }
-            } 
-
-            return listaMenu;
-        }
-
-        private tbmenu CargoPadre(tbmenu menu)
-        {
-            tbmenu menuPadre = null;
-
-            if (menu.men_id_padre != null)
-            {
-                tbmenu menuPadreDatos = 
-                    (tbmenu)menuBusiness.GetElement(new tbmenu() { men_id = (int)menu.men_id_padre});
-
-                menuPadre = new tbmenu()
-                {
-                    men_id = menuPadreDatos.men_id,
-                    men_id_padre = menuPadreDatos.men_id_padre,
-                    men_nombre = menuPadreDatos.men_nombre,
-                    men_nombre_formulario = menuPadreDatos.men_nombre_formulario,
-                    men_estado = menuPadreDatos.men_estado
-                };
-
-                menuPadre.tbmenu1.Add(menu);
-                CargoPadre(menuPadre);
-            }
-            else
-                return menuPadre;
-
-            return menuPadre;
-        }
-
-        private List<tbmenu> EsHermano(tbmenu menuCompleto, List<tbmenu> listaMenu)
-        {
+            List<tbmenu> listaMenu = (List<tbmenu>)menuBusiness.GetList(funcionBusqueda);
             List<tbmenu> listaMenuSalida = new List<tbmenu>();
-            listaMenuSalida = listaMenu;
-            tbmenu menuConHermanos = null;
-            tbmenu menuARemover = null;
-            bool tieneHermano = false;
 
-            foreach (var obj in listaMenu)
-            {
-                if(menuCompleto.men_id == obj.men_id)
-                {
-                    menuARemover = new tbmenu();
-                    menuConHermanos = new tbmenu();
-                    menuConHermanos = this.AgregarHermano(obj, menuCompleto);
-                    menuARemover = obj;
-                    tieneHermano = true;
-                    break;
-                }           
-            }
-
-            if (menuARemover != null && menuConHermanos != null)
-            {
-                listaMenuSalida.Remove(menuARemover);
-                listaMenuSalida.Add(menuConHermanos);
-            }
-
-            if (!tieneHermano)
-                listaMenuSalida.Add(menuCompleto);
-
+            //este listado va a contener unicamente perfiles (hojas).
+            foreach (tbmenu menu in listaMenu)
+                ArmoMenuBD(menu, listaMenuSalida);
+            
             return listaMenuSalida;
         }
 
-        private tbmenu AgregarHermano(tbmenu menuListaMenu, tbmenu menuCompleto)
+        private bool listaSalidaContieneAPadreDe(tbmenu menu, List<tbmenu> listaMenuSalida)
         {
-            tbmenu menuSalida = new tbmenu();
-            menuSalida = menuListaMenu;
-            tbmenu menuHermano = new tbmenu();
-
-            foreach (var obj in menuListaMenu.tbmenu1)
+            foreach (tbmenu m in listaMenuSalida)
             {
-                foreach (var objMenuCompleto in menuCompleto.tbmenu1)
+                if (m.men_id == menu.men_id_padre)
                 {
-                    menuHermano = objMenuCompleto;
-                    if (obj.men_id == objMenuCompleto.men_id)
-                    {
-                        AgregarHermano(obj, objMenuCompleto);
-                    }
-                    else
-                    {
-                        if (objMenuCompleto.tbmenu1.Count == 0)
-                            menuSalida.tbmenu1.Add(menuHermano);
-                        break;
-                    }
+                    m.tbmenu1.Add(menu);
+                    return true;
                 }
-                break;
+                else
+                {
+                    if (m.tbmenu1.Count() > 0)
+                        listaSalidaContieneAPadreDe(menu, (List<tbmenu>)m.tbmenu1);
+                }
             }
-
-            return menuSalida;
+            return false;
         }
 
+        private void ArmoMenuBD(tbmenu menu, List<tbmenu> listaMenuSalida)
+        {
+            tbmenu padre = null;
+            if (!this.listaSalidaContieneAPadreDe(menu, listaMenuSalida))
+            {
+                padre = this.ObtenerPadreMenu(menu.men_id_padre.Value);
+                padre.tbmenu1 = new List<tbmenu>();
+                padre.tbmenu1.Add(menu);
+             
+                if (padre.men_id_padre != null)
+                    ArmoMenuBD(padre, listaMenuSalida);
+                else
+                    listaMenuSalida.Add(padre);
+            }
+        }
+
+        private tbmenu ObtenerPadreMenu(int idPadre)
+        {
+            tbmenu menuPadre = new tbmenu() { men_id = idPadre };
+            return (tbmenu)menuBusiness.GetElement(menuPadre);
+        }
+        //REFACTORING ARMADO DE MENU
+        //FALTA REFACTORIZAR CLIENTE
     }
 }

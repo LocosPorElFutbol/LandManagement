@@ -59,7 +59,7 @@ namespace LandManagement
             if(this.familiar != null)
             {
                 cmbTipoFamiliar.Text = this.familiar.tbtipofamiliar.tif_descripcion;
-                cmbTitulo.Text = this.familiar.cli_titulo;
+                cmbTitulo.Text = this.familiar.tbtitulocliente.tcl_descripcion;
             }
         }
 
@@ -111,7 +111,7 @@ namespace LandManagement
             MensajeCancelar();
         }
 
-        #region Carga Combo Tipo Familiar
+        #region Carga Combos
 
         private void CargarCombos()
         {
@@ -123,8 +123,8 @@ namespace LandManagement
 
         private void SetearDisplayValue()
         {
-            cmbTitulo.DisplayMember = ComboBoxItem.DisplayMember;
-            cmbTitulo.ValueMember = ComboBoxItem.ValueMember;
+            cmbTitulo.DisplayMember = "tcl_descripcion";
+            cmbTitulo.ValueMember = "tcl_id";
 
             cmbTipoFamiliar.DisplayMember = "tif_descripcion";
             cmbTipoFamiliar.ValueMember = "tif_id";
@@ -137,8 +137,11 @@ namespace LandManagement
 
         private void CargarTitulo()
         {
-            ListasDeElementos listasDeElementos = new ListasDeElementos();
-            this.CargarCombo(listasDeElementos.GetListaTitulo(), cmbTitulo);
+            TituloClienteBusiness tituloClienteBusiness = new TituloClienteBusiness();
+            List<tbtitulocliente> listaTituloCliente = (List<tbtitulocliente>)tituloClienteBusiness.GetList();
+
+            foreach (var obj in listaTituloCliente)
+                cmbTitulo.Items.Add(obj);
         }
 
         private void CargarTipoFamiliar()
@@ -162,7 +165,7 @@ namespace LandManagement
         {
             this.familiar.cli_id = this.idFamiliar;
             this.familiar.tif_id = ((tbtipofamiliar)cmbTipoFamiliar.SelectedItem).tif_id;
-            this.familiar.cli_titulo = cmbTitulo.Text;            
+            this.familiar.tcl_id = ((tbtitulocliente)cmbTitulo.SelectedItem).tcl_id;
             this.familiar.cli_parentezco = ((tbtipofamiliar)cmbTipoFamiliar.SelectedItem).tif_descripcion;
             this.familiar.cli_nombre = txbNombre.Text;
             this.familiar.cli_apellido = txbApellido.Text;

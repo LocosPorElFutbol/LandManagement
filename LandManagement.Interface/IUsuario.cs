@@ -11,7 +11,6 @@ namespace LandManagement.Interface
         void Update(E entity);
         void Delete(E entity);
         object GetElement(E entity);
-        object GetElementByLoginName(E entity);
         object GetList();
     }
 }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label2 = new System.Windows.Forms.Label();
-            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.dtpFecha = new LandManagement.Utilidades.PangeaDateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.txbTasacion = new System.Windows.Forms.TextBox();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -270,7 +270,7 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dtpFecha;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpFecha;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txbTasacion;
         private System.Windows.Forms.Button btnGuardar;

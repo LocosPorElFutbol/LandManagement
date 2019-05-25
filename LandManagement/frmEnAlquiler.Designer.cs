@@ -34,7 +34,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.dtpFecha = new LandManagement.Utilidades.PangeaDateTimePicker();
             this.txbPrecioPrimerAnio = new System.Windows.Forms.TextBox();
             this.txbPrecioSegundoAnio = new System.Windows.Forms.TextBox();
             this.txbPrecioCuartoAnio = new System.Windows.Forms.TextBox();
@@ -388,7 +388,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DateTimePicker dtpFecha;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpFecha;
         private System.Windows.Forms.TextBox txbPrecioPrimerAnio;
         private System.Windows.Forms.TextBox txbPrecioSegundoAnio;
         private System.Windows.Forms.TextBox txbPrecioCuartoAnio;

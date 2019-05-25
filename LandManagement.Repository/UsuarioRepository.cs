@@ -8,7 +8,7 @@ using System.Data;
 
 namespace LandManagement.Repository
 {
-    public class UsuarioRepository: IUsuario<tbusuario>
+    public class UsuarioRepository : IUsuario<tbusuario>
     {
         private landmanagementbdEntities _Contexto;
         public landmanagementbdEntities Contexto
@@ -66,7 +66,7 @@ namespace LandManagement.Repository
             try
             {
                 //Verifico si ya existe la entidad en el contexto
-                EntityKey key = 
+                EntityKey key =
                     Contexto.CreateEntityKey(Contexto.CreateObjectSet<tbusuario>().EntitySet.Name, entity);
 
                 tbusuario entityAux = null;
@@ -107,23 +107,25 @@ namespace LandManagement.Repository
                 Contexto.SaveChanges();
             }
             catch (Exception ex)
-            {                
+            {
                 throw ex;
             }
         }
 
         public object GetElement(tbusuario entity)
         {
-            EntityKey key = Contexto.CreateEntityKey(
-                Contexto.CreateObjectSet<tbusuario>().EntitySet.Name, entity);
             try
             {
-                //tbusuario salida = (tbusuario)Contexto.GetObjectByKey(key);
-                //var salida2 = Contexto.ObjectStateManager.GetRelationshipManager(salida); 
-
+                //TENIA UN ERROR CUANDO SE CARGABAN LAS GRILLAS DE PERMISOS
+                //EL DE ABAJO FUNCIONA PERO HACE EL INCLUDE DE LOS MENU [REVISAR]
+                //tbusuario salida = (from u in Contexto.tbusuario
+                //                    where u.usu_id == entity.usu_id
+                //                    select u).FirstOrDefault();
+                
+                //MEJORA MENU
                 tbusuario salida = (from u in Contexto.tbusuario.Include("tbmenu")
-                             where u.usu_id == entity.usu_id
-                             select u).FirstOrDefault();
+                                    where u.usu_id == entity.usu_id
+                                    select u).FirstOrDefault();
 
                 return salida;
             }
@@ -133,24 +135,14 @@ namespace LandManagement.Repository
             }
         }
 
-        public object GetElementByLoginName(tbusuario entity)
-        {
-            tbusuario usuario = new tbusuario();
-            try
-            {
-                usuario = Contexto.tbusuario.Include("tbmenu")
-                    .Where(x => x.usu_nombre_login == entity.usu_nombre_login).FirstOrDefault();
-            }
-            catch (Exception ex)
-            { 
-                throw ex; 
-            }
-            return usuario;
-        }
-
         public object GetList()
         {
             return Contexto.CreateObjectSet<tbusuario>().ToList();
+        }
+
+        public object GetList(Func<tbusuario, bool> funcion)
+        {
+            return Contexto.tbusuario.Where(funcion).ToList();
         }
     }
 }

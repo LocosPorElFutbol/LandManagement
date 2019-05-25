@@ -19,7 +19,7 @@ namespace LandManagement
         MenuStrip menuStrip;
         ToolStripMenuItem toolStripMenuItem;
         private MenuBusiness menuBusiness;
-        private List<tbmenu> listaMenu;
+        private List<tbmenu> _listaMenu;
     
         public frmPadre()
         {
@@ -29,7 +29,7 @@ namespace LandManagement
         public frmPadre(List<tbmenu> listaMenuDelUsuario)
         {
             InitializeComponent();
-            this.listaMenu = listaMenuDelUsuario;
+            this._listaMenu = listaMenuDelUsuario;
         }
 
         private void frmPadre_Load(object sender, EventArgs e)
@@ -50,13 +50,8 @@ namespace LandManagement
             this.Controls.Add(menuStrip);
             this.IsMdiContainer = true;
 
-            //Carga todos los menus directamente desde la tabla menu
-            //se tiene que modificar para que el menu se cargue desde el usuario
-            //menuBusiness = new MenuBusiness();
-            //var coleccion = (List<tbmenu>)menuBusiness.GetList();
-
             //Se carga el menu del usuario logueado
-            var coleccion = this.listaMenu;
+            var coleccion = this._listaMenu;
 
             foreach (var obj in coleccion)
             {
@@ -78,6 +73,8 @@ namespace LandManagement
             this.MainMenuStrip = menuStrip;
         }
 
+
+        //CODIGO VIEJO QUE GENERA EL MENU DEL USUARIO
         public bool TieneHijos(tbmenu objeto)
         {
             bool salida = false;
@@ -154,13 +151,11 @@ namespace LandManagement
                             ActivateMdiChild(null);
                             ActivateMdiChild(formShow);
                         }
-
                     }
-
                 }
             }
-
         }
+        //CODIGO VIEJO QUE GENERA EL MENU DEL USUARIO
 
         void frmPadre_FormClosing(object sender, FormClosingEventArgs e)
         {

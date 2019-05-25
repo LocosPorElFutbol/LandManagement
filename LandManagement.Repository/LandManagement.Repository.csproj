@@ -47,6 +47,7 @@
     <Compile Include="AlquiladaRepository.cs" />
     <Compile Include="BaseRepository.cs" />
     <Compile Include="CartaRepository.cs" />
+    <Compile Include="CategoriaClienteRepository.cs" />
     <Compile Include="CategoriaRepository.cs" />
     <Compile Include="ClienteOperacionRepository.cs" />
     <Compile Include="ClienteRepository.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="TasacionRepository.cs" />
     <Compile Include="TipoFamiliarRepository.cs" />
     <Compile Include="TipoPropiedadRepository.cs" />
+    <Compile Include="TituloClienteRepository.cs" />
     <Compile Include="UsuarioRepository.cs" />
     <Compile Include="VentaRepository.cs" />
     <Compile Include="VersionRepository.cs" />

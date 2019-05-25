@@ -7,6 +7,7 @@ using System.ComponentModel;
 
 namespace LandManagement.Entities
 {
+    [Obsolete("tbcategoria va a eliminarse, se tiene que mejorar el código. El nombre no es apropiado para la clase")]
     [MetadataType(typeof(tbcategoria_metadata))]
     public class tbcategoria
     {

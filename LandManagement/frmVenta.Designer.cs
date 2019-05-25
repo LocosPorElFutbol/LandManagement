@@ -36,8 +36,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.txbPrecio = new System.Windows.Forms.TextBox();
-            this.dtpFechaBoleto = new System.Windows.Forms.DateTimePicker();
-            this.dtpFechaEscritura = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaBoleto = new LandManagement.Utilidades.PangeaDateTimePicker();
+            this.dtpFechaEscritura = new LandManagement.Utilidades.PangeaDateTimePicker();
             this.txbEscribano = new System.Windows.Forms.TextBox();
             this.txbPresupuesto = new System.Windows.Forms.TextBox();
             this.txbEscribania = new System.Windows.Forms.TextBox();
@@ -54,7 +54,7 @@
             this.cmbCliente = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dgvComprador = new System.Windows.Forms.DataGridView();
-            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.dtpFecha = new LandManagement.Utilidades.PangeaDateTimePicker();
             this.groupBox1.SuspendLayout();
             this.pnlControles.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -363,8 +363,8 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txbPrecio;
-        private System.Windows.Forms.DateTimePicker dtpFechaBoleto;
-        private System.Windows.Forms.DateTimePicker dtpFechaEscritura;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpFechaBoleto;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpFechaEscritura;
         private System.Windows.Forms.TextBox txbEscribano;
         private System.Windows.Forms.TextBox txbPresupuesto;
         private System.Windows.Forms.TextBox txbEscribania;
@@ -376,7 +376,7 @@
         private System.Windows.Forms.DataGridView dgvComprador;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dtpFecha;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpFecha;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.ComboBox cmbCliente;
         private System.Windows.Forms.Label label5;

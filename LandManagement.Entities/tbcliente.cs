@@ -35,6 +35,12 @@ namespace LandManagement.Entities
         [DisplayName("Id Tipo Familiar")]
         public int tif_id { get; set; }
 
+        [DisplayName("Id titulo cliente")]
+        public int tcl_id { get; set; }
+
+        [DisplayName("Id categoria cliente")]
+        public int ccl_id { get; set; }
+
         [DisplayName("Parentezco")]
         public string cli_parentezco { get; set; }
 

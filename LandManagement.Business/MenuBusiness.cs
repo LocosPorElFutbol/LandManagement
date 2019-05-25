@@ -41,25 +41,15 @@ namespace LandManagement.Business
             return menuRepository.GetList();
         }
 
+        public object GetList(Func<tbmenu, bool> funcion)
+        {
+            return menuRepository.GetList(funcion);
+        }
+
         public object ObtenerListadoMenu()
         {
-            //return ((List<tbmenu>)this.GetList()).Where(x => x.men_nombre_formulario != null);
-            var listadoMenu = ((List<tbmenu>)this.GetList()).Where(x => x.men_nombre_formulario != null);
-            List<tbmenu> listaMenuSalida = new List<tbmenu>();
-
-            foreach (tbmenu obj in listadoMenu)
-            {
-                listaMenuSalida.Add(obj);
-                    //new tbmenu()
-                    //{
-                    //    men_id = obj.men_id,
-                    //    men_nombre = obj.men_nombre,
-                    //    men_nombre_formulario = obj.men_nombre_formulario
-                    //});
-            }
-
-            return listaMenuSalida;
-            //return listadoMenu;
+            Func<tbmenu, bool> funcion = x => x.men_nombre_formulario != null;
+            return this.GetList(funcion) as List<tbmenu>;
         }
 
     }

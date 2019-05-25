@@ -100,5 +100,24 @@ namespace LandManagement.Repository
             return Contexto.tbmenu.Include("tbusuario").ToList();
         }
 
+        public object GetList(Func<tbmenu, bool> funcion)
+        {
+            try
+            {
+                //EJEMPLO DE COMO OBTENER MEDIANTE LINQ ELEMENTOS DE RELACIONES MANY TO MANY
+                //int iduser= 2;
+                //List<tbmenu> salida = (from m in Contexto.tbmenu
+                //                        where m.tbusuario.Any(u => u.usu_id == iduser)
+                //                        select m).ToList<tbmenu>();
+
+                //OBTENER OBJETOS DE LA RELACION MANY TO MANY MEDIANTE UNA FUNCION
+                //EN ESTE EJEMPLO TENGO QUE REALIZAR EL INCLUDE DE LA TABLA DE USAURIOS, MUCHO NO ME COPA
+                return Contexto.tbmenu.Include("tbusuario").Where(funcion).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

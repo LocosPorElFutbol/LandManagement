@@ -31,10 +31,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pnlControles = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dtpHasta = new System.Windows.Forms.DateTimePicker();
+            this.dtpHasta = new LandManagement.Utilidades.PangeaDateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dtpDesde = new System.Windows.Forms.DateTimePicker();
+            this.dtpDesde = new LandManagement.Utilidades.PangeaDateTimePicker();
             this.btnRecargar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txbBuscarPor = new System.Windows.Forms.TextBox();
@@ -252,10 +252,10 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView dgvOperaciones;
         private System.Windows.Forms.Panel pnlControles;
-        private System.Windows.Forms.DateTimePicker dtpHasta;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpHasta;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dtpDesde;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpDesde;
         private System.Windows.Forms.TextBox txbTotalRegistros;
         private System.Windows.Forms.Label label4;
     }

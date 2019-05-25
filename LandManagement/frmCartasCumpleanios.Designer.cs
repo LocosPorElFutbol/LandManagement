@@ -40,11 +40,11 @@
             this.txbCantidadClientes = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.dtpFechaCumpleaniosDesde = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaCumpleaniosDesde = new LandManagement.Utilidades.PangeaDateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dtpFechaCumpleaniosHasta = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaCumpleaniosHasta = new LandManagement.Utilidades.PangeaDateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -243,7 +243,7 @@
         private System.Windows.Forms.TextBox txbCantidadClientes;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.DateTimePicker dtpFechaCumpleaniosDesde;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpFechaCumpleaniosDesde;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnImprimirCartas;
         private System.Windows.Forms.Button btnImprimirEtiquetas;
@@ -254,6 +254,6 @@
         private System.Windows.Forms.Button btnGuardarCarta;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dtpFechaCumpleaniosHasta;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpFechaCumpleaniosHasta;
     }
 }

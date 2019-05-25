@@ -104,6 +104,7 @@ namespace LandManagement.Repository
                                                                 .Include("tbdomicilio")
                                                                 .Include("tbcliente1")
                                                                 .Include("tbtipofamiliar")
+                                                                .Include("tbtitulocliente")
                                     where c.cli_id == entity.cli_id
                                     select c).FirstOrDefault();
 

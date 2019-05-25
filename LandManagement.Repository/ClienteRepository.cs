@@ -77,12 +77,6 @@ namespace LandManagement.Repository
                     cli.tbpropiedad.Add(prop);
                     ctx.SaveChanges();
                 }
-
-                //Contexto = new landmanagementbdEntities();
-                //Contexto.tbpropiedad.Attach(propiedad);
-                //entity.tbpropiedad.Add(propiedad);
-
-                //Contexto.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -275,7 +269,6 @@ namespace LandManagement.Repository
             return raiz;
         }
 
-
         public object GetElement(tbcliente entity)
         {
             try
@@ -283,6 +276,8 @@ namespace LandManagement.Repository
                 tbcliente salida = (from c in Contexto.tbcliente.Include("tbpropiedad")
                                                                 .Include("tbdomicilio")
                                                                 .Include("tbtipofamiliar")
+                                                                .Include("tbtitulocliente")
+                                                                .Include("tbcategoriacliente")
                                     where c.cli_id == entity.cli_id
                                     select c).FirstOrDefault();
 
@@ -347,7 +342,9 @@ namespace LandManagement.Repository
         public object GetList()
         {
             //return Contexto.CreateObjectSet<tbcliente>().ToList();
-            return Contexto.tbcliente.Include("tbtipofamiliar")
+            return Contexto.tbcliente
+                .Include("tbtipofamiliar")
+                .Include("tbtitulocliente")
                 .OrderBy(x => x.cli_nombre).ToList();
         }
 

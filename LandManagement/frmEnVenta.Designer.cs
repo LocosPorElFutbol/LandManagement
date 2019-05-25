@@ -30,8 +30,8 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.dtpFechaEnVenta = new System.Windows.Forms.DateTimePicker();
-            this.dtpFechaVencimiento = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaEnVenta = new LandManagement.Utilidades.PangeaDateTimePicker();
+            this.dtpFechaVencimiento = new LandManagement.Utilidades.PangeaDateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -456,8 +456,8 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dtpFechaEnVenta;
-        private System.Windows.Forms.DateTimePicker dtpFechaVencimiento;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpFechaEnVenta;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpFechaVencimiento;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;

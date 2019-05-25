@@ -40,7 +40,7 @@
             this.txbNombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaNacimiento = new LandManagement.Utilidades.PangeaDateTimePicker();
             this.cmbTitulo = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.gbxDatosDelFamiliar.SuspendLayout();
@@ -234,7 +234,7 @@
         private System.Windows.Forms.TextBox txbNombre;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpFechaNacimiento;
         private System.Windows.Forms.Panel pnlControles;
         private System.Windows.Forms.ComboBox cmbTitulo;
         private System.Windows.Forms.Label label17;

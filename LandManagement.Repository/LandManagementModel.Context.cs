@@ -55,6 +55,12 @@ namespace LandManagement.Repository
         }
         private ObjectSet<tbcarta> _tbcarta;
     
+        public ObjectSet<tbcategoriacliente> tbcategoriacliente
+        {
+            get { return _tbcategoriacliente  ?? (_tbcategoriacliente = CreateObjectSet<tbcategoriacliente>("tbcategoriacliente")); }
+        }
+        private ObjectSet<tbcategoriacliente> _tbcategoriacliente;
+    
         public ObjectSet<tbcliente> tbcliente
         {
             get { return _tbcliente  ?? (_tbcliente = CreateObjectSet<tbcliente>("tbcliente")); }
@@ -175,6 +181,12 @@ namespace LandManagement.Repository
         }
         private ObjectSet<tbtipopropiedad> _tbtipopropiedad;
     
+        public ObjectSet<tbtitulocliente> tbtitulocliente
+        {
+            get { return _tbtitulocliente  ?? (_tbtitulocliente = CreateObjectSet<tbtitulocliente>("tbtitulocliente")); }
+        }
+        private ObjectSet<tbtitulocliente> _tbtitulocliente;
+    
         public ObjectSet<tbusuario> tbusuario
         {
             get { return _tbusuario  ?? (_tbusuario = CreateObjectSet<tbusuario>("tbusuario")); }
@@ -186,12 +198,6 @@ namespace LandManagement.Repository
             get { return _tbventa  ?? (_tbventa = CreateObjectSet<tbventa>("tbventa")); }
         }
         private ObjectSet<tbventa> _tbventa;
-    
-        public ObjectSet<tbversion> tbversion
-        {
-            get { return _tbversion  ?? (_tbversion = CreateObjectSet<tbversion>("tbversion")); }
-        }
-        private ObjectSet<tbversion> _tbversion;
 
         #endregion
 

@@ -32,7 +32,7 @@
             this.pnlControles = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.dtpFecha = new LandManagement.Utilidades.PangeaDateTimePicker();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.txbObservaciones = new System.Windows.Forms.TextBox();
@@ -252,7 +252,7 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dtpFecha;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpFecha;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox gbxCliente;
         private System.Windows.Forms.TextBox txbNombreEncuestado;

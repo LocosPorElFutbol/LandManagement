@@ -265,17 +265,17 @@
     <Compile Include="frmTasacion.designer.cs">
       <DependentUpon>frmTasacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTipoClienteListado.cs">
+    <Compile Include="frmCategoriaClienteListado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTipoClienteListado.Designer.cs">
-      <DependentUpon>frmTipoClienteListado.cs</DependentUpon>
+    <Compile Include="frmCategoriaClienteListado.Designer.cs">
+      <DependentUpon>frmCategoriaClienteListado.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTipoClienteABM.cs">
+    <Compile Include="frmCategoriaClienteABM.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTipoClienteABM.Designer.cs">
-      <DependentUpon>frmTipoClienteABM.cs</DependentUpon>
+    <Compile Include="frmCategoriaClienteABM.Designer.cs">
+      <DependentUpon>frmCategoriaClienteABM.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTipoFamiliarListado.cs">
       <SubType>Form</SubType>
@@ -300,6 +300,18 @@
     </Compile>
     <Compile Include="frmTipoPropiedadABM.Designer.cs">
       <DependentUpon>frmTipoPropiedadABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTituloClienteABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTituloClienteABM.Designer.cs">
+      <DependentUpon>frmTituloClienteABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTituloClienteListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTituloClienteListado.Designer.cs">
+      <DependentUpon>frmTituloClienteListado.cs</DependentUpon>
     </Compile>
     <Compile Include="frmUsuarioListado.cs">
       <SubType>Form</SubType>
@@ -332,6 +344,9 @@
     <Compile Include="Utilidades\Emails.cs" />
     <Compile Include="Utilidades\Formularios.cs" />
     <Compile Include="Utilidades\ListasDeElementos.cs" />
+    <Compile Include="Utilidades\PangeaDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Utilidades\TipoOperador.cs" />
     <Compile Include="Utilidades\UserControls\UserControlDatosPropiedad.cs">
       <SubType>UserControl</SubType>
@@ -428,11 +443,11 @@
     <EmbeddedResource Include="frmTasacion.resx">
       <DependentUpon>frmTasacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTipoClienteListado.resx">
-      <DependentUpon>frmTipoClienteListado.cs</DependentUpon>
+    <EmbeddedResource Include="frmCategoriaClienteListado.resx">
+      <DependentUpon>frmCategoriaClienteListado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTipoClienteABM.resx">
-      <DependentUpon>frmTipoClienteABM.cs</DependentUpon>
+    <EmbeddedResource Include="frmCategoriaClienteABM.resx">
+      <DependentUpon>frmCategoriaClienteABM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTipoFamiliarListado.resx">
       <DependentUpon>frmTipoFamiliarListado.cs</DependentUpon>
@@ -445,6 +460,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTipoPropiedadABM.resx">
       <DependentUpon>frmTipoPropiedadABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTituloClienteABM.resx">
+      <DependentUpon>frmTituloClienteABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTituloClienteListado.resx">
+      <DependentUpon>frmTituloClienteListado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUsuarioListado.resx">
       <DependentUpon>frmUsuarioListado.cs</DependentUpon>
@@ -500,6 +521,14 @@
     <ProjectReference Include="..\LandManagement.Entities\LandManagement.Entities.csproj">
       <Project>{D4A76D75-CD3C-467B-8F5D-ABA1137FC41D}</Project>
       <Name>LandManagement.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LandManagement.Interface\LandManagement.Interface.csproj">
+      <Project>{6efc4bd4-62c8-45e2-9b1b-798b2fb599a2}</Project>
+      <Name>LandManagement.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LandManagement.Repository\LandManagement.Repository.csproj">
+      <Project>{188d2037-1b10-47cd-a9bf-cd5b67c51597}</Project>
+      <Name>LandManagement.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

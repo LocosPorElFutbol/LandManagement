@@ -66,13 +66,16 @@
             this.btnRemoveFamiliar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pnlControles = new System.Windows.Forms.Panel();
+            this.cmbCategoriaCliente = new System.Windows.Forms.ComboBox();
+            this.label28 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.dgvPropiedades = new System.Windows.Forms.DataGridView();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.txbEstadoActual = new System.Windows.Forms.TextBox();
+            this.lblCaracteresObservaciones = new System.Windows.Forms.Label();
+            this.txbObservaciones = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.dtpActualizado = new System.Windows.Forms.DateTimePicker();
+            this.dtpActualizado = new LandManagement.Utilidades.PangeaDateTimePicker();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.dgvCategorias = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -97,11 +100,12 @@
             this.cmbProvincia = new System.Windows.Forms.ComboBox();
             this.txbDomicilioImportado = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
-            this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaNacimiento = new LandManagement.Utilidades.PangeaDateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.dtpFechaAlta = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaAlta = new LandManagement.Utilidades.PangeaDateTimePicker();
+            this.label29 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFamiliares)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.pnlControles.SuspendLayout();
@@ -406,7 +410,7 @@
             this.txbComoLlego.Location = new System.Drawing.Point(6, 19);
             this.txbComoLlego.Multiline = true;
             this.txbComoLlego.Name = "txbComoLlego";
-            this.txbComoLlego.Size = new System.Drawing.Size(316, 98);
+            this.txbComoLlego.Size = new System.Drawing.Size(316, 70);
             this.txbComoLlego.TabIndex = 26;
             // 
             // dgvFamiliares
@@ -450,7 +454,7 @@
             this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1015, 974);
+            this.groupBox1.Size = new System.Drawing.Size(1015, 717);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Cliente";
@@ -460,6 +464,8 @@
             this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControles.Controls.Add(this.cmbCategoriaCliente);
+            this.pnlControles.Controls.Add(this.label28);
             this.pnlControles.Controls.Add(this.groupBox7);
             this.pnlControles.Controls.Add(this.groupBox9);
             this.pnlControles.Controls.Add(this.groupBox8);
@@ -474,9 +480,27 @@
             this.pnlControles.Controls.Add(this.dtpFechaAlta);
             this.pnlControles.Location = new System.Drawing.Point(6, 19);
             this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(1003, 949);
+            this.pnlControles.Size = new System.Drawing.Size(1003, 692);
             this.pnlControles.TabIndex = 1;
             this.pnlControles.TabStop = true;
+            // 
+            // cmbCategoriaCliente
+            // 
+            this.cmbCategoriaCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCategoriaCliente.FormattingEnabled = true;
+            this.cmbCategoriaCliente.Location = new System.Drawing.Point(406, 32);
+            this.cmbCategoriaCliente.Name = "cmbCategoriaCliente";
+            this.cmbCategoriaCliente.Size = new System.Drawing.Size(179, 21);
+            this.cmbCategoriaCliente.TabIndex = 66;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(295, 38);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(105, 13);
+            this.label28.TabIndex = 65;
+            this.label28.Text = "Categoría del cliente";
             // 
             // groupBox7
             // 
@@ -502,33 +526,45 @@
             // 
             // groupBox9
             // 
-            this.groupBox9.Controls.Add(this.txbEstadoActual);
+            this.groupBox9.Controls.Add(this.label29);
+            this.groupBox9.Controls.Add(this.lblCaracteresObservaciones);
+            this.groupBox9.Controls.Add(this.txbObservaciones);
             this.groupBox9.Controls.Add(this.label19);
             this.groupBox9.Controls.Add(this.label16);
             this.groupBox9.Controls.Add(this.dtpActualizado);
-            this.groupBox9.Location = new System.Drawing.Point(672, 385);
+            this.groupBox9.Location = new System.Drawing.Point(672, 352);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(322, 113);
+            this.groupBox9.Size = new System.Drawing.Size(322, 146);
             this.groupBox9.TabIndex = 48;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Estado";
             // 
-            // txbEstadoActual
+            // lblCaracteresObservaciones
             // 
-            this.txbEstadoActual.Location = new System.Drawing.Point(83, 45);
-            this.txbEstadoActual.Multiline = true;
-            this.txbEstadoActual.Name = "txbEstadoActual";
-            this.txbEstadoActual.Size = new System.Drawing.Size(230, 55);
-            this.txbEstadoActual.TabIndex = 29;
+            this.lblCaracteresObservaciones.AutoSize = true;
+            this.lblCaracteresObservaciones.Location = new System.Drawing.Point(272, 122);
+            this.lblCaracteresObservaciones.Name = "lblCaracteresObservaciones";
+            this.lblCaracteresObservaciones.Size = new System.Drawing.Size(0, 13);
+            this.lblCaracteresObservaciones.TabIndex = 51;
+            // 
+            // txbObservaciones
+            // 
+            this.txbObservaciones.Location = new System.Drawing.Point(83, 45);
+            this.txbObservaciones.MaxLength = 950;
+            this.txbObservaciones.Multiline = true;
+            this.txbObservaciones.Name = "txbObservaciones";
+            this.txbObservaciones.Size = new System.Drawing.Size(230, 68);
+            this.txbObservaciones.TabIndex = 29;
+            this.txbObservaciones.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txbObservaciones_KeyUp);
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(5, 51);
+            this.label19.Location = new System.Drawing.Point(3, 48);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(72, 13);
+            this.label19.Size = new System.Drawing.Size(78, 13);
             this.label19.TabIndex = 50;
-            this.label19.Text = "Estado actual";
+            this.label19.Text = "Observaciones";
             // 
             // label16
             // 
@@ -550,9 +586,9 @@
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.dgvCategorias);
-            this.groupBox8.Location = new System.Drawing.Point(672, 198);
+            this.groupBox8.Location = new System.Drawing.Point(672, 172);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(322, 174);
+            this.groupBox8.Size = new System.Drawing.Size(322, 175);
             this.groupBox8.TabIndex = 47;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Categorias";
@@ -584,7 +620,7 @@
             this.groupBox5.Controls.Add(this.txbComoLlego);
             this.groupBox5.Location = new System.Drawing.Point(672, 65);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(328, 127);
+            this.groupBox5.Size = new System.Drawing.Size(328, 101);
             this.groupBox5.TabIndex = 41;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Como llego a nosotros";
@@ -862,12 +898,21 @@
             this.dtpFechaAlta.Size = new System.Drawing.Size(84, 20);
             this.dtpFechaAlta.TabIndex = 0;
             // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(161, 122);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(113, 13);
+            this.label29.TabIndex = 52;
+            this.label29.Text = "Caracteres disponibles";
+            // 
             // frmClienteABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(1039, 998);
+            this.ClientSize = new System.Drawing.Size(1039, 741);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmClienteABM";
             this.Text = "frmClienteABM";
@@ -938,7 +983,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txbCuilCuit;
-        private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpFechaNacimiento;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button btnCancelar;
@@ -946,19 +991,19 @@
         private System.Windows.Forms.ComboBox cmbEstadoCivil;
         private System.Windows.Forms.ComboBox cmbTipoFamiliar;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dtpFechaAlta;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpFechaAlta;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlControles;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.DataGridView dgvCategorias;
-        private System.Windows.Forms.DateTimePicker dtpActualizado;
+        private LandManagement.Utilidades.PangeaDateTimePicker dtpActualizado;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txbNombreDePila;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ComboBox cmbTitulo;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.TextBox txbEstadoActual;
+        private System.Windows.Forms.TextBox txbObservaciones;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.CheckBox cbxImprimeCarta;
         private System.Windows.Forms.TextBox txbDomicilioImportado;
@@ -971,5 +1016,9 @@
         private System.Windows.Forms.TextBox txbTelefonoLaboral;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.ComboBox cmbProvincia;
+        private System.Windows.Forms.ComboBox cmbCategoriaCliente;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label lblCaracteresObservaciones;
+        private System.Windows.Forms.Label label29;
     }
 }

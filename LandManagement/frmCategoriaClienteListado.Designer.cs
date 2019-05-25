@@ -1,6 +1,6 @@
 ﻿namespace LandManagement
 {
-    partial class frmTipoClienteListado
+    partial class frmCategoriaClienteListado
     {
         /// <summary>
         /// Required designer variable.
@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridViewTCliente = new System.Windows.Forms.DataGridView();
+            this.pnlControles = new System.Windows.Forms.Panel();
+            this.dataGridViewCategoriaCliente = new System.Windows.Forms.DataGridView();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.pnlControles = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTCliente)).BeginInit();
             this.pnlControles.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategoriaCliente)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -52,19 +52,43 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tipo Cliente";
             // 
-            // dataGridViewTCliente
+            // pnlControles
             // 
-            this.dataGridViewTCliente.AllowUserToAddRows = false;
-            this.dataGridViewTCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewTCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTCliente.Location = new System.Drawing.Point(3, 3);
-            this.dataGridViewTCliente.Name = "dataGridViewTCliente";
-            this.dataGridViewTCliente.ReadOnly = true;
-            this.dataGridViewTCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTCliente.Size = new System.Drawing.Size(233, 271);
-            this.dataGridViewTCliente.TabIndex = 5;
-            this.dataGridViewTCliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTCliente_CellDoubleClick);
+            this.pnlControles.Controls.Add(this.dataGridViewCategoriaCliente);
+            this.pnlControles.Controls.Add(this.btnEliminar);
+            this.pnlControles.Controls.Add(this.btnCancelar);
+            this.pnlControles.Controls.Add(this.btnAgregar);
+            this.pnlControles.Location = new System.Drawing.Point(6, 19);
+            this.pnlControles.Name = "pnlControles";
+            this.pnlControles.Size = new System.Drawing.Size(316, 280);
+            this.pnlControles.TabIndex = 6;
+            // 
+            // dataGridViewCategoriaCliente
+            // 
+            this.dataGridViewCategoriaCliente.AllowUserToAddRows = false;
+            this.dataGridViewCategoriaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewCategoriaCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCategoriaCliente.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewCategoriaCliente.Name = "dataGridViewCategoriaCliente";
+            this.dataGridViewCategoriaCliente.ReadOnly = true;
+            this.dataGridViewCategoriaCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewCategoriaCliente.Size = new System.Drawing.Size(233, 271);
+            this.dataGridViewCategoriaCliente.TabIndex = 5;
+            this.dataGridViewCategoriaCliente.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategoriaCliente_CellDoubleClick);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(238, 32);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.TabIndex = 2;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnCancelar
             // 
@@ -86,42 +110,18 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Location = new System.Drawing.Point(238, 32);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
-            this.btnEliminar.TabIndex = 2;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
-            // pnlControles
-            // 
-            this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlControles.Controls.Add(this.dataGridViewTCliente);
-            this.pnlControles.Controls.Add(this.btnEliminar);
-            this.pnlControles.Controls.Add(this.btnCancelar);
-            this.pnlControles.Controls.Add(this.btnAgregar);
-            this.pnlControles.Location = new System.Drawing.Point(6, 19);
-            this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(316, 280);
-            this.pnlControles.TabIndex = 6;
-            // 
-            // frmTipoClienteListado
+            // frmCategoriaClienteListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 325);
             this.Controls.Add(this.groupBox1);
-            this.Name = "frmTipoClienteListado";
-            this.Text = "frmTipoCliente";
-            this.Load += new System.EventHandler(this.frmTipoCliente_Load);
+            this.Name = "frmCategoriaClienteListado";
+            this.Text = "Categoría Cliente";
+            this.Load += new System.EventHandler(this.frmCategoriaClienteListado_Load);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTCliente)).EndInit();
             this.pnlControles.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategoriaCliente)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -129,7 +129,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridViewTCliente;
+        private System.Windows.Forms.DataGridView dataGridViewCategoriaCliente;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnEliminar;
