@@ -18,10 +18,11 @@ namespace LandManagement.Entities
                 return this.cli_nombre + ", " + this.cli_apellido;
             }
         }
-         
-    }
+		public string ccl_descripcion { get; set; }
 
-    public class tbcliente_metadata
+	}
+
+	public class tbcliente_metadata
     {
         [DisplayName("Id Cliente")]
         public int cli_id { get; set; }
@@ -91,5 +92,8 @@ namespace LandManagement.Entities
 
         [DisplayName("Como llego a nosotros")]
         public string cli_como_llego{get;set;}
-    }
+
+		[DisplayName("Categoria cliente")]
+		public string ccl_descripcion { get; set; }
+	}
 }

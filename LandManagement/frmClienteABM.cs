@@ -74,7 +74,8 @@ namespace LandManagement
             txbCuilCuit.Text = pCliente.cli_cuit_cuil;
             txbComoLlego.Text = pCliente.cli_como_llego;
             txbObservaciones.Text = pCliente.cli_observaciones;
-            lblCaracteresObservaciones.Text = (txbObservaciones.MaxLength - pCliente.cli_observaciones.Length).ToString();
+			int cantidadCaracteresObs = string.IsNullOrEmpty(pCliente.cli_observaciones) ? 0 : pCliente.cli_observaciones.Length;
+			lblCaracteresObservaciones.Text = (txbObservaciones.MaxLength - cantidadCaracteresObs).ToString();
 
             //Cargo datos de Propiedades importadas
             if (pCliente.cli_actualizado != null)
@@ -121,6 +122,7 @@ namespace LandManagement
         {
             try
             {
+				ActiveControl = dtpFechaAlta; 
                 //Usercontrol operaciones
                 userControlOperaciones = new UserControlOperaciones();
                 userControlOperaciones.Location = new Point(672, 682);

@@ -233,8 +233,9 @@ namespace LandManagement
                 cli_actualizado = persona.actualizado, //Asigno fecha actualizado para no generar error.
                 cli_email = persona.mailConyuge,
                 cli_imprime_carta = persona.imprimeCarta,
-                tcl_id = 1  //cli_titulo = "Sr."
-            };
+                tcl_id = 1,  //cli_titulo = "Sr."
+                ccl_id = 1 //Se setea como cateoria ninguna en la importación
+			};
             CargarDomicilio(persona, conyuje);
             cliente.tbcliente1.Add(conyuje);
         }

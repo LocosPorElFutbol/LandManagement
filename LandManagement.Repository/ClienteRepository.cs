@@ -345,6 +345,7 @@ namespace LandManagement.Repository
             return Contexto.tbcliente
                 .Include("tbtipofamiliar")
                 .Include("tbtitulocliente")
+				.Include("tbcategoriacliente")
                 .OrderBy(x => x.cli_nombre).ToList();
         }
 

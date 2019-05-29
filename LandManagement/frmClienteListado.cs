@@ -45,11 +45,13 @@ namespace LandManagement
             string[] columnasGrilla = { "cli_id",
                                         "cli_id_import",
                                         "cli_id_padre",
-                                        "tif_id",
-                                        "cli_nombre",
-                                        "cli_apellido",
-                                        "cli_parentezco",
+										"tif_id",
+										"ccl_id",
                                         "cli_fecha",
+										"ccl_descripcion",
+                                        "cli_parentezco",
+										"cli_nombre",
+                                        "cli_apellido",
                                         "cli_telefono_celular",
                                         "cli_telefono_particular",
                                         "cli_telefono_laboral",
@@ -77,6 +79,7 @@ namespace LandManagement
             //dgvClientes.Columns[0].Visible = false;
             dgvClientes.Columns[2].Visible = false;
             dgvClientes.Columns[3].Visible = false;
+            dgvClientes.Columns[4].Visible = false;
 
             CargarDataGridViewLista();
         }
@@ -100,8 +103,9 @@ namespace LandManagement
                 dataGridViewRow.Cells["cli_id_import"].Value = obj.cli_id_import;
                 dataGridViewRow.Cells["cli_id_padre"].Value = obj.cli_id_padre;
                 dataGridViewRow.Cells["tif_id"].Value = obj.tif_id;
-                dataGridViewRow.Cells["cli_parentezco"].Value = obj.tbtipofamiliar.tif_descripcion;
-                dataGridViewRow.Cells["cli_fecha"].Value = obj.cli_fecha;
+                dataGridViewRow.Cells["cli_fecha"].Value = obj.cli_fecha.ToShortDateString();
+                dataGridViewRow.Cells["ccl_descripcion"].Value = obj.tbcategoriacliente.ccl_descripcion;
+				dataGridViewRow.Cells["cli_parentezco"].Value = obj.tbtipofamiliar.tif_descripcion;
                 dataGridViewRow.Cells["cli_nombre"].Value = obj.cli_nombre;
                 dataGridViewRow.Cells["cli_apellido"].Value = obj.cli_apellido;
                 dataGridViewRow.Cells["cli_telefono_celular"].Value = obj.cli_telefono_celular;
