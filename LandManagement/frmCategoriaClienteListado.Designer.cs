@@ -69,8 +69,6 @@
             // dataGridViewCategoriaCliente
             // 
             this.dataGridViewCategoriaCliente.AllowUserToAddRows = false;
-            this.dataGridViewCategoriaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewCategoriaCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCategoriaCliente.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewCategoriaCliente.Name = "dataGridViewCategoriaCliente";

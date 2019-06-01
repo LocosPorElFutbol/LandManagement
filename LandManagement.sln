@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandManagement.Client", "LandManagement\LandManagement.Client.csproj", "{7A09C0AB-C80B-4BD8-AF1E-594197C80364}"
 EndProject
@@ -94,5 +94,8 @@ Global
 		{188D2037-1B10-47CD-A9BF-CD5B67C51597} = {8B2CECC7-806E-4E45-A0FF-EC238E01BD6E}
 		{6EFC4BD4-62C8-45E2-9B1B-798B2FB599A2} = {AA4F9E67-021D-49F5-AF47-C62735A0FF6F}
 		{EA84A8CB-45A3-413F-B040-6FC30B2D2ECC} = {C1F48B45-5071-49C6-8908-04CB21F7BC59}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D9215C47-E325-42F4-95A2-23B0D0CB41C8}
 	EndGlobalSection
 EndGlobal
