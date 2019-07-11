@@ -203,6 +203,7 @@ namespace LandManagement
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+			Cursor.Current = Cursors.WaitCursor;
             try
             {
                 List<string> listaExcluir = new List<string>() 
@@ -225,22 +226,27 @@ namespace LandManagement
                     log.Error(ex.InnerException.Message);
                 MessageBox.Show("Error al Buscar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+			Cursor.Current = Cursors.Default;
         }
 
         private void btnRecargar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                CargarDataGridViewLista();
-            }
-            catch (Exception ex)
-            {
-                log.Error(ex.Message);
-                if (ex.InnerException != null)
-                    log.Error(ex.InnerException.Message);
-                MessageBox.Show("Error al recargar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+			Cursor.Current = Cursors.WaitCursor;
+			try
+			{
+				CargarDataGridViewLista();
+			}
+			catch (Exception ex)
+			{
+				log.Error(ex.Message);
+				if (ex.InnerException != null)
+					log.Error(ex.InnerException.Message);
+				MessageBox.Show("Error al recargar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			finally
+			{
+				Cursor.Current = Cursors.Default;
+			}
         }
 
         #endregion

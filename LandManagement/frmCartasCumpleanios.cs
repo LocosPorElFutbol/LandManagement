@@ -38,6 +38,7 @@ namespace LandManagement
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+			Cursor.Current = Cursors.WaitCursor;
             try
             {
                 List<tbcliente> listaClientes = new List<tbcliente>();
@@ -56,6 +57,7 @@ namespace LandManagement
                     log.Error(ex.InnerException.Message);
                 MessageBox.Show("Error al cargar fechas de cumpleaños.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+			Cursor.Current = Cursors.Default;
         }
 
         private void btnImprimirEtiquetas_Click(object sender, EventArgs e)
