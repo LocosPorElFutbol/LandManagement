@@ -715,6 +715,7 @@ namespace LandManagement
         #region Abrir PopUp Propiedad
         private void dgvPropiedades_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+			Cursor.Current = Cursors.WaitCursor;
             try
             {
                 tbpropiedad propiedad = ObtenerPropiedadSeleccionada();
@@ -729,6 +730,7 @@ namespace LandManagement
                     log.Error(ex.InnerException.Message);
                 MessageBox.Show("Error al seleccionar propiedad.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+			Cursor.Current = Cursors.Default;
         }
 
         private tbpropiedad ObtenerPropiedadSeleccionada()

@@ -91,6 +91,7 @@ namespace LandManagement.Utilidades.UserControls
         #region Abrir operación
         private void dgvOperaciones_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+			Cursor.Current = Cursors.WaitCursor;
             try
             {
                 tboperaciones operacion = ObtenerOperacionSeleccionada();
@@ -116,9 +117,10 @@ namespace LandManagement.Utilidades.UserControls
                     log.Error(ex.InnerException.Message);
                 MessageBox.Show("Error al seleccionar Operación.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+			Cursor.Current = Cursors.Default;
+		}
 
-        private tboperaciones ObtenerOperacionSeleccionada()
+		private tboperaciones ObtenerOperacionSeleccionada()
         {
             DataGridViewRow dataGridViewRow = dgvOperaciones.SelectedRows[0];
             tboperaciones operacionSeleccionada = new tboperaciones();

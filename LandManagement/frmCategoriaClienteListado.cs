@@ -119,7 +119,6 @@ namespace LandManagement
         }
         #endregion
 
-
         private void ControlarInstanciaAbierta(Form formularioPopUp)
         {
             Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);

@@ -11,7 +11,7 @@ using LandManagement.Business;
 
 namespace LandManagement.Utilidades
 {
-    public class Formularios
+    public class Formularios //: Form
     {
         /// <summary>
         /// Instancia un formulario, abre un nuevo formulario dentro de la ventana principal que tiene
@@ -22,7 +22,7 @@ namespace LandManagement.Utilidades
         /// <param name="textFormulario">Encabezado del formulario a abrirse.</param>
         public void InstanciarFormulario(Form formularioPadre, Form formularioPopUp, string textFormulario)
         {
-            Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
+            //Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
             string frmCode = formularioPopUp.Name;
             string frmNombre = textFormulario;
 
@@ -32,16 +32,17 @@ namespace LandManagement.Utilidades
 
             formularioPopUp.MdiParent = formularioPadre;
 
-            //Linea que soluciona error de minimzar y maximizar icono
-            // this.Icon = Icon.Clone() as Icon;
+			//Linea que soluciona error de minimzar y maximizar icono
+			//this.Icon = Icon.Clone() as Icon;
 
-            formularioPopUp.WindowState = FormWindowState.Minimized;
+			formularioPopUp.WindowState = FormWindowState.Maximized;
             formularioPopUp.Show();
-            formularioPopUp.WindowState = FormWindowState.Maximized;
-            formularioPopUp.Show();
-        }
 
-        public string ObtenerNombreFormulario(tboperaciones _operacion)
+			//ActivateMdiChild(null);
+			//ActivateMdiChild(formularioPopUp);
+		}
+
+		public string ObtenerNombreFormulario(tboperaciones _operacion)
         {
             if (_operacion.tas_id != null)
                 return ConfigurationManager.AppSettings["tas_id"].ToString();

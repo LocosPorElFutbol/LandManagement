@@ -299,9 +299,10 @@ namespace LandManagement
             this.CargarPiso();
             this.CargarDepto();
             this.CargarProvincias();
-        }
+			SetearIndiceCombo();
+		}
 
-        private void SetearDisplayValue()
+		private void SetearDisplayValue()
         {
             cmbTipoPropiedad.ValueMember = "tip_id";
             cmbTipoPropiedad.DisplayMember = "tip_descripcion";
@@ -352,9 +353,16 @@ namespace LandManagement
                 combo.Items.Add(obj);
         }
 
-        #endregion
+		private void SetearIndiceCombo()
+		{
+			cmbTipoPropiedad.SelectedIndex = 0;
+			cmbPiso.SelectedIndex = 0;
+			cmbDepartamento.SelectedIndex = 0;
+			cmbProvincia.SelectedIndex = 0;
+		}
+		#endregion
 
-        private void ValidatingControl(object sender, CancelEventArgs e)
+		private void ValidatingControl(object sender, CancelEventArgs e)
         {
             errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             validarControles = new ValidarControles();

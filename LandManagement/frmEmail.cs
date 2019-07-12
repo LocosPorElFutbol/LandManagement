@@ -41,9 +41,10 @@ namespace LandManagement
             hleCuerpo.DocumentText = "<html><body></body></html>";
             doc = hleCuerpo.Document.DomDocument as IHTMLDocument2;
             doc.designMode = "On";
-            port = 25;
+            //port = 25;
+            port = 587;
 
-            if (string.IsNullOrEmpty(VariablesDeSesion.UsuarioLogueado.usu_email) ||
+			if (string.IsNullOrEmpty(VariablesDeSesion.UsuarioLogueado.usu_email) ||
                string.IsNullOrEmpty(VariablesDeSesion.UsuarioLogueado.usu_email_password))
             {
                 MessageBox.Show("Para utilizar la herramienta envio de e-mail, deberá configurar su cuenta personal en el sistema. \n Diríjase a, Sistema -> Configurar cuenta e-mail.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -86,12 +87,14 @@ namespace LandManagement
                     
                     SmtpClient smtp = new SmtpClient();
 
+					smtp.UseDefaultCredentials = false;
                     //Cargo credenciales de e-mail origen
                     smtp.Credentials = new NetworkCredential(VariablesDeSesion.UsuarioLogueado.usu_email,
                         VariablesDeSesion.UsuarioLogueado.usu_email_password);
                     smtp.Host = "smtp.gmail.com";
                     smtp.Port = port;
                     smtp.EnableSsl = true;
+					smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 
                     try
                     {
@@ -106,7 +109,7 @@ namespace LandManagement
                         log.Error(ex.Message);
                         if (ex.InnerException != null)
                             log.Error(ex.InnerException.Message);
-                        MessageBox.Show("No se pudo enviar el correo. \n Ayuda: Corrobore la configuración correcta e-mail/password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("No se pudo enviar el correo. \n Ayuda: Corrobore la configuración correcta e-mail/password. \n Recuerde habilitar el envio de mail desde su cuenta de gmail https://myaccount.google.com/", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
