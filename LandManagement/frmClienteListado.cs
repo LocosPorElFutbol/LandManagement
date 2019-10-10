@@ -249,9 +249,37 @@ namespace LandManagement
 			}
         }
 
-        #endregion
+		private void btnBuscarCumpleanieros_Click(object sender, EventArgs e)
+		{
+			Cursor.Current = Cursors.WaitCursor;
+			try
+			{
+				List<string> listaExcluir = new List<string>()
+				{
+					"cli_id_padre",
+					"tif_id"
+				};
 
-        private DialogResult MensajeEliminacionOK()
+				BuscarEnDataGridView buscar = new BuscarEnDataGridView();
+
+				ClienteBusiness clienteBusiness = new ClienteBusiness();
+				List<tbcliente> listaFiltrada = (List<tbcliente>)clienteBusiness.GetListCumpleanieros(dtpCumpleaniosDesde.Value, dtpCumpleaniosHasta.Value);
+				//listaFiltrada = buscar.FiltrarDataGrid(listaFiltrada, listaExcluir, txbBuscarPor.Text);
+				CargarDataGridView(listaFiltrada);
+			}
+			catch (Exception ex)
+			{
+				log.Error(ex.Message);
+				if (ex.InnerException != null)
+					log.Error(ex.InnerException.Message);
+				MessageBox.Show("Error al Buscar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			Cursor.Current = Cursors.Default;
+		}
+
+		#endregion
+
+		private DialogResult MensajeEliminacionOK()
         {
             return MessageBox.Show("¿Desea eliminar el registro?",
                         "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -268,5 +296,5 @@ namespace LandManagement
             Formularios formularios = new Formularios();
             formularios.InstanciarFormulario(this.MdiParent, formularioPopUp, textFormulario);
         }
-    }
+	}
 }
