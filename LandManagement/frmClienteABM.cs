@@ -339,9 +339,8 @@ namespace LandManagement
 				domicilioActual.dom_localidad = string.IsNullOrEmpty(txbLocalidad.Text) ? null : txbLocalidad.Text;
 				domicilioActual.dom_actual = true;
 
-				//No me va a importar modificar el domicilio importado, lo importante es guardar el ultimo en la carta
-				//Valido si se modifica el nombre de calle, en ese caso elimino el domicilio importado
-				if (txbCalle.Text == "Domicilio importado excel")
+				//Valido si se modifica el nombre de calle y la altura, en ese caso elimino el domicilio importado
+				if (txbCalle.Text == "Domicilio importado excel" && txbNumero.Text == "0")
 					domicilioActual.dom_domicilio_importado = txbDomicilioImportado.Text;
 				else
 					domicilioActual.dom_domicilio_importado = string.Empty;

@@ -114,5 +114,10 @@ namespace LandManagement.Repository
             //return Contexto.CreateObjectSet<tbmenu>().ToList();
             return Contexto.tbdomicilio.ToList();
         }
+
+		public object GetList(Func<tbdomicilio, bool> predicado)
+		{
+			return Contexto.tbdomicilio.Where(predicado).ToList();
+		}
     }
 }

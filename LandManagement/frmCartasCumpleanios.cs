@@ -228,41 +228,48 @@ namespace LandManagement
             
             //Cargo direccion
             DomicilioBusiness domicilioBusiness = new DomicilioBusiness();
-            tbdomicilio domicilio = (tbdomicilio)domicilioBusiness.GetDomicilioByIdCliente(_cliente);
+            //tbdomicilio domicilio = (tbdomicilio)domicilioBusiness.GetDomicilioByIdCliente(_cliente);
 
-            if (domicilio != null)
-            {
-                e = new CartaEntity();
-                if (string.IsNullOrEmpty(domicilio.dom_domicilio_importado))
-                {
-                    string calleYNumero = domicilio.dom_calle + " " + domicilio.dom_numero;
+			//Predicado que me obtiene maximo id de domicilio correspondiente al cliente (antes se traian todos)
+			Func<tbdomicilio, bool> predicado = x => x.cli_id == _cliente.cli_id;
+			List<tbdomicilio> listaDomicilios = (List<tbdomicilio>)domicilioBusiness.GetList(predicado);
+			tbdomicilio domicilio = listaDomicilios.OrderByDescending(x => x.dom_id).FirstOrDefault();
 
-                    //string piso = string.Empty;
-                    //if (domicilio.dom_piso != 0)
-                    //    piso = domicilio.dom_piso.ToString();
+			if (domicilio != null)
+			{
+				e = new CartaEntity();
+				if (domicilio.dom_calle == "Domicilio importado excel" && domicilio.dom_numero == 0)
+				{
+					direccion = domicilio.dom_domicilio_importado;
+				}
+				else
+				{
+					string calleYNumero = domicilio.dom_calle + " " + domicilio.dom_numero;
 
-                    string depto = string.Empty;
-                    if (domicilio.dom_departamento != "-")
-                        depto = " " + domicilio.dom_departamento;
+					//string piso = string.Empty;
+					//if (domicilio.dom_piso != 0)
+					//    piso = domicilio.dom_piso.ToString();
 
-                    if (domicilio.dom_piso == 0)
-                        direccion = calleYNumero + " PB " + depto;
-                    else
-                        direccion = calleYNumero + " " + domicilio.dom_piso.ToString() + depto;
-                }
-                else
-                    direccion = domicilio.dom_domicilio_importado;
+					string depto = string.Empty;
+					if (domicilio.dom_departamento != "-")
+						depto = " " + domicilio.dom_departamento;
 
-                e.Direccion = direccion;
-                e.Localidad = domicilio.dom_localidad;
-                e.CodigoPostal = domicilio.dom_codigo_postal;
+					if (domicilio.dom_piso == 0)
+						direccion = calleYNumero + " PB " + depto;
+					else
+						direccion = calleYNumero + " " + domicilio.dom_piso.ToString() + depto;
+				}
 
-                //Cargo provincia
-                ProvinciaBusiness provinciaBusiness = new ProvinciaBusiness();
-                tbprovincia provincia = 
-                    (tbprovincia)provinciaBusiness.GetElement(new tbprovincia(){prv_id = domicilio.prv_id});
-                e.Provincia = provincia.prv_descripcion;
-            }
+				e.Direccion = direccion;
+				e.Localidad = domicilio.dom_localidad;
+				e.CodigoPostal = domicilio.dom_codigo_postal;
+
+				//Cargo provincia
+				ProvinciaBusiness provinciaBusiness = new ProvinciaBusiness();
+				tbprovincia provincia =
+					(tbprovincia)provinciaBusiness.GetElement(new tbprovincia() { prv_id = domicilio.prv_id });
+				e.Provincia = provincia.prv_descripcion;
+			}
 
             return e;
         }
