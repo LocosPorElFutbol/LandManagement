@@ -288,41 +288,81 @@ namespace LandManagement
                 clienteBusiness.Create(this.cliente);
         }
 
-        #region Carga domicilio al Cliente
+		#region Carga domicilio al Cliente
 
-        private void CargaDomicilioAlCliente(tbcliente clienteAAsignarDomicilio)
-        {
-            try
-            {
-                tbdomicilio domicilio = new tbdomicilio();
-                domicilio.tip_id = 1; //Se limino el combo tipo de propiedad;
-                domicilio.dom_calle = string.IsNullOrEmpty(txbCalle.Text) ? null : txbCalle.Text;
-                domicilio.dom_numero = string.IsNullOrEmpty(txbNumero.Text) ? 0 : Convert.ToInt32(txbNumero.Text);
-                domicilio.dom_piso = ((ComboBoxItem)cmbPiso.SelectedItem).Value;
-                domicilio.dom_departamento = ((ComboBoxItem)cmbDepto.SelectedItem).Text;
-                domicilio.dom_codigo_postal = string.IsNullOrEmpty(txbCodigoPostal.Text) ? null : txbCodigoPostal.Text;
-                domicilio.dom_localidad = string.IsNullOrEmpty(txbLocalidad.Text) ? null : txbLocalidad.Text;
-                domicilio.dom_actual = true;
+		[Obsolete("El metodo real es el que esta abajo, este cada actualización del cliente insertaba un registro \n asi no se modifique datos en el cliente, igual insertaba nuevamente el domicilio")]
+		private void CargaDomicilioAlClienteOLD(tbcliente clienteAAsignarDomicilio)
+		{
+			try
+			{
+				tbdomicilio domicilio = new tbdomicilio();
+				domicilio.tip_id = 1; //Se limino el combo tipo de propiedad;
+				domicilio.dom_calle = string.IsNullOrEmpty(txbCalle.Text) ? null : txbCalle.Text;
+				domicilio.dom_numero = string.IsNullOrEmpty(txbNumero.Text) ? 0 : Convert.ToInt32(txbNumero.Text);
+				domicilio.dom_piso = ((ComboBoxItem)cmbPiso.SelectedItem).Value;
+				domicilio.dom_departamento = ((ComboBoxItem)cmbDepto.SelectedItem).Text;
+				domicilio.dom_codigo_postal = string.IsNullOrEmpty(txbCodigoPostal.Text) ? null : txbCodigoPostal.Text;
+				domicilio.dom_localidad = string.IsNullOrEmpty(txbLocalidad.Text) ? null : txbLocalidad.Text;
+				domicilio.dom_actual = true;
 
-                //Guardo siempre el domicilio importado, sino se pierde
-                domicilio.dom_domicilio_importado = txbDomicilioImportado.Text;
+				//Valido si se modifica el nombre de calle, en ese caso elimino el domicilio importado
+				if (txbCalle.Text == "Domicilio importado excel")
+					domicilio.dom_domicilio_importado = txbDomicilioImportado.Text;
+				else
+					domicilio.dom_domicilio_importado = string.Empty;
 
-                //Cargo provincia al domicilio
-                domicilio.prv_id = ((tbprovincia)cmbProvincia.SelectedItem).prv_id;
 
-                clienteAAsignarDomicilio.tbdomicilio.Add(domicilio);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }        
-        
-        #endregion
+				//Cargo provincia al domicilio
+				domicilio.prv_id = ((tbprovincia)cmbProvincia.SelectedItem).prv_id;
 
-        #region Carga Familiares a la Grilla de Familiares
+				clienteAAsignarDomicilio.tbdomicilio.Add(domicilio);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
 
-        private void InicializarGrillaFamiliares()
+		private void CargaDomicilioAlCliente(tbcliente clienteAAsignarDomicilio)
+		{
+			try
+			{
+				//Obtengo el domicilio actual y seteo los datos
+				tbdomicilio domicilioActual = this.cliente.tbdomicilio.Where(x => x.dom_actual == true).FirstOrDefault();
+
+				domicilioActual.tip_id = 1; //Se limino el combo tipo de propiedad;
+				domicilioActual.dom_calle = string.IsNullOrEmpty(txbCalle.Text) ? null : txbCalle.Text;
+				domicilioActual.dom_numero = string.IsNullOrEmpty(txbNumero.Text) ? 0 : Convert.ToInt32(txbNumero.Text);
+				domicilioActual.dom_piso = ((ComboBoxItem)cmbPiso.SelectedItem).Value;
+				domicilioActual.dom_departamento = ((ComboBoxItem)cmbDepto.SelectedItem).Text;
+				domicilioActual.dom_codigo_postal = string.IsNullOrEmpty(txbCodigoPostal.Text) ? null : txbCodigoPostal.Text;
+				domicilioActual.dom_localidad = string.IsNullOrEmpty(txbLocalidad.Text) ? null : txbLocalidad.Text;
+				domicilioActual.dom_actual = true;
+
+				//No me va a importar modificar el domicilio importado, lo importante es guardar el ultimo en la carta
+				//Valido si se modifica el nombre de calle, en ese caso elimino el domicilio importado
+				if (txbCalle.Text == "Domicilio importado excel")
+					domicilioActual.dom_domicilio_importado = txbDomicilioImportado.Text;
+				else
+					domicilioActual.dom_domicilio_importado = string.Empty;
+
+				//Cargo provincia al domicilio
+				domicilioActual.prv_id = ((tbprovincia)cmbProvincia.SelectedItem).prv_id;
+
+				DomicilioBusiness domicilioBusiness = new DomicilioBusiness();
+				domicilioBusiness.Update(domicilioActual);
+				//clienteAAsignarDomicilio.tbdomicilio.Add(domicilioActual);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+		#endregion
+
+		#region Carga Familiares a la Grilla de Familiares
+
+		private void InicializarGrillaFamiliares()
         {
             dgvFamiliares.Rows.Clear();
             dgvFamiliares.Columns.Clear();
