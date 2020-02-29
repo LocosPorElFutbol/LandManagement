@@ -327,8 +327,19 @@ namespace LandManagement
 		{
 			try
 			{
-				//Obtengo el domicilio actual y seteo los datos
-				tbdomicilio domicilioActual = this.cliente.tbdomicilio.Where(x => x.dom_actual == true).FirstOrDefault();
+				tbdomicilio domicilioActual = null;
+
+				if (clienteAAsignarDomicilio.tbdomicilio.Count() > 0)
+				{
+					//Obtengo el domicilio actual y seteo los datos
+					domicilioActual = clienteAAsignarDomicilio.tbdomicilio.Where(x => x.dom_actual == true).FirstOrDefault();
+				}
+				else
+				{
+					//cuando el cliente es nuevo y no tiene lista de domicilios
+					domicilioActual = new tbdomicilio();
+					clienteAAsignarDomicilio.tbdomicilio.Add(domicilioActual);
+				}
 
 				domicilioActual.tip_id = 1; //Se limino el combo tipo de propiedad;
 				domicilioActual.dom_calle = string.IsNullOrEmpty(txbCalle.Text) ? null : txbCalle.Text;
@@ -347,10 +358,6 @@ namespace LandManagement
 
 				//Cargo provincia al domicilio
 				domicilioActual.prv_id = ((tbprovincia)cmbProvincia.SelectedItem).prv_id;
-
-				DomicilioBusiness domicilioBusiness = new DomicilioBusiness();
-				domicilioBusiness.Update(domicilioActual);
-				//clienteAAsignarDomicilio.tbdomicilio.Add(domicilioActual);
 			}
 			catch (Exception ex)
 			{
