@@ -35,18 +35,25 @@ namespace LandManagement.Utilidades.UserControls
 
         private void btnAgregarPropietario_Click(object sender, EventArgs e)
         {
-            try
-            {
-                AgregaPropietarioGrilla((tbcliente)cmbPropietario.SelectedItem);
-                cmbPropietario.Items.Remove((tbcliente)cmbPropietario.SelectedItem);
-            }
-            catch (Exception ex)
-            {
-                log.Error(ex.Message);
-                if (ex.InnerException != null)
-                    log.Error(ex.InnerException.Message);
-                MessageBox.Show("Error al agregar propietario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+			try
+			{
+				if (cmbPropietario.SelectedItem != null)
+				{
+					AgregaPropietarioGrilla((tbcliente)cmbPropietario.SelectedItem);
+					cmbPropietario.Items.Remove((tbcliente)cmbPropietario.SelectedItem);
+				}
+				else
+				{
+					MessageBox.Show("Seleccione un propietario.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+			}
+			catch (Exception ex)
+			{
+				log.Error(ex.Message);
+				if (ex.InnerException != null)
+					log.Error(ex.InnerException.Message);
+				MessageBox.Show("Error al agregar propietario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
         }
 
         private void btnRemovePropietario_Click(object sender, EventArgs e)
