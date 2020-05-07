@@ -123,12 +123,6 @@ namespace LandManagement.Utilidades.UserControls
             dgvPropietarios.Columns[1].Visible = false;
         }
 
-        private void AgregarPropietariosGrilla(tbpropiedad prop)
-        {
-            foreach (tbcliente obj in prop.tbcliente)
-                AgregaPropietarioGrilla(obj);
-        }
-
         public void AgregaPropietarioGrilla(tbcliente familiar)
         {
             int indice;
@@ -175,8 +169,10 @@ namespace LandManagement.Utilidades.UserControls
 			List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetList(true);
 
 			if (listaClientes.Count != 0)
-				foreach (var obj in listaClientes)
-					cmbPropietario.Items.Add(obj);
+			{
+				var arreglo = listaClientes.ToArray();
+				cmbPropietario.Items.AddRange(arreglo);
+			}
 		}
 
 		public List<tbcliente> ObtenerPropietarios()
