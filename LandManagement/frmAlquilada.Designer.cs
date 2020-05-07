@@ -32,6 +32,7 @@
 			this.pnlControles = new System.Windows.Forms.Panel();
 			this.btnGuardar = new System.Windows.Forms.Button();
 			this.btnCancelar = new System.Windows.Forms.Button();
+			this.dtpFecha = new LandManagement.Utilidades.PangeaDateTimePicker();
 			this.groupBox9 = new System.Windows.Forms.GroupBox();
 			this.btnQuitarLocatario = new System.Windows.Forms.Button();
 			this.btnAgregarLocatario = new System.Windows.Forms.Button();
@@ -68,14 +69,13 @@
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.rdbServiciosCargoLocatario = new System.Windows.Forms.RadioButton();
 			this.rdbServiciosCargoLocador = new System.Windows.Forms.RadioButton();
+			this.dtpFechaDesocupacion = new LandManagement.Utilidades.PangeaDateTimePicker();
+			this.dtpFechaFin = new LandManagement.Utilidades.PangeaDateTimePicker();
+			this.dtpFechaInicio = new LandManagement.Utilidades.PangeaDateTimePicker();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.dtpFecha = new LandManagement.Utilidades.PangeaDateTimePicker();
-			this.dtpFechaDesocupacion = new LandManagement.Utilidades.PangeaDateTimePicker();
-			this.dtpFechaFin = new LandManagement.Utilidades.PangeaDateTimePicker();
-			this.dtpFechaInicio = new LandManagement.Utilidades.PangeaDateTimePicker();
 			this.groupBox1.SuspendLayout();
 			this.pnlControles.SuspendLayout();
 			this.groupBox9.SuspendLayout();
@@ -138,6 +138,14 @@
 			this.btnCancelar.Text = "Cancelar";
 			this.btnCancelar.UseVisualStyleBackColor = true;
 			this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+			// 
+			// dtpFecha
+			// 
+			this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+			this.dtpFecha.Location = new System.Drawing.Point(50, 3);
+			this.dtpFecha.Name = "dtpFecha";
+			this.dtpFecha.Size = new System.Drawing.Size(83, 20);
+			this.dtpFecha.TabIndex = 13;
 			// 
 			// groupBox9
 			// 
@@ -517,19 +525,43 @@
 			this.rdbServiciosCargoLocador.Text = "A Cargo del Locador";
 			this.rdbServiciosCargoLocador.UseVisualStyleBackColor = true;
 			// 
+			// dtpFechaDesocupacion
+			// 
+			this.dtpFechaDesocupacion.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.dtpFechaDesocupacion.Location = new System.Drawing.Point(125, 47);
+			this.dtpFechaDesocupacion.Name = "dtpFechaDesocupacion";
+			this.dtpFechaDesocupacion.Size = new System.Drawing.Size(85, 20);
+			this.dtpFechaDesocupacion.TabIndex = 31;
+			// 
+			// dtpFechaFin
+			// 
+			this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.dtpFechaFin.Location = new System.Drawing.Point(267, 18);
+			this.dtpFechaFin.Name = "dtpFechaFin";
+			this.dtpFechaFin.Size = new System.Drawing.Size(86, 20);
+			this.dtpFechaFin.TabIndex = 30;
+			// 
+			// dtpFechaInicio
+			// 
+			this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.dtpFechaInicio.Location = new System.Drawing.Point(125, 18);
+			this.dtpFechaInicio.Name = "dtpFechaInicio";
+			this.dtpFechaInicio.Size = new System.Drawing.Size(85, 20);
+			this.dtpFechaInicio.TabIndex = 29;
+			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(21, 51);
+			this.label3.Location = new System.Drawing.Point(6, 52);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(59, 13);
+			this.label3.Size = new System.Drawing.Size(118, 13);
 			this.label3.TabIndex = 28;
-			this.label3.Text = "D. efectiva";
+			this.label3.Text = "Desocupación Efectiva";
 			// 
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(192, 25);
+			this.label9.Location = new System.Drawing.Point(213, 23);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(51, 13);
 			this.label9.TabIndex = 27;
@@ -538,7 +570,7 @@
 			// label16
 			// 
 			this.label16.AutoSize = true;
-			this.label16.Location = new System.Drawing.Point(16, 23);
+			this.label16.Location = new System.Drawing.Point(55, 24);
 			this.label16.Name = "label16";
 			this.label16.Size = new System.Drawing.Size(64, 13);
 			this.label16.TabIndex = 26;
@@ -552,38 +584,6 @@
 			this.label2.Size = new System.Drawing.Size(37, 13);
 			this.label2.TabIndex = 14;
 			this.label2.Text = "Fecha";
-			// 
-			// dtpFecha
-			// 
-			this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dtpFecha.Location = new System.Drawing.Point(50, 3);
-			this.dtpFecha.Name = "dtpFecha";
-			this.dtpFecha.Size = new System.Drawing.Size(83, 20);
-			this.dtpFecha.TabIndex = 13;
-			// 
-			// dtpFechaDesocupacion
-			// 
-			this.dtpFechaDesocupacion.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtpFechaDesocupacion.Location = new System.Drawing.Point(86, 46);
-			this.dtpFechaDesocupacion.Name = "dtpFechaDesocupacion";
-			this.dtpFechaDesocupacion.Size = new System.Drawing.Size(85, 20);
-			this.dtpFechaDesocupacion.TabIndex = 31;
-			// 
-			// dtpFechaFin
-			// 
-			this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtpFechaFin.Location = new System.Drawing.Point(249, 20);
-			this.dtpFechaFin.Name = "dtpFechaFin";
-			this.dtpFechaFin.Size = new System.Drawing.Size(86, 20);
-			this.dtpFechaFin.TabIndex = 30;
-			// 
-			// dtpFechaInicio
-			// 
-			this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtpFechaInicio.Location = new System.Drawing.Point(86, 20);
-			this.dtpFechaInicio.Name = "dtpFechaInicio";
-			this.dtpFechaInicio.Size = new System.Drawing.Size(85, 20);
-			this.dtpFechaInicio.TabIndex = 29;
 			// 
 			// frmAlquilada
 			// 
