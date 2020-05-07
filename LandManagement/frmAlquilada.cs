@@ -47,6 +47,8 @@ namespace LandManagement
         {
             try
             {
+				Cursor.Current = Cursors.WaitCursor;
+
 				log.Info("Inicio load");
                 //User control propietarios
                 userControlPropietarios = new UserControlPropietarios();
@@ -54,7 +56,7 @@ namespace LandManagement
                 userControlPropietarios.SetearNombreGroupBox("Locador");
                 pnlControles.Controls.Add(userControlPropietarios);
 				log.Info("Cargo user control propietarios");
-
+				
 				//User control datos de la propiedad
 				userControlDatosPropiedad = new UserControlDatosPropiedad();
                 userControlDatosPropiedad.Location = new Point(3, 30);
@@ -65,8 +67,9 @@ namespace LandManagement
                 cmbCliente.Sorted = true;
                 cmbGarante.Sorted = true;
                 this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-                this.CargarCombos();
-				log.Info("Carga COMBOS");
+				log.Info("Carga IN COMBOS");
+				this.CargarCombos();
+				log.Info("Carga OUT COMBOS");
 
 				rdbServiciosCargoLocatario.Checked = true;
                 rdbPagoEfectivo.Checked = true;
@@ -95,7 +98,11 @@ namespace LandManagement
                     log.Error(ex.InnerException.Message);
                 MessageBox.Show("Error al cargar formulario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+			finally
+			{
+				Cursor.Current = Cursors.Default;
+			}
+		}
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
@@ -622,19 +629,19 @@ namespace LandManagement
         private void CargarClienteYGarante()
         {
             ClienteBusiness clienteBusiness = new ClienteBusiness();
-            List<tbcliente> listaNombresCompletos = (List<tbcliente>)clienteBusiness.GetList();
+            List<tbcliente> listaNombresCompletos = (List<tbcliente>)clienteBusiness.GetList(true);
 
-            if (listaNombresCompletos.Count != 0)
-                foreach (var obj in listaNombresCompletos)
-                {
-                    cmbCliente.Items.Add(obj);
-                    cmbGarante.Items.Add(obj);
-                }
-        }
-        #endregion
+			if (listaNombresCompletos.Count != 0)
+			{
+				var arreglo = listaNombresCompletos.ToArray();
+				cmbCliente.Items.AddRange(arreglo);
+				cmbGarante.Items.AddRange(arreglo);
+			}
+		}
+		#endregion
 
-        #region Validación de controles
-        private void ValidatingControl(object sender, CancelEventArgs e)
+		#region Validación de controles
+		private void ValidatingControl(object sender, CancelEventArgs e)
         {
             errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             validarControles = new ValidarControles();
