@@ -448,12 +448,18 @@ namespace LandManagement
 
         private void btnAgregarLocatario_Click(object sender, EventArgs e)
         {
-            tbcliente cliente = (tbcliente)cmbCliente.SelectedItem;
-            cmbCliente.Items.Remove(cliente);
-            AgregaLocatarioGrilla(cliente);
-        }
+			if (cmbCliente.SelectedItem != null)
+			{
+				AgregaLocatarioGrilla((tbcliente)cmbCliente.SelectedItem);
+				cmbCliente.Items.Remove((tbcliente)cmbCliente.SelectedItem);
+			}
+			else
+			{
+				MessageBox.Show("Seleccione un Locatario.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+		}
 
-        private void btnQuitarLocatario_Click(object sender, EventArgs e)
+		private void btnQuitarLocatario_Click(object sender, EventArgs e)
         {
             int idCliente = 0;
             if (dgvLocatarios.Rows.Count > 0)
@@ -522,9 +528,15 @@ namespace LandManagement
 
         private void btnAgregarGarante_Click(object sender, EventArgs e)
         {
-            tbcliente cliente = (tbcliente)cmbGarante.SelectedItem;
-            cmbGarante.Items.Remove(cliente);
-            AgregaGaranteGrilla(cliente);
+			if (cmbGarante.SelectedItem != null)
+			{
+				AgregaGaranteGrilla((tbcliente)cmbGarante.SelectedItem);
+				cmbGarante.Items.Remove((tbcliente)cmbGarante.SelectedItem);
+			}
+			else
+			{
+				MessageBox.Show("Seleccione un Garante.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
         }
 
         private void btnQuitarGarante_Click(object sender, EventArgs e)
