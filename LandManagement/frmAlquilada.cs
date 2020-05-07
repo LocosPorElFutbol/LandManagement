@@ -51,17 +51,19 @@ namespace LandManagement
 
 				log.Info("Inicio load");
                 //User control propietarios
+				log.Info("Cargo user control IN propietarios");
                 userControlPropietarios = new UserControlPropietarios();
                 userControlPropietarios.Location = new Point(10, 269);
                 userControlPropietarios.SetearNombreGroupBox("Locador");
                 pnlControles.Controls.Add(userControlPropietarios);
-				log.Info("Cargo user control propietarios");
+				log.Info("Cargo user control OUT propietarios");
 				
 				//User control datos de la propiedad
+				log.Info("Cargo datos de la IN propiedad");
 				userControlDatosPropiedad = new UserControlDatosPropiedad();
                 userControlDatosPropiedad.Location = new Point(3, 30);
                 pnlControles.Controls.Add(userControlDatosPropiedad);
-				log.Info("Cargo datos de la propiedad");
+				log.Info("Cargo datos de la OUT propiedad");
 
 				pnlControles.AutoScroll = true;
                 cmbCliente.Sorted = true;
