@@ -349,7 +349,22 @@ namespace LandManagement.Repository
                 .OrderBy(x => x.cli_nombre).ToList();
         }
 
-        public object GetList(Func<tbcliente, bool> _whereClausule)
+		/// <summary>
+		/// Obtener clientes sin las relaciones asociadas, actualmente se esta utilizando únicamente para
+		/// el user control propietarios que no requiere las relaciones.
+		/// </summary>
+		/// <param name="newGetlist">En caso de ser verdadero retorana unicamente los datos del cliente sin sus relaciones. Si es falso retorna laa lista de clientes con relaciones</param>
+		/// <returns>Listado de clientes</returns>
+		public object GetList(bool newGetlist)
+		{
+			//return Contexto.CreateObjectSet<tbcliente>().ToList();
+			if (newGetlist)
+				return Contexto.tbcliente.OrderBy(x => x.cli_nombre).ToList();
+
+			return null;
+		}
+
+		public object GetList(Func<tbcliente, bool> _whereClausule)
         {
             try
             {

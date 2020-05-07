@@ -47,24 +47,28 @@ namespace LandManagement
         {
             try
             {
+				log.Info("Inicio load");
                 //User control propietarios
                 userControlPropietarios = new UserControlPropietarios();
                 userControlPropietarios.Location = new Point(10, 269);
                 userControlPropietarios.SetearNombreGroupBox("Locador");
                 pnlControles.Controls.Add(userControlPropietarios);
+				log.Info("Cargo user control propietarios");
 
-                //User control datos de la propiedad
-                userControlDatosPropiedad = new UserControlDatosPropiedad();
+				//User control datos de la propiedad
+				userControlDatosPropiedad = new UserControlDatosPropiedad();
                 userControlDatosPropiedad.Location = new Point(3, 30);
                 pnlControles.Controls.Add(userControlDatosPropiedad);
+				log.Info("Cargo datos de la propiedad");
 
-                pnlControles.AutoScroll = true;
+				pnlControles.AutoScroll = true;
                 cmbCliente.Sorted = true;
                 cmbGarante.Sorted = true;
                 this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
                 this.CargarCombos();
+				log.Info("Carga COMBOS");
 
-                rdbServiciosCargoLocatario.Checked = true;
+				rdbServiciosCargoLocatario.Checked = true;
                 rdbPagoEfectivo.Checked = true;
 
                 cmbCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -75,8 +79,9 @@ namespace LandManagement
 
                 InicializarGrillaLocatarios();
                 InicializarGrillaGarantes();
+				log.Info("Inicializa Grillas");
 
-                if (this.getOperacionExistente() != null)
+				if (this.getOperacionExistente() != null)
                 {
                     tboperaciones operacionLocal = new tboperaciones();
                     operacionLocal = this.getOperacionExistente();

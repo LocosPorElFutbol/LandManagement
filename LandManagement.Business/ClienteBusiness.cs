@@ -73,6 +73,12 @@ namespace LandManagement.Business
 			return clienteRepository.GetList();
 		}
 
+		public object GetList(bool newGetList)
+		{
+			if (newGetList) return clienteRepository.GetList(true);
+			return null;
+		}
+
 		public object GetList(Func<tbcliente, bool> _whereClausule)
 		{
 			return clienteRepository.GetList(_whereClausule);

@@ -169,17 +169,17 @@ namespace LandManagement.Utilidades.UserControls
             cmbPropietario.DisplayMember = "cli_nombre_completo";
         }
 
-        private void CargarPropietario()
-        {
-            ClienteBusiness clienteBusiness = new ClienteBusiness();
-            List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetList();
+		private void CargarPropietario()
+		{
+			ClienteBusiness clienteBusiness = new ClienteBusiness();
+			List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetList(true);
 
-            if (listaClientes.Count != 0)
-                foreach (var obj in listaClientes)
-                    cmbPropietario.Items.Add(obj);
-        }
+			if (listaClientes.Count != 0)
+				foreach (var obj in listaClientes)
+					cmbPropietario.Items.Add(obj);
+		}
 
-        public List<tbcliente> ObtenerPropietarios()
+		public List<tbcliente> ObtenerPropietarios()
         {
             List<tbcliente> listaClientes = null;
             List<int> idsClientes = null;
