@@ -25,10 +25,11 @@ namespace LandManagement.Utilidades.UserControls
             //this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.gbxDetalleDireccion.Enabled = false;
             listasDeElementos = new ListasDeElementos();
-            this.CargarCombos();
 
-            cmbDireccion.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbDireccion.AutoCompleteSource = AutoCompleteSource.ListItems;
+			cmbDireccion.AutoCompleteMode = AutoCompleteMode.Suggest;
+			cmbDireccion.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+			this.CargarCombos();
         }
 
         #region Carga de Combos Piso, Depto, Direcciones y clientes
