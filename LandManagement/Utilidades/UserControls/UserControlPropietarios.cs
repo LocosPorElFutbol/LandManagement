@@ -25,10 +25,10 @@ namespace LandManagement.Utilidades.UserControls
 
         private void ucPropietarios_Load(object sender, EventArgs e)
         {
-            this.CargarCombos();
+			cmbPropietario.AutoCompleteMode = AutoCompleteMode.Suggest;
+			cmbPropietario.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-            cmbPropietario.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbPropietario.AutoCompleteSource = AutoCompleteSource.ListItems;
+			this.CargarCombos();
 
             InicializarGrillaPropietarios();
         }
