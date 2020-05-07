@@ -67,6 +67,15 @@ namespace LandManagement
                 cmbCliente.Sorted = true;
                 cmbGarante.Sorted = true;
                 this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+
+				log.Info("Autocomplete IN combos");
+				cmbCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
+				cmbCliente.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+				cmbGarante.AutoCompleteMode = AutoCompleteMode.Suggest;
+				cmbGarante.AutoCompleteSource = AutoCompleteSource.ListItems;
+				log.Info("Autocomplete OUT combos");
+
 				log.Info("Carga IN COMBOS");
 				this.CargarCombos();
 				log.Info("Carga OUT COMBOS");
@@ -74,15 +83,10 @@ namespace LandManagement
 				rdbServiciosCargoLocatario.Checked = true;
                 rdbPagoEfectivo.Checked = true;
 
-                cmbCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
-                cmbCliente.AutoCompleteSource = AutoCompleteSource.ListItems;
-
-                cmbGarante.AutoCompleteMode = AutoCompleteMode.Suggest;
-                cmbGarante.AutoCompleteSource = AutoCompleteSource.ListItems;
-
-                InicializarGrillaLocatarios();
+				log.Info("Inicializa IN Grillas");
+				InicializarGrillaLocatarios();
                 InicializarGrillaGarantes();
-				log.Info("Inicializa Grillas");
+				log.Info("Inicializa OUT Grillas");
 
 				if (this.getOperacionExistente() != null)
                 {
