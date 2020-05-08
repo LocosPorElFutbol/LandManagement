@@ -72,7 +72,7 @@ namespace LandManagement
                     this.listaEtiquetas.ForEach(x => listaAuxiliarEtiquetas.Add(x));
 
                     CumpleaniosEtiquetaBusiness cumpleaniosEtiquetaBusiness = new CumpleaniosEtiquetaBusiness(ConfigurationManager.AppSettings["ArchivoEtiquetas"]);
-                    cumpleaniosEtiquetaBusiness.CrearEtiquetas(listaAuxiliarEtiquetas);
+                    cumpleaniosEtiquetaBusiness.CrearEtiquetas(listaAuxiliarEtiquetas, 10);
                 }
 
                 this.Cursor = Cursors.Default;
@@ -96,7 +96,7 @@ namespace LandManagement
                 {
                     //CumpleaniosCartaBusiness cumpleaniosCartasBusiness = new CumpleaniosCartaBusiness("C:\\Cartas.pdf");
                     CumpleaniosCartaBusiness cumpleaniosCartasBusiness = new CumpleaniosCartaBusiness(ConfigurationManager.AppSettings["ArchivoCartas"]);
-                    cumpleaniosCartasBusiness.CrearCartasCumpleanios(this.listaEtiquetas);
+                    cumpleaniosCartasBusiness.CrearCartasCumpleanios(this.listaEtiquetas, 13);
                 }
 
                 this.Cursor = Cursors.Default;
