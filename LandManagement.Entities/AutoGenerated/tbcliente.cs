@@ -75,7 +75,7 @@ namespace LandManagement.Entities
         }
         private int _tif_id;
     
-        public virtual Nullable<int> ccl_id
+        public virtual int ccl_id
         {
             get { return _ccl_id; }
             set
@@ -98,7 +98,7 @@ namespace LandManagement.Entities
                 }
             }
         }
-        private Nullable<int> _ccl_id;
+        private int _ccl_id;
     
         public virtual int tcl_id
         {
@@ -460,10 +460,6 @@ namespace LandManagement.Entities
                 {
                     ccl_id = tbcategoriacliente.ccl_id;
                 }
-            }
-            else if (!_settingFK)
-            {
-                ccl_id = null;
             }
         }
     

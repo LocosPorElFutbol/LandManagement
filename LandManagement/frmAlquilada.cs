@@ -250,11 +250,11 @@ namespace LandManagement
             _operacion.tbalquilada.alq_fecha_inicio = dtpFechaInicio.Value;
             _operacion.tbalquilada.alq_fecha_fin = dtpFechaFin.Value;
             _operacion.tbalquilada.alq_fecha_desocupacion = dtpFechaDesocupacion.Value;
-            _operacion.tbalquilada.alq_precio_primer_anio = ValidarDecimalNulo(txbPrimerAnio.Text);
-            _operacion.tbalquilada.alq_precio_segundo_anio = ValidarDecimalNulo(txbSegundoAnio.Text);
-            _operacion.tbalquilada.alq_precio_tercer_anio = ValidarDecimalNulo(txbTercerAnio.Text);
-            _operacion.tbalquilada.alq_precio_cuarto_anio = ValidarDecimalNulo(txbCuartoAnio.Text);
-            _operacion.tbalquilada.alq_precio_quinto_anio = ValidarDecimalNulo(txbQuintoAnio.Text);
+            _operacion.tbalquilada.alq_precio_primero = ValidarDecimalNulo(txbPrimerAnio.Text);
+            _operacion.tbalquilada.alq_precio_segundo = ValidarDecimalNulo(txbSegundoAnio.Text);
+            _operacion.tbalquilada.alq_precio_tercero = ValidarDecimalNulo(txbTercerAnio.Text);
+            _operacion.tbalquilada.alq_precio_cuarto = ValidarDecimalNulo(txbCuartoAnio.Text);
+            _operacion.tbalquilada.alq_precio_quinto = ValidarDecimalNulo(txbQuintoAnio.Text);
 
             //Servicios a cargo del locador
             _operacion.tbalquilada.alq_servicios_cargo_locador = rdbServiciosCargoLocador.Checked;
@@ -300,11 +300,11 @@ namespace LandManagement
             dtpFechaInicio.Value = _operacion.tbalquilada.alq_fecha_inicio;
             dtpFechaFin.Value = _operacion.tbalquilada.alq_fecha_fin;
             dtpFechaDesocupacion.Value = _operacion.tbalquilada.alq_fecha_desocupacion;
-            txbPrimerAnio.Text = _operacion.tbalquilada.alq_precio_primer_anio.ToString();
-            txbSegundoAnio.Text = _operacion.tbalquilada.alq_precio_segundo_anio.ToString();
-            txbTercerAnio.Text = _operacion.tbalquilada.alq_precio_tercer_anio.ToString();
-            txbCuartoAnio.Text = _operacion.tbalquilada.alq_precio_cuarto_anio.ToString();
-            txbQuintoAnio.Text = _operacion.tbalquilada.alq_precio_quinto_anio.ToString();
+            txbPrimerAnio.Text = _operacion.tbalquilada.alq_precio_primero.ToString();
+            txbSegundoAnio.Text = _operacion.tbalquilada.alq_precio_segundo.ToString();
+            txbTercerAnio.Text = _operacion.tbalquilada.alq_precio_tercero.ToString();
+            txbCuartoAnio.Text = _operacion.tbalquilada.alq_precio_cuarto.ToString();
+            txbQuintoAnio.Text = _operacion.tbalquilada.alq_precio_quinto.ToString();
 
             //Servicios a cargo del locador
             if (_operacion.tbalquilada.alq_servicios_cargo_locador)

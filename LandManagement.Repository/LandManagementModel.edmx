@@ -13,11 +13,11 @@
           <Property Name="alq_fecha_inicio" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="alq_fecha_fin" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="alq_fecha_desocupacion" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="alq_precio_primer_anio" Type="double" />
-          <Property Name="alq_precio_segundo_anio" Type="double" />
-          <Property Name="alq_precio_tercer_anio" Type="double" />
-          <Property Name="alq_precio_cuarto_anio" Type="double" />
-          <Property Name="alq_precio_quinto_anio" Type="double" />
+          <Property Name="alq_precio_primero" Type="double" />
+          <Property Name="alq_precio_segundo" Type="double" />
+          <Property Name="alq_precio_tercero" Type="double" />
+          <Property Name="alq_precio_cuarto" Type="double" />
+          <Property Name="alq_precio_quinto" Type="double" />
           <Property Name="alq_servicios_cargo_locador" Type="bool" Nullable="false" />
           <Property Name="alq_pago_administracion" Type="bool" />
           <Property Name="alq_factura_iva" Type="bool" />
@@ -47,7 +47,7 @@
           <Property Name="cli_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="cli_id_padre" Type="int" />
           <Property Name="tif_id" Type="int" Nullable="false" />
-          <Property Name="ccl_id" Type="int" />
+          <Property Name="ccl_id" Type="int" Nullable="false" />
           <Property Name="tcl_id" Type="int" Nullable="false" />
           <Property Name="cli_fecha" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="cli_nombre" Type="varchar" MaxLength="100" Nullable="false" />
@@ -335,7 +335,7 @@
           <Property Name="ven_cobrado" Type="double" Nullable="false" />
         </EntityType>
         <Association Name="fk_tbCliente_tbCategoria1">
-          <End Role="tbcategoriacliente" Type="Self.tbcategoriacliente" Multiplicity="0..1" />
+          <End Role="tbcategoriacliente" Type="Self.tbcategoriacliente" Multiplicity="1" />
           <End Role="tbcliente" Type="Self.tbcliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbcategoriacliente">
@@ -999,11 +999,11 @@
           <Property Name="alq_fecha_inicio" Type="DateTime" Nullable="false" />
           <Property Name="alq_fecha_fin" Type="DateTime" Nullable="false" />
           <Property Name="alq_fecha_desocupacion" Type="DateTime" Nullable="false" />
-          <Property Name="alq_precio_primer_anio" Type="Double" />
-          <Property Name="alq_precio_segundo_anio" Type="Double" />
-          <Property Name="alq_precio_tercer_anio" Type="Double" />
-          <Property Name="alq_precio_cuarto_anio" Type="Double" />
-          <Property Name="alq_precio_quinto_anio" Type="Double" />
+          <Property Name="alq_precio_primero" Type="Double" />
+          <Property Name="alq_precio_segundo" Type="Double" />
+          <Property Name="alq_precio_tercero" Type="Double" />
+          <Property Name="alq_precio_cuarto" Type="Double" />
+          <Property Name="alq_precio_quinto" Type="Double" />
           <Property Name="alq_servicios_cargo_locador" Type="Boolean" Nullable="false" />
           <Property Name="alq_pago_administracion" Type="Boolean" />
           <Property Name="alq_factura_iva" Type="Boolean" />
@@ -1035,7 +1035,7 @@
           <Property Name="cli_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="cli_id_padre" Type="Int32" />
           <Property Name="tif_id" Type="Int32" Nullable="false" />
-          <Property Name="ccl_id" Type="Int32" />
+          <Property Name="ccl_id" Type="Int32" Nullable="false" />
           <Property Name="tcl_id" Type="Int32" Nullable="false" />
           <Property Name="cli_fecha" Type="DateTime" Nullable="false" />
           <Property Name="cli_nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -1363,7 +1363,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_tbCliente_tbCategoria1">
-          <End Type="landmanagementbdModel.tbcategoriacliente" Role="tbcategoriacliente" Multiplicity="0..1" />
+          <End Type="landmanagementbdModel.tbcategoriacliente" Role="tbcategoriacliente" Multiplicity="1" />
           <End Type="landmanagementbdModel.tbcliente" Role="tbcliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbcategoriacliente">
@@ -1669,11 +1669,11 @@
                 <ScalarProperty Name="alq_factura_iva" ColumnName="alq_factura_iva" />
                 <ScalarProperty Name="alq_pago_administracion" ColumnName="alq_pago_administracion" />
                 <ScalarProperty Name="alq_servicios_cargo_locador" ColumnName="alq_servicios_cargo_locador" />
-                <ScalarProperty Name="alq_precio_quinto_anio" ColumnName="alq_precio_quinto_anio" />
-                <ScalarProperty Name="alq_precio_cuarto_anio" ColumnName="alq_precio_cuarto_anio" />
-                <ScalarProperty Name="alq_precio_tercer_anio" ColumnName="alq_precio_tercer_anio" />
-                <ScalarProperty Name="alq_precio_segundo_anio" ColumnName="alq_precio_segundo_anio" />
-                <ScalarProperty Name="alq_precio_primer_anio" ColumnName="alq_precio_primer_anio" />
+                <ScalarProperty Name="alq_precio_quinto" ColumnName="alq_precio_quinto" />
+                <ScalarProperty Name="alq_precio_cuarto" ColumnName="alq_precio_cuarto" />
+                <ScalarProperty Name="alq_precio_tercero" ColumnName="alq_precio_tercero" />
+                <ScalarProperty Name="alq_precio_segundo" ColumnName="alq_precio_segundo" />
+                <ScalarProperty Name="alq_precio_primero" ColumnName="alq_precio_primero" />
                 <ScalarProperty Name="alq_fecha_desocupacion" ColumnName="alq_fecha_desocupacion" />
                 <ScalarProperty Name="alq_fecha_fin" ColumnName="alq_fecha_fin" />
                 <ScalarProperty Name="alq_fecha_inicio" ColumnName="alq_fecha_inicio" />
@@ -2036,32 +2036,32 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="LandManagementModel" ZoomLevel="55">
-        <EntityTypeShape EntityType="landmanagementbdModel.tbalquilada" Width="1.5" PointX="6" PointY="16.625" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbcarta" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbalquilada" Width="1.5" PointX="9" PointY="23" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbcarta" Width="1.5" PointX="7.75" PointY="0.75" />
         <EntityTypeShape EntityType="landmanagementbdModel.tbcategoriacliente" Width="1.5" PointX="1.5" PointY="21.125" />
         <EntityTypeShape EntityType="landmanagementbdModel.tbcliente" Width="1.5" PointX="0.75" PointY="10.25" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbclienteoperacion" Width="1.5" PointX="10.5" PointY="6.625" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbclienteoperacion" Width="1.5" PointX="13.5" PointY="6.625" />
         <EntityTypeShape EntityType="landmanagementbdModel.tbdomicilio" Width="1.5" PointX="3" PointY="5.75" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbenalquiler" Width="1.5" PointX="6" PointY="12.125" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbencuesta" Width="1.5" PointX="6" PointY="27.625" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbenventa" Width="1.5" PointX="6" PointY="30" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbmenu" Width="1.5" PointX="3.75" PointY="21.625" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tboperaciones" Width="1.5" PointX="8.25" PointY="5" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbenalquiler" Width="1.5" PointX="9" PointY="36.625" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbencuesta" Width="1.5" PointX="9" PointY="10" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbenventa" Width="1.5" PointX="9" PointY="12.375" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbmenu" Width="1.5" PointX="6.75" PointY="28.125" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tboperaciones" Width="1.5" PointX="11.25" PointY="5" />
         <EntityTypeShape EntityType="landmanagementbdModel.tbpropiedad" Width="1.5" PointX="6" PointY="5.75" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbprovincia" Width="1.5" PointX="0.75" PointY="2.75" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbreservaalquiler" Width="1.5" PointX="6" PointY="34.625" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbreservaventa" Width="1.5" PointX="6" PointY="40.75" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbservicios" Width="1.5" PointX="8.25" PointY="13" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbprovincia" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbreservaalquiler" Width="1.5" PointX="9" PointY="31.625" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbreservaventa" Width="1.5" PointX="9" PointY="34.125" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbservicios" Width="1.5" PointX="8.25" PointY="6.875" />
         <EntityTypeShape EntityType="landmanagementbdModel.tbsyscliente" Width="1.5" PointX="2.75" PointY="1" />
         <EntityTypeShape EntityType="landmanagementbdModel.tbsyslicencia" Width="1.5" PointX="5" PointY="1.125" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbsystipocliente" Width="1.5" PointX="8.25" PointY="1.75" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbsystipocliente" Width="1.5" PointX="11.25" PointY="1.75" />
         <EntityTypeShape EntityType="landmanagementbdModel.tbsysversion" Width="1.5" PointX="2.75" PointY="10.75" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbtasacion" Width="1.5" PointX="6" PointY="25.125" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbtipofamiliar" Width="1.5" PointX="1.5" PointY="18.75" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbtipopropiedad" Width="1.5" PointX="0.75" PointY="6.75" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbtitulocliente" Width="1.5" PointX="1.5" PointY="23.5" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbusuario" Width="1.5" PointX="6" PointY="21.375" />
-        <EntityTypeShape EntityType="landmanagementbdModel.tbventa" Width="1.5" PointX="6" PointY="37.25" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbtasacion" Width="1.5" PointX="9" PointY="20.5" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbtipofamiliar" Width="1.5" PointX="1.5" PointY="23.5" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbtipopropiedad" Width="1.5" PointX="0.75" PointY="2.75" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbtitulocliente" Width="1.5" PointX="1.5" PointY="18.75" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbusuario" Width="1.5" PointX="9" PointY="27.875" />
+        <EntityTypeShape EntityType="landmanagementbdModel.tbventa" Width="1.5" PointX="9" PointY="17" />
         <AssociationConnector Association="landmanagementbdModel.fk_tbOperaciones_tbAlquilada1" />
         <AssociationConnector Association="landmanagementbdModel.fk_tbCliente_tbCategoria1" />
         <AssociationConnector Association="landmanagementbdModel.fk_tbCliente_tbCliente1" />

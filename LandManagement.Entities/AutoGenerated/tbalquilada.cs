@@ -43,31 +43,31 @@ namespace LandManagement.Entities
             set;
         }
     
-        public virtual Nullable<double> alq_precio_primer_anio
+        public virtual Nullable<double> alq_precio_primero
         {
             get;
             set;
         }
     
-        public virtual Nullable<double> alq_precio_segundo_anio
+        public virtual Nullable<double> alq_precio_segundo
         {
             get;
             set;
         }
     
-        public virtual Nullable<double> alq_precio_tercer_anio
+        public virtual Nullable<double> alq_precio_tercero
         {
             get;
             set;
         }
     
-        public virtual Nullable<double> alq_precio_cuarto_anio
+        public virtual Nullable<double> alq_precio_cuarto
         {
             get;
             set;
         }
     
-        public virtual Nullable<double> alq_precio_quinto_anio
+        public virtual Nullable<double> alq_precio_quinto
         {
             get;
             set;
