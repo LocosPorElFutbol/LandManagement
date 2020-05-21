@@ -902,6 +902,7 @@
 			this.txbCuilCuit.Name = "txbCuilCuit";
 			this.txbCuilCuit.Size = new System.Drawing.Size(168, 20);
 			this.txbCuilCuit.TabIndex = 9;
+			this.txbCuilCuit.Click += new System.EventHandler(this.txbCuilCuit_Click);
 			this.txbCuilCuit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidarEnteros);
 			// 
 			// dtpFechaNacimiento
