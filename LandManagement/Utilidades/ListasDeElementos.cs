@@ -142,37 +142,5 @@ namespace LandManagement.Utilidades
 
             return lista;
         }
-
-        public List<ComboBoxItem> GetListaProvincias()
-        {
-            List<ComboBoxItem> lista = new List<ComboBoxItem>(){
-                new ComboBoxItem("Buenos Aires",0),
-                new ComboBoxItem("Catamarca",1),
-                new ComboBoxItem("Chaco",2),
-                new ComboBoxItem("Ciudad Autónoma de Buenos Aires",3),
-                new ComboBoxItem("Chubut",4),
-                new ComboBoxItem("Córdoba",5),
-                new ComboBoxItem("Corrientes",6),
-                new ComboBoxItem("Entre Ríos",7),
-                new ComboBoxItem("Formosa",8),
-                new ComboBoxItem("Jujuy",9),
-                new ComboBoxItem("La Pampa",10),
-                new ComboBoxItem("La Rioja",11),
-                new ComboBoxItem("Mendoza",12),
-                new ComboBoxItem("Misiones",13),
-                new ComboBoxItem("Neuquén",14),
-                new ComboBoxItem("Río Negro",15),
-                new ComboBoxItem("Salta",16),
-                new ComboBoxItem("San Juan",17),
-                new ComboBoxItem("San Luis",18),
-                new ComboBoxItem("Santa Cruz",19),
-                new ComboBoxItem("Santa Fe",20),
-                new ComboBoxItem("Santiago del Estero",21),
-                new ComboBoxItem("Tierra del Fuego",22),
-                new ComboBoxItem("Tucumán",23)
-               };
-
-            return lista;
-        }
     }
 }
