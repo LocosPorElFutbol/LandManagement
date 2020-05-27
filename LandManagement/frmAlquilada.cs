@@ -255,9 +255,10 @@ namespace LandManagement
             _operacion.tbalquilada.alq_precio_tercero = ValidarDecimalNulo(txbTercerAnio.Text);
             _operacion.tbalquilada.alq_precio_cuarto = ValidarDecimalNulo(txbCuartoAnio.Text);
             _operacion.tbalquilada.alq_precio_quinto = ValidarDecimalNulo(txbQuintoAnio.Text);
+			_operacion.tbalquilada.alq_precio_sexto = ValidarDecimalNulo(txbSextoAnio.Text);
 
-            //Servicios a cargo del locador
-            _operacion.tbalquilada.alq_servicios_cargo_locador = rdbServiciosCargoLocador.Checked;
+			//Servicios a cargo del locador
+			_operacion.tbalquilada.alq_servicios_cargo_locador = rdbServiciosCargoLocador.Checked;
 
             //Pago en administracion
             _operacion.tbalquilada.alq_pago_administracion = cbxEnAdministracion.Checked;
@@ -305,6 +306,7 @@ namespace LandManagement
             txbTercerAnio.Text = _operacion.tbalquilada.alq_precio_tercero.ToString();
             txbCuartoAnio.Text = _operacion.tbalquilada.alq_precio_cuarto.ToString();
             txbQuintoAnio.Text = _operacion.tbalquilada.alq_precio_quinto.ToString();
+			txbSextoAnio.Text = _operacion.tbalquilada.alq_precio_sexto.ToString();
 
             //Servicios a cargo del locador
             if (_operacion.tbalquilada.alq_servicios_cargo_locador)

@@ -73,6 +73,12 @@ namespace LandManagement.Entities
             set;
         }
     
+        public virtual Nullable<double> alq_precio_sexto
+        {
+            get;
+            set;
+        }
+    
         public virtual bool alq_servicios_cargo_locador
         {
             get;
