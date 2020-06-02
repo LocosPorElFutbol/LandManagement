@@ -21,16 +21,23 @@ namespace LandManagement.Utilidades.UserControls
         public UserControlPropietarios()
         {
             InitializeComponent();
-        }
+			InicializarGrillaPropietarios();
 
-        private void ucPropietarios_Load(object sender, EventArgs e)
-        {
 			cmbPropietario.AutoCompleteMode = AutoCompleteMode.Suggest;
 			cmbPropietario.AutoCompleteSource = AutoCompleteSource.ListItems;
 
 			this.CargarCombos();
+		}
 
-            InicializarGrillaPropietarios();
+		public UserControlPropietarios(tboperaciones operacion)
+		{
+			InitializeComponent();
+			InicializarGrillaPropietarios();
+			CargarGrillaPropietariosOperacion(operacion.ope_id);
+		}
+
+		private void ucPropietarios_Load(object sender, EventArgs e)
+        {
         }
 
         private void btnAgregarPropietario_Click(object sender, EventArgs e)

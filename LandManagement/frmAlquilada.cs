@@ -50,13 +50,6 @@ namespace LandManagement
 				Cursor.Current = Cursors.WaitCursor;
 
 				log.Info("Inicio load");
-                //User control propietarios
-				log.Info("Cargo user control IN propietarios");
-                userControlPropietarios = new UserControlPropietarios();
-                userControlPropietarios.Location = new Point(10, 269);
-                userControlPropietarios.SetearNombreGroupBox("Locador");
-                pnlControles.Controls.Add(userControlPropietarios);
-				log.Info("Cargo user control OUT propietarios");
 				
 				//User control datos de la propiedad
 				log.Info("Cargo datos de la IN propiedad");
@@ -91,13 +84,28 @@ namespace LandManagement
 				log.Info("Inicializa OUT Grillas");
 
 				if (this.getOperacionExistente() != null)
-                {
-                    tboperaciones operacionLocal = new tboperaciones();
-                    operacionLocal = this.getOperacionExistente();
-                    CargoFormulario(operacionLocal);
-                }
-            }
-            catch (Exception ex)
+				{
+					tboperaciones operacionLocal = new tboperaciones();
+					operacionLocal = this.getOperacionExistente();
+
+					userControlPropietarios = new UserControlPropietarios(operacionLocal);
+					userControlPropietarios.Enabled = false;
+
+					CargoFormulario(operacionLocal);
+				}
+				else
+				{
+					userControlPropietarios = new UserControlPropietarios();
+				}
+
+				//User control propietarios
+				log.Info("Cargo user control IN propietarios");
+				userControlPropietarios.Location = new Point(10, 269);
+				userControlPropietarios.SetearNombreGroupBox("Locador");
+				pnlControles.Controls.Add(userControlPropietarios);
+				log.Info("Cargo user control OUT propietarios");
+			}
+			catch (Exception ex)
             {
                 log.Error(ex.Message);
                 if (ex.InnerException != null)
@@ -293,7 +301,7 @@ namespace LandManagement
             dtpFecha.Value = _operacion.ope_fecha.Value;
 
             CargarComboDireccion(_operacion);
-            CargarGrillaPropietarios(_operacion);
+            //CargarGrillaPropietarios(_operacion);
             CargarGrillaLocatarios(_operacion);
             CargarGrillaGarantes(_operacion);
 
