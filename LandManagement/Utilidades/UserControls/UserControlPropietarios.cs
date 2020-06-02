@@ -168,11 +168,9 @@ namespace LandManagement.Utilidades.UserControls
 			ClienteBusiness clienteBusiness = new ClienteBusiness();
 			List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetList(true);
 
-			if (listaClientes.Count != 0)
-			{
-				var arreglo = listaClientes.ToArray();
-				cmbPropietario.Items.AddRange(arreglo);
-			}
+			cmbPropietario.DataSource = listaClientes;
+			cmbPropietario.Invalidate();
+			cmbPropietario.SelectedIndex = -1;
 		}
 
 		public List<tbcliente> ObtenerPropietarios()
