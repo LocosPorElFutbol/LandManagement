@@ -71,10 +71,6 @@ namespace LandManagement
 				cmbGarante.AutoCompleteSource = AutoCompleteSource.ListItems;
 				log.Info("Autocomplete OUT combos");
 
-				log.Info("Carga IN COMBOS");
-				this.CargarCombos();
-				log.Info("Carga OUT COMBOS");
-
 				rdbServiciosCargoLocatario.Checked = true;
                 rdbPagoEfectivo.Checked = true;
 
@@ -96,6 +92,7 @@ namespace LandManagement
 				else
 				{
 					userControlPropietarios = new UserControlPropietarios();
+					this.CargarCombos();
 				}
 
 				//User control propietarios
@@ -301,7 +298,6 @@ namespace LandManagement
             dtpFecha.Value = _operacion.ope_fecha.Value;
 
             CargarComboDireccion(_operacion);
-            //CargarGrillaPropietarios(_operacion);
             CargarGrillaLocatarios(_operacion);
             CargarGrillaGarantes(_operacion);
 
@@ -345,13 +341,6 @@ namespace LandManagement
             txbBancoNumeroCuenta.Text = _operacion.tbalquilada.alq_numero_cuenta.ToString();
         }
 
-        private void CargarGrillaPropietarios(tboperaciones _operacion)
-        {
-            //Cargo user control propietarios
-            userControlPropietarios.Enabled = false;
-            userControlPropietarios.CargarGrillaPropietariosOperacion(_operacion.ope_id);
-        }
-
         /// <summary>
         /// Carga el combo de direcciones, tener en cuenta que tambien carga los datos de la propiedad. 
         /// Ya que, al realizar la seleccion del item, se dispara el itemChange del combo y se 
@@ -374,11 +363,18 @@ namespace LandManagement
 
             var idsLocatarios = GetIdsLocatarios(_operacion);
 
-            foreach (tbcliente obj in cmbCliente.Items)
-            {
-                if (idsLocatarios.Contains(obj.cli_id))
-                    this.AgregaLocatarioGrilla(obj);
-            }
+			Func<tbcliente, bool> func = x => idsLocatarios.Contains(x.cli_id);
+			ClienteBusiness clienteBusiness = new ClienteBusiness();
+			var lista = (List<tbcliente>)clienteBusiness.GetList(func);
+
+			foreach (tbcliente obj in lista)
+				AgregaLocatarioGrilla(obj);
+
+			//foreach (tbcliente obj in cmbCliente.Items)
+   //         {
+   //             if (idsLocatarios.Contains(obj.cli_id))
+   //                 this.AgregaLocatarioGrilla(obj);
+   //         }
         }
 
         private List<int> GetIdsLocatarios(tboperaciones _operacion)
@@ -401,11 +397,13 @@ namespace LandManagement
 
             var idsGarantes = GetIdsGarantes(_operacion);
 
-            foreach (tbcliente obj in cmbGarante.Items)
-            {
-                if (idsGarantes.Contains(obj.cli_id))
-                    this.AgregaGaranteGrilla(obj);
-            }
+			Func<tbcliente, bool> func = x => idsGarantes.Contains(x.cli_id);
+			ClienteBusiness clienteBusiness = new ClienteBusiness();
+			var lista = (List<tbcliente>)clienteBusiness.GetList(func);
+
+			foreach (tbcliente obj in lista)
+				AgregaGaranteGrilla(obj);
+
         }
 
         private List<int> GetIdsGarantes(tboperaciones _operacion)
