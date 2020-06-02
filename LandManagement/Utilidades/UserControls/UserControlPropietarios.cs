@@ -17,8 +17,11 @@ namespace LandManagement.Utilidades.UserControls
     {
         public static readonly ILog log = log4net.LogManager.GetLogger
             (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
- 
-        public UserControlPropietarios()
+		BindingSource _bindingSource = new BindingSource();
+		BindingList<tbcliente> _bindingList = null;
+
+
+		public UserControlPropietarios()
         {
             InitializeComponent();
 			InicializarGrillaPropietarios();
@@ -44,15 +47,22 @@ namespace LandManagement.Utilidades.UserControls
         {
 			try
 			{
+				Cursor = Cursors.WaitCursor;
+
 				if (cmbPropietario.SelectedItem != null)
 				{
-					AgregaPropietarioGrilla((tbcliente)cmbPropietario.SelectedItem);
-					cmbPropietario.Items.Remove((tbcliente)cmbPropietario.SelectedItem);
+					tbcliente propietario = (tbcliente)cmbPropietario.SelectedItem;
+					AgregaPropietarioGrilla(propietario);
+
+					_bindingList.Remove(propietario);
+					_bindingList.ResetBindings();
 				}
 				else
 				{
 					MessageBox.Show("Seleccione un propietario.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
+
+				Cursor = Cursors.Default;
 			}
 			catch (Exception ex)
 			{
@@ -63,41 +73,36 @@ namespace LandManagement.Utilidades.UserControls
 			}
         }
 
-        private void btnRemovePropietario_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dgvPropietarios.Rows.Count > 0)
-                {
-                    AgregoPropietarioGrillaACombo();
-                    foreach (DataGridViewRow obj in dgvPropietarios.SelectedRows)
-                        dgvPropietarios.Rows.RemoveAt(obj.Index);
-                }
-            }
-            catch (Exception ex)
-            {
-                log.Error(ex.Message);
-                if (ex.InnerException != null)
-                    log.Error(ex.InnerException.Message);
-                MessageBox.Show("Error al eliminar propietario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+		private void btnRemovePropietario_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				Cursor = Cursors.WaitCursor;
+
+				if (dgvPropietarios.Rows.Count > 0)
+				{
+					AgregoPropietarioGrillaACombo();
+					foreach (DataGridViewRow obj in dgvPropietarios.SelectedRows)
+						dgvPropietarios.Rows.RemoveAt(obj.Index);
+				}
+
+				Cursor = Cursors.Default;
+			}
+			catch (Exception ex)
+			{
+				log.Error(ex.Message);
+				if (ex.InnerException != null)
+					log.Error(ex.InnerException.Message);
+				MessageBox.Show("Error al eliminar propietario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 
         private void AgregoPropietarioGrillaACombo()
         {
-            List<tbcliente> listaTemporal = new List<tbcliente>();
-            foreach (tbcliente obj in cmbPropietario.Items)
-                listaTemporal.Add(obj);
+            tbcliente propietario = ObtenerPropietarioSeleccionado();
 
-            tbcliente cliente = ObtenerPropietarioSeleccionado();
-
-            listaTemporal.Add(cliente);
-
-            cmbPropietario.Items.Clear();
-            cmbPropietario.Refresh();
-
-            foreach (tbcliente cli in listaTemporal.OrderBy(x => x.cli_nombre))
-                cmbPropietario.Items.Add(cli);
+			_bindingList.Add(propietario);
+			_bindingList.ResetBindings();
         }
 
         #region Carga Propietarios a la Grilla de Propietarios
@@ -174,10 +179,18 @@ namespace LandManagement.Utilidades.UserControls
 		{
 			ClienteBusiness clienteBusiness = new ClienteBusiness();
 			List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetList(true);
+			_bindingList = new BindingList<tbcliente>(listaClientes);
 
-			cmbPropietario.DataSource = listaClientes;
+			_bindingSource.DataSource = _bindingList;
+
+			cmbPropietario.DataSource = _bindingSource;
 			cmbPropietario.Invalidate();
 			cmbPropietario.SelectedIndex = -1;
+		}
+
+		public BindingList<tbcliente> GetBindingListPropietario()
+		{
+			return _bindingList;
 		}
 
 		public List<tbcliente> ObtenerPropietarios()
