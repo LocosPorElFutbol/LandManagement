@@ -201,9 +201,12 @@ namespace LandManagement.Utilidades.UserControls
         {
             var idsPropietarios = this.GetIdsPropietarios(idOperacion);
 
-            foreach (tbcliente obj in cmbPropietario.Items)
-                if (idsPropietarios.Contains(obj.cli_id))
-                    AgregaPropietarioGrilla(obj);
+			Func<tbcliente, bool> func = x => idsPropietarios.Contains(x.cli_id);
+			ClienteBusiness clienteBusiness = new ClienteBusiness();
+			var lista = (List<tbcliente>)clienteBusiness.GetList(func);
+
+			foreach (tbcliente obj in lista)
+				AgregaPropietarioGrilla(obj);
         }
 
         private IEnumerable<int> GetIdsPropietarios(int idOperacion)
