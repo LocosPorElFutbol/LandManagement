@@ -20,14 +20,17 @@ namespace LandManagement
         public static readonly ILog log = log4net.LogManager.GetLogger
             (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private tboperaciones operacion;
-        private Form formPadre;
-        DisplayNameHelper displayNameHelper;
-        ValidarControles validarControles;
+		private Form formPadre;
+		ValidarControles validarControles;
         private ErrorProvider errorProvider1 = new ErrorProvider();
         UserControlPropietarios userControlPropietarios = null;
         UserControlDatosPropiedad userControlDatosPropiedad = null;
+		BindingSource _bindingSourceGarante = new BindingSource();
+		BindingList<tbcliente> _bindingListGarante;
+		BindingSource _bindingSourceCliente = new BindingSource();
+		BindingList<tbcliente> _bindingListCliente;
 
-        public frmAlquilada()
+		public frmAlquilada()
         {
             InitializeComponent();
         }
@@ -59,8 +62,8 @@ namespace LandManagement
 				log.Info("Cargo datos de la OUT propiedad");
 
 				pnlControles.AutoScroll = true;
-                cmbCliente.Sorted = true;
-                cmbGarante.Sorted = true;
+                //cmbCliente.Sorted = true;
+                //cmbGarante.Sorted = true;
                 this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
 
 				log.Info("Autocomplete IN combos");
@@ -476,8 +479,15 @@ namespace LandManagement
         {
 			if (cmbCliente.SelectedItem != null)
 			{
-				AgregaLocatarioGrilla((tbcliente)cmbCliente.SelectedItem);
-				cmbCliente.Items.Remove((tbcliente)cmbCliente.SelectedItem);
+				Cursor = Cursors.WaitCursor;
+
+				tbcliente locatario = (tbcliente)cmbCliente.SelectedItem;
+				AgregaLocatarioGrilla(locatario);
+
+				_bindingListCliente.Remove(locatario);
+				_bindingListCliente.ResetBindings();
+
+				Cursor = Cursors.Default;
 			}
 			else
 			{
@@ -490,6 +500,8 @@ namespace LandManagement
             int idCliente = 0;
             if (dgvLocatarios.Rows.Count > 0)
             {
+				Cursor = Cursors.WaitCursor;
+
                 foreach (DataGridViewRow obj in dgvLocatarios.SelectedRows)
                 {
                     idCliente = this.ObtenerIdLocatarioGrilla(obj);
@@ -497,10 +509,14 @@ namespace LandManagement
                 }
 
                 ClienteBusiness clienteBusiness = new ClienteBusiness();
-                tbcliente cliente = (tbcliente)clienteBusiness.GetElement(new tbcliente() { cli_id = idCliente });
-                cmbCliente.Items.Add(cliente);
-            }
-        }
+                tbcliente locatario = (tbcliente)clienteBusiness.GetElement(new tbcliente() { cli_id = idCliente });
+
+				_bindingListGarante.Add(locatario);
+				_bindingListGarante.ResetBindings();
+
+				Cursor = Cursors.Default;
+			}
+		}
 
         public void AgregaLocatarioGrilla(tbcliente _locatario)
         {
@@ -556,8 +572,16 @@ namespace LandManagement
         {
 			if (cmbGarante.SelectedItem != null)
 			{
-				AgregaGaranteGrilla((tbcliente)cmbGarante.SelectedItem);
-				cmbGarante.Items.Remove((tbcliente)cmbGarante.SelectedItem);
+				Cursor = Cursors.WaitCursor;
+
+				tbcliente cliente = (tbcliente)cmbGarante.SelectedItem;
+
+				AgregaGaranteGrilla(cliente);
+
+				_bindingListGarante.Remove(cliente);
+				_bindingListGarante.ResetBindings();
+
+				Cursor = Cursors.Default;
 			}
 			else
 			{
@@ -567,7 +591,9 @@ namespace LandManagement
 
         private void btnQuitarGarante_Click(object sender, EventArgs e)
         {
-            int idCliente = 0;
+			Cursor = Cursors.WaitCursor;
+
+			int idCliente = 0;
             if (dgvGarantes.Rows.Count > 0)
             {
                 foreach (DataGridViewRow obj in dgvGarantes.SelectedRows)
@@ -578,11 +604,15 @@ namespace LandManagement
 
                 ClienteBusiness clienteBusiness = new ClienteBusiness();
                 tbcliente cliente = (tbcliente)clienteBusiness.GetElement(new tbcliente() { cli_id = idCliente });
-                cmbGarante.Items.Add(cliente);
-            }
-        }
 
-        public void AgregaGaranteGrilla(tbcliente _garante)
+				_bindingListGarante.Add(cliente);
+				_bindingListGarante.ResetBindings();
+			}
+
+			Cursor = Cursors.Default;
+		}
+
+		public void AgregaGaranteGrilla(tbcliente _garante)
         {
             DataGridViewRow dataGridViewRow = new DataGridViewRow();
             int indice = dgvGarantes.Rows.Add();
@@ -642,15 +672,21 @@ namespace LandManagement
 
         private void CargarClienteYGarante()
         {
-            ClienteBusiness clienteBusiness = new ClienteBusiness();
-            List<tbcliente> listaNombresCompletos = (List<tbcliente>)clienteBusiness.GetList(true);
+			List<tbcliente> listaClientes = userControlPropietarios.GetListPropietario();
 
-			if (listaNombresCompletos.Count != 0)
-			{
-				var arreglo = listaNombresCompletos.ToArray();
-				cmbCliente.Items.AddRange(arreglo);
-				cmbGarante.Items.AddRange(arreglo);
-			}
+			_bindingListGarante = new BindingList<tbcliente>(listaClientes);
+			_bindingSourceGarante.DataSource = _bindingListGarante;
+
+			cmbGarante.DataSource = _bindingSourceGarante;
+			cmbGarante.Invalidate();
+			cmbGarante.SelectedIndex = -1;
+
+			_bindingListCliente = new BindingList<tbcliente>(listaClientes);
+			_bindingSourceCliente.DataSource = _bindingListCliente;
+
+			cmbCliente.DataSource = _bindingSourceCliente;
+			cmbCliente.Invalidate();
+			cmbCliente.SelectedIndex = -1;
 		}
 		#endregion
 

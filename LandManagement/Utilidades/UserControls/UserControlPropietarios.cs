@@ -188,9 +188,15 @@ namespace LandManagement.Utilidades.UserControls
 			cmbPropietario.SelectedIndex = -1;
 		}
 
-		public BindingList<tbcliente> GetBindingListPropietario()
+		/// <summary>
+		/// Este metodo se debe llamar únicamente cuando se instancia el formulario, ya que obtiene la lista
+		/// de clientes a partir del binding list, y si este se modifico por algun motivo, no se retornaran todos
+		/// los registros.
+		/// </summary>
+		/// <returns>Lista de clientes bindeada con el combo propietarios.</returns>
+		public List<tbcliente> GetListPropietario()
 		{
-			return _bindingList;
+			return _bindingList.ToList();
 		}
 
 		public List<tbcliente> ObtenerPropietarios()
