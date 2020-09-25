@@ -263,12 +263,16 @@ namespace LandManagement
 				e.Direccion = direccion;
 				e.Localidad = domicilio.dom_localidad;
 				e.CodigoPostal = domicilio.dom_codigo_postal;
+				e.Provincia = string.Empty;
 
-				//Cargo provincia
-				ProvinciaBusiness provinciaBusiness = new ProvinciaBusiness();
-				tbprovincia provincia =
-					(tbprovincia)provinciaBusiness.GetElement(new tbprovincia() { prv_id = domicilio.prv_id });
-				e.Provincia = provincia.prv_descripcion;
+				//Cargo provincia solo si no es Ciudad Autónoma de Buenos Aires = id 4
+				if (domicilio.prv_id != 4)
+				{
+					ProvinciaBusiness provinciaBusiness = new ProvinciaBusiness();
+					tbprovincia provincia =
+						(tbprovincia)provinciaBusiness.GetElement(new tbprovincia() { prv_id = domicilio.prv_id });
+					e.Provincia = provincia.prv_descripcion;
+				}
 			}
 
             return e;
