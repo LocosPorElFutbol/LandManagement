@@ -511,8 +511,8 @@ namespace LandManagement
                 ClienteBusiness clienteBusiness = new ClienteBusiness();
                 tbcliente locatario = (tbcliente)clienteBusiness.GetElement(new tbcliente() { cli_id = idCliente });
 
-				_bindingListGarante.Add(locatario);
-				_bindingListGarante.ResetBindings();
+				_bindingListCliente.Add(locatario);
+				_bindingListCliente.ResetBindings();
 
 				Cursor = Cursors.Default;
 			}
@@ -673,8 +673,9 @@ namespace LandManagement
         private void CargarClienteYGarante()
         {
 			List<tbcliente> listaClientes = userControlPropietarios.GetListPropietario();
+			List<tbcliente> listaGarantes = userControlPropietarios.GetListPropietario();
 
-			_bindingListGarante = new BindingList<tbcliente>(listaClientes);
+			_bindingListGarante = new BindingList<tbcliente>(listaGarantes);
 			_bindingSourceGarante.DataSource = _bindingListGarante;
 
 			cmbGarante.DataSource = _bindingSourceGarante;
