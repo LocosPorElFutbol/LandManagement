@@ -94,7 +94,6 @@ namespace LandManagement
 
                 if (ValidarCumpleanieros())
                 {
-                    //CumpleaniosCartaBusiness cumpleaniosCartasBusiness = new CumpleaniosCartaBusiness("C:\\Cartas.pdf");
                     CumpleaniosCartaBusiness cumpleaniosCartasBusiness = new CumpleaniosCartaBusiness(ConfigurationManager.AppSettings["ArchivoCartas"]);
                     cumpleaniosCartasBusiness.CrearCartasCumpleanios(this.listaEtiquetas, 13);
                 }
@@ -246,18 +245,14 @@ namespace LandManagement
 				{
 					string calleYNumero = domicilio.dom_calle + " " + domicilio.dom_numero;
 
-					//string piso = string.Empty;
-					//if (domicilio.dom_piso != 0)
-					//    piso = domicilio.dom_piso.ToString();
-
 					string depto = string.Empty;
 					if (domicilio.dom_departamento != "-")
-						depto = " " + domicilio.dom_departamento;
+						depto = " Dto: " + domicilio.dom_departamento;
 
 					if (domicilio.dom_piso == 0)
 						direccion = calleYNumero + " PB " + depto;
 					else
-						direccion = calleYNumero + " " + domicilio.dom_piso.ToString() + depto;
+						direccion = calleYNumero + " Piso: " + domicilio.dom_piso.ToString() + depto;
 				}
 
 				e.Direccion = direccion;
