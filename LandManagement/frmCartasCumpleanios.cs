@@ -44,8 +44,17 @@ namespace LandManagement
                 List<tbcliente> listaClientes = new List<tbcliente>();
                 listaClientes = ObtenerClientesCumplenAniosEl(dtpFechaCumpleaniosDesde.Value, dtpFechaCumpleaniosHasta.Value);
 
-                //Creo el listado de etiquetas
+				//Seteo configuraciones del progress bar
+				pba_Buscando.Visible = true;
+				pba_Buscando.Value = 0;
+				pba_Buscando.Minimum = 0;
+				pba_Buscando.Maximum = listaClientes.Count;
+                
+				//Creo el listado de etiquetas
                 CargarListaEtiquetas(listaClientes);
+
+				//invisibilizo nuevamente el progress bar
+				pba_Buscando.Visible = false;
 
                 //Cargo textbox con la cantidad de clientes que cumplen años
                 txbCantidadClientes.Text = this.listaEtiquetas.Count.ToString();
@@ -191,6 +200,8 @@ namespace LandManagement
 
             foreach (var obj in _listaClientes)
             {
+				pba_Buscando.Value += 1;
+
                 cartaEntityTemp = new CartaEntity();
 
                 //Cargo los datos del domicilio en etiqueta auxiliar
@@ -295,5 +306,16 @@ namespace LandManagement
             }
         }
 
-    }
+		private void dtpFechaCumpleaniosDesde_ValueChanged(object sender, EventArgs e)
+		{
+			txbCantidadClientes.Text = string.Empty;
+			this.listaEtiquetas = null;
+		}
+
+		private void dtpFechaCumpleaniosHasta_ValueChanged(object sender, EventArgs e)
+		{
+			txbCantidadClientes.Text = string.Empty;
+			this.listaEtiquetas = null;
+		}
+	}
 }
