@@ -658,7 +658,7 @@ namespace LandManagement
         private void CargarCombos()
         {
             this.SetearDisplayValue();
-            this.CargarClienteYGarante();
+            //this.CargarClienteYGarante();
         }
 
         private void SetearDisplayValue()

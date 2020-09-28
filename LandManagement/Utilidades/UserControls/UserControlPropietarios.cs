@@ -20,13 +20,14 @@ namespace LandManagement.Utilidades.UserControls
 		BindingSource _bindingSource = new BindingSource();
 		BindingList<tbcliente> _bindingList = null;
 
+		Timer _timer = new Timer();
 
 		public UserControlPropietarios()
         {
             InitializeComponent();
 			InicializarGrillaPropietarios();
 
-			cmbPropietario.AutoCompleteMode = AutoCompleteMode.Suggest;
+			//cmbPropietario.AutoCompleteMode = AutoCompleteMode.Suggest;
 			cmbPropietario.AutoCompleteSource = AutoCompleteSource.ListItems;
 
 			this.CargarCombos();
@@ -41,9 +42,11 @@ namespace LandManagement.Utilidades.UserControls
 
 		private void ucPropietarios_Load(object sender, EventArgs e)
         {
-        }
+			_timer.Interval = 1500;
+			_timer.Tick += _timer_Tick;
+		}
 
-        private void btnAgregarPropietario_Click(object sender, EventArgs e)
+		private void btnAgregarPropietario_Click(object sender, EventArgs e)
         {
 			try
 			{
@@ -166,7 +169,7 @@ namespace LandManagement.Utilidades.UserControls
         private void CargarCombos()
         {
             this.SetearDisplayValue();
-            this.CargarPropietario();
+            //this.CargarPropietario();
         }
 
         private void SetearDisplayValue()
@@ -175,6 +178,7 @@ namespace LandManagement.Utilidades.UserControls
             cmbPropietario.DisplayMember = "cli_nombre_completo";
         }
 
+		[Obsolete("Se va a eliminar mejora propiedad alquilada")]
 		private void CargarPropietario()
 		{
 			ClienteBusiness clienteBusiness = new ClienteBusiness();
@@ -194,6 +198,7 @@ namespace LandManagement.Utilidades.UserControls
 		/// los registros.
 		/// </summary>
 		/// <returns>Lista de clientes bindeada con el combo propietarios.</returns>
+		[Obsolete("Se va a eliminar mejora propiedad alquilada")]
 		public List<tbcliente> GetListPropietario()
 		{
 			return _bindingList.ToList();
@@ -259,5 +264,79 @@ namespace LandManagement.Utilidades.UserControls
         {
             this.gbxPropietarios.Text = nombreGroupBox;
         }
-    }
+
+		private void cmbPropietario_KeyUp(object sender, KeyEventArgs e)
+		{
+			RestartTimer();
+		}
+
+		private void RestartTimer()
+		{
+			_timer.Stop();
+			//_canUpdate = false;
+			_timer.Start();
+		}
+
+		private void _timer_Tick(object sender, EventArgs e)
+		{
+			//_canUpdate = true;
+			_timer.Stop();
+			UpdateData();
+		}
+
+		private void UpdateData()
+		{
+			Cursor.Current = Cursors.WaitCursor;
+
+			if (cmbPropietario.Text.Length > 1)
+			{
+				//var searchData = Search.GetData(cmbPropietario.Text);
+				var searchData = this.GetPropietarioFilterList(cmbPropietario.Text);
+				HandleTextChanged(searchData);
+			}
+
+			Cursor.Current = Cursors.Default;
+		}
+
+		private BindingSource GetPropietarioFilterList(string nombreApellido)
+		{
+			Func<tbcliente, bool> func = 
+				x => x.cli_nombre.Contains(nombreApellido) || x.cli_apellido.Contains(nombreApellido)
+					|| x.cli_nombre.Contains(nombreApellido.ToUpper()) 
+						|| x.cli_apellido.Contains(nombreApellido.ToUpper());
+
+			ClienteBusiness clienteBusiness = new ClienteBusiness();
+			List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetList(func);
+			
+			BindingList<tbcliente> bindingList = 
+				new BindingList<tbcliente>(listaClientes.OrderBy(x => x.cli_nombre_completo).ToList());
+
+			BindingSource bindingSource = new BindingSource();
+			bindingSource.DataSource = bindingList;
+
+			return bindingSource;
+		}
+
+		private void HandleTextChanged(BindingSource bindingSource)
+		{
+			//var text = cmbPropietario.Text;
+
+			if (bindingSource.Count > 0)
+			{
+				cmbPropietario.DataSource = bindingSource.DataSource;
+
+				//var sText = cmbPropietario.Items[0].ToString();
+				//cmbPropietario.SelectionStart = text.Length;
+				//cmbPropietario.SelectionLength = sText.Length - text.Length;
+				cmbPropietario.DroppedDown = true;
+
+				//return;
+			}
+			//else
+			//{
+			//	cmbPropietario.DroppedDown = false;
+			//	cmbPropietario.SelectionStart = text.Length;
+			//}
+		}
+	}
 }
