@@ -265,6 +265,8 @@ namespace LandManagement.Utilidades.UserControls
             this.gbxPropietarios.Text = nombreGroupBox;
         }
 
+
+		#region Update Dropdown Items
 		private void cmbPropietario_KeyUp(object sender, KeyEventArgs e)
 		{
 			RestartTimer();
@@ -273,13 +275,11 @@ namespace LandManagement.Utilidades.UserControls
 		private void RestartTimer()
 		{
 			_timer.Stop();
-			//_canUpdate = false;
 			_timer.Start();
 		}
 
 		private void _timer_Tick(object sender, EventArgs e)
 		{
-			//_canUpdate = true;
 			_timer.Stop();
 			UpdateData();
 		}
@@ -290,7 +290,6 @@ namespace LandManagement.Utilidades.UserControls
 
 			if (cmbPropietario.Text.Length > 1)
 			{
-				//var searchData = Search.GetData(cmbPropietario.Text);
 				var searchData = this.GetPropietarioFilterList(cmbPropietario.Text);
 				HandleTextChanged(searchData);
 			}
@@ -300,43 +299,38 @@ namespace LandManagement.Utilidades.UserControls
 
 		private BindingSource GetPropietarioFilterList(string nombreApellido)
 		{
-			Func<tbcliente, bool> func = 
+			Func<tbcliente, bool> func =
 				x => x.cli_nombre.Contains(nombreApellido) || x.cli_apellido.Contains(nombreApellido)
-					|| x.cli_nombre.Contains(nombreApellido.ToUpper()) 
+					|| x.cli_nombre.Contains(nombreApellido.ToUpper())
 						|| x.cli_apellido.Contains(nombreApellido.ToUpper());
 
 			ClienteBusiness clienteBusiness = new ClienteBusiness();
 			List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetList(func);
-			
-			BindingList<tbcliente> bindingList = 
-				new BindingList<tbcliente>(listaClientes.OrderBy(x => x.cli_nombre_completo).ToList());
+
+			//BindingList<tbcliente> bindingList =
+			//	new BindingList<tbcliente>(listaClientes.OrderBy(x => x.cli_nombre_completo).ToList());
+
+			_bindingList = new BindingList<tbcliente>(listaClientes.OrderBy(x => x.cli_nombre_completo).ToList());
 
 			BindingSource bindingSource = new BindingSource();
-			bindingSource.DataSource = bindingList;
+			bindingSource.DataSource = _bindingList;
 
 			return bindingSource;
 		}
 
 		private void HandleTextChanged(BindingSource bindingSource)
 		{
-			//var text = cmbPropietario.Text;
-
-			if (bindingSource.Count > 0)
+			//if (bindingSource.Count > 0)
 			{
 				cmbPropietario.DataSource = bindingSource.DataSource;
-
-				//var sText = cmbPropietario.Items[0].ToString();
-				//cmbPropietario.SelectionStart = text.Length;
-				//cmbPropietario.SelectionLength = sText.Length - text.Length;
+				cmbPropietario.Update();
 				cmbPropietario.DroppedDown = true;
-
-				//return;
 			}
 			//else
 			//{
-			//	cmbPropietario.DroppedDown = false;
-			//	cmbPropietario.SelectionStart = text.Length;
+			//	cmbPropietario.DataSource = null;
 			//}
 		}
+		#endregion
 	}
 }
