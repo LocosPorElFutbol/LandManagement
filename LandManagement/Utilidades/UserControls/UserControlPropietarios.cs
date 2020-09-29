@@ -27,7 +27,6 @@ namespace LandManagement.Utilidades.UserControls
             InitializeComponent();
 			InicializarGrillaPropietarios();
 
-			//cmbPropietario.AutoCompleteMode = AutoCompleteMode.Suggest;
 			cmbPropietario.AutoCompleteSource = AutoCompleteSource.ListItems;
 
 			this.CargarCombos();
@@ -55,10 +54,18 @@ namespace LandManagement.Utilidades.UserControls
 				if (cmbPropietario.SelectedItem != null)
 				{
 					tbcliente propietario = (tbcliente)cmbPropietario.SelectedItem;
-					AgregaPropietarioGrilla(propietario);
 
-					_bindingList.Remove(propietario);
-					_bindingList.ResetBindings();
+					if (!ExistePropietarioEnDGV(propietario))
+					{
+						AgregaPropietarioGrilla(propietario);
+
+						_bindingList.Remove(propietario);
+						_bindingList.ResetBindings();
+					}
+					else
+					{
+						MessageBox.Show("El cliente ya existe en la lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					}
 				}
 				else
 				{
@@ -104,9 +111,14 @@ namespace LandManagement.Utilidades.UserControls
         {
             tbcliente propietario = ObtenerPropietarioSeleccionado();
 
-			_bindingList.Add(propietario);
-			_bindingList.ResetBindings();
-        }
+			var item = _bindingList.ToList().Find(x => x.cli_id == propietario.cli_id);
+
+			if (item == null)
+			{
+				_bindingList.Add(propietario);
+				_bindingList.ResetBindings();
+			}
+		}
 
         #region Carga Propietarios a la Grilla de Propietarios
 
@@ -163,6 +175,16 @@ namespace LandManagement.Utilidades.UserControls
 
             return cliente;
         }
+
+		public bool ExistePropietarioEnDGV(tbcliente cliente)
+		{
+			foreach(DataGridViewRow row in dgvPropietarios.Rows)
+			{
+				if (cliente.cli_id == (int)row.Cells["cli_id"].Value)
+					return true;
+			}
+			return false;
+		}
 
         #endregion
 
@@ -307,9 +329,6 @@ namespace LandManagement.Utilidades.UserControls
 			ClienteBusiness clienteBusiness = new ClienteBusiness();
 			List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetList(func);
 
-			//BindingList<tbcliente> bindingList =
-			//	new BindingList<tbcliente>(listaClientes.OrderBy(x => x.cli_nombre_completo).ToList());
-
 			_bindingList = new BindingList<tbcliente>(listaClientes.OrderBy(x => x.cli_nombre_completo).ToList());
 
 			BindingSource bindingSource = new BindingSource();
@@ -320,16 +339,9 @@ namespace LandManagement.Utilidades.UserControls
 
 		private void HandleTextChanged(BindingSource bindingSource)
 		{
-			//if (bindingSource.Count > 0)
-			{
-				cmbPropietario.DataSource = bindingSource.DataSource;
-				cmbPropietario.Update();
-				cmbPropietario.DroppedDown = true;
-			}
-			//else
-			//{
-			//	cmbPropietario.DataSource = null;
-			//}
+			cmbPropietario.DataSource = bindingSource.DataSource;
+			cmbPropietario.Update();
+			cmbPropietario.DroppedDown = true;
 		}
 		#endregion
 	}
