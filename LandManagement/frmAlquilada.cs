@@ -57,30 +57,22 @@ namespace LandManagement
 				log.Info("Inicio load");
 				
 				//User control datos de la propiedad
-				log.Info("Cargo datos de la IN propiedad");
 				userControlDatosPropiedad = new UserControlDatosPropiedad();
                 userControlDatosPropiedad.Location = new Point(3, 30);
                 pnlControles.Controls.Add(userControlDatosPropiedad);
-				log.Info("Cargo datos de la OUT propiedad");
 
 				pnlControles.AutoScroll = true;
 
                 this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
 
-				log.Info("Autocomplete IN combos");
-				cmbCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
 				cmbCliente.AutoCompleteSource = AutoCompleteSource.ListItems;
-
 				cmbGarante.AutoCompleteSource = AutoCompleteSource.ListItems;
-				log.Info("Autocomplete OUT combos");
 
 				rdbServiciosCargoLocatario.Checked = true;
                 rdbPagoEfectivo.Checked = true;
 
-				log.Info("Inicializa IN Grillas");
 				InicializarGrillaLocatarios();
                 InicializarGrillaGarantes();
-				log.Info("Inicializa OUT Grillas");
 
 				if (this.getOperacionExistente() != null)
 				{
@@ -98,12 +90,9 @@ namespace LandManagement
 					this.CargarCombos();
 				}
 
-				//User control propietarios
-				log.Info("Cargo user control IN propietarios");
 				userControlPropietarios.Location = new Point(10, 269);
 				userControlPropietarios.SetearNombreGroupBox("Locador");
 				pnlControles.Controls.Add(userControlPropietarios);
-				log.Info("Cargo user control OUT propietarios");
 			}
 			catch (Exception ex)
             {
@@ -483,12 +472,12 @@ namespace LandManagement
 
 				tbcliente locatario = (tbcliente)cmbCliente.SelectedItem;
 
-				if (!ExisteGaranteEnDGV(locatario, dgvLocatarios))
+				if (!ExisteClienteEnDGV(locatario, dgvLocatarios))
 				{
 					AgregaLocatarioGrilla(locatario);
 
-				_bindingListCliente.Remove(locatario);
-				_bindingListCliente.ResetBindings();
+					_bindingListCliente.Remove(locatario);
+					_bindingListCliente.ResetBindings();
 				}
 				else
 				{
@@ -588,7 +577,7 @@ namespace LandManagement
 
 				tbcliente garante = (tbcliente)cmbGarante.SelectedItem;
 
-				if (!ExisteGaranteEnDGV(garante, dgvGarantes))
+				if (!ExisteClienteEnDGV(garante, dgvGarantes))
 				{
 					AgregaGaranteGrilla(garante);
 
@@ -654,7 +643,7 @@ namespace LandManagement
             return Convert.ToInt32(_dataGridViewRow.Cells["cli_id"].Value);
         }
 
-		public bool ExisteGaranteEnDGV(tbcliente cliente, DataGridView dataGridView)
+		public bool ExisteClienteEnDGV(tbcliente cliente, DataGridView dataGridView)
 		{
 			foreach (DataGridViewRow row in dataGridView.Rows)
 			{
@@ -703,7 +692,7 @@ namespace LandManagement
         }
 		#endregion
 
-		#region Actualizar Combobox Garante
+		#region Actualizar Combobox Garante y Cliente (Locatario).
 
 		private void cmbGarante_KeyUp(object sender, KeyEventArgs e)
 		{
