@@ -196,6 +196,7 @@
 			this.cmbCliente.Name = "cmbCliente";
 			this.cmbCliente.Size = new System.Drawing.Size(206, 21);
 			this.cmbCliente.TabIndex = 1;
+			this.cmbCliente.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cmbCliente_KeyUp);
 			// 
 			// label23
 			// 
