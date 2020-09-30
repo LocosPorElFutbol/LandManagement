@@ -672,8 +672,10 @@ namespace LandManagement
 
         private void CargarClienteYGarante()
         {
-			List<tbcliente> listaClientes = userControlPropietarios.GetListPropietario();
-			List<tbcliente> listaGarantes = userControlPropietarios.GetListPropietario();
+			//List<tbcliente> listaClientes = userControlPropietarios.GetListPropietario();
+			//List<tbcliente> listaGarantes = userControlPropietarios.GetListPropietario();
+			List<tbcliente> listaClientes = null;
+			List<tbcliente> listaGarantes = null;
 
 			_bindingListGarante = new BindingList<tbcliente>(listaGarantes);
 			_bindingSourceGarante.DataSource = _bindingListGarante;
