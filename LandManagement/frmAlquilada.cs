@@ -29,6 +29,7 @@ namespace LandManagement
 		BindingList<tbcliente> _bindingListGarante;
 		BindingSource _bindingSourceCliente = new BindingSource();
 		BindingList<tbcliente> _bindingListCliente;
+		private Timer _timer = new Timer();
 
 		public frmAlquilada()
         {
@@ -50,6 +51,8 @@ namespace LandManagement
         {
             try
             {
+				_timer.Interval = 1500;
+				_timer.Tick += _timer_Tick;
 				Cursor.Current = Cursors.WaitCursor;
 
 				log.Info("Inicio load");
@@ -62,15 +65,13 @@ namespace LandManagement
 				log.Info("Cargo datos de la OUT propiedad");
 
 				pnlControles.AutoScroll = true;
-                //cmbCliente.Sorted = true;
-                //cmbGarante.Sorted = true;
+
                 this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
 
 				log.Info("Autocomplete IN combos");
 				cmbCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
 				cmbCliente.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-				cmbGarante.AutoCompleteMode = AutoCompleteMode.Suggest;
 				cmbGarante.AutoCompleteSource = AutoCompleteSource.ListItems;
 				log.Info("Autocomplete OUT combos");
 
@@ -118,7 +119,7 @@ namespace LandManagement
 			}
 		}
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+		private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -576,10 +577,17 @@ namespace LandManagement
 
 				tbcliente cliente = (tbcliente)cmbGarante.SelectedItem;
 
-				AgregaGaranteGrilla(cliente);
+				if (!ExisteGaranteEnDGV(cliente))
+				{
+					AgregaGaranteGrilla(cliente);
 
-				_bindingListGarante.Remove(cliente);
-				_bindingListGarante.ResetBindings();
+					_bindingListGarante.Remove(cliente);
+					_bindingListGarante.ResetBindings();
+				}
+				else
+				{
+					MessageBox.Show("El cliente ya existe en la lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
 
 				Cursor = Cursors.Default;
 			}
@@ -594,19 +602,23 @@ namespace LandManagement
 			Cursor = Cursors.WaitCursor;
 
 			int idCliente = 0;
-            if (dgvGarantes.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow obj in dgvGarantes.SelectedRows)
-                {
-                    idCliente = this.ObtenerIdGaranteGrilla(obj);
-                    dgvGarantes.Rows.RemoveAt(obj.Index);
-                }
+			if (dgvGarantes.Rows.Count > 0)
+			{
+				foreach (DataGridViewRow obj in dgvGarantes.SelectedRows)
+				{
+					idCliente = this.ObtenerIdGaranteGrilla(obj);
+					dgvGarantes.Rows.RemoveAt(obj.Index);
+				}
 
-                ClienteBusiness clienteBusiness = new ClienteBusiness();
-                tbcliente cliente = (tbcliente)clienteBusiness.GetElement(new tbcliente() { cli_id = idCliente });
+				ClienteBusiness clienteBusiness = new ClienteBusiness();
+				tbcliente cliente = (tbcliente)clienteBusiness.GetElement(new tbcliente() { cli_id = idCliente });
 
-				_bindingListGarante.Add(cliente);
-				_bindingListGarante.ResetBindings();
+				var item = _bindingListGarante.ToList().Find(x => x.cli_id == cliente.cli_id);
+				if (item == null)
+				{
+					_bindingListGarante.Add(cliente);
+					_bindingListGarante.ResetBindings();
+				}
 			}
 
 			Cursor = Cursors.Default;
@@ -630,10 +642,20 @@ namespace LandManagement
         {
             return Convert.ToInt32(_dataGridViewRow.Cells["cli_id"].Value);
         }
-        #endregion
 
-        #region Mensajes de Pantalla
-        private void MensajeCancelar()
+		public bool ExisteGaranteEnDGV(tbcliente cliente)
+		{
+			foreach (DataGridViewRow row in dgvGarantes.Rows)
+			{
+				if (cliente.cli_id == (int)row.Cells["cli_id"].Value)
+					return true;
+			}
+			return false;
+		}
+		#endregion
+
+		#region Mensajes de Pantalla
+		private void MensajeCancelar()
         {
             DialogResult dialogResult = DialogResult.None;
 
@@ -658,7 +680,6 @@ namespace LandManagement
         private void CargarCombos()
         {
             this.SetearDisplayValue();
-            //this.CargarClienteYGarante();
         }
 
         private void SetearDisplayValue()
@@ -669,28 +690,65 @@ namespace LandManagement
             cmbGarante.ValueMember = "cli_id";
             cmbGarante.DisplayMember = "cli_nombre_completo";
         }
+		#endregion
 
-        private void CargarClienteYGarante()
-        {
-			//List<tbcliente> listaClientes = userControlPropietarios.GetListPropietario();
-			//List<tbcliente> listaGarantes = userControlPropietarios.GetListPropietario();
-			List<tbcliente> listaClientes = null;
-			List<tbcliente> listaGarantes = null;
+		#region Actualizar Combobox Garante
 
-			_bindingListGarante = new BindingList<tbcliente>(listaGarantes);
-			_bindingSourceGarante.DataSource = _bindingListGarante;
-
-			cmbGarante.DataSource = _bindingSourceGarante;
-			cmbGarante.Invalidate();
-			cmbGarante.SelectedIndex = -1;
-
-			_bindingListCliente = new BindingList<tbcliente>(listaClientes);
-			_bindingSourceCliente.DataSource = _bindingListCliente;
-
-			cmbCliente.DataSource = _bindingSourceCliente;
-			cmbCliente.Invalidate();
-			cmbCliente.SelectedIndex = -1;
+		private void cmbGarante_KeyUp(object sender, KeyEventArgs e)
+		{
+			RestartTimer();
 		}
+
+		private void RestartTimer()
+		{
+			_timer.Stop();
+			_timer.Start();
+		}
+
+		private void _timer_Tick(object sender, EventArgs e)
+		{
+			_timer.Stop();
+			UpdateData();
+		}
+
+		private void UpdateData()
+		{
+			Cursor.Current = Cursors.WaitCursor;
+
+			if (cmbGarante.Text.Length > 1)
+			{
+				var searchData = this.GetClienteFilterList(cmbGarante.Text);
+				HandleTextChanged(searchData);
+			}
+
+			Cursor.Current = Cursors.Default;
+		}
+
+		private BindingSource GetClienteFilterList(string nombreApellido)
+		{
+			Func<tbcliente, bool> func =
+				x => x.cli_nombre.Contains(nombreApellido) || x.cli_apellido.Contains(nombreApellido)
+					|| x.cli_nombre.Contains(nombreApellido.ToUpper())
+						|| x.cli_apellido.Contains(nombreApellido.ToUpper());
+
+			ClienteBusiness clienteBusiness = new ClienteBusiness();
+			List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetList(func);
+
+			_bindingListGarante = new BindingList<tbcliente>(listaClientes.OrderBy(x => x.cli_nombre_completo).ToList());
+
+			BindingSource bindingSource = new BindingSource();
+			bindingSource.DataSource = _bindingListGarante;
+
+			return bindingSource;
+		}
+
+		private void HandleTextChanged(BindingSource bindingSource)
+		{
+			cmbGarante.DataSource = bindingSource.DataSource;
+			cmbGarante.Update();
+			cmbGarante.DroppedDown = true;
+		}
+
 		#endregion
 
 		#region Validación de controles
@@ -753,5 +811,5 @@ namespace LandManagement
             e.Handled = !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
         }
 
-    }
+	}
 }

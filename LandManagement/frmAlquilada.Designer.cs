@@ -32,7 +32,6 @@
 			this.pnlControles = new System.Windows.Forms.Panel();
 			this.btnGuardar = new System.Windows.Forms.Button();
 			this.btnCancelar = new System.Windows.Forms.Button();
-			this.dtpFecha = new LandManagement.Utilidades.PangeaDateTimePicker();
 			this.groupBox9 = new System.Windows.Forms.GroupBox();
 			this.btnQuitarLocatario = new System.Windows.Forms.Button();
 			this.btnAgregarLocatario = new System.Windows.Forms.Button();
@@ -47,6 +46,8 @@
 			this.label24 = new System.Windows.Forms.Label();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.groupBox7 = new System.Windows.Forms.GroupBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.txbSextoAnio = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.txbTercerAnio = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
@@ -69,15 +70,14 @@
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.rdbServiciosCargoLocatario = new System.Windows.Forms.RadioButton();
 			this.rdbServiciosCargoLocador = new System.Windows.Forms.RadioButton();
-			this.dtpFechaDesocupacion = new LandManagement.Utilidades.PangeaDateTimePicker();
-			this.dtpFechaFin = new LandManagement.Utilidades.PangeaDateTimePicker();
-			this.dtpFechaInicio = new LandManagement.Utilidades.PangeaDateTimePicker();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.txbSextoAnio = new System.Windows.Forms.TextBox();
-			this.label1 = new System.Windows.Forms.Label();
+			this.dtpFecha = new LandManagement.Utilidades.PangeaDateTimePicker();
+			this.dtpFechaDesocupacion = new LandManagement.Utilidades.PangeaDateTimePicker();
+			this.dtpFechaFin = new LandManagement.Utilidades.PangeaDateTimePicker();
+			this.dtpFechaInicio = new LandManagement.Utilidades.PangeaDateTimePicker();
 			this.groupBox1.SuspendLayout();
 			this.pnlControles.SuspendLayout();
 			this.groupBox9.SuspendLayout();
@@ -141,14 +141,6 @@
 			this.btnCancelar.UseVisualStyleBackColor = true;
 			this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
 			// 
-			// dtpFecha
-			// 
-			this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-			this.dtpFecha.Location = new System.Drawing.Point(50, 3);
-			this.dtpFecha.Name = "dtpFecha";
-			this.dtpFecha.Size = new System.Drawing.Size(83, 20);
-			this.dtpFecha.TabIndex = 13;
-			// 
 			// groupBox9
 			// 
 			this.groupBox9.Controls.Add(this.btnQuitarLocatario);
@@ -175,7 +167,7 @@
 			// 
 			// btnAgregarLocatario
 			// 
-			this.btnAgregarLocatario.Location = new System.Drawing.Point(215, 19);
+			this.btnAgregarLocatario.Location = new System.Drawing.Point(267, 19);
 			this.btnAgregarLocatario.Name = "btnAgregarLocatario";
 			this.btnAgregarLocatario.Size = new System.Drawing.Size(56, 21);
 			this.btnAgregarLocatario.TabIndex = 2;
@@ -202,7 +194,7 @@
 			this.cmbCliente.FormattingEnabled = true;
 			this.cmbCliente.Location = new System.Drawing.Point(55, 19);
 			this.cmbCliente.Name = "cmbCliente";
-			this.cmbCliente.Size = new System.Drawing.Size(154, 21);
+			this.cmbCliente.Size = new System.Drawing.Size(206, 21);
 			this.cmbCliente.TabIndex = 1;
 			// 
 			// label23
@@ -240,7 +232,7 @@
 			// 
 			// btnAgregarGarante
 			// 
-			this.btnAgregarGarante.Location = new System.Drawing.Point(215, 18);
+			this.btnAgregarGarante.Location = new System.Drawing.Point(267, 19);
 			this.btnAgregarGarante.Name = "btnAgregarGarante";
 			this.btnAgregarGarante.Size = new System.Drawing.Size(56, 21);
 			this.btnAgregarGarante.TabIndex = 16;
@@ -267,8 +259,9 @@
 			this.cmbGarante.FormattingEnabled = true;
 			this.cmbGarante.Location = new System.Drawing.Point(55, 19);
 			this.cmbGarante.Name = "cmbGarante";
-			this.cmbGarante.Size = new System.Drawing.Size(154, 21);
+			this.cmbGarante.Size = new System.Drawing.Size(206, 21);
 			this.cmbGarante.TabIndex = 1;
+			this.cmbGarante.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cmbGarante_KeyUp);
 			// 
 			// label24
 			// 
@@ -317,6 +310,22 @@
 			this.groupBox7.TabIndex = 28;
 			this.groupBox7.TabStop = false;
 			this.groupBox7.Text = "Valores";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(168, 75);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(62, 13);
+			this.label1.TabIndex = 35;
+			this.label1.Text = "6° semestre";
+			// 
+			// txbSextoAnio
+			// 
+			this.txbSextoAnio.Location = new System.Drawing.Point(236, 72);
+			this.txbSextoAnio.Name = "txbSextoAnio";
+			this.txbSextoAnio.Size = new System.Drawing.Size(85, 20);
+			this.txbSextoAnio.TabIndex = 34;
 			// 
 			// label4
 			// 
@@ -529,30 +538,6 @@
 			this.rdbServiciosCargoLocador.Text = "A Cargo del Locador";
 			this.rdbServiciosCargoLocador.UseVisualStyleBackColor = true;
 			// 
-			// dtpFechaDesocupacion
-			// 
-			this.dtpFechaDesocupacion.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtpFechaDesocupacion.Location = new System.Drawing.Point(125, 47);
-			this.dtpFechaDesocupacion.Name = "dtpFechaDesocupacion";
-			this.dtpFechaDesocupacion.Size = new System.Drawing.Size(85, 20);
-			this.dtpFechaDesocupacion.TabIndex = 31;
-			// 
-			// dtpFechaFin
-			// 
-			this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtpFechaFin.Location = new System.Drawing.Point(267, 18);
-			this.dtpFechaFin.Name = "dtpFechaFin";
-			this.dtpFechaFin.Size = new System.Drawing.Size(86, 20);
-			this.dtpFechaFin.TabIndex = 30;
-			// 
-			// dtpFechaInicio
-			// 
-			this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtpFechaInicio.Location = new System.Drawing.Point(125, 18);
-			this.dtpFechaInicio.Name = "dtpFechaInicio";
-			this.dtpFechaInicio.Size = new System.Drawing.Size(85, 20);
-			this.dtpFechaInicio.TabIndex = 29;
-			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
@@ -589,21 +574,37 @@
 			this.label2.TabIndex = 14;
 			this.label2.Text = "Fecha";
 			// 
-			// txbSextoAnio
+			// dtpFecha
 			// 
-			this.txbSextoAnio.Location = new System.Drawing.Point(236, 72);
-			this.txbSextoAnio.Name = "txbSextoAnio";
-			this.txbSextoAnio.Size = new System.Drawing.Size(85, 20);
-			this.txbSextoAnio.TabIndex = 34;
+			this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+			this.dtpFecha.Location = new System.Drawing.Point(50, 3);
+			this.dtpFecha.Name = "dtpFecha";
+			this.dtpFecha.Size = new System.Drawing.Size(83, 20);
+			this.dtpFecha.TabIndex = 13;
 			// 
-			// label1
+			// dtpFechaDesocupacion
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(168, 75);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(62, 13);
-			this.label1.TabIndex = 35;
-			this.label1.Text = "6° semestre";
+			this.dtpFechaDesocupacion.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.dtpFechaDesocupacion.Location = new System.Drawing.Point(125, 47);
+			this.dtpFechaDesocupacion.Name = "dtpFechaDesocupacion";
+			this.dtpFechaDesocupacion.Size = new System.Drawing.Size(85, 20);
+			this.dtpFechaDesocupacion.TabIndex = 31;
+			// 
+			// dtpFechaFin
+			// 
+			this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.dtpFechaFin.Location = new System.Drawing.Point(267, 18);
+			this.dtpFechaFin.Name = "dtpFechaFin";
+			this.dtpFechaFin.Size = new System.Drawing.Size(86, 20);
+			this.dtpFechaFin.TabIndex = 30;
+			// 
+			// dtpFechaInicio
+			// 
+			this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.dtpFechaInicio.Location = new System.Drawing.Point(125, 18);
+			this.dtpFechaInicio.Name = "dtpFechaInicio";
+			this.dtpFechaInicio.Size = new System.Drawing.Size(85, 20);
+			this.dtpFechaInicio.TabIndex = 29;
 			// 
 			// frmAlquilada
 			// 
