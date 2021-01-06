@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 
+
 namespace LandManagement
 {
     public partial class frmClienteListado : Form
@@ -89,6 +90,7 @@ namespace LandManagement
             ClienteBusiness clienteBusiness = new ClienteBusiness();
             List<tbcliente> listaClientes = (List<tbcliente>)clienteBusiness.GetList();
             CargarDataGridView(listaClientes);
+
         }
 
         private void CargarDataGridView(List<tbcliente> listaClientes)
@@ -122,9 +124,10 @@ namespace LandManagement
                 dataGridViewRow.Cells["cli_como_llego"].Value = obj.cli_como_llego;
                 dataGridViewRow.Cells["cli_imprime_carta"].Value = obj.cli_imprime_carta;
 
-                if (obj.cli_imprime_carta == null || obj.cli_imprime_carta == false)
-                    dataGridViewRow.DefaultCellStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#f66b6b");
+                //if (obj.cli_imprime_carta == null || obj.cli_imprime_carta == false)
+                //    dataGridViewRow.DefaultCellStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#f66b6b");
             }
+            label5.Text = listaClientes.Count().ToString();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -296,5 +299,79 @@ namespace LandManagement
             Formularios formularios = new Formularios();
             formularios.InstanciarFormulario(this.MdiParent, formularioPopUp, textFormulario);
         }
-	}
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();  
+            saveFileDialog1.Title = "Guardar planilla de excel";
+            saveFileDialog1.CheckPathExists = true;
+            saveFileDialog1.DefaultExt = "xls";
+            saveFileDialog1.Filter = "Excel (*.xlsx)|*.xlsx";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+            string filepath;
+            string sheetName;
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                filepath = System.IO.Path.GetDirectoryName(saveFileDialog1.FileName);
+                sheetName = saveFileDialog1.FileName;
+                try
+                {
+                    List<string> listaExcluir = new List<string>()
+                {
+                    "cli_id_padre",
+                    "tif_id"
+                };
+
+                    BuscarEnDataGridView buscar = new BuscarEnDataGridView();
+
+                    ClienteBusiness clienteBusiness = new ClienteBusiness();
+                    ExportarBusiness exportarBusiness = new ExportarBusiness();
+                    List<tbcliente> listaFiltrada = (List<tbcliente>)clienteBusiness.GetList();
+                    listaFiltrada = buscar.FiltrarDataGrid(listaFiltrada, listaExcluir, txbBuscarPor.Text);
+                    CargarDataGridView(listaFiltrada);
+                    string[] columnasGrilla = { "cli_id",
+                                        "cli_id_import",
+                                        "cli_fecha",
+                                        "ccl_descripcion",
+                                        "cli_parentezco",
+                                        "cli_nombre",
+                                        "cli_apellido",
+                                        "cli_telefono_celular",
+                                        "cli_telefono_particular",
+                                        "cli_telefono_laboral",
+                                        "cli_email",
+                                        "cli_sexo",
+                                        "cli_fecha_nacimiento",
+                                        "cli_nacionalidad",
+                                        "cli_estado_civil",
+                                        "cli_tipo_documento",
+                                        "cli_numero_documento",
+                                        "cli_cuit_cuil",
+                                        "cli_como_llego"};
+                    List<string> columnas = new List<string>();
+                    foreach (string s in columnasGrilla)
+                    {
+                        PropertyInfo pi = typeof(tbcliente).GetProperty(s);
+                        displayNameHelper = new DisplayNameHelper();
+                        columnas.Add(displayNameHelper.GetMetaDisplayName(pi));
+
+                    }
+                    exportarBusiness.CreateExcelFile(filepath, sheetName, listaFiltrada, columnas);
+                   
+                }
+                catch (Exception ex)
+                {
+                    log.Error(ex.Message);
+                    if (ex.InnerException != null)
+                        log.Error(ex.InnerException.Message);
+                    MessageBox.Show("Error al Buscar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            
+
+            Cursor.Current = Cursors.Default;
+        }
+    }
 }
