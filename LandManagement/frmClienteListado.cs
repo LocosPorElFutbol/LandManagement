@@ -263,8 +263,11 @@ namespace LandManagement
 				BuscarEnDataGridView buscar = new BuscarEnDataGridView();
 
 				ClienteBusiness clienteBusiness = new ClienteBusiness();
-				List<tbcliente> listaFiltrada = (List<tbcliente>)clienteBusiness.GetListCumpleanieros(dtpCumpleaniosDesde.Value, dtpCumpleaniosHasta.Value);
-				//listaFiltrada = buscar.FiltrarDataGrid(listaFiltrada, listaExcluir, txbBuscarPor.Text);
+                //filtro los que no tienen asignada correctamente la fecha de cumpleaños
+                Func<tbcliente, bool> func = x => !DateTime.Equals(x.cli_fecha_nacimiento, new DateTime(1900, 01, 01));
+				//invoco al metodo sobrecargado con la funcion definida
+                List<tbcliente> listaFiltrada = 
+                    (List<tbcliente>)clienteBusiness.GetListCumpleanieros(dtpCumpleaniosDesde.Value, dtpCumpleaniosHasta.Value, func);
 				CargarDataGridView(listaFiltrada);
 			}
 			catch (Exception ex)

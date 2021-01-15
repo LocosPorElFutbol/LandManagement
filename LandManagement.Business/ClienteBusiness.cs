@@ -84,7 +84,21 @@ namespace LandManagement.Business
 			return clienteRepository.GetList(_whereClausule);
 		}
 
+		/// <summary>
+		/// Metodo que retorna listado de clientes que reciben carta de cumeplaños.
+		/// </summary>
+		/// <param name="fechaDesde">Fecha desde donde comenzar a buscar los clientes.</param>
+		/// <param name="fechaHasta">Fecha hasta donde buscar los clientes.</param>
+		/// <returns>Listado de clientes que reciben carta de cumpleaños.</returns>
 		public object GetListCumpleanieros(DateTime fechaDesde, DateTime fechaHasta)
+		{
+			Func<tbcliente, bool> func = 
+				x => x.cli_imprime_carta == true && !DateTime.Equals(x.cli_fecha_nacimiento, new DateTime(1900, 01, 01));
+			
+			return this.GetListCumpleanieros(fechaDesde, fechaHasta, func);
+		}
+
+		public object GetListCumpleanieros(DateTime fechaDesde, DateTime fechaHasta, Func<tbcliente, bool> funcion)
 		{
 			DateTime fechanula = new DateTime(1900, 01, 01);
 			List<tbcliente> clientesSalida = new List<tbcliente>();
@@ -93,8 +107,7 @@ namespace LandManagement.Business
 			fechaHasta = new DateTime(DateTime.Now.Year, fechaHasta.Month, fechaHasta.Day);
 
 			List<DateTime> listaFechas = this.GetListaFechasCumpleanios(fechaDesde, fechaHasta);
-			List<tbcliente> clientes = ((List<tbcliente>)this.GetList())
-				.Where(m => m.cli_imprime_carta == true && !DateTime.Equals(m.cli_fecha_nacimiento, fechanula)).ToList();
+			List<tbcliente> clientes = ((List<tbcliente>)this.GetList()).Where(funcion).ToList();
 
 			clientesSalida = (from cliente in clientes
 							  from fecha in listaFechas
@@ -104,6 +117,7 @@ namespace LandManagement.Business
 
 			return clientesSalida;
 		}
+
 
 		/// <summary>
 		/// Incorporo todas las fechas que se encuentran en la fecha desde y hasta la fecha hasta, para obtener los cumpleañerps
