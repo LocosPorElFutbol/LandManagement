@@ -94,7 +94,7 @@ namespace LandManagement.Business
 
 			List<DateTime> listaFechas = this.GetListaFechasCumpleanios(fechaDesde, fechaHasta);
 			List<tbcliente> clientes = ((List<tbcliente>)this.GetList())
-				.Where(m => m.cli_imprime_carta == true && !DateTime.Equals(m.cli_fecha_nacimiento, fechanula)).ToList();
+				.Where(m => !DateTime.Equals(m.cli_fecha_nacimiento, fechanula)).ToList();
 
 			clientesSalida = (from cliente in clientes
 							  from fecha in listaFechas

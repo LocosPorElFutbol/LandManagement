@@ -66,76 +66,14 @@ namespace LandManagement.Business
                     for (int i = 0; i < data.Count(); i++)
                     {
                         writer.WriteStartElement(new Row());
-                        openXmlExportHelper.WriteCellValueSax(writer, data[i].cli_id.ToString(), CellValues.SharedString);
-                        openXmlExportHelper.WriteCellValueSax(writer, data[i].cli_id_import.ToString(), CellValues.SharedString);
-                        if (string.IsNullOrEmpty(data[i].cli_fecha.ToShortDateString()))
-                            openXmlExportHelper.WriteCellValueSax(writer, string.Empty, CellValues.SharedString);
-                        else
-                            openXmlExportHelper.WriteCellValueSax(writer, data[i].cli_fecha.ToShortDateString(), CellValues.SharedString);
-                        if (string.IsNullOrEmpty(data[i].tbcategoriacliente.ccl_descripcion))
-                            openXmlExportHelper.WriteCellValueSax(writer, string.Empty, CellValues.SharedString);
-                        else
-                            openXmlExportHelper.WriteCellValueSax(writer, data[i].tbcategoriacliente.ccl_descripcion, CellValues.SharedString);
-                        if (string.IsNullOrEmpty(data[i].tbtipofamiliar.tif_descripcion))
-                            openXmlExportHelper.WriteCellValueSax(writer, string.Empty, CellValues.SharedString);
-                        else
-                            openXmlExportHelper.WriteCellValueSax(writer, data[i].tbtipofamiliar.tif_descripcion, CellValues.SharedString);
-                        if (string.IsNullOrEmpty(data[i].cli_nombre))
-                            openXmlExportHelper.WriteCellValueSax(writer, string.Empty, CellValues.SharedString);
-                        else
-                            openXmlExportHelper.WriteCellValueSax(writer, data[i].cli_nombre, CellValues.SharedString);
-                        if (string.IsNullOrEmpty(data[i].cli_apellido))
-                            openXmlExportHelper.WriteCellValueSax(writer, string.Empty, CellValues.SharedString);
-                        else
-                            openXmlExportHelper.WriteCellValueSax(writer, data[i].cli_apellido, CellValues.SharedString);
-                        if (string.IsNullOrEmpty(data[i].cli_telefono_celular))
-                            openXmlExportHelper.WriteCellValueSax(writer, string.Empty, CellValues.SharedString);
-                        else
-                            openXmlExportHelper.WriteCellValueSax(writer, data[i].cli_telefono_celular, CellValues.SharedString);
-                        if (string.IsNullOrEmpty(data[i].cli_telefono_particular))
-                            openXmlExportHelper.WriteCellValueSax(writer, string.Empty, CellValues.SharedString);
-                        else
-                            openXmlExportHelper.WriteCellValueSax(writer, data[i].cli_telefono_particular, CellValues.SharedString);
-                        if (string.IsNullOrEmpty(data[i].cli_telefono_laboral))
-                            openXmlExportHelper.WriteCellValueSax(writer, string.Empty, CellValues.SharedString);
-                        else
-                            openXmlExportHelper.WriteCellValueSax(writer, data[i].cli_telefono_laboral, CellValues.SharedString);
-                        if (string.IsNullOrEmpty(data[i].cli_email))
-                            openXmlExportHelper.WriteCellValueSax(writer, string.Empty, CellValues.SharedString);
-                        else
-                            openXmlExportHelper.WriteCellValueSax(writer, data[i].cli_email, CellValues.SharedString);
-                        if (string.IsNullOrEmpty(data[i].cli_sexo))
-                            openXmlExportHelper.WriteCellValueSax(writer, string.Empty, CellValues.SharedString);
-                        else
-                            openXmlExportHelper.WriteCellValueSax(writer, data[i].cli_sexo, CellValues.SharedString);
-                        if (string.IsNullOrEmpty(data[i].cli_fecha_nacimiento.ToString("dd/MM/yyyy")))
-                            openXmlExportHelper.WriteCellValueSax(writer, string.Empty, CellValues.SharedString);
-                        else
-                            openXmlExportHelper.WriteCellValueSax(writer, data[i].cli_fecha_nacimiento.ToString("dd/MM/yyyy"), CellValues.SharedString);
-                        if (string.IsNullOrEmpty(data[i].cli_nacionalidad))
-                            openXmlExportHelper.WriteCellValueSax(writer, string.Empty, CellValues.SharedString);
-                        else
-                            openXmlExportHelper.WriteCellValueSax(writer, data[i].cli_nacionalidad, CellValues.SharedString);
-                        if (string.IsNullOrEmpty(data[i].cli_estado_civil))
-                            openXmlExportHelper.WriteCellValueSax(writer, string.Empty, CellValues.SharedString);
-                        else
-                            openXmlExportHelper.WriteCellValueSax(writer, data[i].cli_estado_civil, CellValues.SharedString);
-                        if (string.IsNullOrEmpty(data[i].cli_tipo_documento))
-                            openXmlExportHelper.WriteCellValueSax(writer, string.Empty, CellValues.SharedString);
-                        else
-                            openXmlExportHelper.WriteCellValueSax(writer, data[i].cli_tipo_documento, CellValues.SharedString);
-                        if (string.IsNullOrEmpty(data[i].cli_numero_documento.ToString()))
-                            openXmlExportHelper.WriteCellValueSax(writer, string.Empty, CellValues.SharedString);
-                        else
-                            openXmlExportHelper.WriteCellValueSax(writer, data[i].cli_numero_documento.ToString(), CellValues.SharedString);
-                        if (string.IsNullOrEmpty(data[i].cli_cuit_cuil))
-                            openXmlExportHelper.WriteCellValueSax(writer, string.Empty, CellValues.SharedString);
-                        else
-                            openXmlExportHelper.WriteCellValueSax(writer, data[i].cli_cuit_cuil, CellValues.SharedString);
-                        if (string.IsNullOrEmpty(data[i].cli_como_llego))
-                            openXmlExportHelper.WriteCellValueSax(writer, string.Empty, CellValues.SharedString);
-                        else
-                            openXmlExportHelper.WriteCellValueSax(writer, data[i].cli_como_llego, CellValues.SharedString);
+
+                        foreach (var col in columnas)
+                        {
+                            openXmlExportHelper.WriteCellValueSax(writer, ExtraerColumnas(data[i], col ), CellValues.SharedString); 
+                        }
+
+
+
                         writer.WriteEndElement(); //end of Row
                     }
 
@@ -151,6 +89,88 @@ namespace LandManagement.Business
             stopWatch.Stop();
         }
 
+        private string ExtraerColumnas(tbcliente obj, string dato)
+        {
+            switch (dato)
+            {
+                case "Id Cliente":
+                    return ExtraerValoresColumnas(obj.cli_id.ToString());
+                    break;
+                case "Id Importado":
+                    return ExtraerValoresColumnas(obj.cli_id_import.ToString());
+                    break;
+                case "Id Cliente Padre":
+                    return ExtraerValoresColumnas(obj.cli_id_padre.ToString());
+                    break;
+                case "Id Tipo Familiar":
+                    return ExtraerValoresColumnas(obj.tif_id.ToString());
+                    break;
+                case "Id categoria cliente":
+                    return ExtraerValoresColumnas(obj.tbtipofamiliar.tif_descripcion);
+                    break;
+                case "Fecha Alta":
+                    return ExtraerValoresColumnas(obj.cli_fecha.ToShortDateString());
+                    break;
+                case "Categoria cliente":
+                    return ExtraerValoresColumnas(obj.tbcategoriacliente.ccl_descripcion);
+                    break;
+                case "Parentezco":
+                    return ExtraerValoresColumnas(obj.tbtipofamiliar.tif_descripcion);
+                    break;
+                case "Nombre":
+                    return ExtraerValoresColumnas(obj.cli_nombre);
+                    break;
+                case "Apellido":
+                    return ExtraerValoresColumnas(obj.cli_apellido);
+                    break;
+                case "Telefono Celular":
+                    return ExtraerValoresColumnas(obj.cli_telefono_celular);
+                    break;
+                case "Telefono Particular":
+                    return ExtraerValoresColumnas(obj.cli_telefono_particular);
+                    break;
+                case "Telefono Laboral":
+                    return ExtraerValoresColumnas(obj.cli_telefono_laboral);
+                    break;
+                case "Email":
+                    return ExtraerValoresColumnas(obj.cli_email);
+                    break;
+                case "Sexo":
+                    return ExtraerValoresColumnas(obj.cli_sexo);
+                    break;
+                case "Fecha de Nacimiento":
+                    return ExtraerValoresColumnas(obj.cli_fecha_nacimiento.ToString("dd/MM/yyyy"));
+                    break;
+                case "Nacionalidad":
+                    return ExtraerValoresColumnas(obj.cli_nacionalidad);
+                    break;
+                case "Estado Civil":
+                    return ExtraerValoresColumnas(obj.cli_estado_civil);
+                    break;
+                case "Tipo Documento":
+                    return ExtraerValoresColumnas(obj.cli_tipo_documento);
+                    break;
+                case "Número de Documento":
+                    return ExtraerValoresColumnas(obj.cli_numero_documento);
+                    break;
+                case "CUIT/CUIL":
+                    return ExtraerValoresColumnas(obj.cli_cuit_cuil);
+                    break;
+                case "Como llego a nosotros":
+                    return ExtraerValoresColumnas(obj.cli_como_llego);
+                    break;
+            }
+            return "";
+
+        }
+
+        private string ExtraerValoresColumnas(string dato)
+        {
+            if (string.IsNullOrEmpty(dato))
+                return string.Empty;
+            else
+                return dato;
+        }
 
         public class OpenXmlWriterHelper
         {
