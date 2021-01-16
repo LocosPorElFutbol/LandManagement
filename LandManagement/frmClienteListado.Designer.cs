@@ -31,6 +31,7 @@
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.pnlControles = new System.Windows.Forms.Panel();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.btnBuscarCumpleanieros = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.btnRecargar = new System.Windows.Forms.Button();
@@ -41,7 +42,8 @@
 			this.btnCancelar = new System.Windows.Forms.Button();
 			this.btnEliminar = new System.Windows.Forms.Button();
 			this.btnAgregar = new System.Windows.Forms.Button();
-			this.btnBuscarCumpleanieros = new System.Windows.Forms.Button();
+			this.label4 = new System.Windows.Forms.Label();
+			this.lblClientesVisualizados = new System.Windows.Forms.Label();
 			this.dtpCumpleaniosHasta = new LandManagement.Utilidades.PangeaDateTimePicker();
 			this.dtpCumpleaniosDesde = new LandManagement.Utilidades.PangeaDateTimePicker();
 			this.groupBox1.SuspendLayout();
@@ -58,7 +60,7 @@
 			this.groupBox1.Controls.Add(this.pnlControles);
 			this.groupBox1.Location = new System.Drawing.Point(12, 12);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(911, 460);
+			this.groupBox1.Size = new System.Drawing.Size(1027, 460);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Clientes";
@@ -75,13 +77,15 @@
 			this.pnlControles.Controls.Add(this.btnAgregar);
 			this.pnlControles.Location = new System.Drawing.Point(6, 19);
 			this.pnlControles.Name = "pnlControles";
-			this.pnlControles.Size = new System.Drawing.Size(899, 435);
+			this.pnlControles.Size = new System.Drawing.Size(1015, 435);
 			this.pnlControles.TabIndex = 7;
 			// 
 			// groupBox2
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.lblClientesVisualizados);
+			this.groupBox2.Controls.Add(this.label4);
 			this.groupBox2.Controls.Add(this.btnBuscarCumpleanieros);
 			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Controls.Add(this.label2);
@@ -93,16 +97,27 @@
 			this.groupBox2.Controls.Add(this.label1);
 			this.groupBox2.Location = new System.Drawing.Point(3, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(818, 62);
+			this.groupBox2.Size = new System.Drawing.Size(934, 62);
 			this.groupBox2.TabIndex = 6;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Buscar";
+			// 
+			// btnBuscarCumpleanieros
+			// 
+			this.btnBuscarCumpleanieros.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.btnBuscarCumpleanieros.Location = new System.Drawing.Point(880, 21);
+			this.btnBuscarCumpleanieros.Name = "btnBuscarCumpleanieros";
+			this.btnBuscarCumpleanieros.Size = new System.Drawing.Size(48, 23);
+			this.btnBuscarCumpleanieros.TabIndex = 8;
+			this.btnBuscarCumpleanieros.Text = "Buscar";
+			this.btnBuscarCumpleanieros.UseVisualStyleBackColor = true;
+			this.btnBuscarCumpleanieros.Click += new System.EventHandler(this.btnBuscarCumpleanieros_Click);
 			// 
 			// label3
 			// 
 			this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(637, 26);
+			this.label3.Location = new System.Drawing.Point(753, 26);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(35, 13);
 			this.label3.TabIndex = 7;
@@ -112,7 +127,7 @@
 			// 
 			this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(445, 26);
+			this.label2.Location = new System.Drawing.Point(561, 26);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(97, 13);
 			this.label2.TabIndex = 6;
@@ -165,7 +180,7 @@
 			this.dgvClientes.Name = "dgvClientes";
 			this.dgvClientes.ReadOnly = true;
 			this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvClientes.Size = new System.Drawing.Size(818, 361);
+			this.dgvClientes.Size = new System.Drawing.Size(934, 361);
 			this.dgvClientes.TabIndex = 0;
 			this.dgvClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellDoubleClick);
 			// 
@@ -173,7 +188,7 @@
 			// 
 			this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancelar.Location = new System.Drawing.Point(821, 129);
+			this.btnCancelar.Location = new System.Drawing.Point(937, 129);
 			this.btnCancelar.Name = "btnCancelar";
 			this.btnCancelar.Size = new System.Drawing.Size(75, 23);
 			this.btnCancelar.TabIndex = 3;
@@ -184,7 +199,7 @@
 			// btnEliminar
 			// 
 			this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnEliminar.Location = new System.Drawing.Point(821, 100);
+			this.btnEliminar.Location = new System.Drawing.Point(937, 100);
 			this.btnEliminar.Name = "btnEliminar";
 			this.btnEliminar.Size = new System.Drawing.Size(75, 23);
 			this.btnEliminar.TabIndex = 2;
@@ -195,7 +210,7 @@
 			// btnAgregar
 			// 
 			this.btnAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnAgregar.Location = new System.Drawing.Point(821, 71);
+			this.btnAgregar.Location = new System.Drawing.Point(937, 71);
 			this.btnAgregar.Name = "btnAgregar";
 			this.btnAgregar.Size = new System.Drawing.Size(75, 23);
 			this.btnAgregar.TabIndex = 1;
@@ -203,22 +218,28 @@
 			this.btnAgregar.UseVisualStyleBackColor = true;
 			this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
 			// 
-			// btnBuscarCumpleanieros
+			// label4
 			// 
-			this.btnBuscarCumpleanieros.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.btnBuscarCumpleanieros.Location = new System.Drawing.Point(764, 21);
-			this.btnBuscarCumpleanieros.Name = "btnBuscarCumpleanieros";
-			this.btnBuscarCumpleanieros.Size = new System.Drawing.Size(48, 23);
-			this.btnBuscarCumpleanieros.TabIndex = 8;
-			this.btnBuscarCumpleanieros.Text = "Buscar";
-			this.btnBuscarCumpleanieros.UseVisualStyleBackColor = true;
-			this.btnBuscarCumpleanieros.Click += new System.EventHandler(this.btnBuscarCumpleanieros_Click);
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(443, 27);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(110, 13);
+			this.label4.TabIndex = 9;
+			this.label4.Text = "Clientes visualizados: ";
+			// 
+			// lblClientesVisualizados
+			// 
+			this.lblClientesVisualizados.AutoSize = true;
+			this.lblClientesVisualizados.Location = new System.Drawing.Point(549, 28);
+			this.lblClientesVisualizados.Name = "lblClientesVisualizados";
+			this.lblClientesVisualizados.Size = new System.Drawing.Size(0, 13);
+			this.lblClientesVisualizados.TabIndex = 10;
 			// 
 			// dtpCumpleaniosHasta
 			// 
 			this.dtpCumpleaniosHasta.Anchor = System.Windows.Forms.AnchorStyles.Right;
 			this.dtpCumpleaniosHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtpCumpleaniosHasta.Location = new System.Drawing.Point(678, 22);
+			this.dtpCumpleaniosHasta.Location = new System.Drawing.Point(794, 22);
 			this.dtpCumpleaniosHasta.Name = "dtpCumpleaniosHasta";
 			this.dtpCumpleaniosHasta.Size = new System.Drawing.Size(80, 20);
 			this.dtpCumpleaniosHasta.TabIndex = 5;
@@ -227,7 +248,7 @@
 			// 
 			this.dtpCumpleaniosDesde.Anchor = System.Windows.Forms.AnchorStyles.Right;
 			this.dtpCumpleaniosDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtpCumpleaniosDesde.Location = new System.Drawing.Point(548, 22);
+			this.dtpCumpleaniosDesde.Location = new System.Drawing.Point(664, 22);
 			this.dtpCumpleaniosDesde.Name = "dtpCumpleaniosDesde";
 			this.dtpCumpleaniosDesde.Size = new System.Drawing.Size(83, 20);
 			this.dtpCumpleaniosDesde.TabIndex = 4;
@@ -237,7 +258,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnCancelar;
-			this.ClientSize = new System.Drawing.Size(935, 484);
+			this.ClientSize = new System.Drawing.Size(1051, 484);
 			this.Controls.Add(this.groupBox1);
 			this.Name = "frmClienteListado";
 			this.Text = "frmClienteListado";
@@ -269,5 +290,7 @@
 		private System.Windows.Forms.Button btnBuscarCumpleanieros;
 		private Utilidades.PangeaDateTimePicker dtpCumpleaniosHasta;
 		private Utilidades.PangeaDateTimePicker dtpCumpleaniosDesde;
+		private System.Windows.Forms.Label lblClientesVisualizados;
+		private System.Windows.Forms.Label label4;
 	}
 }

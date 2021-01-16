@@ -124,6 +124,8 @@ namespace LandManagement
 
                 if (obj.cli_imprime_carta == null || obj.cli_imprime_carta == false)
                     dataGridViewRow.DefaultCellStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#f66b6b");
+
+                lblClientesVisualizados.Text = listaClientes.Count.ToString();
             }
         }
 
