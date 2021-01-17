@@ -30,9 +30,10 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pnlControles = new System.Windows.Forms.Panel();
+            this.btnExportar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblClientesVisualizadosCantidad = new System.Windows.Forms.Label();
+            this.lblClientesVisualizados = new System.Windows.Forms.Label();
             this.btnBuscarCumpleanieros = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,7 +47,6 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.pnlControles.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -71,7 +71,7 @@
             this.pnlControles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlControles.Controls.Add(this.button1);
+            this.pnlControles.Controls.Add(this.btnExportar);
             this.pnlControles.Controls.Add(this.groupBox2);
             this.pnlControles.Controls.Add(this.dgvClientes);
             this.pnlControles.Controls.Add(this.btnCancelar);
@@ -82,12 +82,24 @@
             this.pnlControles.Size = new System.Drawing.Size(1054, 435);
             this.pnlControles.TabIndex = 7;
             // 
+            // btnExportar
+            // 
+            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExportar.Location = new System.Drawing.Point(976, 158);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(75, 23);
+            this.btnExportar.TabIndex = 7;
+            this.btnExportar.Text = "Exportar";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportarClick);
+            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.lblClientesVisualizadosCantidad);
+            this.groupBox2.Controls.Add(this.lblClientesVisualizados);
             this.groupBox2.Controls.Add(this.btnBuscarCumpleanieros);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
@@ -104,23 +116,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Buscar";
             // 
-            // label5
+            // lblClientesVisualizadosCantidad
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(547, 28);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(13, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "0";
+            this.lblClientesVisualizadosCantidad.AutoSize = true;
+            this.lblClientesVisualizadosCantidad.Location = new System.Drawing.Point(547, 28);
+            this.lblClientesVisualizadosCantidad.Name = "lblClientesVisualizadosCantidad";
+            this.lblClientesVisualizadosCantidad.Size = new System.Drawing.Size(13, 13);
+            this.lblClientesVisualizadosCantidad.TabIndex = 10;
+            this.lblClientesVisualizadosCantidad.Text = "0";
             // 
-            // label4
+            // lblClientesVisualizados
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(444, 28);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Clientes visualizados:";
+            this.lblClientesVisualizados.AutoSize = true;
+            this.lblClientesVisualizados.Location = new System.Drawing.Point(444, 28);
+            this.lblClientesVisualizados.Name = "lblClientesVisualizados";
+            this.lblClientesVisualizados.Size = new System.Drawing.Size(107, 13);
+            this.lblClientesVisualizados.TabIndex = 9;
+            this.lblClientesVisualizados.Text = "Clientes visualizados:";
             // 
             // btnBuscarCumpleanieros
             // 
@@ -256,18 +268,6 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(976, 158);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Exportar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // frmClienteListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -305,8 +305,8 @@
 		private System.Windows.Forms.Button btnBuscarCumpleanieros;
 		private Utilidades.PangeaDateTimePicker dtpCumpleaniosHasta;
 		private Utilidades.PangeaDateTimePicker dtpCumpleaniosDesde;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblClientesVisualizadosCantidad;
+        private System.Windows.Forms.Label lblClientesVisualizados;
+        private System.Windows.Forms.Button btnExportar;
     }
 }

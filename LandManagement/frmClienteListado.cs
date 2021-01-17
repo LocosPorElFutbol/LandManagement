@@ -127,7 +127,7 @@ namespace LandManagement
                 if (obj.cli_imprime_carta == null || obj.cli_imprime_carta == false)
                     dataGridViewRow.DefaultCellStyle.BackColor = System.Drawing.ColorTranslator.FromHtml("#f66b6b");
             }
-            label5.Text = listaClientes.Count().ToString();
+            lblClientesVisualizadosCantidad.Text = listaClientes.Count().ToString();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -300,7 +300,7 @@ namespace LandManagement
             formularios.InstanciarFormulario(this.MdiParent, formularioPopUp, textFormulario);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnExportarClick(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();  
