@@ -207,7 +207,7 @@ namespace LandManagement
             _operacion.tbventa.ven_fecha_escritura = dtpFechaEscritura.Value;
             _operacion.tbventa.ven_precio = Convert.ToDouble(txbPrecio.Text);
             _operacion.tbventa.ven_escribano = txbEscribano.Text;
-            _operacion.tbventa.ven_presupuesto = Convert.ToDouble(txbPresupuesto.Text);
+            _operacion.tbventa.ven_presupuesto = string.IsNullOrEmpty(txbPresupuesto.Text) ? 0 : Convert.ToDouble(txbPresupuesto.Text);
             _operacion.tbventa.ven_escribania = txbEscribania.Text;
             _operacion.tbventa.ven_cobrado = Convert.ToDouble(txbCobrado.Text);
         }

@@ -1,39 +1,39 @@
 ﻿namespace LandManagement
 {
-    partial class frmClienteListado
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class frmClienteListado
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pnlControles = new System.Windows.Forms.Panel();
             this.btnExportar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblClientesVisualizadosCantidad = new System.Windows.Forms.Label();
             this.lblClientesVisualizados = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnBuscarCumpleanieros = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -61,7 +61,7 @@
             this.groupBox1.Controls.Add(this.pnlControles);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1066, 460);
+            this.groupBox1.Size = new System.Drawing.Size(1027, 460);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Clientes";
@@ -79,7 +79,7 @@
             this.pnlControles.Controls.Add(this.btnAgregar);
             this.pnlControles.Location = new System.Drawing.Point(6, 19);
             this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(1054, 435);
+            this.pnlControles.Size = new System.Drawing.Size(1015, 435);
             this.pnlControles.TabIndex = 7;
             // 
             // btnExportar
@@ -98,8 +98,8 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.lblClientesVisualizadosCantidad);
             this.groupBox2.Controls.Add(this.lblClientesVisualizados);
+            this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.btnBuscarCumpleanieros);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
@@ -111,33 +111,32 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(973, 62);
+            this.groupBox2.Size = new System.Drawing.Size(934, 62);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Buscar";
             // 
-            // lblClientesVisualizadosCantidad
-            // 
-            this.lblClientesVisualizadosCantidad.AutoSize = true;
-            this.lblClientesVisualizadosCantidad.Location = new System.Drawing.Point(547, 28);
-            this.lblClientesVisualizadosCantidad.Name = "lblClientesVisualizadosCantidad";
-            this.lblClientesVisualizadosCantidad.Size = new System.Drawing.Size(13, 13);
-            this.lblClientesVisualizadosCantidad.TabIndex = 10;
-            this.lblClientesVisualizadosCantidad.Text = "0";
-            // 
             // lblClientesVisualizados
             // 
             this.lblClientesVisualizados.AutoSize = true;
-            this.lblClientesVisualizados.Location = new System.Drawing.Point(444, 28);
+            this.lblClientesVisualizados.Location = new System.Drawing.Point(549, 28);
             this.lblClientesVisualizados.Name = "lblClientesVisualizados";
-            this.lblClientesVisualizados.Size = new System.Drawing.Size(107, 13);
-            this.lblClientesVisualizados.TabIndex = 9;
-            this.lblClientesVisualizados.Text = "Clientes visualizados:";
+            this.lblClientesVisualizados.Size = new System.Drawing.Size(0, 13);
+            this.lblClientesVisualizados.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(443, 27);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(110, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Clientes visualizados: ";
             // 
             // btnBuscarCumpleanieros
             // 
             this.btnBuscarCumpleanieros.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnBuscarCumpleanieros.Location = new System.Drawing.Point(919, 21);
+            this.btnBuscarCumpleanieros.Location = new System.Drawing.Point(880, 21);
             this.btnBuscarCumpleanieros.Name = "btnBuscarCumpleanieros";
             this.btnBuscarCumpleanieros.Size = new System.Drawing.Size(48, 23);
             this.btnBuscarCumpleanieros.TabIndex = 8;
@@ -149,7 +148,7 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(792, 26);
+            this.label3.Location = new System.Drawing.Point(753, 26);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 7;
@@ -159,7 +158,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(600, 26);
+            this.label2.Location = new System.Drawing.Point(561, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 13);
             this.label2.TabIndex = 6;
@@ -169,7 +168,7 @@
             // 
             this.dtpCumpleaniosHasta.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.dtpCumpleaniosHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpCumpleaniosHasta.Location = new System.Drawing.Point(833, 22);
+            this.dtpCumpleaniosHasta.Location = new System.Drawing.Point(794, 22);
             this.dtpCumpleaniosHasta.Name = "dtpCumpleaniosHasta";
             this.dtpCumpleaniosHasta.Size = new System.Drawing.Size(80, 20);
             this.dtpCumpleaniosHasta.TabIndex = 5;
@@ -178,7 +177,7 @@
             // 
             this.dtpCumpleaniosDesde.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.dtpCumpleaniosDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpCumpleaniosDesde.Location = new System.Drawing.Point(703, 22);
+            this.dtpCumpleaniosDesde.Location = new System.Drawing.Point(664, 22);
             this.dtpCumpleaniosDesde.Name = "dtpCumpleaniosDesde";
             this.dtpCumpleaniosDesde.Size = new System.Drawing.Size(83, 20);
             this.dtpCumpleaniosDesde.TabIndex = 4;
@@ -230,7 +229,7 @@
             this.dgvClientes.Name = "dgvClientes";
             this.dgvClientes.ReadOnly = true;
             this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClientes.Size = new System.Drawing.Size(973, 361);
+            this.dgvClientes.Size = new System.Drawing.Size(934, 361);
             this.dgvClientes.TabIndex = 0;
             this.dgvClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellDoubleClick);
             // 
@@ -238,7 +237,7 @@
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(976, 129);
+            this.btnCancelar.Location = new System.Drawing.Point(937, 129);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 3;
@@ -249,7 +248,7 @@
             // btnEliminar
             // 
             this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEliminar.Location = new System.Drawing.Point(976, 100);
+            this.btnEliminar.Location = new System.Drawing.Point(937, 100);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 2;
@@ -260,7 +259,7 @@
             // btnAgregar
             // 
             this.btnAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAgregar.Location = new System.Drawing.Point(976, 71);
+            this.btnAgregar.Location = new System.Drawing.Point(937, 71);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 1;
@@ -273,7 +272,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(1090, 484);
+            this.ClientSize = new System.Drawing.Size(1051, 484);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmClienteListado";
             this.Text = "frmClienteListado";
@@ -285,28 +284,28 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             this.ResumeLayout(false);
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.DataGridView dgvClientes;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnRecargar;
-        private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.TextBox txbBuscarPor;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel pnlControles;
+		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.Button btnCancelar;
+		private System.Windows.Forms.Button btnEliminar;
+		private System.Windows.Forms.Button btnAgregar;
+		private System.Windows.Forms.DataGridView dgvClientes;
+		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.Button btnRecargar;
+		private System.Windows.Forms.Button btnBuscar;
+		private System.Windows.Forms.TextBox txbBuscarPor;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Panel pnlControles;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button btnBuscarCumpleanieros;
 		private Utilidades.PangeaDateTimePicker dtpCumpleaniosHasta;
 		private Utilidades.PangeaDateTimePicker dtpCumpleaniosDesde;
-        private System.Windows.Forms.Label lblClientesVisualizadosCantidad;
-        private System.Windows.Forms.Label lblClientesVisualizados;
-        private System.Windows.Forms.Button btnExportar;
-    }
+		private System.Windows.Forms.Label lblClientesVisualizados;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Button btnExportar;
+	}
 }
