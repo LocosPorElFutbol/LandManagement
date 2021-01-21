@@ -71,6 +71,11 @@ namespace LandManagement.Utilidades
             return lista;
         }
 
+        /// <summary>
+        /// No se pudo identificar que se este utilizando el .value en ninguna parte del código, por lo tanto se podria utilizar
+        /// el valor text para cambiar el control a un textbox. De todas formas volver a chequearlo. Se crea issue #2 con detalle.
+        /// </summary>
+        /// <returns>Lista de Combobox items.</returns>
         public List<ComboBoxItem> GetListaDepto()
         {
             List<ComboBoxItem> lista = new List<ComboBoxItem>(){
@@ -126,7 +131,21 @@ namespace LandManagement.Utilidades
                 new ComboBoxItem("W",49),
                 new ComboBoxItem("X",50),
                 new ComboBoxItem("Y",51),
-                new ComboBoxItem("Z",52)
+                new ComboBoxItem("Z",52),
+                new ComboBoxItem("27",53),
+                new ComboBoxItem("28",54),
+                new ComboBoxItem("29",55),
+                new ComboBoxItem("30",56),
+                new ComboBoxItem("31",57),
+                new ComboBoxItem("32",58),
+                new ComboBoxItem("33",59),
+                new ComboBoxItem("34",60),
+                new ComboBoxItem("35",61),
+                new ComboBoxItem("36",62),
+                new ComboBoxItem("37",63),
+                new ComboBoxItem("38",64),
+                new ComboBoxItem("39",65),
+                new ComboBoxItem("40",66)
             };
 
             return lista;
