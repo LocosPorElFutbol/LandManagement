@@ -8,87 +8,82 @@ using System.Text;
 
 namespace LandManagement.Repository
 {
-    public class AlquiladaRepository : ICrud<tbalquilada>
+    public class AlquiladaRepository : BaseRepository<tbalquilada>
     {
-        private landmanagementbdEntities _Contexto;
-        public landmanagementbdEntities Contexto
-        {
-            set { }
-            get
-            {
-                if (_Contexto == null)
-                {
-                    _Contexto = new landmanagementbdEntities();
-                    _Contexto.ContextOptions.LazyLoadingEnabled = false;
-                    _Contexto.ContextOptions.ProxyCreationEnabled = false;
-                }
-                return _Contexto;
-            }
-        }
+		//private landmanagementbdEntities _Contexto;
+		//public landmanagementbdEntities Contexto
+		//{
+		//    set { }
+		//    get
+		//    {
+		//        if (_Contexto == null)
+		//        {
+		//            _Contexto = new landmanagementbdEntities();
+		//            _Contexto.ContextOptions.LazyLoadingEnabled = false;
+		//            _Contexto.ContextOptions.ProxyCreationEnabled = false;
+		//        }
+		//        return _Contexto;
+		//    }
+		//}
 
-        public void Create(tbalquilada entity)
-        {
-            throw new NotImplementedException();
-        }
+		public override void Create(tbalquilada entity)
+		{
+			throw new NotImplementedException();
+		}
 
-        public void Update(tbalquilada entity)
-        {
-            try
-            {
-                EntityKey key = Contexto.CreateEntityKey(
-                    Contexto.CreateObjectSet<tbalquilada>().EntitySet.Name, entity);
+		//public void Update(tbalquilada entity)
+		//{
+		//    try
+		//    {
+		//        EntityKey key = Contexto.CreateEntityKey(
+		//            Contexto.CreateObjectSet<tbalquilada>().EntitySet.Name, entity);
 
-                tbalquilada entityAux = (tbalquilada)Contexto.GetObjectByKey(key);
+		//        tbalquilada entityAux = (tbalquilada)Contexto.GetObjectByKey(key);
 
-                Contexto.CreateObjectSet<tbalquilada>().ApplyCurrentValues(entity);
-                Contexto.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
-                Contexto.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
+		//        Contexto.CreateObjectSet<tbalquilada>().ApplyCurrentValues(entity);
+		//        Contexto.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
+		//        Contexto.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
 
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+		//        Contexto.SaveChanges();
+		//    }
+		//    catch (Exception ex)
+		//    {
+		//        throw ex;
+		//    }
+		//}
 
-        public void Delete(tbalquilada entity)
-        {
-            try
-            {
-                tbalquilada o = (tbalquilada)this.GetElementByKey(entity);
-                Contexto.tbalquilada.DeleteObject(o);
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+		//public void Delete(tbalquilada entity)
+		//{
+		//    try
+		//    {
+		//        tbalquilada o = (tbalquilada)this.GetElement(entity);
+		//        Contexto.tbalquilada.DeleteObject(o);
+		//        Contexto.SaveChanges();
+		//    }
+		//    catch (Exception ex)
+		//    {
+		//        throw ex;
+		//    }
+		//}
 
-        public object GetElement(tbalquilada entity)
-        {
-            throw new NotImplementedException();
-        }
+		//public object GetElement(tbalquilada entity)
+		//{
+		//    try
+		//    {
+		//        EntityKey key = Contexto.CreateEntityKey(
+		//            Contexto.CreateObjectSet<tbalquilada>().EntitySet.Name, entity);
 
-        public object GetElementByKey(tbalquilada entity)
-        {
-            try
-            {
-                EntityKey key = Contexto.CreateEntityKey(
-                    Contexto.CreateObjectSet<tbalquilada>().EntitySet.Name, entity);
+		//        return Contexto.GetObjectByKey(key);
+		//    }
+		//    catch (Exception ex)
+		//    {
+		//        throw ex;
+		//    }
+		//}
 
-                return Contexto.GetObjectByKey(key);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public object GetList()
-        {
-            throw new NotImplementedException();
-        }
-    }
+		public override object GetList()
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

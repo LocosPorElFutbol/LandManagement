@@ -8,59 +8,59 @@ using System.Text;
 
 namespace LandManagement.Repository
 {
-    public class ClienteSystemRepository : IBaseRepository<tbsyscliente>
+    public class ClienteSystemRepository : BaseRepository<tbsyscliente>
     {
-        private static ClienteSystemRepository instancia = null;
-        private landmanagementbdEntities Contexto = null;
+        //private static ClienteSystemRepository instancia = null;
+        //private landmanagementbdEntities Contexto = null;
 
-        public static ClienteSystemRepository GetInstancia()
-        {
-            if(instancia == null)
-                return new ClienteSystemRepository();
-            return instancia;
-        }
+        //public static ClienteSystemRepository GetInstancia()
+        //{
+        //    if(instancia == null)
+        //        return new ClienteSystemRepository();
+        //    return instancia;
+        //}
 
-        public ClienteSystemRepository()
-        {
-            Contexto = new landmanagementbdEntities();
-        }
+        //public ClienteSystemRepository()
+        //{
+        //    Contexto = new landmanagementbdEntities();
+        //}
 
-        public void Create(tbsyscliente entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(tbsyscliente entity)
+        public override void Create(tbsyscliente entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(tbsyscliente entity)
+        public override void Update(tbsyscliente entity)
         {
             throw new NotImplementedException();
         }
 
-        public object GetElement(tbsyscliente entity)
-        {
-            EntityKey key = Contexto.CreateEntityKey(
-                Contexto.CreateObjectSet<tbsyscliente>().EntitySet.Name, entity);
-            try
-            {
-                tbsyscliente salida = (tbsyscliente)Contexto.GetObjectByKey(key);
-                return salida;
-            }
-            catch (ObjectNotFoundException)
-            {
-                throw new ExcepcionRepository();
-            }
-        }
-
-        public object GetList()
+        public override void Delete(tbsyscliente entity)
         {
             throw new NotImplementedException();
         }
 
-        public object GetList(Func<tbsyscliente, bool> funcion)
+        //public object GetElement(tbsyscliente entity)
+        //{
+        //    EntityKey key = Contexto.CreateEntityKey(
+        //        Contexto.CreateObjectSet<tbsyscliente>().EntitySet.Name, entity);
+        //    try
+        //    {
+        //        tbsyscliente salida = (tbsyscliente)Contexto.GetObjectByKey(key);
+        //        return salida;
+        //    }
+        //    catch (ObjectNotFoundException)
+        //    {
+        //        throw new ExcepcionRepository();
+        //    }
+        //}
+
+        public override object GetList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override object GetList(Func<tbsyscliente, bool> funcion)
         {
             throw new NotImplementedException();
         }

@@ -13,7 +13,8 @@ namespace LandManagement.Business
 
         public LicenciaBusiness()
         {
-            licenciaRepository = LicenciaRepository.GetInstancia();
+            //licenciaRepository = LicenciaRepository.GetInstancia();
+            licenciaRepository = new LicenciaRepository();
         }
 
         public void ActivarProducto(tbsyslicencia licencia)

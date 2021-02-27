@@ -17,8 +17,10 @@ namespace LandManagement.Repository
                 if (_Contexto == null)
                 {
                     _Contexto = new landmanagementbdEntities();
-                    _Contexto.ContextOptions.LazyLoadingEnabled = false;
-                    _Contexto.ContextOptions.ProxyCreationEnabled = false;
+                    _Contexto.Configuration.LazyLoadingEnabled = false;
+                    _Contexto.Configuration.ProxyCreationEnabled = false;
+                    //_Contexto.ContextOptions.LazyLoadingEnabled = false;
+                    //_Contexto.ContextOptions.ProxyCreationEnabled = false;
                 }
                 return _Contexto;
             }

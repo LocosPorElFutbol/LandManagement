@@ -28,7 +28,7 @@ namespace LandManagement.Business
 
         public object GetElementByKey(tbclienteoperacion entity)
         {
-            return clienteOperacionRepository.GetElementByKey(entity);
+            return clienteOperacionRepository.GetElement(entity);
         }
 
         public object GetListByIdOperacion(int _idOperacion)

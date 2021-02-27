@@ -8,83 +8,83 @@ using System.Text;
 
 namespace LandManagement.Repository
 {
-    public class ReservaAlquilerRepository: ICrud<tbreservaalquiler>
+    public class ReservaAlquilerRepository: BaseRepository<tbreservaalquiler>
     {
-        private landmanagementbdEntities _Contexto;
-        public landmanagementbdEntities Contexto
+        private landmanagementbdEntities _ContextoLocal;
+        public landmanagementbdEntities ContextoLocal
         {
             set { }
             get
             {
-                if (_Contexto == null)
+                if (_ContextoLocal == null)
                 {
-                    _Contexto = new landmanagementbdEntities();
-                    _Contexto.ContextOptions.LazyLoadingEnabled = false;
-                    _Contexto.ContextOptions.ProxyCreationEnabled = false;
+                    _ContextoLocal = new landmanagementbdEntities();
+                    _ContextoLocal.Configuration.LazyLoadingEnabled = false;
+                    _ContextoLocal.Configuration.ProxyCreationEnabled = false;
                 }
-                return _Contexto;
+                return _ContextoLocal;
             }
         }
 
-        public void Create(tbreservaalquiler entity)
+        public override void Create(tbreservaalquiler entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(tbreservaalquiler entity)
-        {
-            try
-            {
-                EntityKey key = Contexto.CreateEntityKey(Contexto.CreateObjectSet<tbreservaalquiler>().EntitySet.Name, entity);
-                tbreservaalquiler entityAux = (tbreservaalquiler)Contexto.GetObjectByKey(key);
+        //public void Update(tbreservaalquiler entity)
+        //{
+        //    try
+        //    {
+        //        EntityKey key = ContextoLocal.CreateEntityKey(ContextoLocal.CreateObjectSet<tbreservaalquiler>().EntitySet.Name, entity);
+        //        tbreservaalquiler entityAux = (tbreservaalquiler)ContextoLocal.GetObjectByKey(key);
 
-                Contexto.CreateObjectSet<tbreservaalquiler>().ApplyCurrentValues(entity);
-                Contexto.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
-                Contexto.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
+        //        ContextoLocal.CreateObjectSet<tbreservaalquiler>().ApplyCurrentValues(entity);
+        //        ContextoLocal.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
+        //        ContextoLocal.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
 
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public void Delete(tbreservaalquiler entity)
-        {
-            try
-            {
-                tbreservaalquiler o = (tbreservaalquiler)this.GetElementByKey(entity);
-                Contexto.tbreservaalquiler.DeleteObject(o);
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //public void Delete(tbreservaalquiler entity)
+        //{
+        //    try
+        //    {
+        //        tbreservaalquiler o = (tbreservaalquiler)this.GetElementByKey(entity);
+        //        ContextoLocal.tbreservaalquiler.DeleteObject(o);
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public object GetElement(tbreservaalquiler entity)
-        {
-            throw new NotImplementedException();
-        }
+        //public object GetElement(tbreservaalquiler entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public object GetElementByKey(tbreservaalquiler entity)
-        {
-            try
-            {
-                EntityKey key = Contexto.CreateEntityKey(
-                    Contexto.CreateObjectSet<tbreservaalquiler>().EntitySet.Name, entity);
+        //public object GetElement(tbreservaalquiler entity)
+        //{
+        //    try
+        //    {
+        //        EntityKey key = ContextoLocal.CreateEntityKey(
+        //            ContextoLocal.CreateObjectSet<tbreservaalquiler>().EntitySet.Name, entity);
 
-                return Contexto.GetObjectByKey(key);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        return ContextoLocal.GetObjectByKey(key);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public object GetList()
+        public override object GetList()
         {
             throw new NotImplementedException();
         }

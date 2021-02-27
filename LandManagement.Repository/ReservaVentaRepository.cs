@@ -8,86 +8,86 @@ using System.Text;
 
 namespace LandManagement.Repository
 {
-    public class ReservaVentaRepository: ICrud<tbreservaventa>
+    public class ReservaVentaRepository: BaseRepository<tbreservaventa>
     {
-        private landmanagementbdEntities _Contexto;
-        public landmanagementbdEntities Contexto
+        private landmanagementbdEntities _ContextoLocal;
+        public landmanagementbdEntities ContextoLocal
         {
             set { }
             get
             {
-                if (_Contexto == null)
+                if (_ContextoLocal == null)
                 {
-                    _Contexto = new landmanagementbdEntities();
-                    _Contexto.ContextOptions.LazyLoadingEnabled = false;
-                    _Contexto.ContextOptions.ProxyCreationEnabled = false;
+                    _ContextoLocal = new landmanagementbdEntities();
+                    _ContextoLocal.Configuration.LazyLoadingEnabled = false;
+                    _ContextoLocal.Configuration.ProxyCreationEnabled = false;
                 }
-                return _Contexto;
+                return _ContextoLocal;
             }
         }
 
-        public void Create(tbreservaventa entity)
+        public override void Create(tbreservaventa entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(tbreservaventa entity)
-        {
-            try
-            {
-                EntityKey key = Contexto.CreateEntityKey(
-                    Contexto.CreateObjectSet<tbreservaventa>().EntitySet.Name, entity);
-                tbreservaventa entityAux = null;
-                entityAux = (tbreservaventa)Contexto.GetObjectByKey(key);
+        //public void Update(tbreservaventa entity)
+        //{
+        //    try
+        //    {
+        //        EntityKey key = ContextoLocal.CreateEntityKey(
+        //            ContextoLocal.CreateObjectSet<tbreservaventa>().EntitySet.Name, entity);
+        //        tbreservaventa entityAux = null;
+        //        entityAux = (tbreservaventa)ContextoLocal.GetObjectByKey(key);
 
-                Contexto.CreateObjectSet<tbreservaventa>().ApplyCurrentValues(entity);
-                Contexto.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
-                Contexto.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
+        //        ContextoLocal.CreateObjectSet<tbreservaventa>().ApplyCurrentValues(entity);
+        //        ContextoLocal.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
+        //        ContextoLocal.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
 
-                Contexto.SaveChanges();
+        //        ContextoLocal.SaveChanges();
 
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public void Delete(tbreservaventa entity)
-        {
-            try
-            {
-                tbreservaventa o = (tbreservaventa)this.GetElementByKey(entity);
-                Contexto.tbreservaventa.DeleteObject(o);
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //public void Delete(tbreservaventa entity)
+        //{
+        //    try
+        //    {
+        //        tbreservaventa o = (tbreservaventa)this.GetElementByKey(entity);
+        //        ContextoLocal.tbreservaventa.DeleteObject(o);
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public object GetElement(tbreservaventa entity)
-        {
-            throw new NotImplementedException();
-        }
+        //public object GetElement(tbreservaventa entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public object GetElementByKey(tbreservaventa entity)
-        { 
-            try
-            {
-                EntityKey key = Contexto.CreateEntityKey(
-                    Contexto.CreateObjectSet<tbreservaventa>().EntitySet.Name, entity);
+        //public object GetElement(tbreservaventa entity)
+        //{ 
+        //    try
+        //    {
+        //        EntityKey key = ContextoLocal.CreateEntityKey(
+        //            ContextoLocal.CreateObjectSet<tbreservaventa>().EntitySet.Name, entity);
 
-                return Contexto.GetObjectByKey(key);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        return ContextoLocal.GetObjectByKey(key);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public object GetList()
+        public override object GetList()
         {
             throw new NotImplementedException();
         }

@@ -12,7 +12,8 @@ namespace LandManagement.Business
         private CartaRepository cartaRepository = null;
         public CartaBusiness()
         {
-            cartaRepository = CartaRepository.GetInstancia();
+            //cartaRepository = CartaRepository.GetInstancia();
+            cartaRepository = new CartaRepository();
         }
 
         public void Update(tbcarta entity)

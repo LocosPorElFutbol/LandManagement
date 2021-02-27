@@ -28,7 +28,7 @@ namespace LandManagement.Business
 
         public object GetElementByKey(tbalquilada _alquilada)
         {
-            return alquiladaRepository.GetElementByKey(_alquilada);
+            return alquiladaRepository.GetElement(_alquilada);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LandManagement.Business</RootNamespace>
     <AssemblyName>LandManagement.Business</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -72,17 +75,20 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LandManagement.Entities\LandManagement.Entities.csproj">
-      <Project>{D4A76D75-CD3C-467B-8F5D-ABA1137FC41D}</Project>
+      <Project>{d4a76d75-cd3c-467b-8f5d-aba1137fc41d}</Project>
       <Name>LandManagement.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\LandManagement.Interface\LandManagement.Interface.csproj">
-      <Project>{6EFC4BD4-62C8-45E2-9B1B-798B2FB599A2}</Project>
+      <Project>{6efc4bd4-62c8-45e2-9b1b-798b2fb599a2}</Project>
       <Name>LandManagement.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\LandManagement.Repository\LandManagement.Repository.csproj">
-      <Project>{188D2037-1B10-47CD-A9BF-CD5B67C51597}</Project>
+      <Project>{188d2037-1b10-47cd-a9bf-cd5b67c51597}</Project>
       <Name>LandManagement.Repository</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

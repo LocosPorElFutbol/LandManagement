@@ -8,78 +8,78 @@ using System.Text;
 
 namespace LandManagement.Repository
 {
-    public class OperacionRepository: IOperacion<tboperaciones>
+    public class OperacionRepository: BaseRepository<tboperaciones>
     {
-        private landmanagementbdEntities _Contexto;
-        public landmanagementbdEntities Contexto
+        private landmanagementbdEntities _ContextoLocal;
+        public landmanagementbdEntities ContextoLocal
         {
             set { }
             get
             {
-                if (_Contexto == null)
+                if (_ContextoLocal == null)
                 {
-                    _Contexto = new landmanagementbdEntities();
-                    _Contexto.ContextOptions.LazyLoadingEnabled = false;
-                    _Contexto.ContextOptions.ProxyCreationEnabled = false;
+                    _ContextoLocal = new landmanagementbdEntities();
+                    _ContextoLocal.Configuration.LazyLoadingEnabled = false;
+                    _ContextoLocal.Configuration.ProxyCreationEnabled = false;
                 }
-                return _Contexto;
+                return _ContextoLocal;
             }
         }
 
-        public void Create(tboperaciones entity)
-        {
-            try
-            {
-                Contexto = new landmanagementbdEntities();
-                Contexto.CreateObjectSet<tboperaciones>().AddObject(entity);
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                //throw new ExcepcionRepository();
-                throw ex;
-            }
-        }
+        //public void Create(tboperaciones entity)
+        //{
+        //    try
+        //    {
+        //        ContextoLocal = new landmanagementbdEntities();
+        //        ContextoLocal.CreateObjectSet<tboperaciones>().AddObject(entity);
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //throw new ExcepcionRepository();
+        //        throw ex;
+        //    }
+        //}
 
-        public void Update(tboperaciones entity)
+        public override void Update(tboperaciones entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(tboperaciones entity)
+        //public void Delete(tboperaciones entity)
+        //{
+        //    try
+        //    {
+        //        tboperaciones o = (tboperaciones)this.GetElementByKey(entity);
+        //        ContextoLocal.tboperaciones.DeleteObject(o);
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
+        //public object GetElementByKey(tboperaciones entity)
+        //{
+        //    try
+        //    {
+        //        EntityKey key = ContextoLocal.CreateEntityKey(
+        //            ContextoLocal.CreateObjectSet<tboperaciones>().EntitySet.Name, entity);
+
+        //        return ContextoLocal.GetObjectByKey(key);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
+        public override object GetElement(tboperaciones entity)
         {
             try
             {
-                tboperaciones o = (tboperaciones)this.GetElementByKey(entity);
-                Contexto.tboperaciones.DeleteObject(o);
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public object GetElementByKey(tboperaciones entity)
-        {
-            try
-            {
-                EntityKey key = Contexto.CreateEntityKey(
-                    Contexto.CreateObjectSet<tboperaciones>().EntitySet.Name, entity);
-
-                return Contexto.GetObjectByKey(key);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public object GetElement(tboperaciones entity)
-        {
-            try
-            {
-                tboperaciones salida = (tboperaciones)Contexto.tboperaciones.Include("tbalquilada")
+                tboperaciones salida = (tboperaciones)ContextoLocal.tboperaciones.Include("tbalquilada")
                                          .Include("tbclienteoperacion")
                                          .Include("tbenalquiler")
                                          .Include("tbencuesta")
@@ -100,9 +100,9 @@ namespace LandManagement.Repository
             }
         }
 
-        public object GetList()
+        public override object GetList()
         {
-            return Contexto.tboperaciones.Include("tbalquilada")
+            return ContextoLocal.tboperaciones.Include("tbalquilada")
                                          .Include("tbclienteoperacion")
                                          .Include("tbenalquiler")
                                          .Include("tbencuesta")
@@ -118,7 +118,7 @@ namespace LandManagement.Repository
 
         public object GetListByPropiedadId(int _idPropiedad)
         {
-            return Contexto.tboperaciones.Include("tbalquilada")
+            return ContextoLocal.tboperaciones.Include("tbalquilada")
                                          .Include("tbclienteoperacion")
                                          .Include("tbenalquiler")
                                          .Include("tbencuesta")
@@ -134,17 +134,17 @@ namespace LandManagement.Repository
                                          .ToList();
         }
 
-        public object GetList(Func<tboperaciones, bool> funcion)
-        {
-            try
-            {
-                return Contexto.tboperaciones.Where(funcion).ToList<tboperaciones>();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+        //public object GetList(Func<tboperaciones, bool> funcion)
+        //{
+        //    try
+        //    {
+        //        return ContextoLocal.tboperaciones.Where(funcion).ToList<tboperaciones>();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
         
-        }
+        //}
     }
 }

@@ -8,49 +8,49 @@ using System.Text;
 
 namespace LandManagement.Repository
 {
-    public class FamiliarRepository: IFamiliar<tbcliente>
+    public class FamiliarRepository: BaseRepository<tbcliente>
     {
-        private landmanagementbdEntities _Contexto;
-        public landmanagementbdEntities Contexto
+        private landmanagementbdEntities _ContextoLocal;
+        public landmanagementbdEntities ContextoLocal
         {
             set { }
             get
             {
-                if (_Contexto == null)
+                if (_ContextoLocal == null)
                 {
-                    _Contexto = new landmanagementbdEntities();
-                    _Contexto.ContextOptions.LazyLoadingEnabled = false;
-                    _Contexto.ContextOptions.ProxyCreationEnabled = false;
+                    _ContextoLocal = new landmanagementbdEntities();
+                    _ContextoLocal.Configuration.LazyLoadingEnabled = false;
+                    _ContextoLocal.Configuration.ProxyCreationEnabled = false;
                 }
-                return _Contexto;
+                return _ContextoLocal;
             }
         }
 
-        public void Create(tbcliente entity)
-        {
-            try
-            {
-                Contexto = new landmanagementbdEntities();
-                Contexto.CreateObjectSet<tbcliente>().AddObject(entity);
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                //throw new ExcepcionRepository();
-                throw ex;
-            }
-        }
+        //public void Create(tbcliente entity)
+        //{
+        //    try
+        //    {
+        //        ContextoLocal = new landmanagementbdEntities();
+        //        ContextoLocal.CreateObjectSet<tbcliente>().AddObject(entity);
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //throw new ExcepcionRepository();
+        //        throw ex;
+        //    }
+        //}
 
         public void Create(tbcliente entity, tbcliente cliente)
         {
             try
             {
-                Contexto = new landmanagementbdEntities();
+                ContextoLocal = new landmanagementbdEntities();
 
-                Contexto.tbcliente.Attach(cliente);
+                ContextoLocal.tbcliente.Attach(cliente);
                 entity.tbcliente2 = cliente;
 
-                Contexto.SaveChanges();
+                ContextoLocal.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -59,48 +59,48 @@ namespace LandManagement.Repository
             }
         }
         
-        public void Update(tbcliente entity)
+        //public void Update(tbcliente entity)
+        //{
+        //    try
+        //    {
+        //        EntityKey key = ContextoLocal.CreateEntityKey(
+        //            ContextoLocal.CreateObjectSet<tbcliente>().EntitySet.Name, entity);
+        //        tbcliente entityAux = null;
+        //        entityAux = (tbcliente)ContextoLocal.GetObjectByKey(key);
+
+        //        ContextoLocal.CreateObjectSet<tbcliente>().ApplyCurrentValues(entity);
+        //        ContextoLocal.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
+        //        ContextoLocal.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
+
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //        //throw new ExcepcionRepository();
+        //    }
+        //}
+
+        //public void Delete(tbcliente entity)
+        //{
+        //    try
+        //    {
+        //        tbcliente c = (tbcliente)this.GetElement(entity);
+        //        ContextoLocal.tbcliente.DeleteObject(c);
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //        //throw new ExcepcionRepository();
+        //    }
+        //}
+
+        public override object GetElement(tbcliente entity)
         {
             try
             {
-                EntityKey key = Contexto.CreateEntityKey(
-                    Contexto.CreateObjectSet<tbcliente>().EntitySet.Name, entity);
-                tbcliente entityAux = null;
-                entityAux = (tbcliente)Contexto.GetObjectByKey(key);
-
-                Contexto.CreateObjectSet<tbcliente>().ApplyCurrentValues(entity);
-                Contexto.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
-                Contexto.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
-
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-                //throw new ExcepcionRepository();
-            }
-        }
-
-        public void Delete(tbcliente entity)
-        {
-            try
-            {
-                tbcliente c = (tbcliente)this.GetElement(entity);
-                Contexto.tbcliente.DeleteObject(c);
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-                //throw new ExcepcionRepository();
-            }
-        }
-
-        public object GetElement(tbcliente entity)
-        {
-            try
-            {
-                tbcliente salida = (from c in Contexto.tbcliente.Include("tbpropiedad")
+                tbcliente salida = (from c in ContextoLocal.tbcliente.Include("tbpropiedad")
                                                                 .Include("tbdomicilio")
                                                                 .Include("tbcliente1")
                                                                 .Include("tbtipofamiliar")
@@ -116,16 +116,16 @@ namespace LandManagement.Repository
             }
         }
 
-        public object GetList()
+        public override object GetList()
         {
-            return Contexto.tbcliente.Include("tbcliente1").ToList();
+            return ContextoLocal.tbcliente.Include("tbcliente1").ToList();
         }
 
         public object GetFamiliaresPorCliente(tbcliente cliente)
         {
             try
             {
-                var salida = (from p in Contexto.tbcliente
+                var salida = (from p in ContextoLocal.tbcliente
                               where p.cli_id_padre == cliente.cli_id
                               select p).ToList<tbcliente>();
 

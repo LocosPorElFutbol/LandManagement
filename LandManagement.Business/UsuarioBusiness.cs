@@ -24,13 +24,13 @@ namespace LandManagement.Business
 
         public void UpdateNew(tbusuario tbUsuario)
         {
-            _UsuarioRepository.UpdateNew(tbUsuario);
+            _UsuarioRepository.Update(tbUsuario);
         }
 
         [Obsolete("Este metodo se deprecará, evitar su utilización. El nuevo nombre es UpdateNew(tbusuario entity). FALTA ACTUALIZAR COLECCION DE MENUES DE CADA USUARIO!!!")]
         public void Update(tbusuario tbUsuario)
         {
-            _UsuarioRepository.Update(tbUsuario);
+            _UsuarioRepository.UpdateOld(tbUsuario);
         }
 
         public void Delete(tbusuario tbUsuario)

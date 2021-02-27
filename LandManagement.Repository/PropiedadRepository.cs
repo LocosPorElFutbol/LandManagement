@@ -8,38 +8,38 @@ using System.Text;
 
 namespace LandManagement.Repository
 {
-    public class PropiedadRepository: IPropiedad<tbpropiedad>
+    public class PropiedadRepository: BaseRepository<tbpropiedad>
     {
-        private landmanagementbdEntities _Contexto;
-        public landmanagementbdEntities Contexto
+        private landmanagementbdEntities _ContextoLocal;
+        public landmanagementbdEntities ContextoLocal
         {
             set { }
             get
             {
-                if (_Contexto == null)
+                if (_ContextoLocal == null)
                 {
-                    _Contexto = new landmanagementbdEntities();
-                    _Contexto.ContextOptions.LazyLoadingEnabled = false;
-                    _Contexto.ContextOptions.ProxyCreationEnabled = false;
+                    _ContextoLocal = new landmanagementbdEntities();
+                    _ContextoLocal.Configuration.LazyLoadingEnabled = false;
+                    _ContextoLocal.Configuration.ProxyCreationEnabled = false;
                 }
-                return _Contexto;
+                return _ContextoLocal;
             }
         }
 
-        public void Create(tbpropiedad entity)
-        {
-            try
-            {
-                Contexto = new landmanagementbdEntities();
-                Contexto.CreateObjectSet<tbpropiedad>().AddObject(entity);
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                //throw new ExcepcionRepository();
-                throw ex;
-            }
-        }
+        //public void Create(tbpropiedad entity)
+        //{
+        //    try
+        //    {
+        //        ContextoLocal = new landmanagementbdEntities();
+        //        ContextoLocal.CreateObjectSet<tbpropiedad>().AddObject(entity);
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //throw new ExcepcionRepository();
+        //        throw ex;
+        //    }
+        //}
 
         public void Create(tbpropiedad entity, tbcliente cliente)
         {
@@ -50,7 +50,9 @@ namespace LandManagement.Repository
                     tbcliente cli = ctx.tbcliente.FirstOrDefault(c => c.cli_id == cliente.cli_id);
                     entity.tbcliente.Add(cli);
 
-                    ctx.CreateObjectSet<tbpropiedad>().AddObject(entity);
+                    //ctx.CreateObjectSet<tbpropiedad>().AddObject(entity);
+                    ctx.tbpropiedad.Add(entity);
+
                     ctx.SaveChanges();
                 }
                 ////Contexto = new landmanagementbdEntities();
@@ -67,46 +69,46 @@ namespace LandManagement.Repository
             }
         }
 
-        public void Update(tbpropiedad entity)
+        //public void Update(tbpropiedad entity)
+        //{
+        //    try
+        //    {
+        //        EntityKey key = ContextoLocal.CreateEntityKey(
+        //            ContextoLocal.CreateObjectSet<tbpropiedad>().EntitySet.Name, entity);
+        //        tbpropiedad entityAux = null;
+        //        entityAux = (tbpropiedad)ContextoLocal.GetObjectByKey(key);
+
+        //        ContextoLocal.CreateObjectSet<tbpropiedad>().ApplyCurrentValues(entity);
+        //        ContextoLocal.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
+        //        ContextoLocal.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
+
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //        //throw new ExcepcionRepository();
+        //    }
+        //}
+
+        //public void Delete(tbpropiedad entity)
+        //{
+        //    try
+        //    {
+        //        tbpropiedad p = (tbpropiedad)this.GetElement(entity);
+        //        ContextoLocal.tbpropiedad.DeleteObject(p);
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //        //throw new ExcepcionRepository();
+        //    }
+        //}
+
+        public override object GetElement(tbpropiedad entity)
         {
-            try
-            {
-                EntityKey key = Contexto.CreateEntityKey(
-                    Contexto.CreateObjectSet<tbpropiedad>().EntitySet.Name, entity);
-                tbpropiedad entityAux = null;
-                entityAux = (tbpropiedad)Contexto.GetObjectByKey(key);
-
-                Contexto.CreateObjectSet<tbpropiedad>().ApplyCurrentValues(entity);
-                Contexto.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
-                Contexto.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
-
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-                //throw new ExcepcionRepository();
-            }
-        }
-
-        public void Delete(tbpropiedad entity)
-        {
-            try
-            {
-                tbpropiedad p = (tbpropiedad)this.GetElement(entity);
-                Contexto.tbpropiedad.DeleteObject(p);
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-                //throw new ExcepcionRepository();
-            }
-        }
-
-        public object GetElement(tbpropiedad entity)
-        {
-            tbpropiedad salida = Contexto.tbpropiedad.Include("tbcliente")
+            tbpropiedad salida = ContextoLocal.tbpropiedad.Include("tbcliente")
                                                      .Include("tboperaciones")
                                                      .Include("tbservicios")
                                                      .Include("tbtipopropiedad")
@@ -127,27 +129,27 @@ namespace LandManagement.Repository
             //}
         }
 
-        public object GetList()
+        public override object GetList()
         {
-            return Contexto.tbpropiedad.Include("tbcliente")
+            return ContextoLocal.tbpropiedad.Include("tbcliente")
                                         .Include("tbtipopropiedad").ToList();
         }
 
-        public object GetList(Func<tbpropiedad, bool> _whereClausule)
-        {
-            try
-            {
-                return Contexto.tbpropiedad.Where(_whereClausule).ToList<tbpropiedad>();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //public object GetList(Func<tbpropiedad, bool> _whereClausule)
+        //{
+        //    try
+        //    {
+        //        return ContextoLocal.tbpropiedad.Where(_whereClausule).ToList<tbpropiedad>();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
         public object GetList(int[] ids)
         {
-            return Contexto.tbpropiedad.Include("tbcliente")
+            return ContextoLocal.tbpropiedad.Include("tbcliente")
                                         .Include("tbtipopropiedad")
                                         .Where(x => !ids.Contains(x.pro_id)).ToList();
         }
@@ -156,7 +158,7 @@ namespace LandManagement.Repository
         {
             try
             {
-                var salida = (from p in Contexto.tbpropiedad.Include("tbcliente")
+                var salida = (from p in ContextoLocal.tbpropiedad.Include("tbcliente")
                               where p.tbcliente.Any(c => c.cli_id == cliente.cli_id)
                               select p).ToList<tbpropiedad>();
 

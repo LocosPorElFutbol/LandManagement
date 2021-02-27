@@ -8,110 +8,110 @@ using System.Data;
 
 namespace LandManagement.Repository
 {
-    public class TasacionRepository: ITasacion<tbtasacion>
+    public class TasacionRepository: BaseRepository<tbtasacion>
     {
-        private landmanagementbdEntities _Contexto;
-        public landmanagementbdEntities Contexto
+        private landmanagementbdEntities _ContextoLocal;
+        public landmanagementbdEntities ContextoLocal
         {
             set { }
             get
             {
-                if (_Contexto == null)
+                if (_ContextoLocal == null)
                 {
-                    _Contexto = new landmanagementbdEntities();
-                    _Contexto.ContextOptions.LazyLoadingEnabled = false;
-                    _Contexto.ContextOptions.ProxyCreationEnabled = false;
+                    _ContextoLocal = new landmanagementbdEntities();
+                    _ContextoLocal.Configuration.LazyLoadingEnabled = false;
+                    _ContextoLocal.Configuration.ProxyCreationEnabled = false;
                 }
-                return _Contexto;
+                return _ContextoLocal;
             }
         }
 
-        public void Create(tbtasacion entity)
-        {
-            try
-            {
-                Contexto = new landmanagementbdEntities();
-                Contexto.CreateObjectSet<tbtasacion>().AddObject(entity);
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                //throw new ExcepcionRepository();
-                throw ex;
-            }
-        }
+        //public void Create(tbtasacion entity)
+        //{
+        //    try
+        //    {
+        //        ContextoLocal = new landmanagementbdEntities();
+        //        ContextoLocal.CreateObjectSet<tbtasacion>().AddObject(entity);
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //throw new ExcepcionRepository();
+        //        throw ex;
+        //    }
+        //}
 
-        public void Update(tbtasacion entity)
-        {
-            try
-            {
-                EntityKey key = Contexto.CreateEntityKey(
-                    Contexto.CreateObjectSet<tbtasacion>().EntitySet.Name, entity);
-                tbtasacion entityAux = null;
-                entityAux = (tbtasacion)Contexto.GetObjectByKey(key);
+        //public void Update(tbtasacion entity)
+        //{
+        //    try
+        //    {
+        //        EntityKey key = ContextoLocal.CreateEntityKey(
+        //            ContextoLocal.CreateObjectSet<tbtasacion>().EntitySet.Name, entity);
+        //        tbtasacion entityAux = null;
+        //        entityAux = (tbtasacion)ContextoLocal.GetObjectByKey(key);
 
-                Contexto.CreateObjectSet<tbtasacion>().ApplyCurrentValues(entity);
-                Contexto.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
-                Contexto.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
+        //        ContextoLocal.CreateObjectSet<tbtasacion>().ApplyCurrentValues(entity);
+        //        ContextoLocal.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
+        //        ContextoLocal.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
 
-                Contexto.SaveChanges();
+        //        ContextoLocal.SaveChanges();
 
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-                //throw new ExcepcionRepository();
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //        //throw new ExcepcionRepository();
+        //    }
+        //}
 
-        public void Delete(tbtasacion entity)
-        {
-            try
-            {
-                tbtasacion o = (tbtasacion)this.GetElement(entity);
-                Contexto.tbtasacion.DeleteObject(o);
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-                //throw new ExcepcionRepository();
-            }
-        }
+        //public void Delete(tbtasacion entity)
+        //{
+        //    try
+        //    {
+        //        tbtasacion o = (tbtasacion)this.GetElement(entity);
+        //        ContextoLocal.tbtasacion.DeleteObject(o);
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //        //throw new ExcepcionRepository();
+        //    }
+        //}
 
-        public object GetElement(tbtasacion entity)
-        {
-            EntityKey key = Contexto.CreateEntityKey(
-                Contexto.CreateObjectSet<tbtasacion>().EntitySet.Name, entity);
-            try
-            {
-                tbtasacion salida = (tbtasacion)Contexto.GetObjectByKey(key);
-                return salida;
-            }
-            catch (ObjectNotFoundException)
-            {
-                throw new ExcepcionRepository();
-            }
-        }
+        //public object GetElement(tbtasacion entity)
+        //{
+        //    EntityKey key = ContextoLocal.CreateEntityKey(
+        //        ContextoLocal.CreateObjectSet<tbtasacion>().EntitySet.Name, entity);
+        //    try
+        //    {
+        //        tbtasacion salida = (tbtasacion)ContextoLocal.GetObjectByKey(key);
+        //        return salida;
+        //    }
+        //    catch (ObjectNotFoundException)
+        //    {
+        //        throw new ExcepcionRepository();
+        //    }
+        //}
 
-        public object GetElementByKey(tbtasacion entity)
-        {
-            try
-            {
-                EntityKey key = Contexto.CreateEntityKey(
-                    Contexto.CreateObjectSet<tbtasacion>().EntitySet.Name, entity);
+        //public object GetElement(tbtasacion entity)
+        //{
+        //    try
+        //    {
+        //        EntityKey key = ContextoLocal.CreateEntityKey(
+        //            ContextoLocal.CreateObjectSet<tbtasacion>().EntitySet.Name, entity);
 
-                return Contexto.GetObjectByKey(key);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        return ContextoLocal.GetObjectByKey(key);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public object GetList()
-        {
-            return Contexto.tbtasacion.ToList();
-        }
+        //public object GetList()
+        //{
+        //    return ContextoLocal.tbtasacion.ToList();
+        //}
     }
 }

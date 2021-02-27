@@ -8,84 +8,84 @@ using System.Text;
 
 namespace LandManagement.Repository
 {
-    public class VentaRepository : ICrud<tbventa>
+    public class VentaRepository : BaseRepository<tbventa>
     {
-        private landmanagementbdEntities _Contexto;
-        public landmanagementbdEntities Contexto
+        private landmanagementbdEntities _ContextoLocal;
+        public landmanagementbdEntities ContextoLocal
         {
             set { }
             get
             {
-                if (_Contexto == null)
+                if (_ContextoLocal == null)
                 {
-                    _Contexto = new landmanagementbdEntities();
-                    _Contexto.ContextOptions.LazyLoadingEnabled = false;
-                    _Contexto.ContextOptions.ProxyCreationEnabled = false;
+                    _ContextoLocal = new landmanagementbdEntities();
+                    _ContextoLocal.Configuration.LazyLoadingEnabled = false;
+                    _ContextoLocal.Configuration.ProxyCreationEnabled = false;
                 }
-                return _Contexto;
+                return _ContextoLocal;
             }
         }
 
-        public void Create(tbventa entity)
+        public override void Create(tbventa entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(tbventa entity)
-        {
-            try
-            {
-                EntityKey key = Contexto.CreateEntityKey(Contexto.CreateObjectSet<tbventa>().EntitySet.Name, entity);
-                tbventa entityAux = (tbventa)Contexto.GetObjectByKey(key);
+        //public void Update(tbventa entity)
+        //{
+        //    try
+        //    {
+        //        EntityKey key = ContextoLocal.CreateEntityKey(ContextoLocal.CreateObjectSet<tbventa>().EntitySet.Name, entity);
+        //        tbventa entityAux = (tbventa)ContextoLocal.GetObjectByKey(key);
 
-                Contexto.CreateObjectSet<tbventa>().ApplyCurrentValues(entity);
-                Contexto.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
-                Contexto.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
+        //        ContextoLocal.CreateObjectSet<tbventa>().ApplyCurrentValues(entity);
+        //        ContextoLocal.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
+        //        ContextoLocal.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
 
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public void Delete(tbventa entity)
-        {
-            try
-            {
-                tbventa o = (tbventa)this.GetElementByKey(entity);
-                Contexto.tbventa.DeleteObject(o);
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //public void Delete(tbventa entity)
+        //{
+        //    try
+        //    {
+        //        tbventa o = (tbventa)this.GetElementByKey(entity);
+        //        ContextoLocal.tbventa.DeleteObject(o);
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public object GetElement(tbventa entity)
-        {
-            throw new NotImplementedException();
-        }
+        //public object GetElement(tbventa entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public object GetElementByKey(tbventa entity)
-        {
-            try
-            {
-                EntityKey key = Contexto.CreateEntityKey(
-                    Contexto.CreateObjectSet<tbventa>().EntitySet.Name, entity);
+        //public object GetElement(tbventa entity)
+        //{
+        //    try
+        //    {
+        //        EntityKey key = ContextoLocal.CreateEntityKey(
+        //            ContextoLocal.CreateObjectSet<tbventa>().EntitySet.Name, entity);
 
-                tbventa salida = (tbventa)Contexto.GetObjectByKey(key);
-                return salida;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        tbventa salida = (tbventa)ContextoLocal.GetObjectByKey(key);
+        //        return salida;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public object GetList()
+        public override object GetList()
         {
             throw new NotImplementedException();
         }

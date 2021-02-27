@@ -13,7 +13,8 @@ namespace LandManagement.Business
 
         public ClienteSystemBusiness()
         {
-            clienteSystemRepository = ClienteSystemRepository.GetInstancia();
+            //clienteSystemRepository = ClienteSystemRepository.GetInstancia();
+            clienteSystemRepository = new ClienteSystemRepository();
         }
 
         public object GetElement(tbsyscliente sysCliente)

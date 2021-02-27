@@ -28,7 +28,7 @@ namespace LandManagement.Business
 
         public object GetElementByKey(tbenventa entity)
         {
-            return enVentaRepository.GetElementByKey(entity);
+            return enVentaRepository.GetElement(entity);
         }
     }
 }

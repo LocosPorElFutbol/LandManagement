@@ -28,7 +28,7 @@ namespace LandManagement.Business
 
         public object GetElementByKey(tbencuesta _encuesta)
         {
-            return encuestaRepository.GetElementByKey(_encuesta);
+            return encuestaRepository.GetElement(_encuesta);
         }
     }
 }

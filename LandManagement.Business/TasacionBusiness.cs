@@ -38,7 +38,7 @@ namespace LandManagement.Business
 
         public object GetElementByKey(tbtasacion tasacion)
         {
-            return tasacionRepository.GetElementByKey(tasacion);
+            return tasacionRepository.GetElement(tasacion);
         }
 
         public object GetList()

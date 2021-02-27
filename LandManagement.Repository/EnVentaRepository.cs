@@ -8,75 +8,90 @@ using System.Text;
 
 namespace LandManagement.Repository
 {
-    public class EnVentaRepository : IEnVenta<tbenventa>
+    public class EnVentaRepository : BaseRepository<tbenventa>
     {
-        private landmanagementbdEntities _Contexto;
-        public landmanagementbdEntities Contexto
+        private landmanagementbdEntities _ContextoLocal;
+        public landmanagementbdEntities ContextoLocal
         {
             set { }
             get
             {
-                if (_Contexto == null)
+                if (_ContextoLocal == null)
                 {
-                    _Contexto = new landmanagementbdEntities();
-                    _Contexto.ContextOptions.LazyLoadingEnabled = false;
-                    _Contexto.ContextOptions.ProxyCreationEnabled = false;
+                    _ContextoLocal = new landmanagementbdEntities();
+                    _ContextoLocal.Configuration.LazyLoadingEnabled = false;
+                    _ContextoLocal.Configuration.ProxyCreationEnabled = false;
                 }
-                return _Contexto;
+                return _ContextoLocal;
             }
         }
 
-        public void Update(tbenventa entity)
-        {
-            try
-            {
-                EntityKey key = Contexto.CreateEntityKey(Contexto.CreateObjectSet<tbenventa>().EntitySet.Name, entity);
-                tbenventa entityAux = (tbenventa)Contexto.GetObjectByKey(key);
-
-                Contexto.CreateObjectSet<tbenventa>().ApplyCurrentValues(entity);
-                Contexto.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
-                Contexto.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
-
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public void Delete(tbenventa entity)
-        {
-            try
-            {
-                tbenventa m = (tbenventa)this.GetElementByKey(entity);
-                Contexto.tbenventa.DeleteObject(m);
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public object GetElement(tbenventa entity)
-        {
+		public override void Create(tbenventa entity)
+		{
             throw new NotImplementedException();
-        }
+		}
 
-        public object GetElementByKey(tbenventa entity)
-        {
-            try
-            {
-                EntityKey key = Contexto.CreateEntityKey(
-                    Contexto.CreateObjectSet<tbenventa>().EntitySet.Name, entity);
+		//public void Update(tbenventa entity)
+		//      {
+		//          try
+		//          {
+		//              EntityKey key = ContextoLocal.CreateEntityKey(ContextoLocal.CreateObjectSet<tbenventa>().EntitySet.Name, entity);
+		//              tbenventa entityAux = (tbenventa)ContextoLocal.GetObjectByKey(key);
 
-                return Contexto.GetObjectByKey(key);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-    }
+		//              ContextoLocal.CreateObjectSet<tbenventa>().ApplyCurrentValues(entity);
+		//              ContextoLocal.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
+		//              ContextoLocal.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
+
+		//              ContextoLocal.SaveChanges();
+		//          }
+		//          catch (Exception ex)
+		//          {
+		//              throw ex;
+		//          }
+		//      }
+
+		//public void Delete(tbenventa entity)
+		//{
+		//    try
+		//    {
+		//        tbenventa m = (tbenventa)this.GetElementByKey(entity);
+		//        ContextoLocal.tbenventa.DeleteObject(m);
+		//        ContextoLocal.SaveChanges();
+		//    }
+		//    catch (Exception ex)
+		//    {
+		//        throw ex;
+		//    }
+		//}
+
+		//public object GetElement(tbenventa entity)
+		//{
+		//    throw new NotImplementedException();
+		//}
+
+		//public object GetElement(tbenventa entity)
+		//{
+		//    try
+		//    {
+		//        EntityKey key = ContextoLocal.CreateEntityKey(
+		//            ContextoLocal.CreateObjectSet<tbenventa>().EntitySet.Name, entity);
+
+		//        return ContextoLocal.GetObjectByKey(key);
+		//    }
+		//    catch (Exception ex)
+		//    {
+		//        throw ex;
+		//    }
+		//}
+
+		public override object GetList()
+		{
+			throw new NotImplementedException();
+		}
+
+		public override object GetList(Func<tbenventa, bool> funcion)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

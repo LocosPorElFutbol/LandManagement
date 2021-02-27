@@ -8,96 +8,96 @@ using System.Data;
 
 namespace LandManagement.Repository
 {
-    public class DomicilioRepository: IDomicilio<tbdomicilio>
+    public class DomicilioRepository: BaseRepository<tbdomicilio>
     {
-        private landmanagementbdEntities _Contexto;
-        public landmanagementbdEntities Contexto
+        private landmanagementbdEntities _ContextoLocal;
+        public landmanagementbdEntities ContextoLocal
         {
             set { }
             get
             {
-                if (_Contexto == null)
+                if (_ContextoLocal == null)
                 {
-                    _Contexto = new landmanagementbdEntities();
-                    _Contexto.ContextOptions.LazyLoadingEnabled = false;
-                    _Contexto.ContextOptions.ProxyCreationEnabled = false;
+                    _ContextoLocal = new landmanagementbdEntities();
+                    _ContextoLocal.Configuration.LazyLoadingEnabled = false;
+                    _ContextoLocal.Configuration.ProxyCreationEnabled = false;
                 }
-                return _Contexto;
+                return _ContextoLocal;
             }
         }
 
-        public void Create(tbdomicilio entity)
-        {
-            try
-            {
-                Contexto = new landmanagementbdEntities();
-                Contexto.CreateObjectSet<tbdomicilio>().AddObject(entity);
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                //throw new ExcepcionRepository();
-                throw ex;
-            }
-        }
+        //public void Create(tbdomicilio entity)
+        //{
+        //    try
+        //    {
+        //        ContextoLocal = new landmanagementbdEntities();
+        //        ContextoLocal.CreateObjectSet<tbdomicilio>().AddObject(entity);
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //throw new ExcepcionRepository();
+        //        throw ex;
+        //    }
+        //}
 
-        public void Update(tbdomicilio entity)
-        {
-            try
-            {
-                EntityKey key = Contexto.CreateEntityKey(
-                    Contexto.CreateObjectSet<tbdomicilio>().EntitySet.Name, entity);
-                tbdomicilio entityAux = null;
-                entityAux = (tbdomicilio)Contexto.GetObjectByKey(key);
+        //public void Update(tbdomicilio entity)
+        //{
+        //    try
+        //    {
+        //        EntityKey key = ContextoLocal.CreateEntityKey(
+        //            ContextoLocal.CreateObjectSet<tbdomicilio>().EntitySet.Name, entity);
+        //        tbdomicilio entityAux = null;
+        //        entityAux = (tbdomicilio)ContextoLocal.GetObjectByKey(key);
 
-                Contexto.CreateObjectSet<tbdomicilio>().ApplyCurrentValues(entity);
-                Contexto.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
-                Contexto.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
+        //        ContextoLocal.CreateObjectSet<tbdomicilio>().ApplyCurrentValues(entity);
+        //        ContextoLocal.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
+        //        ContextoLocal.ObjectStateManager.ChangeObjectState(entityAux, EntityState.Modified);
 
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-                //throw new ExcepcionRepository();
-            }
-        }
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //        //throw new ExcepcionRepository();
+        //    }
+        //}
 
-        public void Delete(tbdomicilio entity)
-        {
-            try
-            {
-                tbdomicilio d = (tbdomicilio)this.GetElement(entity);
-                Contexto.tbdomicilio.DeleteObject(d);
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-                //throw new ExcepcionRepository();
-            }
-        }
+        //public void Delete(tbdomicilio entity)
+        //{
+        //    try
+        //    {
+        //        tbdomicilio d = (tbdomicilio)this.GetElement(entity);
+        //        ContextoLocal.tbdomicilio.DeleteObject(d);
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //        //throw new ExcepcionRepository();
+        //    }
+        //}
 
-        public object GetElement(tbdomicilio entity)
-        {
-            EntityKey key = Contexto.CreateEntityKey(
-                Contexto.CreateObjectSet<tbdomicilio>().EntitySet.Name, entity);
-            try
-            {
-                tbdomicilio salida = (tbdomicilio)Contexto.GetObjectByKey(key);
-                return salida;
-            }
-            catch (ObjectNotFoundException)
-            {
-                throw new ExcepcionRepository();
-            }
-        }
+        //public object GetElement(tbdomicilio entity)
+        //{
+        //    EntityKey key = ContextoLocal.CreateEntityKey(
+        //        ContextoLocal.CreateObjectSet<tbdomicilio>().EntitySet.Name, entity);
+        //    try
+        //    {
+        //        tbdomicilio salida = (tbdomicilio)ContextoLocal.GetObjectByKey(key);
+        //        return salida;
+        //    }
+        //    catch (ObjectNotFoundException)
+        //    {
+        //        throw new ExcepcionRepository();
+        //    }
+        //}
 
         public object GetDomicilioPorCliente(tbcliente cliente)
         {
             try
             {
-                var salida = (from d in Contexto.tbdomicilio
+                var salida = (from d in ContextoLocal.tbdomicilio
                               where d.cli_id == cliente.cli_id
                               select d).ToList<tbdomicilio>();
 
@@ -109,15 +109,15 @@ namespace LandManagement.Repository
             }
         }
 
-        public object GetList()
-        {
-            //return Contexto.CreateObjectSet<tbmenu>().ToList();
-            return Contexto.tbdomicilio.ToList();
-        }
+  //      public object GetList()
+  //      {
+  //          //return Contexto.CreateObjectSet<tbmenu>().ToList();
+  //          return ContextoLocal.tbdomicilio.ToList();
+  //      }
 
-		public object GetList(Func<tbdomicilio, bool> predicado)
-		{
-			return Contexto.tbdomicilio.Where(predicado).ToList();
-		}
+		//public object GetList(Func<tbdomicilio, bool> predicado)
+		//{
+		//	return ContextoLocal.tbdomicilio.Where(predicado).ToList();
+		//}
     }
 }

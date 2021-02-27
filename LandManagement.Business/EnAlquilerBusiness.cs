@@ -28,7 +28,7 @@ namespace LandManagement.Business
 
         public object GetElementByKey(tbenalquiler _enAlquiler)
         {
-            return enAlquilerRepository.GetElementByKey(_enAlquiler);
+            return enAlquilerRepository.GetElement(_enAlquiler);
         }
     }
 }

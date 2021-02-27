@@ -13,7 +13,8 @@ namespace LandManagement.Business
 
         public ProvinciaBusiness()
         {
-            provinciaRepository = ProvinciaRepository.GetInstancia();
+            //provinciaRepository = ProvinciaRepository.GetInstancia();
+            provinciaRepository = new ProvinciaRepository();
         }
 
         public object GetElement(tbprovincia entity)

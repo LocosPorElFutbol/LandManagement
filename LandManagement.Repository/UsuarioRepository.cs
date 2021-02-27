@@ -8,80 +8,83 @@ using System.Data;
 
 namespace LandManagement.Repository
 {
-    public class UsuarioRepository : IUsuario<tbusuario>
+    public class UsuarioRepository : BaseRepository<tbusuario>
     {
-        private landmanagementbdEntities _Contexto;
-        public landmanagementbdEntities Contexto
+        private landmanagementbdEntities _ContextoLocal;
+        public landmanagementbdEntities ContextoLocal
         {
             set { }
             get
             {
-                if (_Contexto == null)
+                if (_ContextoLocal == null)
                 {
-                    _Contexto = new landmanagementbdEntities();
-                    _Contexto.ContextOptions.LazyLoadingEnabled = false;
-                    _Contexto.ContextOptions.ProxyCreationEnabled = false;
+                    _ContextoLocal = new landmanagementbdEntities();
+                    _ContextoLocal.Configuration.LazyLoadingEnabled = false;
+                    _ContextoLocal.Configuration.ProxyCreationEnabled = false;
                 }
-                return _Contexto;
+                return _ContextoLocal;
             }
         }
 
-        public void Create(tbusuario entity)
+        //public void Create(tbusuario entity)
+        //{
+        //    try
+        //    {
+        //        ContextoLocal = new landmanagementbdEntities();
+        //        ContextoLocal.CreateObjectSet<tbusuario>().AddObject(entity);
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
+        //public void Update(tbusuario entity)
+        //{
+        //    try
+        //    {
+        //        EntityKey key =
+        //            ContextoLocal.CreateEntityKey(ContextoLocal.CreateObjectSet<tbusuario>().EntitySet.Name, entity);
+
+        //        tbusuario entityAux = (tbusuario)ContextoLocal.GetObjectByKey(key);
+
+        //        ContextoLocal.CreateObjectSet<tbusuario>().ApplyCurrentValues(entity);
+        //        ContextoLocal.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
+        //        ContextoLocal.ObjectStateManager.ChangeObjectState(entityAux, System.Data.EntityState.Modified);
+
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
+        public void UpdateOld(tbusuario entity)
         {
             try
             {
-                Contexto = new landmanagementbdEntities();
-                Contexto.CreateObjectSet<tbusuario>().AddObject(entity);
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+                Update(entity); //usaba la actualizacion de las lineas de abajo comentadas, ser llama a Update base y listo
 
-        public void UpdateNew(tbusuario entity)
-        {
-            try
-            {
-                EntityKey key =
-                    Contexto.CreateEntityKey(Contexto.CreateObjectSet<tbusuario>().EntitySet.Name, entity);
-
-                tbusuario entityAux = (tbusuario)Contexto.GetObjectByKey(key);
-
-                Contexto.CreateObjectSet<tbusuario>().ApplyCurrentValues(entity);
-                Contexto.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
-                Contexto.ObjectStateManager.ChangeObjectState(entityAux, System.Data.EntityState.Modified);
-
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public void Update(tbusuario entity)
-        {
-            try
-            {
                 //Verifico si ya existe la entidad en el contexto
-                EntityKey key =
-                    Contexto.CreateEntityKey(Contexto.CreateObjectSet<tbusuario>().EntitySet.Name, entity);
+                //EntityKey key =
+                //    ContextoLocal.CreateEntityKey(ContextoLocal.CreateObjectSet<tbusuario>().EntitySet.Name, entity);
 
-                tbusuario entityAux = null;
-                entityAux = (tbusuario)Contexto.GetObjectByKey(key);
+                //tbusuario entityAux = null;
+                //entityAux = (tbusuario)ContextoLocal.GetObjectByKey(key);
 
-                // Ya existe la entidad en el contexto, aplico los cambios
-                Contexto.CreateObjectSet<tbusuario>().ApplyCurrentValues(entity);
-                Contexto.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
-                Contexto.ObjectStateManager.ChangeObjectState(entityAux, System.Data.EntityState.Modified);
+                //// Ya existe la entidad en el contexto, aplico los cambios
+                //ContextoLocal.CreateObjectSet<tbusuario>().ApplyCurrentValues(entity);
+                //ContextoLocal.ObjectStateManager.GetObjectStateEntry(entityAux).ChangeState(EntityState.Modified);
+                //ContextoLocal.ObjectStateManager.ChangeObjectState(entityAux, System.Data.EntityState.Modified);
+
                 // DBK 27/03/2012
                 //Contexto.SaveChanges();
 
                 //Actualizo relaciones con tbmenu
-                var usuario = Contexto.tbusuario.Include("tbmenu").Single(u => u.usu_id == entity.usu_id);
-                var menues = (from m in Contexto.tbmenu.ToList()
+                var usuario = ContextoLocal.tbusuario.Include("tbmenu").Single(u => u.usu_id == entity.usu_id);
+                var menues = (from m in ContextoLocal.tbmenu.ToList()
                               from mu in entity.tbmenu
                               where m.men_id == mu.men_id
                               select m).ToList();
@@ -90,7 +93,7 @@ namespace LandManagement.Repository
                 foreach (var m in menues)
                     usuario.tbmenu.Add(m);
 
-                Contexto.SaveChanges();
+                ContextoLocal.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -98,21 +101,21 @@ namespace LandManagement.Repository
             }
         }
 
-        public void Delete(tbusuario entity)
-        {
-            try
-            {
-                tbusuario m = (tbusuario)this.GetElement(entity);
-                Contexto.tbusuario.DeleteObject(m);
-                Contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //public void Delete(tbusuario entity)
+        //{
+        //    try
+        //    {
+        //        tbusuario m = (tbusuario)this.GetElement(entity);
+        //        ContextoLocal.tbusuario.DeleteObject(m);
+        //        ContextoLocal.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public object GetElement(tbusuario entity)
+        public override object GetElement(tbusuario entity)
         {
             try
             {
@@ -123,7 +126,7 @@ namespace LandManagement.Repository
                 //                    select u).FirstOrDefault();
                 
                 //MEJORA MENU
-                tbusuario salida = (from u in Contexto.tbusuario.Include("tbmenu")
+                tbusuario salida = (from u in ContextoLocal.tbusuario.Include("tbmenu")
                                     where u.usu_id == entity.usu_id
                                     select u).FirstOrDefault();
 
@@ -135,14 +138,14 @@ namespace LandManagement.Repository
             }
         }
 
-        public object GetList()
-        {
-            return Contexto.CreateObjectSet<tbusuario>().ToList();
-        }
+        //public object GetList()
+        //{
+        //    return ContextoLocal.CreateObjectSet<tbusuario>().ToList();
+        //}
 
-        public object GetList(Func<tbusuario, bool> funcion)
-        {
-            return Contexto.tbusuario.Where(funcion).ToList();
-        }
+        //public object GetList(Func<tbusuario, bool> funcion)
+        //{
+        //    return ContextoLocal.tbusuario.Where(funcion).ToList();
+        //}
     }
 }

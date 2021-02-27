@@ -8,25 +8,25 @@ using System.Text;
 
 namespace LandManagement.Repository
 {
-    public class ClienteOperacionRepository : IClienteOperacion<tbclienteoperacion>
+    public class ClienteOperacionRepository : BaseRepository<tbclienteoperacion>
     {
-        private landmanagementbdEntities _Contexto;
-        public landmanagementbdEntities Contexto
+        private landmanagementbdEntities _ContextoLocal;
+        public landmanagementbdEntities ContextoLocal
         {
             set { }
             get
             {
-                if (_Contexto == null)
+                if (_ContextoLocal == null)
                 {
-                    _Contexto = new landmanagementbdEntities();
-                    _Contexto.ContextOptions.LazyLoadingEnabled = false;
-                    _Contexto.ContextOptions.ProxyCreationEnabled = false;
+                    _ContextoLocal = new landmanagementbdEntities();
+                    _ContextoLocal.Configuration.LazyLoadingEnabled = false;
+                    _ContextoLocal.Configuration.ProxyCreationEnabled = false;
                 }
-                return _Contexto;
+                return _ContextoLocal;
             }
         }
 
-        public void Create(tbclienteoperacion entity)
+        public override void Create(tbclienteoperacion entity)
         {
             try
             {
@@ -51,18 +51,55 @@ namespace LandManagement.Repository
             }
         }
 
-        public void Update(tbclienteoperacion entity)
+        public override void Update(tbclienteoperacion entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(tbclienteoperacion entity)
+		//public void Delete(tbclienteoperacion entity)
+		//{
+		//    try
+		//    {
+		//        tbclienteoperacion m = (tbclienteoperacion)this.GetElement(entity);
+		//        ContextoLocal.tbclienteoperacion.DeleteObject(m);
+		//        ContextoLocal.SaveChanges();
+		//    }
+		//    catch (Exception ex)
+		//    {
+		//        throw ex;
+		//    }
+		//}
+
+		//public object GetElement(tbclienteoperacion entity)
+		//{
+		//    throw new NotImplementedException();
+		//}
+
+		//public object GetElement(tbclienteoperacion entity)
+		//{
+		//	try
+		//	{
+		//		EntityKey key = ContextoLocal.CreateEntityKey(ContextoLocal.CreateObjectSet<tbclienteoperacion>().EntitySet.Name, entity);
+		//		return ContextoLocal.GetObjectByKey(key);
+		//	}
+		//	catch (Exception ex)
+		//	{
+		//		throw ex;
+		//	}
+		//}
+
+		//public object GetList()
+		//{
+		//    return ContextoLocal.tbclienteoperacion.Include("tbcliente")
+		//                                      .Include("tboperaciones")
+		//                                      .Include("tbsystipocliente").ToList();
+		//}
+
+		public object GetListByIdOperacion(int _idOperacion)
         {
             try
             {
-                tbclienteoperacion m = (tbclienteoperacion)this.GetElementByKey(entity);
-                Contexto.tbclienteoperacion.DeleteObject(m);
-                Contexto.SaveChanges();
+                return ContextoLocal.tbclienteoperacion.Where(x => x.ope_id == _idOperacion).ToList();
             }
             catch (Exception ex)
             {
@@ -70,53 +107,16 @@ namespace LandManagement.Repository
             }
         }
 
-        public object GetElement(tbclienteoperacion entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public object GetElementByKey(tbclienteoperacion entity)
-        {
-            try
-            {
-                EntityKey key = Contexto.CreateEntityKey(Contexto.CreateObjectSet<tbclienteoperacion>().EntitySet.Name, entity);
-                return Contexto.GetObjectByKey(key);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public object GetList()
-        {
-            return Contexto.tbclienteoperacion.Include("tbcliente")
-                                              .Include("tboperaciones")
-                                              .Include("tbsystipocliente").ToList();
-        }
-
-        public object GetListByIdOperacion(int _idOperacion)
-        {
-            try
-            {
-                return Contexto.tbclienteoperacion.Where(x => x.ope_id == _idOperacion).ToList();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public object GetList(Func<tbclienteoperacion, bool> _whereClausule)
-        {
-            try
-            {
-                return Contexto.tbclienteoperacion.Where(_whereClausule).ToList<tbclienteoperacion>();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //public object GetList(Func<tbclienteoperacion, bool> _whereClausule)
+        //{
+        //    try
+        //    {
+        //        return ContextoLocal.tbclienteoperacion.Where(_whereClausule).ToList<tbclienteoperacion>();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
     }
 }
